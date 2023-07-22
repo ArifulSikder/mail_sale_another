@@ -1,0 +1,697 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!--====== Required meta tags ======-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!--====== Title ======-->
+    <title>Google Website</title>
+    <!--====== Favicon Icon ======-->
+    <link rel="icon" href="./assets/images/favicon.png">
+
+    <!--====== Font Awesome ======-->
+    <link rel="stylesheet" href="./assets/fonts/font-awesome/css/all.css">
+    <!--====== Bootstrap ======-->
+    <link rel="stylesheet" href="./assets/css/bootstrap.min.css">
+    <!--====== Main Style ======-->
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <!--====== responsive Style ======-->
+    <link rel="stylesheet" href="./assets/css/responsive.css">
+
+</head>
+
+<body>
+    <!-- header section start -->
+    <header class="header">
+        <!-- Header Top Start -->
+        <div class="header-top section">
+          <div class="container">
+            <div class="header-top-content">
+              <div class="row">
+                <div class="col-12 d-flex justify-content-end">
+                  <div class="header-top-links">
+                    <!-- Header Links -->
+                    <ul class="header-links">
+                      <li class="header-social">
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-twitter"></i></a>
+                        <a href="#"><i class="fa-regular fa-envelope"></i></a>
+                        <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                      </li>
+                        <li><a href="./login.html"><i class="fa fa-user-circle-o"></i>Sign Up</a></li>
+                        <li><a href="./contact.html">Contact</a></li>
+                    </ul>
+                  </div><!-- Header Top Links End -->
+                </div>
+              </div>
+            </div>
+          </div><!-- Header Top End -->
+        </div>
+      
+      <!-- Header Start -->
+      <div class="header-section section">
+          <div class="container">
+            <div class="header-middle bg-white">
+              <div class="row align-items-center">
+                <!-- Header Logo -->
+                <div class="header-logo col-md-4 d-none d-md-block">
+                    <a href="index.html" class="logo">
+                      <img src="./assets/images/logo.png" alt="Logo">
+                    </a>
+                </div>
+                <!-- Header Banner -->
+                <div class=" col-md-8 col-12 text-end">
+                    <a href="./my-account.html" class="btn btn-danger">My Account</a>
+                    <a href="./cart.html" class="btn btn-danger position-relative">Cart / 
+                      <span><i class="fa-solid fa-cart-shopping"></i></span>
+                      <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                        5
+                      </span>
+                    </a>
+                </div> 
+              </div>
+            </div>
+          </div>
+      </div><!-- Header End -->
+      
+      <!-- Menu Section Start -->
+      <div class="main-menu">
+          <div class="container">
+            <div class="header-menu">
+             <nav class="navbar navbar-expand-lg navbar-light">
+              <div class="container-fluid">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./pricing.html">Google</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./about-us.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./my-account.html">My Account</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="./">Contact Us</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+             </nav>  
+            <div class="header-search float-end">
+              <button class="search-btn">
+                <i class="fa fa-search"></i>
+              </button>
+              <div class="search-form">
+                <button class="close-btn">
+                  <i class="fa fa-times"></i>
+                </button>
+                <input type="text" class="search-input">
+              </div>
+            </div>
+           </div>
+          </div>
+      </div><!-- Menu Section End -->
+      </header>
+    <!-- header section end -->
+
+    <!-- account section start -->
+    <section class="account-area">
+        <div class="container">
+            <div class="content wrapper">
+                <div class="my_account_header">
+                    <div class="header_title">
+                        <h1>My Account</h1>
+                    </div>
+                </div>
+                <div class="my_account_body">
+                  <div class="row">
+                    <div class="col-lg-4">
+                        <div class="nav flex-column nav-pills mb-5" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                        <div class="profile">
+                            <img class="me-3" src="./assets/images/all-images/img_1.png" alt="#">
+                            <p class="align-self-center mb-0">
+                                saberhossain481@gmail.com
+                            <span class="text-dark text-opacity-50 fst-italic">#8025</span>
+                            </p>
+                        </div>
+                        <button class="nav-link tab-button active text-uppercase" id="v-pills-dboard-tab" data-bs-toggle="pill" data-bs-target="#v-pills-dboard" type="button" role="tab" aria-controls="v-pills-dboard" aria-selected="true">Dashboard</button>
+
+                        <button class="nav-link tab-button text-uppercase" id="v-pills-orders-tab" data-bs-toggle="pill" data-bs-target="#v-pills-orders" type="button" role="tab" aria-controls="v-pills-orders" aria-selected="false">Orders</button>
+
+                        <button class="nav-link tab-button text-uppercase" id="v-pills-downloads-tab" data-bs-toggle="pill" data-bs-target="#v-pills-downloads" type="button" role="tab" aria-controls="v-pills-downloads" aria-selected="false">Downloads</button>
+
+                        <button class="nav-link tab-button text-uppercase" id="v-pills-address-tab" data-bs-toggle="pill" data-bs-target="#v-pills-address" type="button" role="tab" aria-controls="v-pills-address" aria-selected="false">Addresses</button>
+
+                        <button class="nav-link tab-button text-uppercase" id="v-pills-account-tab" data-bs-toggle="pill" data-bs-target="#v-pills-account" type="button" role="tab" aria-controls="v-pills-account" aria-selected="false">Account details</button>
+
+                        <button class="nav-link tab-button text-uppercase" id="v-pills-logout-tab" data-bs-toggle="pill" data-bs-target="#v-pills-logout" type="button" role="tab" aria-controls="v-pills-logout" aria-selected="false">Logout</button>
+                        </div>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="tab-content mb-5" id="v-pills-tabContent">
+                        <div class="tab-pane fade show active" id="v-pills-dboard" role="tabpanel" aria-labelledby="v-pills-dboard-tab" tabindex="0">
+                            <p>Hello <b>Saber007</b> (not <b>Saber007</b>? <span class="link">
+                                <a href="#">Log out</a>
+                            </span>)
+                        </p>
+                            <p>From your account dashboard you can view your <span class="link"><a href="#">recent orders</a></span>, manage your <span class="link"><a href="#">shipping and billing addresses</a></span>, and <span class="link"><a href="#">edit your password and account details</a></span>.</p>
+                            <div class="common_button">
+                            <a href="" class="btn">Orders</a>
+                            <a href="" class="btn">Downloads</a>
+                            <a href="" class="btn">Addresses</a>
+                            <a href="" class="btn">Account details</a>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-orders" role="tabpanel" aria-labelledby="v-pills-orders-tab" tabindex="0">
+                            <div class="common_content d-flex align-items-center">
+                            <a href="./pricing.html" class="btn_2">Browse products</a>
+                            <p>No order has been made yet.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-downloads" role="tabpanel" aria-labelledby="v-pills-downloads-tab" tabindex="0">
+                            <div class="common_content d-flex align-items-center">
+                            <a href="./pricing.html" class="btn_2">Browse products</a>
+                            <p>No downloads available yet.</p>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab" tabindex="0">
+                            <div class="billing-address">
+                            <h4 class="orderheader mb-3">Billing address</h4>
+                            <form class="form">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="firstName" class="form-label">First name</label>
+                                        <input type="text" class="form-control" value="Saber">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="lastName" class="form-label">Last name</label>
+                                        <input type="text" class="form-control leftp" value="Hossain">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="username" class="form-label">Company name (optional)</label>
+                                    <div class="">
+                                        <input type="text" class="form-control" value="WakeUp Ict">
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label for="country" class="form-label">Country / Region</label>
+                                    <select class="custom-select d-block country-control">
+                                        <option value="">Select a country / region&hellip;</option>
+                                        <option value="AF">Afghanistan</option>
+                                        <option value="AX">Åland Islands</option>
+                                        <option value="AL">Albania</option>
+                                        <option value="DZ">Algeria</option>
+                                        <option value="AS">American Samoa</option>
+                                        <option value="AD">Andorra</option>
+                                        <option value="AO">Angola</option>
+                                        <option value="AI">Anguilla</option>
+                                        <option value="AQ">Antarctica</option>
+                                        <option value="AG">Antigua and Barbuda</option>
+                                        <option value="AR">Argentina</option>
+                                        <option value="AM">Armenia</option>
+                                        <option value="AW">Aruba</option>
+                                        <option value="AU">Australia</option>
+                                        <option value="AT">Austria</option>
+                                        <option value="AZ">Azerbaijan</option>
+                                        <option value="BS">Bahamas</option>
+                                        <option value="BH">Bahrain</option>
+                                        <option value="BD">Bangladesh</option>
+                                        <option value="BB">Barbados</option>
+                                        <option value="BY">Belarus</option>
+                                        <option value="PW">Belau</option>
+                                        <option value="BE">Belgium</option>
+                                        <option value="BZ">Belize</option>
+                                        <option value="BJ">Benin</option>
+                                        <option value="BM">Bermuda</option>
+                                        <option value="BT">Bhutan</option>
+                                        <option value="BO">Bolivia</option>
+                                        <option value="BQ">Bonaire, Saint Eustatius and Saba</option>
+                                        <option value="BA">Bosnia and Herzegovina</option>
+                                        <option value="BW">Botswana</option>
+                                        <option value="BV">Bouvet Island</option>
+                                        <option value="BR">Brazil</option>
+                                        <option value="IO">British Indian Ocean Territory</option>
+                                        <option value="BN">Brunei</option>
+                                        <option value="BG">Bulgaria</option>
+                                        <option value="BF">Burkina Faso</option>
+                                        <option value="BI">Burundi</option>
+                                        <option value="KH">Cambodia</option>
+                                        <option value="CM">Cameroon</option>
+                                        <option value="CA">Canada</option>
+                                        <option value="CV">Cape Verde</option>
+                                        <option value="KY">Cayman Islands</option>
+                                        <option value="CF">Central African Republic</option>
+                                        <option value="TD">Chad</option>
+                                        <option value="CL">Chile</option>
+                                        <option value="CN">China</option>
+                                        <option value="CX">Christmas Island</option>
+                                        <option value="CC">Cocos (Keeling) Islands</option>
+                                        <option value="CO">Colombia</option>
+                                        <option value="KM">Comoros</option>
+                                        <option value="CG">Congo (Brazzaville)</option>
+                                        <option value="CD">Congo (Kinshasa)</option>
+                                        <option value="CK">Cook Islands</option>
+                                        <option value="CR">Costa Rica</option>
+                                        <option value="HR">Croatia</option>
+                                        <option value="CU">Cuba</option>
+                                        <option value="CW">Cura&ccedil;ao</option>
+                                        <option value="CY">Cyprus</option>
+                                        <option value="CZ">Czech Republic</option>
+                                        <option value="DK">Denmark</option>
+                                        <option value="DJ">Djibouti</option>
+                                        <option value="DM">Dominica</option>
+                                        <option value="DO">Dominican Republic</option>
+                                        <option value="EC">Ecuador</option>
+                                        <option value="EG">Egypt</option>
+                                        <option value="SV">El Salvador</option>
+                                        <option value="GQ">Equatorial Guinea</option>
+                                        <option value="ER">Eritrea</option>
+                                        <option value="EE">Estonia</option>
+                                        <option value="SZ">Eswatini</option>
+                                        <option value="ET">Ethiopia</option>
+                                        <option value="FK">Falkland Islands</option>
+                                        <option value="FO">Faroe Islands</option>
+                                        <option value="FJ">Fiji</option>
+                                        <option value="FI">Finland</option>
+                                        <option value="FR">France</option>
+                                        <option value="GF">French Guiana</option>
+                                        <option value="PF">French Polynesia</option>
+                                        <option value="TF">French Southern Territories</option>
+                                        <option value="GA">Gabon</option>
+                                        <option value="GM">Gambia</option>
+                                        <option value="GE">Georgia</option>
+                                        <option value="DE">Germany</option>
+                                        <option value="GH">Ghana</option>
+                                        <option value="GI">Gibraltar</option>
+                                        <option value="GR">Greece</option>
+                                        <option value="GL">Greenland</option>
+                                        <option value="GD">Grenada</option>
+                                        <option value="GP">Guadeloupe</option>
+                                        <option value="GU">Guam</option>
+                                        <option value="GT">Guatemala</option>
+                                        <option value="GG">Guernsey</option>
+                                        <option value="GN">Guinea</option>
+                                        <option value="GW">Guinea-Bissau</option>
+                                        <option value="GY">Guyana</option>
+                                        <option value="HT">Haiti</option>
+                                        <option value="HM">Heard Island and McDonald Islands</option>
+                                        <option value="HN">Honduras</option>
+                                        <option value="HK">Hong Kong</option>
+                                        <option value="HU">Hungary</option>
+                                        <option value="IS">Iceland</option>
+                                        <option value="IN">India</option>
+                                        <option value="ID">Indonesia</option>
+                                        <option value="IR">Iran</option>
+                                        <option value="IQ">Iraq</option>
+                                        <option value="IE">Ireland</option>
+                                        <option value="IM">Isle of Man</option>
+                                        <option value="IL">Israel</option>
+                                        <option value="IT">Italy</option>
+                                        <option value="CI">Ivory Coast</option>
+                                        <option value="JM">Jamaica</option>
+                                        <option value="JP">Japan</option>
+                                        <option value="JE">Jersey</option>
+                                        <option value="JO">Jordan</option>
+                                        <option value="KZ">Kazakhstan</option>
+                                        <option value="KE">Kenya</option>
+                                        <option value="KI">Kiribati</option>
+                                        <option value="KW">Kuwait</option>
+                                        <option value="KG">Kyrgyzstan</option>
+                                        <option value="LA">Laos</option>
+                                        <option value="LV">Latvia</option>
+                                        <option value="LB">Lebanon</option>
+                                        <option value="LS">Lesotho</option>
+                                        <option value="LR">Liberia</option>
+                                        <option value="LY">Libya</option>
+                                        <option value="LI">Liechtenstein</option>
+                                        <option value="LT">Lithuania</option>
+                                        <option value="LU">Luxembourg</option>
+                                        <option value="MO">Macao</option>
+                                        <option value="MG">Madagascar</option>
+                                        <option value="MW">Malawi</option>
+                                        <option value="MY">Malaysia</option>
+                                        <option value="MV">Maldives</option>
+                                        <option value="ML">Mali</option>
+                                        <option value="MT">Malta</option>
+                                        <option value="MH">Marshall Islands</option>
+                                        <option value="MQ">Martinique</option>
+                                        <option value="MR">Mauritania</option>
+                                        <option value="MU">Mauritius</option>
+                                        <option value="YT">Mayotte</option>
+                                        <option value="MX">Mexico</option>
+                                        <option value="FM">Micronesia</option>
+                                        <option value="MD">Moldova</option>
+                                        <option value="MC">Monaco</option>
+                                        <option value="MN">Mongolia</option>
+                                        <option value="ME">Montenegro</option>
+                                        <option value="MS">Montserrat</option>
+                                        <option value="MA">Morocco</option>
+                                        <option value="MZ">Mozambique</option>
+                                        <option value="MM">Myanmar</option>
+                                        <option value="NA">Namibia</option>
+                                        <option value="NR">Nauru</option>
+                                        <option value="NP">Nepal</option>
+                                        <option value="NL">Netherlands</option>
+                                        <option value="NC">New Caledonia</option>
+                                        <option value="NZ">New Zealand</option>
+                                        <option value="NI">Nicaragua</option>
+                                        <option value="NE">Niger</option>
+                                        <option value="NG">Nigeria</option>
+                                        <option value="NU">Niue</option>
+                                        <option value="NF">Norfolk Island</option>
+                                        <option value="KP">North Korea</option>
+                                        <option value="MK">North Macedonia</option>
+                                        <option value="MP">Northern Mariana Islands</option>
+                                        <option value="NO">Norway</option>
+                                        <option value="OM">Oman</option>
+                                        <option value="PK">Pakistan</option>
+                                        <option value="PS">Palestinian Territory</option>
+                                        <option value="PA">Panama</option>
+                                        <option value="PG">Papua New Guinea</option>
+                                        <option value="PY">Paraguay</option>
+                                        <option value="PE">Peru</option>
+                                        <option value="PH">Philippines</option>
+                                        <option value="PN">Pitcairn</option>
+                                        <option value="PL">Poland</option>
+                                        <option value="PT">Portugal</option>
+                                        <option value="PR">Puerto Rico</option>
+                                        <option value="QA">Qatar</option>
+                                        <option value="RE">Reunion</option>
+                                        <option value="RO">Romania</option>
+                                        <option value="RU">Russia</option>
+                                        <option value="RW">Rwanda</option>
+                                        <option value="ST">S&atilde;o Tom&eacute; and Pr&iacute;ncipe</option>
+                                        <option value="BL">Saint Barth&eacute;lemy</option>
+                                        <option value="SH">Saint Helena</option>
+                                        <option value="KN">Saint Kitts and Nevis</option>
+                                        <option value="LC">Saint Lucia</option>
+                                        <option value="SX">Saint Martin (Dutch part)</option>
+                                        <option value="MF">Saint Martin (French part)</option>
+                                        <option value="PM">Saint Pierre and Miquelon</option>
+                                        <option value="VC">Saint Vincent and the Grenadines</option>
+                                        <option value="WS">Samoa</option>
+                                        <option value="SM">San Marino</option>
+                                        <option value="SA">Saudi Arabia</option>
+                                        <option value="SN">Senegal</option>
+                                        <option value="RS">Serbia</option>
+                                        <option value="SC">Seychelles</option>
+                                        <option value="SL">Sierra Leone</option>
+                                        <option value="SG">Singapore</option>
+                                        <option value="SK">Slovakia</option>
+                                        <option value="SI">Slovenia</option>
+                                        <option value="SB">Solomon Islands</option>
+                                        <option value="SO">Somalia</option>
+                                        <option value="ZA">South Africa</option>
+                                        <option value="GS">South Georgia/Sandwich Islands</option>
+                                        <option value="KR">South Korea</option>
+                                        <option value="SS">South Sudan</option>
+                                        <option value="ES">Spain</option>
+                                        <option value="LK">Sri Lanka</option>
+                                        <option value="SD">Sudan</option>
+                                        <option value="SR">Suriname</option>
+                                        <option value="SJ">Svalbard and Jan Mayen</option>
+                                        <option value="SE">Sweden</option>
+                                        <option value="CH">Switzerland</option>
+                                        <option value="SY">Syria</option>
+                                        <option value="TW">Taiwan</option>
+                                        <option value="TJ">Tajikistan</option>
+                                        <option value="TZ">Tanzania</option>
+                                        <option value="TH">Thailand</option>
+                                        <option value="TL">Timor-Leste</option>
+                                        <option value="TG">Togo</option>
+                                        <option value="TK">Tokelau</option>
+                                        <option value="TO">Tonga</option>
+                                        <option value="TT">Trinidad and Tobago</option>
+                                        <option value="TN">Tunisia</option>
+                                        <option value="TR">Turkey</option>
+                                        <option value="TM">Turkmenistan</option>
+                                        <option value="TC">Turks and Caicos Islands</option>
+                                        <option value="TV">Tuvalu</option>
+                                        <option value="UG">Uganda</option>
+                                        <option value="UA">Ukraine</option>
+                                        <option value="AE">United Arab Emirates</option>
+                                        <option value="GB" selected='selected'>United Kingdom (UK)</option>
+                                        <option value="US">United States (US)</option>
+                                        <option value="UM">United States (US) Minor Outlying Islands</option>
+                                        <option value="UY">Uruguay</option>
+                                        <option value="UZ">Uzbekistan</option>
+                                        <option value="VU">Vanuatu</option>
+                                        <option value="VA">Vatican</option>
+                                        <option value="VE">Venezuela</option>
+                                        <option value="VN">Vietnam</option>
+                                        <option value="VG">Virgin Islands (British)</option>
+                                        <option value="VI">Virgin Islands (US)</option>
+                                        <option value="WF">Wallis and Futuna</option>
+                                        <option value="EH">Western Sahara</option>
+                                        <option value="YE">Yemen</option>
+                                        <option value="ZM">Zambia</option>
+                                        <option value="ZW">Zimbabwe</option>
+                                    </select>
+                                </div>
+                                <div class="row align-items-center">
+                                    <div class="col-md-6 mb-3">
+                                        <label for="" class="form-label">Street address</label>
+                                        <input type="text" class="form-control" placeholder="House number and street name" value="Rajbari Sadar">
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label for="" class="form-label mt-4"></label>
+                                        <input type="text" class="form-control leftp"
+                                            placeholder="Apartment, suite, unit, etc. (optional)">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="" class="form-label">Town / City *</label>
+                                    <div>
+                                        <input type="text" class="form-control" value="Rajbari">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="County" class="form-label">County (optional)</label>
+                                    <div>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Postcode" class="form-label">Postcode *</label>
+                                    <div>
+                                        <input type="text" class="form-control" value="7700">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Phone" class="form-label">Phone *</label>
+                                    <div>
+                                        <input type="number" class="form-control" value="1259875452">
+                                    </div>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="Email" class="form-label">Email address *</label>
+                                    <div>
+                                        <input type="email" class="form-control" value="saberhossain481@gmail.com">
+                                    </div>
+                                </div>
+                                <button type="submit" class="btn log-in-button mt-3">Save Address</button>
+                            </form>
+                        </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-account" role="tabpanel" aria-labelledby="v-pills-account-tab" tabindex="0">
+                            <form class="form">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                <label class="required d-block" for="fname">First name *</label>
+                                <input class="input_edit" type="text" id="fname">
+                                </div>
+
+                                <div class="col-lg-6">
+                                <label class="required d-block" for="lname">Last name *</label>
+                                <input class="input_edit" type="text" id="lname">
+                                </div>
+                            </div>
+
+                                <label class="required d-block" for="dname">Display name *</label>
+                                <input class="input_edit_2" type="text" id="dname" value="Saber007">
+
+                                <p class="fst-italic">This will be how your name will be displayed in the account section and in reviews</p>
+
+                                <label class="required d-block" for="email-address">Email address *</label>
+                                <input class="input_edit_2" type="email" id="email-address" value="saberhossain481@gmail.com">
+
+                                <p class="sub_head">Password change</p>
+
+                                <label class="required d-block" for="current_password">Current password (leave blank to leave unchanged)</label>
+                                <input class="input_edit_2" type="text" id="current_password">
+
+                                <label class="required d-block" for="new_password">New password (leave blank to leave unchanged)</label>
+                                <input class="input_edit_2" type="text" id="new_password">
+
+                                <label class="required d-block" for="confirm_password">Confirm new password</label>
+                                <input class="input_edit_2" type="text" id="confirm_password">
+
+                                <div class="common_content d-flex mt-3">
+                                <button class="btn_2 py-2">Save changes</button>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="tab-pane fade" id="v-pills-logout" role="tabpanel" aria-labelledby="v-pills-logout-tab" tabindex="0">
+                            <p>
+                            <span class="green_title">
+                                <i class="fa-solid fa-check"></i>
+                                Are you sure you want to log out?
+                            </span>
+                            <span class="link"><a href="#">Confirm and log out</a></span>
+                            </p>
+
+                            <p>Hello <b>Saber007</b> (not <b>Saber007</b>? <span class="link"><a href="#">Log out</a></span>)</p>
+                            <p>From your account dashboard you can view your <span class="link"><a href="#">recent orders</a></span>, manage your <span class="link"><a href="#">shipping and billing addresses</a></span>, and <span class="link"><a href="#">edit your password and account details</a></span>.</p>
+
+                            <div class="common_button">
+                            <button class="btn">Dashboard</button>
+                            <button class="btn">Orders</button>
+                            <button class="btn">Downloads</button>
+                            <button class="btn">Addresses</button>
+                            <button class="btn">Account details</button>
+                            </div>
+                        </div>
+
+                        </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- account section end -->
+
+    <!-- footer Section start -->
+    <footer class="footer_area">
+        <div class="footer-top">
+          <div class="container">
+            <div class="footer-wrapper">
+              <div class="row">
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <div class="footer-item">
+                    <div class="footer-about">
+                      <h5 class="footer-title">About Us</h5>
+                      <img class="footer-logo" src="./assets/images/logo.png" alt="">
+                      <p>Maecenas pellentesque placerat quam, in finibus nisl tincidunt sed. Aliquam magna
+                          augue, malesuada ut feugiat eget, cursus eget felis.</p>
+                      <div class="social_icon">
+                          <a href=""><i class="fab fa-facebook-f"></i></a>
+                          <a href=""><i class="fab fa-linkedin-in"></i></a>
+                          <a href=""> <i class="fab fa-instagram"></i></a>
+                          <a href=""> <i class="fab fa-twitter"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <div class="footer-item">
+                  <div class="services">
+                    <h5 class="footer-title">Important Links</h5>
+                    <ul class="list-unstyled">
+                      <li><a href="./my-account.html">My Account</a></li>
+                      <li><a href="./refund.html">Refund Policy</a></li>
+                      <li><a href="./privacy-policy.html">Privacy Policy</a></li>
+                      <li><a href="./terms-of-service.html">Terms of Service</a></li>
+                      <li><a href="./disclaimer.html">Disclaimer</a></li>
+                      <li><a href="./faq.html">FAQ</a></li>
+                    </ul>
+                  </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <div class="footer-item">
+                    <h5 class="footer-title">Contact US</h5>
+                    <div class="contact">
+                      <ul>
+                          <li>
+                              <i class="fas fa-home"></i>
+                              25 Kaki Bukit, Ave 3, 415923
+                          </li>
+                          <li>
+                              <i class="fas fa-phone-alt"></i>
+                             +6589296011
+                          </li>
+                          <li>
+                              <i class="fas fa-envelope"></i>
+                              hossainaltab2820@gmail.com
+                          </li>
+                      </ul>
+                  </div>
+                  </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-12">
+                  <div class="footer-item">
+                    <img class="guarantee-image" src="./assets/images/home-page/100-satisfaction-guarantee-100-satisfaction-guarantee-badge-11562919018kscvvotyt9-removebg-preview.png" alt="">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <div class="container">
+            <div class="footer-bottom-item">
+            <div class="row d-flex align-items-center">
+              <div class="col-lg-6 col-md-12 col-sm-12">
+                <span class="copyright-text">Copyright © 2021
+                    <a href="" target="_blank">Antara</a>. All rights reserved.
+                  </span>
+              </div>
+              <div class="col-lg-6 col-md-12 col-sm-12">
+                <div class="currency-image">
+                  <img src="./assets/images/home-page/pay.png" alt="">
+                </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    <!-- footer Section end -->
+
+     <!-- ====== Alert start ====== -->
+     <div class="alert-area">
+        <div class="alert alert-dismissible fade show fixed-bottom" role="alert">
+          <div class="text-center">
+            <strong>Best Offer – 10% instant discount if you pay with Bitcoin</strong>
+            <button class="btn">Buy Now</button>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      </div>
+      <!-- ====== Alert end ====== -->
+
+      <!-- ====== scroll top start ====== -->
+      <button id="scroll-top-btn">
+		<i class="fa fa-arrow-up"></i>
+	</button>
+      <!-- ====== scroll top end ====== -->
+
+    <!--====== Jquery ======-->
+    <script src="./assets/js/jquery.min.js"></script>
+    <!--====== Bootstrap ======-->
+    <script src="./assets/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom script -->
+    <script src="./assets/js/app.js"></script>
+</body>
+
+</html>

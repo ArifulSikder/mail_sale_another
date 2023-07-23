@@ -1,0 +1,345 @@
+ /*--------------------------------------
+ Extra large devices (large desktops, 1200px and up)
+ */
+ @media (min-width: 1200px) {}
+
+
+ /*--------------------------------------
+Large devices (desktops, 992px and up)
+*/
+ @media (min-width: 992px) and (max-width: 1199px) {}
+
+ /*--------------------------------------
+Medium devices (tablets, 768px and up)
+*/
+ @media (min-width: 768px) and (max-width: 991px) {
+
+   /* cart page */
+   .bread_nav {
+     font-size: 18px;
+   }
+
+   .cart-area .cart-collaterals {
+     border-left: 0 !important;
+     padding-left: 0 !important;
+   }
+
+   .cart-area .process-title h4 {
+     margin-top: 15px;
+   }
+
+   /* login page */
+   .sign-up-form .forget {
+     margin-bottom: 1.5em;
+   }
+
+   .sign-up-form .form-two {
+     padding-left: 0;
+   }
+
+   /* my account page */
+   .account-area .my_account_body .tab-button {
+     border-right: 0;
+   }
+
+   .account-area div#v-pills-dboard,
+   .account-area div#v-pills-orders,
+   .account-area div#v-pills-downloads,
+   .account-area div#v-pills-address,
+   .account-area div#v-pills-account,
+   .account-area div#v-pills-logout {
+     padding: 0;
+   }
+
+   /* product details page */
+   .product_details .social-icon {
+     margin-bottom: 2.5rem;
+   }
+
+   .box-review {
+     margin-top: 1rem;
+   }
+
+   .product_details .breadcrumb-item {
+     margin-top: 2rem;
+   }
+
+   /* footer section */
+   .footer-bottom .copyright-text,
+   .footer-bottom .copyright-text a {
+     float: none;
+     text-align: center;
+   }
+
+   .footer-bottom .col-lg-6 {
+     text-align: center;
+   }
+
+   .footer-bottom .currency-image {
+     text-align: center;
+     margin-top: 10px;
+   }
+
+   .footer-bottom .currency-image img {
+     float: none;
+   }
+
+ }
+
+ /*--------------------------------------
+Small devices (landscape phones, 576px and up)
+*/
+ @media (min-width: 576px) and (max-width: 767px) {
+
+   /* ---------- index page ---------- */
+   .hero-bg {
+     height: 300px;
+   }
+
+   .hero_area .text-inner {
+     width: 50%;
+   }
+
+   .hero_area h3 {
+     font-size: 18px;
+   }
+
+   .hero_area p {
+     color: #f1f1f1;
+     font-size: 13px;
+   }
+
+   .hero_area .button {
+     font-size: 11px;
+   }
+
+   /* cart page */
+   .bread_nav {
+     font-size: 18px;
+   }
+
+   .cart-area .cart-collaterals {
+     border-left: 0 !important;
+     padding-left: 0 !important;
+   }
+
+   .cart-area .process-title h4 {
+     margin-top: 15px;
+   }
+
+   /* checkout page */
+   .progress-title li a {
+     font-size: 18px;
+   }
+
+   .progress-title li {
+     font-size: 18px;
+   }
+
+   /* faq page */
+   .faq-section .faq-content {
+     margin-top: 50px;
+   }
+
+   /* login page */
+   .sign-up-form .forget {
+     margin-bottom: 1.5em;
+   }
+
+   .sign-up-form .form-two {
+     padding-left: 0;
+   }
+
+   /* my account page */
+   .account-area .my_account_body .tab-button {
+     border-right: 0;
+   }
+
+   .account-area div#v-pills-dboard,
+   .account-area div#v-pills-orders,
+   .account-area div#v-pills-downloads,
+   .account-area div#v-pills-address,
+   .account-area div#v-pills-account,
+   .account-area div#v-pills-logout {
+     padding: 0;
+   }
+
+   .account-area div#v-pills-tab {
+     padding-left: 0;
+   }
+
+   .account-area .tab-content {
+     padding-left: 0;
+   }
+
+   /* product details page */
+   .product_details .social-icon {
+     margin-bottom: 2.5rem;
+   }
+
+   .box-review {
+     margin-top: 1rem;
+   }
+
+   .product_details .breadcrumb-item {
+     margin-top: 2rem;
+   }
+
+   /* footer section */
+   .footer-logo {
+     width: 200px;
+   }
+
+   .footer-bottom .copyright-text,
+   .footer-bottom .copyright-text a {
+     float: none;
+     text-align: center;
+   }
+
+   .footer-bottom .col-lg-6 {
+     text-align: center;
+   }
+
+   .footer-bottom .currency-image {
+     text-align: center;
+     margin-top: 10px;
+   }
+
+   .footer-bottom .currency-image img {
+     float: none;
+   }
+
+ }
+
+ /*--------------------------------------
+Extra small devices (portrait phones, less than 576px)
+*/
+ @media (max-width: 575px) {
+
+   /* ---------- index page ---------- */
+   .header-middle .col-sm-4 {
+     width: 40%;
+   }
+
+   .header-middle .col-sm-8 {
+     width: 60%;
+   }
+
+   .hero-bg {
+     height: 300px;
+   }
+
+   .hero_area .text-inner {
+     width: 50%;
+   }
+
+   .hero_area h3 {
+     font-size: 18px;
+   }
+
+   .hero_area p {
+     color: #f1f1f1;
+     font-size: 13px;
+   }
+
+   .hero_area .button {
+     font-size: 11px;
+   }
+
+   /* cart page */
+   .bread_nav {
+     font-size: 18px;
+   }
+
+   .cart-area .cart-collaterals {
+     border-left: 0 !important;
+     padding-left: 0 !important;
+   }
+
+   .cart-area .process-title h4 {
+     margin-top: 15px;
+   }
+
+   /* checkout page */
+   .progress-title li a {
+     font-size: 18px;
+   }
+
+   .progress-title li {
+     font-size: 18px;
+   }
+
+   /* faq page */
+   .faq-section .faq-content {
+     margin-top: 50px;
+   }
+
+   /* login page */
+   .sign-up-form .forget {
+     margin-bottom: 1.5em;
+   }
+
+   .sign-up-form .form-two {
+     padding-left: 0;
+   }
+
+   /* my account page */
+   .account-area .my_account_body .tab-button {
+     border-right: 0;
+   }
+
+   .account-area div#v-pills-dboard,
+   .account-area div#v-pills-orders,
+   .account-area div#v-pills-downloads,
+   .account-area div#v-pills-address,
+   .account-area div#v-pills-account,
+   .account-area div#v-pills-logout {
+     padding: 0;
+   }
+
+   .account-area div#v-pills-tab {
+     padding-left: 0;
+   }
+
+   .account-area .tab-content {
+     padding-left: 0;
+   }
+
+   /* product details page */
+   .product_details .social-icon {
+     margin-bottom: 2.5rem;
+   }
+
+   .box-review {
+     margin-top: 1rem;
+   }
+
+   .product_details .breadcrumb-item {
+     margin-top: 2rem;
+   }
+
+   /* footer section */
+   .footer-logo {
+     width: 200px;
+   }
+
+   .footer-bottom .copyright-text,
+   .footer-bottom .copyright-text a {
+     float: none;
+     text-align: center;
+   }
+
+   .footer-bottom .col-lg-6 {
+     text-align: center;
+   }
+
+   .footer-bottom .currency-image {
+     text-align: center;
+     margin-top: 10px;
+   }
+
+   .footer-bottom .currency-image img {
+     float: none;
+   }
+
+ }

@@ -1,0 +1,28 @@
+{
+  "public/backend/plugins/summernote/font/summernote.eot": {
+    "file": "assets/summernote-05ce99db.eot",
+    "src": "public/backend/plugins/summernote/font/summernote.eot"
+  },
+  "public/backend/plugins/summernote/font/summernote.ttf": {
+    "file": "assets/summernote-2a5c8f9c.ttf",
+    "src": "public/backend/plugins/summernote/font/summernote.ttf"
+  },
+  "public/backend/plugins/summernote/font/summernote.woff": {
+    "file": "assets/summernote-9ea36fc9.woff",
+    "src": "public/backend/plugins/summernote/font/summernote.woff"
+  },
+  "public/backend/plugins/summernote/font/summernote.woff2": {
+    "file": "assets/summernote-17aff429.woff2",
+    "src": "public/backend/plugins/summernote/font/summernote.woff2"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-36dc2d77.css",
+    "isEntry": true,
+    "src": "resources/css/app.css"
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-73eee938.js",
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  }
+}

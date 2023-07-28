@@ -1,13 +1,13 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4 bg-light-blue">
     <!-- Brand Logo -->
-    <a href="{{ url('/') }}" class="brand-link text-center">
+    <a href="{{ url('/') }}" class="text-center brand-link">
         <span class="brand-text font-weight-light">Altab Mail Sale</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- SidebarSearch Form -->
-        <div class="form-inline mt-2">
+        <div class="mt-2 form-inline">
             <div class="input-group" data-widget="sidebar-search">
                 <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search"
                     id="menu-search" onkeyup="menuSearch()">
@@ -25,7 +25,7 @@
                 id="searchMenu">
 
             </ul>
-            <ul class="nav nav-pills nav-sidebar flex-column mt-2" data-widget="treeview" role="menu"
+            <ul class="mt-2 nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="true" id="MainMenu">
                 <!-- Add icons to the links using the .nav-icon class
                     with font-awesome or any other icon font library -->
@@ -69,6 +69,39 @@
                     
                     </ul>
                 </li>
+
+                <!-- HOME PAGE  -->
+                <li class="nav-item {{ request()->is(['add-details', 'show-home-details', 'meet-team']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['add-details', 'show-home-details', 'meet-team']) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-home"></i>
+                        <p>
+                            Home-page
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('add-details') }}" class="nav-link {{ request()->is(['add-details']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Details</p>
+                            </a>
+                        </li> 
+                        <li class="nav-item">
+                            <a href="{{ route('show-details') }}" class="nav-link {{ request()->is(['show-home-details']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Show Details</p>
+                            </a>
+                        </li>       
+                        <li class="nav-item">
+                            <a href="{{ route('meet-team') }}" class="nav-link {{ request()->is(['meet-team']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Meet Team</p>
+                            </a>
+                        </li>           
+                    </ul>
+                </li>
+
+        
 
                 <li class="nav-header">Settings</li>
 

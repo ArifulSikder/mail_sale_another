@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Product')
+@section('title', 'Meet Team')
 
 @section('section')
     <div class="content-wrapper">
@@ -53,11 +53,51 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                
+                                @php
+                                    $serials = ($members->currentpage() - 1) * $members->perpage() + 1;
+                                @endphp 
+                                @foreach($members as $member)
+                                    <tr>
+                                        <td>{{ $serials++ }}</td>
+                                        <td> <img width="100px" src="{{ $member->photo }}" alt=""> </td>
+                                        <td>{{ $member->name }}</td>
+                                        <td>{{ $member->designation }}</td>
+                                        <td>{{ $member->description }}</td>
+                                        <td>
+                                            <span
+                                            class="badge badge-{{ $member->active_status == 0 ? 'danger': 'success' }}">{{ $member->active_status == 0 ? 'Inactive': 'Active' }}</span>
+                                        </td>
+                                        <td>{{ $member->created_at->toFormateDate() }} $</td>
+                                        <td>
+                                            <button type="button" 
+                                                class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
+                                                data-toggle="dropdown">
+                                                Options
+                                            </button>
+                                            <div class="dropdown-menu text-center bg-light-blue">
+                                                <button type="button" data-id="{{ $member->id }}"
+                                                    data-name="{{ $member->name }}"
+                                                    data-designation="{{ $member->designation }}"
+                                                    data-description="{{ $member->description }}"
+                                                    data-active_status="{{ $member->active_status }}"
+                                                    class="btn btn-success btn-sm edit_team  btn-block">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </button>
+
+                                                <a href="{{ route('delete-team',['id' => $member->id] ) }}"
+                                                    id="delete" class="btn btn-danger btn-sm btn-block"><i
+                                                        class="fas fa-trash"></i>Delete</a>
+                                                
+
+                                            </div>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                               
                             </tbody>
                         </table>
                         <div class="float-right my-2">
-                            {{-- {{ $products->links() }} --}}
+                            {{ $members->links() }}
                         </div>
                     </div>
                 </div>
@@ -138,7 +178,7 @@
                             <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
-                    <form id="editData">
+                    <form id="updateTeam">
                         @csrf
                         <div class="modal-body">
                             <input type="hidden" id="id_e" name="edit_id">
@@ -173,7 +213,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="active_status">Active Status</label>
-                                <select class="form-control select2 " name=" active_status" id="active_status"
+                                <select class="form-control select2 " name=" active_status" id="active_status_e"
                                     data-placeholder="Select Active Status" style="width: 100%">
                                     <option value="">Choose Type</option>
                                     <option value="0">Inactive</option>
@@ -202,42 +242,6 @@
 
         $(document).ready(function () {
 
-            // fetch data 
-            fetchdata(); 
-            function fetchdata() { 
-                $.ajax({
-                    type: "get",
-                    url: "{{ route('fetch-team') }}",
-                    dataType: "json",
-                    success: function (response) {
-                        $("tbody").html("");
-                        $.each(response.team, function (key, item) { 
-                            var url = "{{ url('delete-team') }}/"+item.id;
-
-                           
-                            $("tbody").append('<tr>\
-                                <td>'+item.id+'</td>\
-                                <td><img width="100px" src="'+item.photo+'" alt="" srcset=""></td>\
-                                <td>'+item.name+'</td>\
-                                <td>'+item.designation+'</td>\
-                                <td>'+item.description+'</td>\
-                                <td><span class="badge ' + ( item.active_status == '1' ? 'badge-success' : 'badge-danger' ) + '"> ' + ( item.active_status == '1' ? 'Active' : 'Inactive' ) + ' </span></td>\
-                                <td>'+item.created_at+'</td>\
-                                <td><div class="dropdown">\
-                                            <button type="button" class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle" data-toggle="dropdown">\
-                                                Options\
-                                            </button>\
-                                            <div class="dropdown-menu text-center bg-light-blue">\
-                                                <button type="button" class="edit_team btn btn-success btn-sm btn-block" value="'+item.id+'"><i class="fas fa-edit"></i>Edit</button>\
-                                                <a href="'+url+'" id="delete" class="btn btn-danger btn-sm btn-block"></i>Delete</a>\
-                                            </div>\
-                                        </div></td>\
-                                </tr>');
-                        });
-                    }
-                });
-             }
-
             // ADD DATA
             $("#formData").submit(function (e) { 
                 e.preventDefault();
@@ -257,7 +261,6 @@
                             $("#addteam").modal('hide');
                             $("#addteam").find('input').val("");
                             $("#addteam").find('textarea').val("");
-                            fetchdata(); 
                         } else if (response.error) {
                             toastr.error(response.error);
                         }
@@ -272,33 +275,29 @@
                              }
                         });
                     },
+                    complete: function (done) {
+                        if (done.status == 200) {
+                            window.location.reload();
+                        }
+                    }
 
                 });
             });
 
-            // EDIT DATA 
-            $(document).on('click', '.edit_team',  function (e) {
+            $('.edit_team').click(function (e) {
                 e.preventDefault();
-                var team_id = $(this).val();
-                $("#editmodal").modal('show');
-                $.ajax({
-                    type: "get",
-                    url: 'edit-team/'+team_id,
-                    success: function (response) {
-                        if (response.status == 200) {
-                            $("#id_e").val(team_id);
-                            $("#name_e").val(response.team_member.name);
-                            $("#designation_e").val(response.team_member.designation);
-                            $("#description_e").val(response.team_member.description);
-                        }
-                    }
-                });
+                $('#editmodal').modal('show');
+                $('#id_e').val($(this).data('id'));
+                $('#name_e').val($(this).data('name'));
+                $('#designation_e').val($(this).data('designation'));
+                $('#description_e').val($(this).data('description'));
+                $('#active_status_e').val($(this).data('active_status')).trigger('change');
             });
 
             // UPDATE DATA 
-            $("#editData").submit(function (e) { 
+            $("#updateTeam").submit(function (e) { 
                 e.preventDefault();
-                var formdata = new FormData($("#editData")[0]);  //bujinai
+                var formdata = new FormData($("#updateTeam")[0]);  
                 $.ajax({
                     type: "POST",
                     url: "{{ route('update-team') }}",
@@ -312,10 +311,7 @@
                         console.log(response);
                         if (response.success) {
                             toastr.success(response.success);
-                            $("#editmodal").modal('hide');      //buji nai
-                            $("#editmodal").find('input').val("");
-                            $("#editmodal").find('textarea').val("");
-                            fetchdata(); 
+                            $("#editmodal").modal('hide');      
                         } else if (response.error) {
                             toastr.error(response.error);
                         }
@@ -330,6 +326,11 @@
                              }
                         });
                     },
+                    complete: function (done) { 
+                        if (done.status == 200) {
+                            window.location.reload(); 
+                        }
+                    }
 
                 });
             });

@@ -25,7 +25,7 @@ class HomePageController extends Controller
             'description' => 'required|string',
             'active_status' =>  'required|in:0,1',
         ],[
-            'title.required' => 'Please Enter The Name',
+            'title.required' => 'Please Enter The Title',
             'description.required' => 'Please Enter The Description',
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
@@ -37,24 +37,60 @@ class HomePageController extends Controller
             'created_by' => Auth::id()
         ]);
 
-        if ($homePabeshop == true) {
-            $notification = [
-                'success' => "Home Details Inserted Successfully.",
-            ];
+        if ($homePabeshop) {
+            return response()->json([
+                'success' => "Details saved successfully.",
+            ]);
         } else {
-            $notification = [
-                'error' => "Opps! There Is A Problem!",
-            ];
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
         }
 
-        return back()->with($notification);
 
     }
 
     public function showDetails()
     {
-        $data['details']= HomePaveshop::all();
+        $data['details']= HomePaveshop::paginate(10);
         return view('backend.homepage.homepaveshop.indexPaveshop', $data);
+    }
+
+    public function editDetails($id)
+    {
+        $data['details_pev'] = HomePaveshop::findOrFail($id); 
+        return view('backend.homepage.homepaveshop.edit-paveshop', $data);
+    }
+    public function updateDetails(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'title.required' => 'Please Enter The Title',
+            'description.required' => 'Please Enter The Description',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        
+        $homePabeshop = HomePaveshop::findOrFail($request->id)->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'active_status' =>  $request->active_status,
+            'updated_by' => Auth::id()
+        ]);
+
+        if ($homePabeshop) {
+            return response()->json([
+                'success' => "Details Updated successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+
     }
 
     public function deleteDetails($id)
@@ -64,7 +100,7 @@ class HomePageController extends Controller
 
         if ($delete == true) {
             $notification = [
-                'success' => "Home Details Deleted Successfully.",
+                'success' => "Details Deleted Successfully.",
             ];
         } else {
             $notification = [
@@ -78,17 +114,11 @@ class HomePageController extends Controller
     // MEET TEAM 
     public function meetTeam()
     {
-        return view('backend.homepage.team.indexTeam' );
+        $data['members'] = MeetTeam::paginate(10);
+        return view('backend.homepage.team.indexTeam', $data );
     }
 
-    public function fetchTeam()
-    {
-        $team = MeetTeam::all();
 
-        return response()->json([
-             'team' => $team,
-        ]);
-    }
 
     public function storeTeam(Request $request)
     {
@@ -213,7 +243,20 @@ class HomePageController extends Controller
 
     public function deleteTeam($id)
     {
-        dd($id);
+        $delete = MeetTeam::findOrFail($id)->delete();
+
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "Team Member Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
     }
 
 

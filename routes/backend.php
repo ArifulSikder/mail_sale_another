@@ -67,8 +67,10 @@ Route::get('app-settings', [AppSettingController::class, 'index'])->name('app-se
 
 //home page 
 Route::get('add-details', [HomePageController::class, 'index'])->name('add-details');
-Route::post('store-home-details', [HomePageController::class, 'storeDetails'])->name('store.details');
+Route::post('store-home-details', [HomePageController::class, 'storeDetails'])->name('store-details');
 Route::get('show-home-details', [HomePageController::class, 'showDetails'])->name('show-details');
+Route::get('edit-home-details/{id}', [HomePageController::class, 'editDetails'])->name('edit-details');
+Route::post('update-home-details', [HomePageController::class, 'updateDetails'])->name('update-details');
 Route::get('delete-home-details/{id}', [HomePageController::class, 'deleteDetails'])->name('delete-details');
 
 //meet team

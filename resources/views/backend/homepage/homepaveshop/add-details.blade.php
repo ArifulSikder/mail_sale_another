@@ -1,7 +1,7 @@
 
 @extends('backend.layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Add Details')
 
 @section('section')
 <div class="content-wrapper">
@@ -29,16 +29,16 @@
         <div class="card">
             <div class="card-header font-weight-bold">Details Add Form</div>
             <div class="card-body">
-                <form action="{{ route('store.details') }}" method="POST" enctype="multipart/form-data">
+                <form id="formData">
                     @csrf
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" value="{{ old('title') }}">
-                                @error('title')
-                                    <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" >
+
+                                    <span class="text-danger validate" data-field="title"></span>
+
                             </div>
                         </div>
                         
@@ -46,10 +46,9 @@
                         <div class="col-md-12">
                           <div class="form-group">
                               <label for="description">Description</label>
-                              <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" value="">{{ old('description') }} </textarea>
-                              @error('description')
-                                  <span class="text-danger">{{ $message }}</span>
-                              @enderror
+                              <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" value=""> </textarea>
+                                  <span class="text-danger validate" data-field="description"></span>
+
                           </div>
 
                           <div class="col-md-12">
@@ -61,9 +60,7 @@
                                     <option value="0">Inactive</option>
                                     <option value="1">Active</option>
                                 </select>
-                                @error('active_status')
-                                <span class="text-danger">{{ $message }}</span>
-                                @enderror
+                                <span class="text-danger validate" data-field="active_status"></span>
                             </div>
                         </div>
                         
@@ -80,4 +77,49 @@
   </div>
 
   <x-select2 />
+@endsection
+
+@section('script')
+    <script>
+      $(document).ready(function () {
+        $("#formData").submit(function (e) { 
+                e.preventDefault();
+                var formdata = new FormData($("#formData")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('store-details') }}",
+                    contentType: false,
+                    processData: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: formdata,
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.success);
+                        } else if (response.error) {
+                            toastr.error(response.error);
+                        }
+                    },
+                    error: function (error) {
+                        $('.validate').text('');
+                        $.each(error.responseJSON.errors, function (field_name, error) { 
+                             const errorElement = $('.validate[data-field="' + field_name + '"]');
+                             if (errorElement.length > 0) {
+                                errorElement.text(error[0]);
+                                toastr.error(error);
+                             }
+                        });
+                    },
+                    complete: function (done) {
+                        if (done.status == 200) {
+                            window.location.reload();
+                        }
+                    }
+                    
+
+                });
+            });
+      });  
+    </script>    
 @endsection

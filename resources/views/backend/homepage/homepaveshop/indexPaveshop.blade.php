@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Product')
+@section('title', 'Show Details')
 
 @section('section')
 <div class="content-wrapper">
@@ -55,9 +55,12 @@
                             </tr>
                         </thead>
                         <tbody>
+                            @php
+                                $serials = ($details->currentpage() - 1) * $details->perpage() + 1;
+                            @endphp 
                             @foreach($details as $detail)
                                 <tr>
-                                    <th>{{ $loop->iteration }}</th>
+                                    <th>{{ $serials++ }}</th>
                                     <td>{{ $detail->title }}</td>
                                     <td>{{ $detail->description }}</td>
                                     <td><span
@@ -72,10 +75,9 @@
                                                 Options
                                             </button>
                                             <div class="text-center dropdown-menu bg-light-blue">
-                                                <button type="button" 
-                                                    class="btn btn-success btn-sm editData myProduct btn-block">
+                                                <a href="{{ route('edit-details', $detail->id) }}" class="btn btn-success btn-sm btn-block">
                                                     <i class="fas fa-edit"></i> Edit
-                                                </button>
+                                                </a>
 
                                                 <a href="{{ url('delete-home-details/'. $detail->id) }}"
                                                     id="delete" class="btn btn-danger btn-sm btn-block"><i
@@ -91,7 +93,9 @@
                             @endforeach
                         </tbody>
                     </table>
-
+                    <div class="float-right my-2">
+                        {{ $details->links() }}
+                    </div>
                 </div>
             </div>
         </div>
@@ -101,7 +105,8 @@
   
 </div>
 
-
-
 @endsection
+
+
+
 

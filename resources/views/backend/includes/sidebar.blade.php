@@ -71,8 +71,8 @@
                 </li>
 
                 <!-- HOME PAGE  -->
-                <li class="nav-item {{ request()->is(['add-details', 'show-home-details', 'meet-team']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['add-details', 'show-home-details', 'meet-team']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['add-details', 'show-home-details', 'meet-team', 'slider']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['add-details', 'show-home-details', 'meet-team', 'slider']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Home-page
@@ -96,6 +96,12 @@
                             <a href="{{ route('meet-team') }}" class="nav-link {{ request()->is(['meet-team']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Meet Team</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('top-slider') }}" class="nav-link {{ request()->is(['slider']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Slider</p>
                             </a>
                         </li>           
                     </ul>

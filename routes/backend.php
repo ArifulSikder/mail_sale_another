@@ -7,6 +7,7 @@ use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\HomePaveshopController;
 use App\Http\Controllers\MeetTeamController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -76,8 +77,13 @@ Route::get('delete-home-details/{id}', [HomePageController::class, 'deleteDetail
 //meet team
 Route::get('meet-team', [HomePageController::class, 'meetTeam'])->name('meet-team');
 Route::post('store-team', [HomePageController::class, 'storeTeam'])->name('store-team');
-Route::get('fetch-team', [HomePageController::class, 'fetchTeam'])->name('fetch-team');
 Route::get('edit-team/{id}', [HomePageController::class, 'editTeam'])->name('edit-team');
 Route::post('update-team', [HomePageController::class, 'updateTeam'])->name('update-team');
 Route::get('delete-team/{id}', [HomePageController::class, 'deleteTeam'])->name('delete-team');
+
+//top slider
+Route::get('slider', [HomePageController::class, 'sliderIndex'])->name('top-slider');
+Route::post('store-slider', [HomePageController::class, 'storeSlider'])->name('store-slider');
+Route::post('update-slider', [HomePageController::class, 'updateSlider'])->name('update-slider');
+Route::get('delete-slider/{id}', [HomePageController::class, 'deleteSlider'])->name('delete-slider');
 

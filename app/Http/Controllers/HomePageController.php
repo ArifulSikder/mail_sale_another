@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -46,13 +48,11 @@ class HomePageController extends Controller
                 'error' => "Opps! Something Went Wrong.",
             ]);
         }
-
-
     }
 
     public function showDetails()
     {
-        $data['details']= HomePaveshop::paginate(10);
+        $data['details']= HomePaveshop::latest()->paginate(10);
         return view('backend.homepage.homepaveshop.indexPaveshop', $data);
     }
 
@@ -114,7 +114,7 @@ class HomePageController extends Controller
     // MEET TEAM 
     public function meetTeam()
     {
-        $data['members'] = MeetTeam::paginate(10);
+        $data['members'] = MeetTeam::latest()->paginate(10);
         return view('backend.homepage.team.indexTeam', $data );
     }
 
@@ -243,12 +243,155 @@ class HomePageController extends Controller
 
     public function deleteTeam($id)
     {
+        $photo = MeetTeam::where('id', $id)->value('photo');
+        File::delete($photo);
+        
         $delete = MeetTeam::findOrFail($id)->delete();
-
-
         if ($delete == true) {
             $notification = [
                 'success' => "Team Member Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+
+    // top slider section 
+
+    public function sliderIndex()
+    {
+        $data['subcategories'] = Category::all();
+        $data['sliders'] = Slider::latest()->paginate(10);
+        return view('backend.homepage.slider.sliderIndex', $data);
+    }
+
+    public function storeSlider(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'subcategory_id' => "required|numeric",
+            'short_description' => 'required|string',
+            'background_photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'photo_alt' => 'required|string|max:255',
+            'active_status' => 'required|in:0,1',
+        ],[
+            'title.required' => 'Please Enter The Title',
+            'subcategory_id.required' => 'Please Select The Subcategory',
+            'short_description.required' => 'Please Enter The Short Description',
+            'background_photo.required' => 'Please Select The Background Photo',
+            'photo_alt.required' => 'Please Enter The Photo Alternative',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $image = '';
+        if ($request->file('background_photo')) {
+            $image = uploadPlease($request->file('background_photo'));
+        }
+
+        $slider = Slider::create([
+            'title' => $request->title,
+            'subcategory_id' => $request->subcategory_id,
+            'short_description' => $request->short_description,
+            'background_photo' => $image,
+            'photo_alt' =>  $request->photo_alt,
+            'active_status' =>  $request->active_status,
+            'created_by' => Auth::id()
+        ]);
+
+        if ($slider) {
+            return response()->json([
+                'success' => "Slider saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    public function updateSlider(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'title' => 'required|string|max:255',
+            'subcategory_id' => "required|numeric",
+            'short_description' => 'required|string',
+            'background_photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
+            'photo_alt' => 'required|string|max:255',
+            'active_status' => 'required|in:0,1',
+        ],[
+            'title.required' => 'Please Enter The Title',
+            'subcategory_id.required' => 'Please Select The Subcategory',
+            'short_description.required' => 'Please Enter The Short Description',
+            'photo_alt.required' => 'Please Enter The Photo Alternative',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        if ($request->hasFile('background_photo')) {
+            $id = $request->edit_id;
+
+            $photo = Slider::where('id', $id)->value('background_photo');
+            File::delete($photo);
+            $image = '';
+            if ($request->file('background_photo')) {
+                $image = uploadPlease($request->file('background_photo'));
+            }
+    
+            $slider = Slider::findOrFail($id)->update([
+                'title' => $request->title,
+                'subcategory_id' => $request->subcategory_id,
+                'short_description' => $request->short_description,
+                'background_photo' => $image,
+                'photo_alt' =>  $request->photo_alt,
+                'active_status' =>  $request->active_status,
+                'updated_by' => Auth::id()
+            ]);
+            if ($slider) {
+                return response()->json([
+                    'success' => "Slider updated successfully.",
+                ]);
+            } else {
+                return response()->json([
+                    'error' => "Opps! Something Went Wrong.",
+                ]);
+            }
+            
+        } else {
+            $id = $request->edit_id;
+            $slider = Slider::findOrFail($id)->update([
+                'title' => $request->title,
+                'subcategory_id' => $request->subcategory_id,
+                'short_description' => $request->short_description,
+                'photo_alt' =>  $request->photo_alt,
+                'active_status' =>  $request->active_status,
+                'updated_by' => Auth::id()
+            ]);
+            if ($slider) {
+                return response()->json([
+                    'success' => "Slider updated successfully.",
+                ]);
+            } else {
+                return response()->json([
+                    'error' => "Opps! Something Went Wrong.",
+                ]);
+            }
+        }
+    }
+
+    public function deleteSlider($id)
+    {
+        $photo = Slider::where('id', $id)->value('background_photo');
+        File::delete($photo);
+
+        $delete = Slider::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "Slider Deleted Successfully.",
             ];
         } else {
             $notification = [

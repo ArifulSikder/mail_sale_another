@@ -21,4 +21,9 @@ class Category extends Model
     {
         return $this->hasMany(Category::class, 'parent_id');
     }
+
+    public function cagegoryslider()
+    {
+        return $this->hasMany(Slider::class, 'subcategory_id');
+    }
 }

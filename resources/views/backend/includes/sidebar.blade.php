@@ -143,12 +143,36 @@
                     </ul>
                 </li>
 
+                <li class="nav-item {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Settings
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('add-business-policy') }}" class="nav-link {{ request()->is(['add-business-policy']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Business Policy</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('show-business-policy') }}" class="nav-link {{ request()->is(['show-business-policy']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Show Business Policy</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
 
                 <li class="nav-item {{ request()->is(['app-settings']) ? 'menu-open' : '' }}">
                     <a href="{{ route('app-settings') }}" class="nav-link {{ request()->is(['app-settings']) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-cog"></i>
+                        <i class="nav-icon fas fa-sliders-h"></i>
                         <p>
-                            App Settings
+                            App Setup
                         </p>
                     </a>
                 </li>

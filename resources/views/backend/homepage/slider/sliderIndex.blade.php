@@ -129,7 +129,7 @@
                                 <label for="title" class="col-form-label">Title:</label>
     
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
-                                    data-name="slider.png">Preview</span>
+                                    data-name="slider_title.png">Preview</span>
 
                                 <input type="text" class="form-control title" id="title" name="title"
                                     placeholder="Enter Title">
@@ -151,6 +151,8 @@
 
                             <div class="form-group">
                                 <label for="short_description" class="col-form-label">Short Description:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="slider_des.png">Preview</span>
                                 <textarea class="form-control short_description" id="short_description" name="short_description" placeholder="Enter The Short Description"></textarea>
 
                                     <span class="text-danger validate" data-field="short_description"></span>
@@ -158,6 +160,8 @@
 
                             <div class="form-group">
                                 <label for="background_photo" class="col-form-label">Background Photo:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="slider_bg.png">Preview</span>
                                 <input type="file" class="form-control photo" id="background_photo" name="background_photo">
 
                                     <span class="text-danger validate" data-field="background_photo"></span>

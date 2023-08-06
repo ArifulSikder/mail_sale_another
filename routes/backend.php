@@ -100,4 +100,12 @@ Route::post('update-guarantee', [HomePageController::class, 'updateGuarantee'])-
 Route::get('delete-guarantee/{id}', [HomePageController::class, 'deleteGuarantee'])->name('delete-guarantee');
 Route::get('update-guarantee-status/{id}/{status}', [HomePageController::class, 'updateGuaranteeStatus'])->name('update-guarante-status');
 
+// Business policy 
+Route::get('add-business-policy', [HomePageController::class, 'addPolicy'])->name('add-business-policy');
+Route::post('store-business-policy', [HomePageController::class, 'storePolicy'])->name('store-business-policy');
+Route::get('show-business-policy', [HomePageController::class, 'indexPolicy'])->name('show-business-policy');
+Route::get('edit-business-policy/{id}', [HomePageController::class, 'editPolicy'])->name('edit-business-policy');
+Route::post('update-business-policy', [HomePageController::class, 'updatePolicy'])->name('update-business-policy');
+Route::get('update-policy-status/{id}/{status}', [HomePageController::class, 'updatePolicyStatus'])->name('update-policy-status');
+
 

@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', "Pricing")
+@section('title', "Privacy & Policy")
 
 @section('sideSection')
 

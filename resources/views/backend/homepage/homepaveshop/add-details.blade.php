@@ -1,7 +1,7 @@
 
 @extends('backend.layouts.master')
 
-@section('title', 'Add Details')
+@section('title', 'Add Policy')
 
 @section('section')
 <div class="content-wrapper">
@@ -10,12 +10,12 @@
       <div class="container-fluid">
         <div class="mb-2 row">
           <div class="col-sm-6">
-            <h1 class="m-0">Add Home Details</h1>
+            <h1 class="m-0">Add Business Policy</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
               <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a></li>
-              <li class="breadcrumb-item active">Add Home Details</li>
+              <li class="breadcrumb-item active">Add Business Policy</li>
             </ol>
           </div><!-- /.col -->
         </div><!-- /.row -->
@@ -27,10 +27,7 @@
     <section class="content">
       <div class="container-fluid">
         <div class="card">
-            <div class="card-header font-weight-bold">Details Add Form
-              <span type="button" class="bg-success text-light px-2 float-right preview"
-                                    data-name="details.png">Preview</span>
-            </div>
+            <div class="card-header font-weight-bold">Details Add Form</div>
             
             <div class="card-body">
                 <form id="formData">
@@ -39,7 +36,8 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="title">Title</label>
-                                
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="pva_title.png">Preview</span>
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" >
 
                                     <span class="text-danger validate" data-field="title"></span>
@@ -51,6 +49,8 @@
                         <div class="col-md-12">
                           <div class="form-group">
                               <label for="description">Description</label>
+                              <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="pva_description.png">Preview</span>
                               <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" value=""> </textarea>
                                   <span class="text-danger validate" data-field="description"></span>
 

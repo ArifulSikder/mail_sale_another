@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\BusinessPolicy;
 use App\Models\Category;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
@@ -525,7 +526,7 @@ class HomePageController extends Controller
         return view('backend.homepage.productGuarantee.GuaranteeIndex', $data);
     }
 
-    // PRODUCT GUARANTEE UPDATE 
+    // PRODUCT GUARANTEE STORE 
     public function storeGuarantee(Request $request)
     {
         $primaryValidate =  [
@@ -586,6 +587,7 @@ class HomePageController extends Controller
 
     }
 
+    // PRODUCT GUARANTEE UPDATE 
     public function updateGuarantee(Request $request)
     {
         
@@ -659,6 +661,7 @@ class HomePageController extends Controller
         }
     }
 
+    // PRODUCT GUARANTEE DELETE 
     public function deleteGuarantee($id)
     {
         $logo_type = ProductGuarantee::where('id', $id)->value('logo_type');
@@ -683,7 +686,7 @@ class HomePageController extends Controller
         return back()->with($notification);
     }
 
-    // SLIDER UPDATE STATUS
+    // PRODUCT GUARANTEE UPDATE STATUS
     public function updateGuaranteeStatus($id, $status)
     {
         if ($status == 0) {
@@ -722,6 +725,124 @@ class HomePageController extends Controller
         } 
     }
 
+    // BUSINESS POLICY START 
+    // BUSINESS POLICY INDEX
+    public function addPolicy()
+    {
+        return view('backend.homepage.businessPolicy.add-policy');
+    }
+
+    // BUSINESS POLICY STORE
+    public function storePolicy(Request  $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'policy_type' => 'required',
+            'description' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'policy_type.required' => 'Please Select The Business Policy',
+            'description.required' => 'Please Enter The Description',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $policy = BusinessPolicy::create([
+            'policy_type' => $request->policy_type,
+            'description' => $request->description,
+            'active_status' =>  $request->active_status,
+            'created_by' => Auth::id()
+        ]);
+
+        if ($policy) {
+            return response()->json([
+                'success' => "Business Policy saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    public function indexPolicy()
+    {
+        $data['polices']= BusinessPolicy::latest()->paginate(10);
+        return view('backend.homepage.businessPolicy.indexPolices', $data);
+    }
+
+    public function editPolicy($id)
+    {
+        $data['policy'] = BusinessPolicy::findOrFail($id); 
+        return view('backend.homepage.businessPolicy.edit-policy', $data);
+    }
+
+    public function updatePolicy(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'policy_type' => 'required',
+            'description' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'policy_type.required' => 'Please Select The Business Policy',
+            'description.required' => 'Please Enter The Description',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        
+        $homePabeshop = BusinessPolicy::findOrFail($request->id)->update([
+            'policy_type' => $request->policy_type,
+            'description' => $request->description,
+            'active_status' =>  $request->active_status,
+            'updated_by' => Auth::id()
+        ]);
+
+        if ($homePabeshop) {
+            return response()->json([
+                'success' => "Business Policy Updated successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    public function updatePolicyStatus($id, $status)
+    {
+        if ($status == 0) {
+            $policy = BusinessPolicy::findOrFail($id)->update([
+                'active_status' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status Activated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $policy = BusinessPolicy::findOrFail($id)->update([
+                'active_status' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status inactivated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+    }
 
 
 }

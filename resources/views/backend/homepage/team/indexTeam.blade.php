@@ -128,7 +128,7 @@
                                 <label for="recipient-name" class="col-form-label">Name:</label>
 
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
-                                    data-name="meet_team.png">Preview</span>
+                                    data-name="team_name.png">Preview</span>
 
                                 <input type="text" class="form-control name" id="recipient-name" name="name"
                                     placeholder="Enter Member Name">
@@ -138,6 +138,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="photo" class="col-form-label">Photo:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="team_image.png">Preview</span>
                                 <input type="file" class="form-control photo" id="photo" name="photo">
                                     <span class="text-danger validate" data-field="photo"></span>
                             </div>
@@ -146,6 +148,8 @@
 
                             <div class="form-group">
                                 <label for="designation" class="col-form-label">Designation:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="team_designation.png">Preview</span>
                                 <input type="text" class="form-control designation" id="designation"
                                     name="designation" placeholder="Enter Member Designation">
 
@@ -154,6 +158,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="description" class="col-form-label">Description:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="team_des.png">Preview</span>
                                 <textarea class="form-control description" id="description" name="description" placeholder="Enter Description"></textarea>
 
                                     <span class="text-danger validate" data-field="description"></span>

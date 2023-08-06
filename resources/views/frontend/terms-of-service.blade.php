@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', "Pricing")
+@section('title', "Termsf Of Service")
 
 @section('sideSection')
     <!-- terms-of-service section start -->

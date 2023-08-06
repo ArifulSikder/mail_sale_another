@@ -1,7 +1,7 @@
 
 @extends('frontend.layouts.master')
 
-@section('title', "Pricing")
+@section('title', "FAQ")
 
 @section('sideSection')
     <!-- faq section start -->

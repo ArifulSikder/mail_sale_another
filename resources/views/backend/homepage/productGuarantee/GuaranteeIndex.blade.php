@@ -141,9 +141,6 @@
                             <div class="form-group">
                                 <label for="logo_type" class="col-form-label">Logo Type:</label>
 
-                                <span type="button" class="bg-success text-light px-2 float-right preview"
-                                    data-name="guarantee.png">Preview</span>
-                                    
                                 <select class="form-control select2 logo_type" name="logo_type"
                                     id="logo_type" data-placeholder="Select Logo Type" style="width: 100%">
                                     <option value="">Choose Type</option>
@@ -151,17 +148,21 @@
                                     <option value="1">Fontawesome Icon</option>
                                 </select>
                                 
-                                    <span class="text-danger validate" data-field="name"></span>
+                                    <span class="text-danger validate" data-field="logo_type"></span>
                                 
                             </div>
 
                             <div class="form-group" id="image"  style='display:none;'>
                                 <label for="image_logo" class="col-form-label">Logo As Image:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_logo.png">Preview</span>
                                 <input type="file" class="form-control image_logo" id="image_logo" name="image_logo" >
                                     <span class="text-danger validate" data-field="image_logo"></span>
                             </div>
                             <div class="form-group" id="icon_div"  style='display:none;'>
-                                <label for="icon_fw" class="col-form-label">Fontawesome Icon: <a href="https://fontawesome.com/v5/search?o=r&m=free" target="blank">Go to fontawesome and take icon</a></label>
+                                <label for="icon_fw" class="col-form-label">Fontawesome Icon: <a href="https://fontawesome.com/v5/search?o=r&m=free" target="blank">Take icon from here!</a></label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_logo.png">Preview</span>
                                 <input type="text" class="form-control" id="icon_fw" name="icon_fw" placeholder="Please Input The Icon Tag Here!">
                                     <span class="text-danger validate" data-field="icon_fw"></span>
                             </div>
@@ -174,6 +175,8 @@
 
                             <div class="form-group">
                                 <label for="title" class="col-form-label">Title:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_title.png">Preview</span>
                                 <input type="text" class="form-control title" id="title"
                                     name="title" placeholder="Enter Title">
 
@@ -182,6 +185,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_description" class="col-form-label">Short Description:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_des.png">Preview</span>
                                 <textarea class="form-control short_description" id="short_description" name="short_description" placeholder="Enter Short Description"></textarea>
 
                                     <span class="text-danger validate" data-field="short_description"></span>

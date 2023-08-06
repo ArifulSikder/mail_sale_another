@@ -27,7 +27,11 @@
     <section class="content">
       <div class="container-fluid">
         <div class="card">
-            <div class="card-header font-weight-bold">Details Add Form</div>
+            <div class="card-header font-weight-bold">Details Add Form
+              <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="details.png">Preview</span>
+            </div>
+            
             <div class="card-body">
                 <form id="formData">
                     @csrf
@@ -35,6 +39,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="title">Title</label>
+                                
                                 <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" >
 
                                     <span class="text-danger validate" data-field="title"></span>
@@ -80,6 +85,7 @@
 @endsection
 
 @section('script')
+    @include('backend.includes.preview')
     <script>
       $(document).ready(function () {
         $("#formData").submit(function (e) { 

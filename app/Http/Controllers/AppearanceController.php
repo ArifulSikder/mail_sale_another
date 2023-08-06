@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
+use App\Models\HomePaveshop;
+use App\Models\MeetTeam;
+use App\Models\Slider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -26,9 +29,13 @@ class AppearanceController extends Controller
 {
     public function index()
     {
-        $data['products'] = Product::with('advantages', 'details', 'descriptions')
+        $data['products']   = Product::with('advantages', 'details', 'descriptions')
             ->where('active_status', 1)
             ->get();
+        $data['meet_teams'] = MeetTeam::where('active_status', '1')->oldest()->take(3)->get();
+        $data['home_pave']  = HomePaveshop::where('active_status', '1')->first();
+        $data['slider']     = Slider::where('active_status', '1')->first();
+
         return view('frontend.index', $data);
     }
 
@@ -119,7 +126,10 @@ class AppearanceController extends Controller
         $data['products'] = Product::where('sub_category_id', $data['category']->id)
             ->where('active_status', 1)
             ->paginate(12);
+        $data['slider'] = Slider::where('active_status', '1')->first();
+        
         return view('frontend.pricing', $data);
+  
     }
 
     public function productDetails($category_slug, $product_slug)
@@ -385,4 +395,27 @@ class AppearanceController extends Controller
             ],
         ]);
     }
+
+    public function refundPolicy()
+    {
+        return view('frontend.refund');
+    }
+    public function privacyPolicy()
+    {
+        return view('frontend.privacy-policy');
+    }
+    public function termsService()
+    {
+        return view('frontend.terms-of-service');
+    }
+    public function disclaimer()
+    {
+        return view('frontend.disclaimer');
+    }
+    public function faq()
+    {   
+        return view('frontend.faq');
+    }
+
+
 }

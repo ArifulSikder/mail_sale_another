@@ -67,7 +67,7 @@
                                             <span
                                             class="badge badge-{{ $member->active_status == 0 ? 'danger': 'success' }}">{{ $member->active_status == 0 ? 'Inactive': 'Active' }}</span>
                                         </td>
-                                        <td>{{ $member->created_at->toFormateDate() }} $</td>
+                                        <td>{{ $member->created_at->toFormateDate() }}</td>
                                         <td>
                                             <button type="button" 
                                                 class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
@@ -75,6 +75,13 @@
                                                 Options
                                             </button>
                                             <div class="dropdown-menu text-center bg-light-blue">
+
+                                                @if ($member->active_status == 0)
+                                                   <a href="{{ route('update-team-status', ['id' => $member->id , 'status' => $member->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
+                                                @else
+                                                    <a href="{{ route('update-team-status', ['id' => $member->id , 'status' => $member->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
+                                                @endif
+
                                                 <button type="button" data-id="{{ $member->id }}"
                                                     data-name="{{ $member->name }}"
                                                     data-designation="{{ $member->designation }}"
@@ -83,12 +90,12 @@
                                                     class="btn btn-success btn-sm edit_team  btn-block">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
+                                                
 
                                                 <a href="{{ route('delete-team',['id' => $member->id] ) }}"
                                                     id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i>Delete</a>
+                                                        class="fas fa-trash"></i> Delete</a>
                                                 
-
                                             </div>
                                         </td>
                                     </tr>
@@ -119,6 +126,10 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="recipient-name" class="col-form-label">Name:</label>
+
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="meet_team.png">Preview</span>
+
                                 <input type="text" class="form-control name" id="recipient-name" name="name"
                                     placeholder="Enter Member Name">
                                 
@@ -130,6 +141,9 @@
                                 <input type="file" class="form-control photo" id="photo" name="photo">
                                     <span class="text-danger validate" data-field="photo"></span>
                             </div>
+
+                                <img class="d-none" src="" id="previewPhoto" width="200px" alt="">
+
                             <div class="form-group">
                                 <label for="designation" class="col-form-label">Designation:</label>
                                 <input type="text" class="form-control designation" id="designation"
@@ -196,6 +210,9 @@
                                     <span class="text-danger validate_e" data-field="photo"></span>
 
                             </div>
+
+                                <img class="d-none" src="" id="previewPhoto_e" width="200px" alt="">
+
                             <div class="form-group">
                                 <label for="designation_e" class="col-form-label">Designation:</label>
                                 <input type="text" class="form-control " id="designation_e" name="designation"
@@ -237,11 +254,18 @@
 @endsection
 
 @section('script')
-
+    @include('backend.includes.preview')
     <script>
 
         $(document).ready(function () {
+            //thumbnail preview
+            $("#photo").change(function() {
+                pleasePreview(this, 'previewPhoto');
+            });
 
+            $("#photo_e").change(function() {
+                pleasePreview(this, 'previewPhoto_e');
+            });
             // ADD DATA
             $("#formData").submit(function (e) { 
                 e.preventDefault();

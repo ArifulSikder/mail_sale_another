@@ -46,6 +46,12 @@ Route::get('/remove/{id}', function($id){
 });
 
 
+//footer
+Route::get('/refund-policy', [AppearanceController::class, 'refundPolicy'])->name('refund-policy');
+Route::get('/privacy-policy', [AppearanceController::class, 'privacyPolicy'])->name('privacy-policy');
+Route::get('/terms-service', [AppearanceController::class, 'termsService'])->name('terms-service');
+Route::get('/disclaimer', [AppearanceController::class, 'disclaimer'])->name('disclaimer');
+Route::get('/faq', [AppearanceController::class, 'faq'])->name('faq');
 
 
 

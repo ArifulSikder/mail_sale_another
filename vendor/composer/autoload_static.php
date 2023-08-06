@@ -598,6 +598,7 @@ class ComposerStaticInit53c7c16e336b74777d3b002864745fb0
         'App\\Models\\ProductAdvantage' => __DIR__ . '/../..' . '/app/Models/ProductAdvantage.php',
         'App\\Models\\ProductDescription' => __DIR__ . '/../..' . '/app/Models/ProductDescription.php',
         'App\\Models\\ProductDetail' => __DIR__ . '/../..' . '/app/Models/ProductDetail.php',
+        'App\\Models\\ProductGuarantee' => __DIR__ . '/../..' . '/app/Models/ProductGuarantee.php',
         'App\\Models\\Slider' => __DIR__ . '/../..' . '/app/Models/Slider.php',
         'App\\Models\\User' => __DIR__ . '/../..' . '/app/Models/User.php',
         'App\\Providers\\AppServiceProvider' => __DIR__ . '/../..' . '/app/Providers/AppServiceProvider.php',

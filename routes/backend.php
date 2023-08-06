@@ -10,11 +10,14 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SliderController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PreviewImageController;
 
 Route::get('dashboard', function () {
     return view('backend.dashboard.index');
 });
 
+//preview image
+Route::get('preview-image', [PreviewImageController::class, 'index'])->name('preview-image');
 //user
 Route::get('user-list', [UserController::class, 'index'])->name('user-list');
 Route::get('create-user', [UserController::class, 'createUser'])->name('create-user');
@@ -72,6 +75,7 @@ Route::post('store-home-details', [HomePageController::class, 'storeDetails'])->
 Route::get('show-home-details', [HomePageController::class, 'showDetails'])->name('show-details');
 Route::get('edit-home-details/{id}', [HomePageController::class, 'editDetails'])->name('edit-details');
 Route::post('update-home-details', [HomePageController::class, 'updateDetails'])->name('update-details');
+Route::get('update-home-status/{id}/{status}', [HomePageController::class, 'updateHomeStatus'])->name('update-home-status');
 Route::get('delete-home-details/{id}', [HomePageController::class, 'deleteDetails'])->name('delete-details');
 
 //meet team
@@ -79,11 +83,21 @@ Route::get('meet-team', [HomePageController::class, 'meetTeam'])->name('meet-tea
 Route::post('store-team', [HomePageController::class, 'storeTeam'])->name('store-team');
 Route::get('edit-team/{id}', [HomePageController::class, 'editTeam'])->name('edit-team');
 Route::post('update-team', [HomePageController::class, 'updateTeam'])->name('update-team');
+Route::get('update-team-status/{id}/{status}', [HomePageController::class, 'updateTeamStatus'])->name('update-team-status');
 Route::get('delete-team/{id}', [HomePageController::class, 'deleteTeam'])->name('delete-team');
 
 //top slider
 Route::get('slider', [HomePageController::class, 'sliderIndex'])->name('top-slider');
 Route::post('store-slider', [HomePageController::class, 'storeSlider'])->name('store-slider');
 Route::post('update-slider', [HomePageController::class, 'updateSlider'])->name('update-slider');
+Route::get('update-slider-status/{id}/{status}', [HomePageController::class, 'updateSliderStatus'])->name('update-slider-status');
 Route::get('delete-slider/{id}', [HomePageController::class, 'deleteSlider'])->name('delete-slider');
+
+//product gurantee
+Route::get('product-guarantee', [HomePageController::class, 'productIndex'])->name('product-guarantee');
+Route::post('store-guarantee', [HomePageController::class, 'storeGuarantee'])->name('store-guarantee');
+Route::post('update-guarantee', [HomePageController::class, 'updateGuarantee'])->name('update-guarantee');
+Route::get('delete-guarantee/{id}', [HomePageController::class, 'deleteGuarantee'])->name('delete-guarantee');
+Route::get('update-guarantee-status/{id}/{status}', [HomePageController::class, 'updateGuaranteeStatus'])->name('update-guarante-status');
+
 

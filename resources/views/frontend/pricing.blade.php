@@ -1,6 +1,6 @@
 @extends('frontend.layouts.master')
 
-@section('title', "Product")
+@section('title', "Pricing")
 
 @section('sideSection')
 
@@ -8,7 +8,7 @@
     <!-- Hero section start -->
     <section class="hero_area">
       <div class="container">
-        <div class="hero-bg">
+        <div class="hero-bg" style=" background-image: url({{ asset('frontend/assets/images/home-page/Minimalist-Youtube-Channel-Art-13.webp') }});">
             <div class="text-inner text-center">
                 <h3>GOOGLE PVA</h3>
                 <h3>ACCOUNTS</h3>

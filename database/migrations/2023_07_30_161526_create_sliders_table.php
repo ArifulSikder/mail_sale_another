@@ -18,9 +18,9 @@ return new class extends Migration
             $table->string('background_photo');
             $table->string('photo_alt');
             $table->string('title');
-            $table->longText('short_description');
+            $table->text('short_description');
             $table->string('subcategory_id');
-            $table->string('active_status');
+            $table->boolean('active_status')->default(1);
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();
             $table->softDeletes();

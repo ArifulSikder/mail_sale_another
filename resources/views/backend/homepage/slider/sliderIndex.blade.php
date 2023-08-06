@@ -69,7 +69,7 @@
                                             <span
                                             class="badge badge-{{ $slider->active_status == 0 ? 'danger': 'success' }}">{{ $slider->active_status == 0 ? 'Inactive': 'Active' }}</span>
                                         </td>
-                                        <td>{{ $slider->created_at->toFormateDate() }} $</td>
+                                        <td>{{ $slider->created_at->toFormateDate() }}</td>
                                         <td>
                                             <button type="button" 
                                                 class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
@@ -77,6 +77,11 @@
                                                 Options
                                             </button>
                                             <div class="dropdown-menu text-center bg-light-blue">
+                                                @if ($slider->active_status == 0)
+                                                   <a href="{{ route('update-slider-status', ['id' => $slider->id , 'status' => $slider->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
+                                                @else
+                                                    <a href="{{ route('update-slider-status', ['id' => $slider->id , 'status' => $slider->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
+                                                @endif
                                                 <button type="button" data-id="{{ $slider->id }}"
                                                     data-title="{{ $slider->title }}"
                                                     data-short_description="{{ $slider->short_description }}"
@@ -89,7 +94,7 @@
 
                                                 <a href="{{ route('delete-slider',['id' => $slider->id] ) }}"
                                                     id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i>Delete</a>
+                                                        class="fas fa-trash"></i> Delete</a>
                                                 
 
                                             </div>
@@ -122,6 +127,10 @@
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="title" class="col-form-label">Title:</label>
+    
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="slider.png">Preview</span>
+
                                 <input type="text" class="form-control title" id="title" name="title"
                                     placeholder="Enter Title">
                                 
@@ -152,6 +161,9 @@
                                 <input type="file" class="form-control photo" id="background_photo" name="background_photo">
 
                                     <span class="text-danger validate" data-field="background_photo"></span>
+                            </div>
+                            <div>
+                                <img class="d-none" src="" id="previewBackground_photo" width="200px" alt="">
                             </div>
 
                             <div class="form-group">
@@ -227,10 +239,15 @@
 
                             <div class="form-group">
                                 <label for="background_photo" class="col-form-label">Background Photo:</label>
-                                <input type="file" class="form-control photo" id="background_photo" name="background_photo">
+                                <input type="file" class="form-control photo" id="background_photo_e" name="background_photo">
 
                                     <span class="text-danger validate_e" data-field="background_photo"></span>
                             </div>
+                            
+                            <div>
+                                <img class="d-none" src="" id="previewBackground_photo_e" width="200px" alt="">
+                            </div>
+
 
                             <div class="form-group">
                                 <label for="photo_alt" class="col-form-label">Photo Alternative:</label>
@@ -267,10 +284,18 @@
 @endsection
 
 @section('script')
-
+    @include('backend.includes.preview')
     <script>
 
         $(document).ready(function () {
+            //backgorund photo preview
+            $("#background_photo").change(function() {
+                pleasePreview(this, 'previewBackground_photo');
+            });
+
+            $("#background_photo_e").change(function() {
+                pleasePreview(this, 'previewBackground_photo_e');
+            });
 
             // ADD DATA
             $("#formData").submit(function (e) { 

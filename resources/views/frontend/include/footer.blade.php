@@ -25,12 +25,12 @@
                 <div class="services">
                   <h5 class="footer-title">Important Links</h5>
                   <ul class="list-unstyled">
-                    <li><a href="./my-account.html">My Account</a></li>
-                    <li><a href="./refund.html">Refund Policy</a></li>
-                    <li><a href="./privacy-policy.html">Privacy Policy</a></li>
-                    <li><a href="./terms-of-service.html">Terms of Service</a></li>
-                    <li><a href="./disclaimer.html">Disclaimer</a></li>
-                    <li><a href="./faq.html">FAQ</a></li>
+                    <li><a href="./my-account">My Account</a></li>
+                    <li><a href="{{ route('refund-policy') }}">Refund Policy</a></li>
+                    <li><a href="{{ route('privacy-policy') }}">Privacy Policy</a></li>
+                    <li><a href="{{ route('terms-service') }}">Terms of Service</a></li>
+                    <li><a href="{{ route('disclaimer') }}">Disclaimer</a></li>
+                    <li><a href="{{ route('faq') }}">FAQ</a></li>
                   </ul>
                 </div>
                 </div>

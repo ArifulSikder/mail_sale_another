@@ -75,13 +75,20 @@
                                                 Options
                                             </button>
                                             <div class="text-center dropdown-menu bg-light-blue">
+
+                                                @if ($detail->active_status == 0)
+                                                   <a href="{{ route('update-home-status', ['id' => $detail->id , 'status' => $detail->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
+                                                @else
+                                                    <a href="{{ route('update-home-status', ['id' => $detail->id , 'status' => $detail->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
+                                                @endif
+
                                                 <a href="{{ route('edit-details', $detail->id) }}" class="btn btn-success btn-sm btn-block">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
 
                                                 <a href="{{ url('delete-home-details/'. $detail->id) }}"
                                                     id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i>Delete</a>
+                                                        class="fas fa-trash"></i> Delete</a>
                                                 
 
                                             </div>

@@ -7,15 +7,29 @@
 
 <!-- Hero section start -->
 <section class="hero_area">
-    <div class="container">
-        <div class="hero-bg">
+    <div class="container"> 
+        
+        <div class="hero-bg"
+            @if ( $slider == null )
+                style=" background-image: url({{ asset('frontend/assets/images/home-page/Minimalist-Youtube-Channel-Art-13.webp') }});"
+            @else
+                style="background-image: url({{ $slider->background_photo }});"
+            @endif >
             <!-- <div class="row">
               <div class="col-6 d-flex align-self-center"> -->
+
             <div class="text-inner text-center">
-                <h3><strong>GOOGLE PVA</strong></h3>
-                <h3>ACCOUNTS</h3>
-                <p>GET REAL GMAIL PVA ACCOUNTS.BUY GMAIL OLD ACCOUNTS. PVA ACCOUNTS MANUALLY CREATED ACCOUNTS ON
-                    DISCOUNT RATE.</p>
+                <h3><strong>
+                    @if($slider !== null)
+                        {{ $slider->title }}
+                    @endif
+                </strong></h3>
+                {{-- <h3>ACCOUNTS</h3> --}}
+                <p class="text-uppercase">
+                    @if($slider !== null)
+                        {{ $slider->short_description }}
+                    @endif
+                </p>
                 <p>
                     <a href="./pricing.html" class="button">PRICING &amp; PACKAGE</a>
             </div>
@@ -115,28 +129,16 @@
     <div class="container">
         <div class="about-shop-content">
             <div class="section-title text-center">
-                <h2>PVAESHOP</h2>
+                <h2>
+                    @if ($home_pave !== null)
+                        {{ $home_pave->title }}
+                    @endif
+                </h2>
             </div>
             <div class="content text-center">
-                <p>PVA(Phone Verified Accounts) this accounts helps you to increase your reach over the different social
-                    media sites like FACEBOOK,INSTAGRAM,GMAIL,YAHOO,YOUTUBE,TWITTER,GOOGLE VOICE ACCOUNTS and So On….
-                </p>
-                <p>We Provide you All Type of PVA accounts for your Business Growth/Personal usages.By the help of PVA
-                    accounts you can Increase your Business over the differents Social- Media Sites and You also use
-                    bulk of Pva accounts that’s give best reach.PVA helps us to use full authority(Utilization) of that
-                    account.For different sites we have different PVA accounts like FOR Facebook we have Facebook Pva
-                    Accounts by this we can target our audience on Facebook and Rapidly Increase our Business over
-                    facebook, like that You can increase your business over other platforms by using different PVA
-                    accounts. You can also Buy bulk of PVA accounts for any Platforms.</p>
-                <p>You can also buy Gmail PVA accounts by that you can access all the features of Gmail accounts and
-                    marketing your business over the gmail and target your client’s. For any kind of business promotion
-                    you can use for PVA accounts that has Safe & Secure way to promoting.We are Here 24hrs in your
-                    Service,any kind of query you can contact us by a live chat We resolve of all your problem.We have
-                    Variety of 100% genuine PVA accounts that make you/your business popular over the Internet. You can
-                    choose PVA accounts as per Your Requirement.</p>
-                <p><strong>Most Popular and Use-full PVA accounts are:- PVA FACEBOOK ACCOUNTS, PVA INSTAGRAM
-                        ACCOUNTS,PVA GMAIL ACCOUNTS, GOOGLE VOICE ACCOUNTS, PVA YOUTUBE ACCOUNTS, PVA TWITTER
-                        ACCOUNTS.</strong></p>
+                @if ($home_pave !== null)
+                    {!! $home_pave->description !!}
+                @endif
             </div>
             <div class="box">
                 <div class="row">
@@ -244,60 +246,29 @@
                 <h2>MEET OUR AMAZING TEAM</h2>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item text-center">
-                        <div class="member-image">
-                            <img src="{{ asset('frontend') }}/assets/images/home-page/team1.webp" alt="">
-                            <div class="text-inner">
-                                <div class="member-info">
-                                    <h5>JOSEPH K. RODRIGUEZ</h5>
-                                    <span>QUALITY MANAGER</span>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="description">
-                                    <p>Joseph K. Rodriguez is Account Quality manager and has been working with us since
-                                        2019 he is best in his own work.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item text-center">
-                        <div class="member-image">
-                            <img src="{{ asset('frontend') }}/assets/images/home-page/team3.webp" alt="">
-                            <div class="text-inner">
-                                <div class="member-info">
-                                    <h5>JOSEPH K. RODRIGUEZ</h5>
-                                    <span>MARKETING MANAGER</span>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="description">
-                                    <p>Joseph K. Rodriguez is Account Quality manager and has been working with us since
-                                        2019 he is best in his own work.</p>
+                @forelse($meet_teams as $team)
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+                        <div class="team-item text-center">
+                            <div class="member-image">
+                                <img src="{{ $team->photo }}" alt="">
+                                <div class="text-inner">
+                                    <div class="member-info">
+                                        <h5>{{ $team->name }}</h5>
+                                        <span>{{ $team->designation }}</span>
+                                    </div>
+                                    <div class="divider"></div>
+                                    <div class="description">
+                                        <p>{{ $team->description }}</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-12">
-                    <div class="team-item text-center">
-                        <div class="member-image">
-                            <img src="{{ asset('frontend') }}/assets/images/home-page/team1.webp" alt="">
-                            <div class="text-inner">
-                                <div class="member-info">
-                                    <h5>JOSEPH K. RODRIGUEZ</h5>
-                                    <span>ACCOUNT MANAGER</span>
-                                </div>
-                                <div class="divider"></div>
-                                <div class="description">
-                                    <p>Joseph K. Rodriguez is Account Quality manager and has been working with us since
-                                        2019 he is best in his own work.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @empty
+                    
+                @endforelse
+                
+
             </div>
         </div>
     </div>

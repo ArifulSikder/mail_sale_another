@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('designation');
             $table->longText('description');
-            $table->string('active_status');
             $table->string('photo');
+            $table->boolean('active_status')->default(1);
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();
             $table->softDeletes();

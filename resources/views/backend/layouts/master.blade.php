@@ -76,7 +76,7 @@
     <script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
     {{-- ck editor --}}
     <script src="{{ asset('backend/plugins/ckeditor/ckeditor.js') }}"></script>
-    
+
 
     {{-- menu search jquery --}}
     <script>
@@ -142,133 +142,133 @@
         </script>
     @endif
 
-<script>
-    $(document).on("click", "#delete", function(e) {
-        e.preventDefault();
-        var link = $(this).attr("href");
-        const swalWithBootstrapButtons = Swal.mixin({
-            customClass: {
-                confirmButton: 'btn btn-success',
-                cancelButton: 'btn btn-danger'
-            },
-            buttonsStyling: false
+    <script>
+        $(document).on("click", "#delete", function(e) {
+            e.preventDefault();
+            var link = $(this).attr("href");
+            const swalWithBootstrapButtons = Swal.mixin({
+                customClass: {
+                    confirmButton: 'btn btn-success',
+                    cancelButton: 'btn btn-danger'
+                },
+                buttonsStyling: false
+            })
+
+            swalWithBootstrapButtons.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, delete it!',
+                cancelButtonText: 'No, cancel!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.isConfirmed) {
+
+                    window.location.href = link;
+                    swalWithBootstrapButtons.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    swalWithBootstrapButtons.fire(
+                        'Cancelled',
+                        'Your imaginary file is safe :)',
+                        'error'
+                    )
+                }
+            })
+
+        });
+    </script>
+    {{-- single image preview for insert and update --}}
+    <script>
+        //preview image user
+        function readURL(input) {
+            var selectorIdAndClass = $('#previewHolder');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    selectorIdAndClass.removeClass('d-none');
+                    selectorIdAndClass.attr({
+                        'src': '',
+                        'src': e.target.result,
+                    });
+                    selectorIdAndClass.css('width', '100px')
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('select a file to see preview');
+                selectorIdAndClass.attr('src', '');
+            }
+        }
+        $("#photoUpload").change(function() {
+            readURL(this);
+        });
+
+        function readURL2(input) {
+            var selectorIdAndClass = $('.previewHolder');
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    selectorIdAndClass.removeClass('d-none');
+                    selectorIdAndClass.attr({
+                        'src': '',
+                        'src': e.target.result,
+                    });
+                    selectorIdAndClass.css('width', '100px')
+                }
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('select a file to see preview');
+                selectorIdAndClass.attr('src', '');
+            }
+        }
+        $(".photoUpload").change(function() {
+            readURL2(this);
+        });
+
+        // dynamic  
+        function pleasePreview(input, previewId) {
+            var selectorIdAndClass = $('#' + previewId);
+
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    selectorIdAndClass.removeClass('d-none');
+                    selectorIdAndClass.attr('src', e.target.result);
+                };
+                reader.readAsDataURL(input.files[0]);
+            } else {
+                alert('Select a file to see the preview');
+                selectorIdAndClass.attr('src', '');
+            }
+        }
+    </script>
+ 
+
+    <script>
+        $(function() {
+            $('.textarea').summernote();
+            // $('.select2').select2({
+            //     placeholder: function() {
+            //         $(this).data('placeholder');
+            //     }
+            // });
         })
-
-        swalWithBootstrapButtons.fire({
-            title: 'Are you sure?',
-            text: "You won't be able to revert this!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonText: 'Yes, delete it!',
-            cancelButtonText: 'No, cancel!',
-            reverseButtons: true
-        }).then((result) => {
-            if (result.isConfirmed) {
-
-                window.location.href = link;
-                swalWithBootstrapButtons.fire(
-                    'Deleted!',
-                    'Your file has been deleted.',
-                    'success'
-                )
-            } else if (
-                /* Read more about handling dismissals below */
-                result.dismiss === Swal.DismissReason.cancel
-            ) {
-                swalWithBootstrapButtons.fire(
-                    'Cancelled',
-                    'Your imaginary file is safe :)',
-                    'error'
-                )
-            }
-        })
-
-    });
-</script>
-{{-- single image preview for insert and update --}}
-<script>
-    //preview image user
-    function readURL(input) {
-        var selectorIdAndClass = $('#previewHolder');
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                selectorIdAndClass.removeClass('d-none');
-                selectorIdAndClass.attr({
-                    'src': '',
-                    'src': e.target.result,
-                });
-                selectorIdAndClass.css('width', '100px')
-            }
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            alert('select a file to see preview');
-            selectorIdAndClass.attr('src', '');
-        }
-    }
-    $("#photoUpload").change(function() {
-        readURL(this);
-    });
-
-    function readURL2(input) {
-        var selectorIdAndClass = $('.previewHolder');
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                selectorIdAndClass.removeClass('d-none');
-                selectorIdAndClass.attr({
-                    'src': '',
-                    'src': e.target.result,
-                });
-                selectorIdAndClass.css('width', '100px')
-            }
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            alert('select a file to see preview');
-            selectorIdAndClass.attr('src', '');
-        }
-    }
-    $(".photoUpload").change(function() {
-        readURL2(this);
-    });
-
-     // dynamic  
-     function pleasePreview(input, previewId) {
-        var selectorIdAndClass = $('#' + previewId);
-
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-            selectorIdAndClass.removeClass('d-none');
-            selectorIdAndClass.attr('src', e.target.result);
-            };
-            reader.readAsDataURL(input.files[0]);
-        } else {
-            alert('Select a file to see the preview');
-            selectorIdAndClass.attr('src', '');
-        }
-    }
-
-</script>
-
-<script>
-    $(function() {
-        $('.textarea').summernote();
-        // $('.select2').select2({
-        //     placeholder: function() {
-        //         $(this).data('placeholder');
-        //     }
-        // });
-    })
-</script>
-<script>
-	ClassicEditor
-		.create( document.querySelector( '#editor' ) )
-		.catch( error => {
-			console.error( error );
-		} );
-</script>
-<x-select2 />
+    </script>
+    <script>
+        ClassicEditor
+            .create(document.querySelector('#editor'))
+            .catch(error => {
+                console.error(error);
+            });
+    </script>
+    <x-select2 />
     @yield('script')
     @stack('js')
 </body>

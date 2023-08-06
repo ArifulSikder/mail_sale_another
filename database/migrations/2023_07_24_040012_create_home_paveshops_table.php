@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->string('active_status');
+            $table->boolean('active_status')->default(1);
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();
             $table->softDeletes();

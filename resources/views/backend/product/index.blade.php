@@ -149,7 +149,7 @@
                             <span class="text-danger" id="error_thumbnail"></span>
                         </div>
                         <div>
-                            <img src="" id="previewThumbnail" width="200px" alt="">
+                            <img class="d-none" src="" id="previewThumbnail" width="200px" alt="">
                         </div>
 
                         <div class="form-group">
@@ -246,7 +246,7 @@
                             <span class="text-danger" id="error_thumbnail_e"></span>
                         </div>
                         <div>
-                            <img src="" id="previewThumbnail_e" width="200px" alt="">
+                            <img class="d-none" src="" id="previewThumbnail_e" width="200px" alt="">
                         </div>
 
                         <div class="form-group">

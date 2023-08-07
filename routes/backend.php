@@ -107,5 +107,20 @@ Route::get('show-business-policy', [HomePageController::class, 'indexPolicy'])->
 Route::get('edit-business-policy/{id}', [HomePageController::class, 'editPolicy'])->name('edit-business-policy');
 Route::post('update-business-policy', [HomePageController::class, 'updatePolicy'])->name('update-business-policy');
 Route::get('update-policy-status/{id}/{status}', [HomePageController::class, 'updatePolicyStatus'])->name('update-policy-status');
+Route::get('delete-business-policy/{id}', [HomePageController::class, 'deletePolicy'])->name('delete-business-policy');
 
+// FAQ Category
+Route::get('add-faq-category', [HomePageController::class, 'addFaqCategory'])->name('add-faq-category');
+Route::post('store-faq-category', [HomePageController::class, 'storeFaqCategory'])->name('store-faq-category');
+Route::post('update-faq-category', [HomePageController::class, 'updateFaqCategory'])->name('update-faq-category');
+Route::get('update-faq-status/{id}/{status}', [HomePageController::class, 'updatFaqStatus'])->name('update-faq-status');
+Route::get('delete-faq-category/{id}', [HomePageController::class, 'deleteFaqCategory'])->name('delete-faq-category');
+
+
+// FAQ Question
+Route::get('add-faq-question', [HomePageController::class, 'addFaqQuestion'])->name('add-faq-question');
+Route::post('store-faq-question', [HomePageController::class, 'StoreFaqQuestion'])->name('store-faq-question');
+Route::post('update-faq-question', [HomePageController::class, 'updateFaqQuestion'])->name('update-faq-question');
+Route::get('update-question-status/{id}/{status}', [HomePageController::class, 'updatFaqQuesStatus'])->name('update-question-status');
+Route::get('delete-faq-question/{id}', [HomePageController::class, 'deleteFaqQues'])->name('delete-faq-question');
 

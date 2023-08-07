@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\BusinessPolicy;
 use App\Models\Category;
+use App\Models\FAQ;
+use App\Models\FAQCategory;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
 use App\Models\ProductGuarantee;
@@ -843,6 +845,298 @@ class HomePageController extends Controller
             return back()->with($notification);
         } 
     }
+
+    public function deletePolicy($id)
+    {
+        $delete = BusinessPolicy::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "Policy Item Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+    // FAQ Category Start 
+    public function addFaqCategory()
+    {
+        $data['categories'] = FAQCategory::latest()->paginate(10);
+        return view('backend.homepage.faq.faqCategories', $data);
+    }
+
+
+    // FAQ category store 
+    public function storeFaqCategory(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'category_title' => 'required|string|max:255|unique:f_a_q_categories',
+            'category_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'category_title.required' => 'Please Enter The Category Title',
+            'category_logo.required' => 'Please Select The Logo',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $image = '';
+        if ($request->file('category_logo')) {
+            $image = uploadPlease($request->file('category_logo'));
+        }
+
+        $category = FAQCategory::create([
+            'category_title' => $request->category_title,
+            'category_logo' => $image,
+            'active_status' =>  $request->active_status,
+            'created_by' => Auth::id()
+        ]);
+
+        if ($category) {
+            return response()->json([
+                'success' => "FAQ Category saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // FAQ category update 
+    public function updateFaqCategory(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'category_title' => 'required|string|max:255|unique:f_a_q_categories',
+            'category_logo' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'category_title.required' => 'Please Enter The Category Title',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $category = FAQCategory::findOrFail($request->edit_id);
+        $category->category_title = $request->category_title;
+        $category->active_status = $request->active_status;
+        $category->updated_by = Auth::id();
+
+        $image = '';
+        if ($request->file('category_logo')) {
+            $photo = FAQCategory::where('id', $request->edit_id)->value('category_logo');
+            File::delete($photo);
+            $image = uploadPlease($request->file('category_logo'));
+            $category->category_logo = $image;
+        }
+    
+        if ($category->save()) {
+            return response()->json([
+                'success' => "FAQ Category Updated successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // FAQ category update status 
+    public function updatFaqStatus($id, $status)
+    {
+        if ($status == 0) {
+            $policy = FAQCategory::findOrFail($id)->update([
+                'active_status' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status Activated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $policy = FAQCategory::findOrFail($id)->update([
+                'active_status' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status inactivated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+    }
+
+    // FAQ category delete 
+    public function deleteFaqCategory($id)
+    {
+        $delete = FAQCategory::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "FAQ Category Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+    // FAQ Questions 
+    public function addFaqQuestion()
+    {
+        $data['categories'] = FAQCategory::all();
+        $data['faqs'] = FAQ::latest()->paginate(10);
+        return view('backend.homepage.faq.faqQuestions', $data);
+    }
+
+    // FAQ Questions  store
+    public function StoreFaqQuestion(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'category_id' => 'required|numeric',
+            'question' => 'required|string',
+            'answer' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'category_id.required' => 'Please Enter The Category Title',
+            'question.required' => 'Please Enter The Question',
+            'answer.required' => 'Please Enter The Answer',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+
+        $faq = new FAQ();  
+        $faq->category_id = $request->category_id;
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->active_status = $request->active_status;
+        $faq->created_by = Auth::id();
+
+
+        if ($faq->save()) {
+            return response()->json([
+                'success' => "FAQ saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // FAQ Questions Update
+    public function updateFaqQuestion(Request $request)
+    {
+        $validatorData = Validator::make($request->all(), [
+            'category_id' => 'required|numeric',
+            'question' => 'required|string',
+            'answer' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'category_id.required' => 'Please Enter The Category Title',
+            'question.required' => 'Please Enter The Question',
+            'answer.required' => 'Please Enter The Answer',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $id = $request->edit_id;
+        $faq = FAQ::findOrFail($id);
+
+        $faq->category_id = $request->category_id;
+        $faq->question = $request->question;
+        $faq->answer = $request->answer;
+        $faq->active_status = $request->active_status;
+        $faq->updated_by = Auth::id();
+
+
+        if ($faq->save()) {
+            return response()->json([
+                'success' => "FAQ saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // FAQ Question update status 
+    public function updatFaqQuesStatus($id, $status)
+    {
+        if ($status == 0) {
+            $policy = FAQ::findOrFail($id)->update([
+                'active_status' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status Activated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $policy = FAQ::findOrFail($id)->update([
+                'active_status' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status inactivated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+    }
+
+    // FAQ category delete 
+    public function deleteFaqQues($id)
+    {
+        $delete = FAQ::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "FAQ Item Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+    
 
 
 }

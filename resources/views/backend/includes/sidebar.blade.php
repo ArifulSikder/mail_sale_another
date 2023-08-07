@@ -118,7 +118,7 @@
 
                 <li class="nav-header">Settings</li>
 
-
+                <!-- USER -->
                 <li class="nav-item {{ request()->is(['create-user','user-list']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['create-user', 'user-list']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-shield"></i>
@@ -143,6 +143,7 @@
                     </ul>
                 </li>
 
+                <!-- BUSINESS POLICY -->
                 <li class="nav-item {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
@@ -167,7 +168,32 @@
                     </ul>
                 </li>
 
+                <!-- FAQ -->
+                <li class="nav-item {{ request()->is(['add-faq-category', 'add-faq-question']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['add-faq-category', 'add-faq-question']) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-question"></i>
+                        <p>
+                            FAQ Management
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('add-faq-category') }}" class="nav-link {{ request()->is(['add-faq-category']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Categories</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('add-faq-question') }}" class="nav-link {{ request()->is(['add-faq-question']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Questions</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
 
+                <!-- APP SETUPS -->
                 <li class="nav-item {{ request()->is(['app-settings']) ? 'menu-open' : '' }}">
                     <a href="{{ route('app-settings') }}" class="nav-link {{ request()->is(['app-settings']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-sliders-h"></i>

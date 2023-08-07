@@ -97,7 +97,7 @@
                                                     <i class="fas fa-edit"></i> Edit
                                                 </a>
 
-                                                <a href="{{ url('delete-home-details/'. $policy->id) }}"
+                                                <a href="{{ route('delete-business-policy', $policy->id) }}"
                                                     id="delete" class="btn btn-danger btn-sm btn-block"><i
                                                         class="fas fa-trash"></i> Delete</a>
                                                 

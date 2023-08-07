@@ -44,6 +44,8 @@ return array(
     'App\\Models\\BusinessPolicy' => $baseDir . '/app/Models/BusinessPolicy.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',
     'App\\Models\\Country' => $baseDir . '/app/Models/Country.php',
+    'App\\Models\\FAQ' => $baseDir . '/app/Models/FAQ.php',
+    'App\\Models\\FAQCategory' => $baseDir . '/app/Models/FAQCategory.php',
     'App\\Models\\HomePaveshop' => $baseDir . '/app/Models/HomePaveshop.php',
     'App\\Models\\MeetTeam' => $baseDir . '/app/Models/MeetTeam.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',

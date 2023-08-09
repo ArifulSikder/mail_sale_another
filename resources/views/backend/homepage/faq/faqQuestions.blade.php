@@ -9,7 +9,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">FAQ Question</h1>
+                    <h1 class="m-0">{{ $category->category_title }}</h1>
 
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -37,75 +37,72 @@
                     <input class="form-control" type="search" placeholder="Search By Category Name">
                 </div>
             </div>
-            <div class="card">
-                <div class="card-header">Categories Table</div>
-                <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col">Serial</th>
-                                <th scope="col">Category Title</th>
-                                <th scope="col">Questions</th>
-                                <th scope="col">Answers</th>
-                                <th scope="col">Active Status</th>
-                                <th scope="col">Register Date</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $serials = ($faqs->currentpage() - 1) * $faqs->perpage() + 1;
-                            @endphp
-                            @foreach($faqs as $faq)
-                                <tr>
-                                    <th scope="row">{{ $serials++ }}</th>
-                                    <td>{{ $faq->faqCategory->category_title }}</td>
-                                    <td>{{ $faq->question }}</td>
-                                    <td>{{ $faq->answer }}</td>
-                                    <td><span
-                                            class="badge badge-{{ $faq->active_status == 0 ? 'danger': 'success' }}">{{ $faq->active_status == 0 ? 'Inactive': 'Active' }}</span>
-                                    </td>
-                                    <td>{{ $faq->created_at->toFormateDate() }}</td>
-                                    <td>
+            
+            <div class="row">
+                <div class="col-12" id="accordion">
 
-                                        <button type="button" 
-                                                class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
-                                                data-toggle="dropdown">
-                                                Options
-                                            </button>
-                                            <div class="dropdown-menu text-center bg-light-blue">
-                                                @if ($faq->active_status == 0)
-                                                   <a href="{{ route('update-question-status', ['id' => $faq->id , 'status' => $faq->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
-                                                @else
-                                                    <a href="{{ route('update-question-status', ['id' => $faq->id , 'status' => $faq->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
-                                                @endif
-                                                <button type="button" data-id="{{ $faq->id }}"
-                                                    data-category_id="{{ $faq->category_id }}"
-                                                    data-category_title="{{ $faq->category_title }}"
-                                                    data-question="{{ $faq->question }}"
-                                                    data-answer="{{ $faq->answer }}"
-                                                    data-active_status="{{ $faq->active_status }}"
-                                                    class="btn btn-success btn-sm editfaq  btn-block">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </button>
-
-                                                <a href="{{ route('delete-faq-question',['id' => $faq->id] ) }}"
-                                                    id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i> Delete</a>
+                            @forelse ($faqs as $faq)
+                                <div class="card card-primary card-outline">
+                                    <div class="card-header row" >
+                                        <div class="col-6">
+                                            <h4 class="card-title w-100 text-primary">
+                                            {{ $loop->iteration }}. {{ $faq->question }}
+                                            </h4>
+                                        </div>
+                                        <div class="col-6 ">
+                                            <div class="row text-center">
+                                                <div class="col-4"></div>
+                                                <div class="col-2">
+                                                    <button type="button" data-id="{{ $faq->id }}"
+                                                        data-question="{{ $faq->question }}"
+                                                        data-answer="{{ $faq->answer }}"
+                                                        data-active_status="{{ $faq->active_status }}"
+                                                        class="btn btn-success btn-sm edit_ques">
+                                                        <i class="fas fa-edit"></i>
+                                                    </button>
+                                                </div>
+                                                <div class="col-2">
+                                                    <a href="{{ route('delete-faq-question', ['id' => $faq->id]) }}"
+                                                        id="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                                </div>
+                                                <div class="col-2">
+                                                   @if ($faq->active_status == 0)
+                                                        <a href="{{ route('update-question-status', ['id' => $faq->id , 'status' => $faq->active_status ]) }}" class=""><span class="badge badge-danger">Inactivated</span></a> 
+                                                    @else
+                                                        <a href="{{ route('update-question-status', ['id' => $faq->id , 'status' => $faq->active_status ]) }}"><span class="badge badge-success">Activated</span></a>
+                                                        
+                                                    @endif
+                                                </div>
+                                                <div class="col-2">
+                                                    <a class="" data-toggle="collapse" href="#{{str_replace(' ', '_', $faq->faqCategory->category_title)}}{{ $faq->id }}"><i class="fas fa-chevron-down"></i></a>
+                                                </div>
                                                 
-
                                             </div>
-
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="float-right my-2">
-                        {{ $faqs->links() }}
+                                        </div>
+                                        
+                                        
+                                        
+                                    </div>
+                                    
+                                    <div id="{{str_replace(' ', '_', $faq->faqCategory->category_title)}}{{ $faq->id }}" class="collapse" data-parent="#accordion">
+                                        <div class="card-body">
+                                            {{ $faq->answer }}
+                                        </div>
+                                    </div>
+                                </div>
+                            @empty
+                                <div class="card text-white bg-danger" >
+                                    <div class="card-header">
+                                         <p class="text-center m-0">No Question Added Yet</p>
+                                    </div>
+                                </div>
+                            @endforelse
                     </div>
-                </div>
+                    
             </div>
+
+            
+            
         </div>
     </section>
 
@@ -114,7 +111,7 @@
     <!-- add -->
     <div class="modal fade" id="addNew" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Add FAQ Category</h5>
@@ -126,12 +123,10 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="category_id">Category Title</label>
-                            <select class="form-control select2" name="category_id" id="category_id"
+                            <select  class="form-control select2" name="category_id" id="category_id"
                                 data-placeholder="Select Category Title" style="width: 100%">
                                 <option value="">Select Category Title</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category_title }}</option>
-                                @endforeach
+                                <option selected  value="{{ $category->id }}">{{ $category->category_title }}</option>
                             </select>
                             <span class="text-danger validate" data-field="category_id"></span>
                         </div>
@@ -139,14 +134,14 @@
                             <label for="question">Question</label>
                             <span type="button" class="bg-success text-light px-2 float-right preview"
                                 data-name="faq_ques.png">Preview</span>
-                            <textarea class="form-control" name="question" id="question" cols="30" rows="3" placeholder="Enter Question?"></textarea>
+                            <textarea class="form-control" name="question" id="editor" cols="30" rows="3" placeholder="Enter Question?"></textarea>
                                 <span class="text-danger validate" data-field="question"></span>
                         </div>
                         <div class="form-group">
                             <label for="answer">Answer</label>
                             <span type="button" class="bg-success text-light px-2 float-right preview"
                                 data-name="faq_ans.png">Preview</span>
-                            <textarea class="form-control" name="answer" id="answer" cols="30" rows="3" placeholder="Enter Answer"></textarea>
+                            <textarea class="form-control" name="answer" id="editor_e" cols="30" rows="3" placeholder="Enter Answer"></textarea>
                                 <span class="text-danger validate" data-field="answer"></span>
                         </div>
                         <div class="form-group">
@@ -173,7 +168,7 @@
     <!-- edit -->
     <div class="modal fade" id="editdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
-        <div class="modal-dialog" role="document">
+        <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Edit FAQ Question</h5>
@@ -185,13 +180,11 @@
                     <div class="modal-body">
                         <input type="hidden" id="id_e" name="edit_id">
                         <div class="form-group">
-                            <label for="category_id">Category Title</label>
+                            <label for="category_id_e">Category Title</label>
                             <select class="form-control select2" name="category_id" id="category_id_e"
                                 data-placeholder="Select Category Title" style="width: 100%">
                                 <option value="">Select Category Title</option>
-                                @foreach($categories as $category)
-                                    <option value="{{ $category->id }}">{{ $category->category_title }}</option>
-                                @endforeach
+                                <option  value="{{ $category->id }}" selected>{{ $category->category_title }}</option>
                             </select>
                             <span class="text-danger validate_e" data-field="category_id"></span>
                         </div>
@@ -278,13 +271,12 @@
         });
 
         
-        $('.editfaq').click(function (e) {
+        $('.edit_ques').click(function (e) {
             e.preventDefault();
             $('#editdata').modal('show');
             $('#id_e').val($(this).data('id'));
             $('#question_e').val($(this).data('question'));
             $('#answer_e').val($(this).data('answer'));
-            $('#category_id_e').val($(this).data('category_id')).trigger('change');
             $('#active_status_e').val($(this).data('active_status')).trigger('change');
         });
 

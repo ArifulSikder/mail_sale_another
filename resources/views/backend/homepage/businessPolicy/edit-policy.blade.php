@@ -52,7 +52,7 @@
                         <div class="col-md-12">
                           <div class="form-group">
                               <label for="description">Description</label>
-                              <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" > {{ $policy->description }} </textarea>
+                              <textarea type="text" class="form-control" name="description" id="editor_e" placeholder="Enter Description" >{!! $policy->description !!}</textarea>
                                   <span class="text-danger validate" data-field="description"></span>
 
                           </div>
@@ -84,12 +84,17 @@
 
   <x-select2 />
 @endsection
+@include('components.ckeditor')
 
 @section('script')
     <script>
       $(document).ready(function () {
+        ckeditor("editor_e")
         $("#editData").submit(function (e) { 
-                e.preventDefault();
+                e.preventDefault();      
+
+                CKEDITOR.instances.editor_e.updateElement();
+
                 var formdata = new FormData($("#editData")[0]);
                 $.ajax({
                     type: "POST",

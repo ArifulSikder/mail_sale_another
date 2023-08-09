@@ -74,8 +74,7 @@
     <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     {{-- select2  --}}
     <script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
-    {{-- ck editor --}}
-    <script src="{{ asset('backend/plugins/ckeditor/ckeditor.js') }}"></script>
+
 
 
     {{-- menu search jquery --}}
@@ -261,13 +260,7 @@
             // });
         })
     </script>
-    <script>
-        ClassicEditor
-            .create(document.querySelector('#editor'))
-            .catch(error => {
-                console.error(error);
-            });
-    </script>
+
     <x-select2 />
     @yield('script')
     @stack('js')

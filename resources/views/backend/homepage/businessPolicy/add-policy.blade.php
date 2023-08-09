@@ -92,10 +92,17 @@
 
 @section('script')
     @include('backend.includes.preview')
+    @include('components.ckeditor')
+
     <script>
       $(document).ready(function () {
+        // ckeditor 
+        ckeditor("editor")
         $("#formData").submit(function (e) { 
                 e.preventDefault();
+                
+                CKEDITOR.instances.editor.updateElement();  
+
                 var formdata = new FormData($("#formData")[0]);
                 console.log(formdata);
                 $.ajax({

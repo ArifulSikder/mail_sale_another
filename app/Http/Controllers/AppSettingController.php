@@ -9,6 +9,6 @@ class AppSettingController extends Controller
 {
     public function index()
     {
-        dd('hi');
+        return view('backend.appsetting.appSetting');
     }
 }

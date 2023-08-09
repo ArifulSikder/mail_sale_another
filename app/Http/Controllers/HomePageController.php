@@ -18,18 +18,18 @@ use Illuminate\Support\Facades\Validator;
 
 class HomePageController extends Controller
 {
-    // HOME PAVESHOP START// 
-    // HOME PAVESHOP ADD DETAILS 
-    public function index()
+    // HOME PAVESHOP SHOW  
+    public function showDetails()
     {
-        return view('backend.homepage.homepaveshop.add-details');
+        $data['details']= HomePaveshop::latest()->paginate(10);
+        return view('backend.homepage.homepaveshop.indexPaveshop', $data);
     }
 
     // HOME PAVESHOP STORE 
     public function storeDetails(Request $request)
     {
 
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'active_status' =>  'required|in:0,1',
@@ -57,24 +57,13 @@ class HomePageController extends Controller
         }
     }
 
-    // HOME PAVESHOP SHOW  
-    public function showDetails()
-    {
-        $data['details']= HomePaveshop::latest()->paginate(10);
-        return view('backend.homepage.homepaveshop.indexPaveshop', $data);
-    }
+  
 
-    // HOME PAVESHOP EDIT PAGE SHOW  
-    public function editDetails($id)
-    {
-        $data['details_pev'] = HomePaveshop::findOrFail($id); 
-        return view('backend.homepage.homepaveshop.edit-paveshop', $data);
-    }
 
     // HOME PAVESHOP UPDATE  
     public function updateDetails(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'description' => 'required|string',
             'active_status' =>  'required|in:0,1',
@@ -85,7 +74,7 @@ class HomePageController extends Controller
         ])->validate();
 
         
-        $homePabeshop = HomePaveshop::findOrFail($request->id)->update([
+        $homePabeshop = HomePaveshop::findOrFail($request->edit_e)->update([
             'title' => $request->title,
             'description' => $request->description,
             'active_status' =>  $request->active_status,
@@ -172,7 +161,7 @@ class HomePageController extends Controller
     // MEET TEAM STORE TEAM MEMBER
     public function storeTeam(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'photo' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:5120',
             'designation' =>  'required',
@@ -214,7 +203,7 @@ class HomePageController extends Controller
     // MEET TEAM UPDATE DATA
     public function updateTeam(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'photo' => 'image|mimes:jpeg,png,jpg,gif,svg|max:5120',
             'designation' =>  'required',
@@ -336,7 +325,7 @@ class HomePageController extends Controller
 
 
     // START TOP SLIDER //
-    // START TOP INDEX PAGE 
+    // START TOP SLIDER INDEX PAGE 
     public function sliderIndex()
     {
         $data['subcategories'] = Category::all();
@@ -347,7 +336,7 @@ class HomePageController extends Controller
     // SLIDER STORE 
     public function storeSlider(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'subcategory_id' => "required|numeric",
             'short_description' => 'required|string',
@@ -392,7 +381,7 @@ class HomePageController extends Controller
     // SLIDER UPDATE 
     public function updateSlider(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'title' => 'required|string|max:255',
             'subcategory_id' => "required|numeric",
             'short_description' => 'required|string',
@@ -737,7 +726,7 @@ class HomePageController extends Controller
     // BUSINESS POLICY STORE
     public function storePolicy(Request  $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'policy_type' => 'required',
             'description' => 'required|string',
             'active_status' =>  'required|in:0,1',
@@ -779,9 +768,9 @@ class HomePageController extends Controller
 
     public function updatePolicy(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'policy_type' => 'required',
-            'description' => 'required|string',
+            'description' => 'required',
             'active_status' =>  'required|in:0,1',
         ],[
             'policy_type.required' => 'Please Select The Business Policy',
@@ -790,14 +779,14 @@ class HomePageController extends Controller
         ])->validate();
 
         
-        $homePabeshop = BusinessPolicy::findOrFail($request->id)->update([
+        $policy = BusinessPolicy::findOrFail($request->id)->update([
             'policy_type' => $request->policy_type,
             'description' => $request->description,
             'active_status' =>  $request->active_status,
             'updated_by' => Auth::id()
         ]);
 
-        if ($homePabeshop) {
+        if ($policy) {
             return response()->json([
                 'success' => "Business Policy Updated successfully.",
             ]);
@@ -867,14 +856,14 @@ class HomePageController extends Controller
     public function addFaqCategory()
     {
         $data['categories'] = FAQCategory::latest()->paginate(10);
-        return view('backend.homepage.faq.faqCategories', $data);
+        return view('backend.homepage.faq.faqIndex', $data);
     }
 
 
     // FAQ category store 
     public function storeFaqCategory(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'category_title' => 'required|string|max:255|unique:f_a_q_categories',
             'category_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'active_status' =>  'required|in:0,1',
@@ -910,8 +899,8 @@ class HomePageController extends Controller
     // FAQ category update 
     public function updateFaqCategory(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
-            'category_title' => 'required|string|max:255|unique:f_a_q_categories',
+        Validator::make($request->all(), [
+            'category_title' => 'required|string|max:255',
             'category_logo' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
             'active_status' =>  'required|in:0,1',
         ],[
@@ -1001,17 +990,19 @@ class HomePageController extends Controller
     }
 
     // FAQ Questions 
-    public function addFaqQuestion()
+    public function addFaqQuestion($cat_id)
     {
-        $data['categories'] = FAQCategory::all();
-        $data['faqs'] = FAQ::latest()->paginate(10);
+        $data['category'] = FAQCategory::findOrFail($cat_id);
+        $data['faqs'] = FAQ::where('category_id', $cat_id)->get();
         return view('backend.homepage.faq.faqQuestions', $data);
+        // return $data['faqs'];
+        // return $cat_id;
     }
 
     // FAQ Questions  store
     public function StoreFaqQuestion(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'category_id' => 'required|numeric',
             'question' => 'required|string',
             'answer' => 'required|string',
@@ -1023,14 +1014,12 @@ class HomePageController extends Controller
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
 
-
         $faq = new FAQ();  
         $faq->category_id = $request->category_id;
         $faq->question = $request->question;
         $faq->answer = $request->answer;
         $faq->active_status = $request->active_status;
         $faq->created_by = Auth::id();
-
 
         if ($faq->save()) {
             return response()->json([
@@ -1046,7 +1035,7 @@ class HomePageController extends Controller
     // FAQ Questions Update
     public function updateFaqQuestion(Request $request)
     {
-        $validatorData = Validator::make($request->all(), [
+        Validator::make($request->all(), [
             'category_id' => 'required|numeric',
             'question' => 'required|string',
             'answer' => 'required|string',
@@ -1066,7 +1055,6 @@ class HomePageController extends Controller
         $faq->answer = $request->answer;
         $faq->active_status = $request->active_status;
         $faq->updated_by = Auth::id();
-
 
         if ($faq->save()) {
             return response()->json([
@@ -1137,6 +1125,4 @@ class HomePageController extends Controller
     }
 
     
-
-
 }

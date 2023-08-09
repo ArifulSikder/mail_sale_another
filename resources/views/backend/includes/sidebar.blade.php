@@ -71,8 +71,8 @@
                 </li>
 
                 <!-- HOME PAGE  -->
-                <li class="nav-item {{ request()->is(['add-details', 'show-home-details', 'meet-team', 'slider', 'product-guarantee']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['add-details', 'show-home-details', 'meet-team', 'slider', 'product-guarantee']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['home-details', 'meet-team', 'slider', 'product-guarantee']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['shome-details', 'meet-team', 'slider', 'product-guarantee']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Home-page
@@ -81,15 +81,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('add-details') }}" class="nav-link {{ request()->is(['add-details']) ? 'active' : '' }}">
+                            <a href="{{ route('home-details') }}" class="nav-link {{ request()->is(['home-details']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add Details</p>
-                            </a>
-                        </li> 
-                        <li class="nav-item">
-                            <a href="{{ route('show-details') }}" class="nav-link {{ request()->is(['show-home-details']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Show Details</p>
+                                <p>Home Details</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -169,8 +163,8 @@
                 </li>
 
                 <!-- FAQ -->
-                <li class="nav-item {{ request()->is(['add-faq-category', 'add-faq-question']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['add-faq-category', 'add-faq-question']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['faq-management']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['faq-management']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-question"></i>
                         <p>
                             FAQ Management
@@ -179,17 +173,12 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('add-faq-category') }}" class="nav-link {{ request()->is(['add-faq-category']) ? 'active' : '' }}">
+                            <a href="{{ route('faq-management') }}" class="nav-link {{ request()->is(['faq-management']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Categories</p>
+                                <p>Categories & Questions</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('add-faq-question') }}" class="nav-link {{ request()->is(['add-faq-question']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Questions</p>
-                            </a>
-                        </li>
+
                     </ul>
                 </li>
 

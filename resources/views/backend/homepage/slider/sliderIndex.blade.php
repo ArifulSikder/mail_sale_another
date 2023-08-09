@@ -43,14 +43,14 @@
                             <thead>
                                 <tr>
                                     <th scope="col" style="width: 5%">Serial</th>
-                                    <th scope="col" style="width: 8%">Background Photo</th>
-                                    <th scope="col" style="width: 15%">Title</th>
-                                    <th scope="col" style="width: 10%">Short Description</th>
-                                    <th scope="col" style="width: 15%">Photo Alt</th>
-                                    <th scope="col" style="width: 15%">Subcategory</th>
-                                    <th scope="col" style="width: 8%">Active Status</th>
-                                    <th scope="col" style="width: 7%">Add Date</th>
-                                    <th scope="col" style="width: 20%">Action</th>
+                                    <th scope="col" style="width: 10%">Background Photo</th>
+                                    <th scope="col" style="width: 10%">Title</th>
+                                    <th scope="col" style="width: 25%">Short Description</th>
+                                    <th scope="col" style="width: 10%">Photo Alt</th>
+                                    <th scope="col" style="width: 10%">Subcategory</th>
+                                    <th scope="col" style="width: 10%">Active Status</th>
+                                    <th scope="col" style="width: 10%">Add Date</th>
+                                    <th scope="col" style="width: 10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -115,7 +115,7 @@
 
         <!-- add slider -->
         <div class="modal fade" id="addslider" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add New Slider</h5>
@@ -150,15 +150,6 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="short_description" class="col-form-label">Short Description:</label>
-                                <span type="button" class="bg-success text-light px-2 float-right preview"
-                                    data-name="slider_des.png">Preview</span>
-                                <textarea class="form-control short_description" id="short_description" name="short_description" placeholder="Enter The Short Description"></textarea>
-
-                                    <span class="text-danger validate" data-field="short_description"></span>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="background_photo" class="col-form-label">Background Photo:</label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
                                     data-name="slider_bg.png">Preview</span>
@@ -169,6 +160,17 @@
                             <div>
                                 <img class="d-none" src="" id="previewBackground_photo" width="200px" alt="">
                             </div>
+
+                            <div class="form-group">
+                                <label for="short_description" class="col-form-label">Short Description:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="slider_des.png">Preview</span>
+                                <textarea class="form-control short_description" id="short_description" name="short_description" placeholder="Enter The Short Description"></textarea>
+
+                                    <span class="text-danger validate" data-field="short_description"></span>
+                            </div>
+
+                            
 
                             <div class="form-group">
                                 <label for="photo_alt" class="col-form-label">Photo Alternative:</label>
@@ -203,7 +205,7 @@
 
         <!-- edit slider -->
         <div class="modal fade" id="editslider" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Edit Slider</h5>
@@ -216,6 +218,8 @@
                             <input type="hidden" id="id_e" name="edit_id">
                             <div class="form-group">
                                 <label for="title" class="col-form-label">Title:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="slider_title.png">Preview</span>
                                 <input type="text" class="form-control title" id="title_e" name="title"
                                     placeholder="Enter Title">
                                 
@@ -235,14 +239,9 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="short_description" class="col-form-label">Short Description:</label>
-                                <textarea class="form-control short_description" id="short_description_e" name="short_description" placeholder="Enter The Short Description"></textarea>
-
-                                    <span class="text-danger validate_e" data-field="short_description"></span>
-                            </div>
-
-                            <div class="form-group">
                                 <label for="background_photo" class="col-form-label">Background Photo:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="slider_bg.png">Preview</span>
                                 <input type="file" class="form-control photo" id="background_photo_e" name="background_photo">
 
                                     <span class="text-danger validate_e" data-field="background_photo"></span>
@@ -251,6 +250,17 @@
                             <div>
                                 <img class="d-none" src="" id="previewBackground_photo_e" width="200px" alt="">
                             </div>
+
+                            <div class="form-group">
+                                <label for="short_description" class="col-form-label">Short Description:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="slider_des.png">Preview</span>
+                                <textarea class="form-control short_description" id="short_description_e" name="short_description" placeholder="Enter The Short Description"></textarea>
+
+                                    <span class="text-danger validate_e" data-field="short_description"></span>
+                            </div>
+
+                            
 
 
                             <div class="form-group">

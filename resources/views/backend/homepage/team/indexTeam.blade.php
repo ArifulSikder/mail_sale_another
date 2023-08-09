@@ -43,13 +43,13 @@
                             <thead>
                                 <tr>
                                     <th scope="col" style="width: 5%">Serial</th>
-                                    <th scope="col" style="width: 8%">Photo</th>
-                                    <th scope="col" style="width: 15%">Name</th>
+                                    <th scope="col" style="width: 10%">Photo</th>
+                                    <th scope="col" style="width: 10%">Name</th>
                                     <th scope="col" style="width: 15%">Designation</th>
-                                    <th scope="col" style="width: 10%">Description</th>
-                                    <th scope="col" style="width: 8%">Active Status</th>
-                                    <th scope="col" style="width: 7%">Add Date</th>
-                                    <th scope="col" style="width: 20%">Action</th>
+                                    <th scope="col" style="width: 30%">Description</th>
+                                    <th scope="col" style="width: 10%">Active Status</th>
+                                    <th scope="col" style="width: 10%">Add Date</th>
+                                    <th scope="col" style="width: 10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -114,7 +114,7 @@
 
         <!-- add member -->
         <div class="modal fade" id="addteam" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add Team Member</h5>
@@ -157,7 +157,7 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="description" class="col-form-label">Description:</label>
+                                <label for="description" class="col-form-label">Short Description:</label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
                                     data-name="team_des.png">Preview</span>
                                 <textarea class="form-control description" id="description" name="description" placeholder="Enter Description"></textarea>
@@ -190,7 +190,7 @@
         <!-- edit member -->
         <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">EDIT Team Member</h5>
@@ -204,6 +204,8 @@
                             <input type="hidden" id="id_e" name="edit_id">
                             <div class="form-group">
                                 <label for="name_e" class="col-form-label">Name:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="team_name.png">Preview</span>
                                 <input type="text" class="form-control" id="name_e"  name="name" >
 
                                     <span class="text-danger validate_e" data-field="name"></span>
@@ -211,6 +213,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="photo_e" class="col-form-label">Photo:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="team_image.png">Preview</span>
                                 <input type="file" class="form-control" id="photo_e" name="photo">
 
                                     <span class="text-danger validate_e" data-field="photo"></span>
@@ -221,6 +225,8 @@
 
                             <div class="form-group">
                                 <label for="designation_e" class="col-form-label">Designation:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="team_designation.png">Preview</span>
                                 <input type="text" class="form-control " id="designation_e" name="designation"
                                     placeholder="Enter Member Designation ">
  
@@ -228,7 +234,9 @@
 
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="col-form-label">Description:</label>
+                                <label for="message-text" class="col-form-label">Short Description:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="team_des.png">Preview</span>
                                 <textarea class="form-control " id="description_e" name="description" ></textarea>
 
                                     <span class="text-danger validate_e" data-field="description"></span>

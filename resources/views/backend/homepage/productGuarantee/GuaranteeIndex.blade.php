@@ -41,15 +41,15 @@
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>
-                                <tr class="text-center">
+                                <tr >
                                     <th scope="col" style="width: 5%">Serial</th>
-                                    <th scope="col" style="width: 8%">Logo Type</th>
+                                    <th scope="col" style="width: 10%">Logo Type</th>
                                     <th scope="col" style="width: 15%">Logo</th>
                                     <th scope="col" style="width: 15%">Title</th>
-                                    <th scope="col" style="width: 10%">Short Description</th>
-                                    <th scope="col" style="width: 8%">Active Status</th>
-                                    <th scope="col" style="width: 7%">Add Date</th>
-                                    <th scope="col" style="width: 20%">Action</th>
+                                    <th scope="col" style="width: 25%">Short Description</th>
+                                    <th scope="col" style="width: 10%">Active Status</th>
+                                    <th scope="col" style="width: 10%">Add Date</th>
+                                    <th scope="col" style="width: 10%">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +57,7 @@
                                     $serials = ($guarantees->currentpage() - 1) * $guarantees->perpage() + 1;
                                 @endphp 
                                 @foreach($guarantees as $guarantee)
-                                    <tr class="text-center">
+                                    <tr >
                                         <td>{{ $serials++ }}</td>
                                         <td >
                                             @if ($guarantee->logo_type == 1)
@@ -128,7 +128,7 @@
 
         <!-- add Product Guarantee -->
         <div class="modal fade" id="addguarntee" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Add Product Guarantee</h5>
@@ -187,7 +187,7 @@
                                 <label for="short_description" class="col-form-label">Short Description:</label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
                                     data-name="guarantee_des.png">Preview</span>
-                                <textarea class="form-control short_description" id="short_description" name="short_description" placeholder="Enter Short Description"></textarea>
+                                <textarea class="form-control short_description" id="editor" name="short_description" placeholder="Enter Short Description"></textarea>
 
                                     <span class="text-danger validate" data-field="short_description"></span>
 
@@ -216,7 +216,7 @@
 
         <!-- edit Product Guarantee -->
         <div class="modal fade" id="editmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">Edit  Product Guarantee</h5>
@@ -243,11 +243,15 @@
 
                             <div class="form-group" id="image_e"  style='display:none;'>
                                 <label for="image_logo" class="col-form-label">Logo As Image:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_logo.png">Preview</span>
                                 <input type="file" class="form-control image_logo" id="image_logo_e" name="image_logo" >
                                     <span class="text-danger validate" data-field="image_logo"></span>
                             </div>
                             <div class="form-group" id="icon_div_e"  style='display:none;'>
                                 <label for="icon_fw_e" class="col-form-label">Fontawesome Icon: <a href="https://fontawesome.com/v5/search?o=r&m=free" target="blank">Go to fontawesome and take icon</a></label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_logo.png">Preview</span>
                                 <input type="text" class="form-control" id="icon_fw_e" name="icon_fw" placeholder="Please Input The Icon Tag Here!">
                                     <span class="text-danger validate" data-field="icon_fw"></span>
                             </div>
@@ -260,6 +264,8 @@
 
                             <div class="form-group">
                                 <label for="title" class="col-form-label">Title:</label>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_title.png">Preview</span>
                                 <input type="text" class="form-control title" id="title_e"
                                     name="title" placeholder="Enter Title">
 
@@ -268,7 +274,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="short_description" class="col-form-label">Short Description:</label>
-                                <textarea class="form-control short_description" id="short_description_e" name="short_description" placeholder="Enter Short Description"></textarea>
+                                <span type="button" class="bg-success text-light px-2 float-right preview"
+                                    data-name="guarantee_des.png">Preview</span>
+                                <textarea class="form-control short_description ckeditor_e" id="editor_e" name="short_description" placeholder="Enter Short Description" ></textarea>
 
                                     <span class="text-danger validate" data-field="short_description"></span>
 
@@ -300,9 +308,11 @@
 
 @section('script')
     @include('backend.includes.preview')
+    
     <script>
-
+        
         $(document).ready(function () {
+
             // Logo preview
             $("#image_logo").change(function() {
                 pleasePreview(this, 'previewLogo');
@@ -357,8 +367,8 @@
                 $('#logo_type_e').val($(this).data('logo_type')).trigger('change');
                 $('#title_e').val($(this).data('title'));
                 $('#icon_fw_e').val($(this).data('logo_icon'));
-                $('#short_description_e').val($(this).data('short_description'));
                 $('#active_status_e').val($(this).data('active_status')).trigger('change');
+                $('#editor_e').val($(this).data('short_description'));
             });
 
             // UPDATE DATA 

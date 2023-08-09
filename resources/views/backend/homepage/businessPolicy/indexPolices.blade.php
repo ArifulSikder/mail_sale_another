@@ -47,11 +47,11 @@
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 5%">Serial</th>
-                                <th scope="col" style="width: 8%">Policy Type</th>
-                                <th scope="col" style="width: 15%">Description</th>
-                                <th scope="col" style="width: 8%">Active Status</th>
-                                <th scope="col" style="width: 7%">Add Date</th>
-                                <th scope="col" style="width: 20%">Action</th>
+                                <th scope="col" style="width: 10%">Policy Type</th>
+                                <th scope="col" style="width: 50%">Description</th>
+                                <th scope="col" style="width: 10%">Active Status</th>
+                                <th scope="col" style="width: 10%">Add Date</th>
+                                <th scope="col" style="width: 15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,7 +73,13 @@
                                         @endif
                                         
                                     </td>
-                                    <td>{{ $policy->description }}</td>
+
+                                    <td>{!! Str::words($policy->description, 15, ' ....')  !!} @if (Str::of($policy->description)->wordCount() > 15)
+
+                                        <a href="" class="editdes" data-description="{{ $policy->description }}">
+                                            See More
+                                        </a>
+                                    @endif 
                                     <td><span
                                             class="badge badge-{{ $policy->active_status == 0 ? 'danger': 'success' }}">{{ $policy->active_status == 0 ? 'Inactive': 'Active' }}</span>
                                     </td>
@@ -123,7 +129,50 @@
   
 </div>
 
+{{-- show Description  --}}
+<div class="modal fade" id="showdes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Show Description</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group" >
+                        <label for="description">Description</label>
+                        <p id="description"></p>
+
+                    </div>
+
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+        </div>
+    </div>
+</div>
+
 @endsection
+
+@section('script')
+    <script>
+    $(document).ready(function () {
+        $('.editdes').click(function (e) {
+                e.preventDefault();
+                $('#showdes').modal('show');
+                $("#description").text($(this).data('description'));
+        });
+    });
+</script>
+@endsection
+
 
 
 

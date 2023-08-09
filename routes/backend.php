@@ -3,12 +3,9 @@
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AppSettingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CkEditorController;
 use App\Http\Controllers\HomePageController;
-use App\Http\Controllers\HomePaveshopController;
-use App\Http\Controllers\MeetTeamController;
 use App\Http\Controllers\ProductController;
-use App\Http\Controllers\SliderController;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreviewImageController;
 
@@ -18,6 +15,11 @@ Route::get('dashboard', function () {
 
 //preview image
 Route::get('preview-image', [PreviewImageController::class, 'index'])->name('preview-image');
+
+// CK editor 
+Route::post('ckeditor-upload', [CkEditorController::class, 'uploadCKeditorFile'])->name('ckeditor.upload');
+
+
 //user
 Route::get('user-list', [UserController::class, 'index'])->name('user-list');
 Route::get('create-user', [UserController::class, 'createUser'])->name('create-user');
@@ -70,10 +72,9 @@ Route::get('app-settings', [AppSettingController::class, 'index'])->name('app-se
 
 
 //home page 
-Route::get('add-details', [HomePageController::class, 'index'])->name('add-details');
+
+Route::get('home-details', [HomePageController::class, 'showDetails'])->name('home-details');
 Route::post('store-home-details', [HomePageController::class, 'storeDetails'])->name('store-details');
-Route::get('show-home-details', [HomePageController::class, 'showDetails'])->name('show-details');
-Route::get('edit-home-details/{id}', [HomePageController::class, 'editDetails'])->name('edit-details');
 Route::post('update-home-details', [HomePageController::class, 'updateDetails'])->name('update-details');
 Route::get('update-home-status/{id}/{status}', [HomePageController::class, 'updateHomeStatus'])->name('update-home-status');
 Route::get('delete-home-details/{id}', [HomePageController::class, 'deleteDetails'])->name('delete-details');
@@ -110,7 +111,7 @@ Route::get('update-policy-status/{id}/{status}', [HomePageController::class, 'up
 Route::get('delete-business-policy/{id}', [HomePageController::class, 'deletePolicy'])->name('delete-business-policy');
 
 // FAQ Category
-Route::get('add-faq-category', [HomePageController::class, 'addFaqCategory'])->name('add-faq-category');
+Route::get('faq-management', [HomePageController::class, 'addFaqCategory'])->name('faq-management');
 Route::post('store-faq-category', [HomePageController::class, 'storeFaqCategory'])->name('store-faq-category');
 Route::post('update-faq-category', [HomePageController::class, 'updateFaqCategory'])->name('update-faq-category');
 Route::get('update-faq-status/{id}/{status}', [HomePageController::class, 'updatFaqStatus'])->name('update-faq-status');
@@ -118,7 +119,7 @@ Route::get('delete-faq-category/{id}', [HomePageController::class, 'deleteFaqCat
 
 
 // FAQ Question
-Route::get('add-faq-question', [HomePageController::class, 'addFaqQuestion'])->name('add-faq-question');
+Route::get('add-faq-question/{cat_id}', [HomePageController::class, 'addFaqQuestion'])->name('add-faq-question');
 Route::post('store-faq-question', [HomePageController::class, 'StoreFaqQuestion'])->name('store-faq-question');
 Route::post('update-faq-question', [HomePageController::class, 'updateFaqQuestion'])->name('update-faq-question');
 Route::get('update-question-status/{id}/{status}', [HomePageController::class, 'updatFaqQuesStatus'])->name('update-question-status');

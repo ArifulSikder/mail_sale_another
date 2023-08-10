@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('category_title');
             $table->string('category_logo');
+            $table->string('logo_alt');
             $table->boolean('active_status')->default(1);
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();    

@@ -66,8 +66,10 @@ Route::get('delete-details/{product_id}', [ProductController::class, 'productDet
 Route::get('product-description/{product_id}', [ProductController::class, 'productDescription'])->name('product-description');
 Route::post('add-product-description', [ProductController::class, 'storeProductDescription'])->name('add-product-description');
 Route::post('update-product-description', [ProductController::class, 'updateProductDescription'])->name('update-product-description');
+
 // app settings
 Route::get('app-settings', [AppSettingController::class, 'index'])->name('app-settings');
+Route::post('store-app-setting', [AppSettingController::class, 'storeSetting'])->name('store-setting');
 
 
 

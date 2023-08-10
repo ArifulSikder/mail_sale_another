@@ -866,10 +866,12 @@ class HomePageController extends Controller
         Validator::make($request->all(), [
             'category_title' => 'required|string|max:255|unique:f_a_q_categories',
             'category_logo' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'logo_alt' => 'required|string|max:255',
             'active_status' =>  'required|in:0,1',
         ],[
             'category_title.required' => 'Please Enter The Category Title',
             'category_logo.required' => 'Please Select The Logo',
+            'logo_alt.required' => 'Please Enter The Logo Alt',
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
 
@@ -882,6 +884,7 @@ class HomePageController extends Controller
             'category_title' => $request->category_title,
             'category_logo' => $image,
             'active_status' =>  $request->active_status,
+            'logo_alt' =>  $request->logo_alt,
             'created_by' => Auth::id()
         ]);
 
@@ -902,14 +905,17 @@ class HomePageController extends Controller
         Validator::make($request->all(), [
             'category_title' => 'required|string|max:255',
             'category_logo' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:5120',
+            'logo_alt' => 'required|string|max:255',
             'active_status' =>  'required|in:0,1',
         ],[
             'category_title.required' => 'Please Enter The Category Title',
+            'logo_alt.required' => 'Please Enter The Logo Alt',
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
 
         $category = FAQCategory::findOrFail($request->edit_id);
         $category->category_title = $request->category_title;
+        $category->logo_alt = $request->logo_alt;
         $category->active_status = $request->active_status;
         $category->updated_by = Auth::id();
 

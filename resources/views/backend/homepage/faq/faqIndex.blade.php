@@ -44,9 +44,10 @@
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 5%">Serial</th>
-                                <th scope="col" style="width: 35%">Category Title</th>
+                                <th scope="col" style="width: 25%">Category Title</th>
                                 <th scope="col" style="width: 15%">Category Logo</th>
-                                <th scope="col" style="width: 15%">Active Status</th>
+                                <th scope="col" style="width: 15%">Logo Alt</th>
+                                <th scope="col" style="width: 10%">Active Status</th>
                                 <th scope="col" style="width: 15%">Register Date</th>
                                 <th scope="col" style="width: 15%">Action</th>
                             </tr>
@@ -60,6 +61,7 @@
                                     <th scope="row">{{ $serials++ }}</th>
                                     <td>{{ $category->category_title }}</td>
                                     <td><img style="width: 60px" src="{{ $category->category_logo }}" alt=""></td>
+                                    <td>{{ $category->logo_alt }}</td>
                                     <td><span
                                             class="badge badge-{{ $category->active_status == 0 ? 'danger': 'success' }}">{{ $category->active_status == 0 ? 'Inactive': 'Active' }}</span>
                                     </td>
@@ -80,7 +82,7 @@
                                                 <a href="{{ route('add-faq-question',['cat_id' => $category->id]) }}" class="btn btn-info btn-sm btn-block"> <i class="fas fa-question"></i> Questions</a>
                                                 <button type="button" data-id="{{ $category->id }}"
                                                     data-title="{{ $category->category_title }}"
-                                                    data-short_description="{{ $category->category_logo }}"
+                                                    data-logo_alt="{{ $category->logo_alt }}"
                                                     data-active_status="{{ $category->active_status }}"
                                                     class="btn btn-success btn-sm editfaq  btn-block">
                                                     <i class="fas fa-edit"></i> Edit
@@ -131,6 +133,7 @@
 
                                 <span class="text-danger validate" data-field="category_title"></span>
                         </div>
+                        
                         <div class="form-group">
                             <label for="category_logo" class="col-form-label">Category Logo:</label>
                             <span type="button" class="bg-success text-light px-2 float-right preview"
@@ -139,9 +142,17 @@
 
                                 <span class="text-danger validate" data-field="category_logo"></span>
                         </div>
+                        
 
                         <div>
                             <img class="d-none" src="" id="preview_cat_logo" width="200px" alt="">
+                        </div>
+                        <div class="form-group">
+                            <label for="logo_alt">Logo Alt</label>
+                            <input type="text" class="form-control" name="logo_alt" id="logo_alt"
+                                placeholder="Enter logo alt" >
+
+                                <span class="text-danger validate" data-field="logo_alt"></span>
                         </div>
 
                         <div class="form-group">
@@ -193,6 +204,13 @@
 
                         <div>
                             <img class="d-none" src="" id="preview_cat_logo_e" width="200px" alt="">
+                        </div>
+                        <div class="form-group">
+                            <label for="logo_alt">Logo Alt</label>
+                            <input type="text" class="form-control" name="logo_alt" id="logo_alt_e"
+                                placeholder="Enter logo alt" >
+
+                                <span class="text-danger validate_e" data-field="logo_alt"></span>
                         </div>
 
                         <div class="form-group">
@@ -277,6 +295,7 @@
             $('#editdata').modal('show');
             $('#id_e').val($(this).data('id'));
             $('#category_title_e').val($(this).data('title'));
+            $('#logo_alt_e').val($(this).data('logo_alt'));
             $('#active_status_e').val($(this).data('active_status')).trigger('change');
         });
 

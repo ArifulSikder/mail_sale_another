@@ -237,7 +237,7 @@
                                     <option value="1">Fontawesome Icon</option>
                                 </select>
                                 
-                                    <span class="text-danger validate" data-field="name"></span>
+                                    <span class="text-danger validate_e" data-field="name"></span>
                                 
                             </div>
 
@@ -246,14 +246,14 @@
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
                                     data-name="guarantee_logo.png">Preview</span>
                                 <input type="file" class="form-control image_logo" id="image_logo_e" name="image_logo" >
-                                    <span class="text-danger validate" data-field="image_logo"></span>
+                                    <span class="text-danger validate_e" data-field="image_logo"></span>
                             </div>
                             <div class="form-group" id="icon_div_e"  style='display:none;'>
                                 <label for="icon_fw_e" class="col-form-label">Fontawesome Icon: <a href="https://fontawesome.com/v5/search?o=r&m=free" target="blank">Go to fontawesome and take icon</a></label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
                                     data-name="guarantee_logo.png">Preview</span>
                                 <input type="text" class="form-control" id="icon_fw_e" name="icon_fw" placeholder="Please Input The Icon Tag Here!">
-                                    <span class="text-danger validate" data-field="icon_fw"></span>
+                                    <span class="text-danger validate_e" data-field="icon_fw"></span>
                             </div>
                             <div id="setIcon_e">
                                 
@@ -269,7 +269,7 @@
                                 <input type="text" class="form-control title" id="title_e"
                                     name="title" placeholder="Enter Title">
 
-                                    <span class="text-danger validate" data-field="title"></span>
+                                    <span class="text-danger validate_e" data-field="title"></span>
 
                             </div>
                             <div class="form-group">
@@ -278,7 +278,7 @@
                                     data-name="guarantee_des.png">Preview</span>
                                 <textarea class="form-control short_description ckeditor_e" id="editor_e" name="short_description" placeholder="Enter Short Description" ></textarea>
 
-                                    <span class="text-danger validate" data-field="short_description"></span>
+                                    <span class="text-danger validate_e" data-field="short_description"></span>
 
                             </div>
                             <div class="form-group">
@@ -290,7 +290,7 @@
                                     <option value="1">Active</option>
                                 </select>
 
-                                    <span class="text-danger validate" data-field="active_status"></span>
+                                    <span class="text-danger validate_e" data-field="active_status"></span>
 
                             </div>
                         </div>

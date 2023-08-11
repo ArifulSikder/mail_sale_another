@@ -14,19 +14,18 @@
                   </div>
               </div>
               <div class="my_account_body">
-                  <h3>Login</h3>
-                  <form class="form-one">
+                  <form class="form-one" id="formData">
                       <div class="mb-3 mt-3">
                           <label for="name">Your Name (required)</label>
-                          <input type="name" class="form-control" id="name" name="name" required>
+                          <input type="name" class="form-control" id="name" name="name" >
                       </div>
                       <div class="mb-3">
                           <label for="email">Your Email (required)</label>
-                          <input type="email" class="form-control shadow-inset" id="email" name="email" required>
+                          <input type="email" class="form-control shadow-inset" id="email" name="email" >
                       </div>
-                      <label for="Order" class="form-label form-label">Your Message (required)</label>
                       <div class="mb-3">
-                          <textarea rows="5"></textarea>
+                          <label for="Order" class="form-label form-label">Your Message (required)</label>
+                          <textarea rows="5" name="message"></textarea>
                       </div>
                       <button type="submit" class="btn log-in-button">Submit</button>
                   </form>
@@ -35,4 +34,48 @@
       </div>
   </section>
   <!-- contact section end -->
+@endsection
+
+@section('script')
+    <script>
+        //add form
+        $("#formData").submit(function (e) {
+            e.preventDefault();
+
+            var formData = new FormData($("#formData")[0]);
+            $.ajax({
+                type: "POST",
+                url: "{{ route('store-customer-message') }}",
+                // dataType: "json",
+                contentType: false,
+                processData: false,
+                data: formData,
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.success);
+                        } else if (response.error) {
+                            toastr.error(response.error);
+                        }
+                },
+                error: function (error) {
+                    $('.validate').text('');
+                        $.each(error.responseJSON.errors, function (field_name, error) { 
+                             const errorElement = $('.validate[data-field="' + field_name + '"]');
+                             if (errorElement.length > 0) {
+                                errorElement.text(error[0]);
+                                toastr.error(error);
+                             }
+                    });
+                },
+                complete: function (done) {
+                    if (done.status == 200) {
+                        window.location.reload();
+                    }
+                }
+            });
+        });
+    </script>
 @endsection

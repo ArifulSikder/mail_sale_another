@@ -46,7 +46,7 @@
                                     <div class="card-header row" >
                                         <div class="col-6">
                                             <h4 class="card-title w-100 text-primary">
-                                            {{ $loop->iteration }}. {{ $faq->question }}
+                                                <a class="" data-toggle="collapse" href="#{{str_replace(' ', '_', $faq->faqCategory->category_title)}}{{ $faq->id }}">{{ $loop->iteration }}. {{ $faq->question }}</a>
                                             </h4>
                                         </div>
                                         <div class="col-6 ">

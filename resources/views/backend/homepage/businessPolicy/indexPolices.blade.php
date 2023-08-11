@@ -75,7 +75,6 @@
                                     </td>
 
                                     <td>{!! Str::words($policy->description, 15, ' ....')  !!} @if (Str::of($policy->description)->wordCount() > 15)
-
                                         <a href="" class="editdes" data-description="{{ $policy->description }}">
                                             See More
                                         </a>
@@ -167,7 +166,7 @@
         $('.editdes').click(function (e) {
                 e.preventDefault();
                 $('#showdes').modal('show');
-                $("#description").text($(this).data('description'));
+                $("#description").html($(this).data('description'));
         });
     });
 </script>

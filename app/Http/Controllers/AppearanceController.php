@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
+use App\Models\CustomerMessage;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
 use App\Models\Slider;
@@ -39,9 +40,41 @@ class AppearanceController extends Controller
         return view('frontend.index', $data);
     }
 
+    // customer contact 
     public function contact()
     {
         return view('frontend.contact');
+    }
+
+    // customer contact 
+    public function storeCustomerMessage(Request $request)
+    {
+        Validator::make($request->all(), [
+            'name' => 'required|string|max:255',
+            'email' => 'required|string',
+            'message' => 'required|string',
+        ],[
+            'category_id.required' => 'Please Enter The Category Title',
+            'question.required' => 'Please Enter The Question',
+            'answer.required' => 'Please Enter The Answer',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $message = new CustomerMessage();  
+        $message->name = $request->name;
+        $message->email = $request->email;
+        $message->message = $request->message;
+        $message->created_by = Auth::id();
+
+        if ($message->save()) {
+            return response()->json([
+                'success' => "Message Send To Admin successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
     }
 
     public function myAccount()
@@ -94,6 +127,7 @@ class AppearanceController extends Controller
                 'photo.required' => 'File Must Be Image!',
             ],
         );
+
         // $image = null;
         if (!empty($request->photo)) {
             File::delete(auth()->user()->photo);
@@ -416,6 +450,12 @@ class AppearanceController extends Controller
     {   
         return view('frontend.faq');
     }
+
+    public function aboutUs()
+    {
+        return view('frontend.about-us');
+    }
+
 
 
 }

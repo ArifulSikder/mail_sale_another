@@ -103,8 +103,26 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Slider</p>
                             </a>
-                        </li>   
-                                  
+                        </li>           
+                    </ul>
+                </li>
+
+                {{-- CUSTOMER CONTACT  --}}
+                <li class="nav-item {{ request()->is(['customer-contact']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['customer-contact']) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-envelope"></i>
+                        <p>
+                            Customer Contact
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Inbox</p>
+                            </a>
+                        </li>        
                     </ul>
                 </li>
 
@@ -137,6 +155,25 @@
                     </ul>
                 </li>
 
+                <!-- PAYMENT API -->
+                <li class="nav-item {{ request()->is(['pay-api-list']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['pay-api-list']) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-dollar-sign"></i>
+                        <p>
+                            Payment API
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('pay-api-list') }}" class="nav-link {{ request()->is(['pay-api-list']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>API List</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <!-- BUSINESS POLICY -->
                 <li class="nav-item {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'active' : '' }}">
@@ -163,8 +200,8 @@
                 </li>
 
                 <!-- FAQ -->
-                <li class="nav-item {{ request()->is(['faq-management']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['faq-management']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['faq-management', 'add-faq-question*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['faq-management', 'add-faq-question*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-question"></i>
                         <p>
                             FAQ Management
@@ -173,7 +210,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('faq-management') }}" class="nav-link {{ request()->is(['faq-management']) ? 'active' : '' }}">
+                            <a href="{{ route('faq-management') }}" class="nav-link {{ request()->is(['faq-management', 'add-faq-question*']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Categories & Questions</p>
                             </a>

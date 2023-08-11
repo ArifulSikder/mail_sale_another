@@ -5,6 +5,7 @@ use App\Http\Controllers\AppSettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CkEditorController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\PaymentApiController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreviewImageController;
@@ -127,3 +128,12 @@ Route::post('update-faq-question', [HomePageController::class, 'updateFaqQuestio
 Route::get('update-question-status/{id}/{status}', [HomePageController::class, 'updatFaqQuesStatus'])->name('update-question-status');
 Route::get('delete-faq-question/{id}', [HomePageController::class, 'deleteFaqQues'])->name('delete-faq-question');
 
+// Customer Contact 
+Route::get('customer-contact', [HomePageController::class, 'customerContact'])->name('customer-contact');
+
+//Payment Api
+Route::get('pay-api-list', [PaymentApiController::class, 'payApiList'])->name('pay-api-list');
+Route::post('store-pay-api', [PaymentApiController::class, 'storePayApi'])->name('store-pay-api');
+Route::post('update-pay-api', [PaymentApiController::class, 'updatePayApi'])->name('update-pay-api');
+Route::get('update-payapi-status/{id}/{status}', [PaymentApiController::class, 'updatApiStatus'])->name('update-payapi-status');
+Route::get('delete-payapi/{id}', [PaymentApiController::class, 'deletePayapi'])->name('delete-payapi');

@@ -20,7 +20,7 @@ Route::post('/validate-userdata', [AppearanceController::class, 'validateUserdat
 Route::post('/profile-photo-upload-ajax', [AppearanceController::class, 'profilePhotoUpload']);
 
 Route::get('/pricing', [AppearanceController::class, 'pricing'])->name('/pricing');
-Route::get('/about-us', [AppearanceController::class, 'about-us'])->name('/about-us');
+Route::get('/about-us', [AppearanceController::class, 'aboutUs'])->name('/about-us');
 //add to card
 Route::post('/add-to-cart', [AppearanceController::class, 'addToCard'])->name('add-to-cart');
 Route::get('/cart', [AppearanceController::class, 'myCard'])->name('cart');
@@ -33,6 +33,12 @@ Route::get('/checkout', [AppearanceController::class, 'checkout'])->name('checko
 Route::post('/login-from-checkout-page', [AppearanceController::class, 'loginFromCheckoutPage'])->name('login-from-checkout-page');
 Route::post('/order-information', [AppearanceController::class, 'orderInformation'])->name('order-information');
 Route::post('/stripe', [AppearanceController::class, 'stripePayment'])->name('stripe.post');
+
+//contact 
+Route::post('store-customer-message', [AppearanceController::class, 'storeCustomerMessage'])->name('store-customer-message');
+
+
+
 
 Route::get('/remove/{id}', function($id){
     if($id) {

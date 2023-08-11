@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\BusinessPolicy;
 use App\Models\Category;
+use App\Models\CustomerMessage;
 use App\Models\FAQ;
 use App\Models\FAQCategory;
 use App\Models\HomePaveshop;
@@ -1128,6 +1129,12 @@ class HomePageController extends Controller
         }
 
         return back()->with($notification);
+    }
+
+    public function customerContact()
+    {
+        $data['messages'] = CustomerMessage::latest()->paginate(15);
+        return view('backend.customerContact.inbox', $data);
     }
 
     

@@ -21,6 +21,7 @@ Route::post('/profile-photo-upload-ajax', [AppearanceController::class, 'profile
 
 Route::get('/pricing', [AppearanceController::class, 'pricing'])->name('/pricing');
 Route::get('/about-us', [AppearanceController::class, 'aboutUs'])->name('/about-us');
+
 //add to card
 Route::post('/add-to-cart', [AppearanceController::class, 'addToCard'])->name('add-to-cart');
 Route::get('/cart', [AppearanceController::class, 'myCard'])->name('cart');

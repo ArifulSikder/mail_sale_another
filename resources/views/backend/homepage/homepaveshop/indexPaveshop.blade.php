@@ -64,7 +64,7 @@
                                     <td>{{ $detail->title }}</td>
                                     <td>{!! Str::words($detail->description, 15, '....')  !!}
                                          @if (Str::of($detail->description)->wordCount() > 15)
-                                        <a  class="editdes" data-description="{{ $detail ->description }}">
+                                        <a  class="editdes" style="cursor: pointer;" data-description="{{ $detail ->description }}">
                                             See More
                                         </a>
                                     @endif</td>
@@ -314,7 +314,7 @@
             $('.editdes').click(function (e) {
                 e.preventDefault();
                 $('#showdes').modal('show');
-                $("#description").text($(this).data('description'));
+                $("#description").html($(this).data('description'));
             });
 
           $('.editData').click(function (e) {

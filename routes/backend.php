@@ -127,9 +127,20 @@ Route::post('store-faq-question', [HomePageController::class, 'StoreFaqQuestion'
 Route::post('update-faq-question', [HomePageController::class, 'updateFaqQuestion'])->name('update-faq-question');
 Route::get('update-question-status/{id}/{status}', [HomePageController::class, 'updatFaqQuesStatus'])->name('update-question-status');
 Route::get('delete-faq-question/{id}', [HomePageController::class, 'deleteFaqQues'])->name('delete-faq-question');
+Route::get('update-question-status/{id}/{status}', [HomePageController::class, 'updatFaqQuesStatus'])->name('update-question-status');
 
 // Customer Contact 
 Route::get('customer-contact', [HomePageController::class, 'customerContact'])->name('customer-contact');
+Route::get('show-individual-message/{id}', [HomePageController::class, 'individualMessage'])->name('show-individual-message');
+Route::get('update-contact-status/{id}/{status}', [HomePageController::class, 'updatContactStatus'])->name('update-contact-status');
+
+// About Us
+Route::get('show-about-us', [HomePageController::class, 'aboutUs'])->name('show-about-us');
+Route::post('store-about-us', [HomePageController::class, 'storeAboutUs'])->name('store-about-us');
+Route::post('update-about-us', [HomePageController::class, 'updateAboutUs'])->name('update-about-us');
+Route::get('update-about-staus/{id}/{status}', [HomePageController::class, 'updatAboutStatus'])->name('update-about-status');
+Route::get('delete-about-us/{id}', [HomePageController::class, 'deleteAboutUs'])->name('delete-about-us');
+
 
 //Payment Api
 Route::get('pay-api-list', [PaymentApiController::class, 'payApiList'])->name('pay-api-list');

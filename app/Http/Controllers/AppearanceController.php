@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
+use App\Mail\SenMail;
 use App\Models\CustomerMessage;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
@@ -18,6 +19,7 @@ use App\Models\Slider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
@@ -25,6 +27,7 @@ use Illuminate\View\View;
 use Stripe\Stripe;
 use Stripe\Token;
 use Stripe\Charge;
+
 
 class AppearanceController extends Controller
 {
@@ -46,12 +49,14 @@ class AppearanceController extends Controller
         return view('frontend.contact');
     }
 
-    // customer contact 
+
+
+    // store customer contact 
     public function storeCustomerMessage(Request $request)
     {
         Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string',
+            'email' => 'required|string|email',
             'message' => 'required|string',
         ],[
             'category_id.required' => 'Please Enter The Category Title',
@@ -65,8 +70,21 @@ class AppearanceController extends Controller
         $message->email = $request->email;
         $message->message = $request->message;
         $message->created_by = Auth::id();
+        $message->save();
 
-        if ($message->save()) {
+
+        $data = array(
+            'name' => $request->name,
+            'email' => $request->email,
+            'message' => $request->message,
+            'subject' => "Welcome To Pvashop",
+        );
+
+        //mail class defining
+        Mail::to('islammahfuzul31@gmail.com')->send(new SenMail($data));
+
+
+        if ($message) {
             return response()->json([
                 'success' => "Message Send To Admin successfully.",
             ]);
@@ -76,6 +94,8 @@ class AppearanceController extends Controller
             ]);
         }
     }
+
+
 
     public function myAccount()
     {

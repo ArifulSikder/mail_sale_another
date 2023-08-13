@@ -18,14 +18,20 @@
                       <div class="mb-3 mt-3">
                           <label for="name">Your Name (required)</label>
                           <input type="name" class="form-control" id="name" name="name" >
+
+                          <span class="text-danger validate" data-field="name"></span>
                       </div>
                       <div class="mb-3">
                           <label for="email">Your Email (required)</label>
                           <input type="email" class="form-control shadow-inset" id="email" name="email" >
+
+                          <span class="text-danger validate" data-field="email"></span>
                       </div>
                       <div class="mb-3">
                           <label for="Order" class="form-label form-label">Your Message (required)</label>
                           <textarea rows="5" name="message"></textarea>
+
+                          <span class="text-danger validate" data-field="message"></span>
                       </div>
                       <button type="submit" class="btn log-in-button">Submit</button>
                   </form>
@@ -79,3 +85,4 @@
         });
     </script>
 @endsection
+

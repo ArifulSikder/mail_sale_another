@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\BusinessPolicy;
 use App\Models\Category;
 use App\Models\CustomerMessage;
@@ -15,6 +16,7 @@ use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class HomePageController extends Controller
@@ -856,7 +858,7 @@ class HomePageController extends Controller
     // FAQ Category Start 
     public function addFaqCategory()
     {
-        $data['categories'] = FAQCategory::latest()->paginate(10);
+        $data['categories'] = FAQCategory::latest()->paginate(15);
         return view('backend.homepage.faq.faqIndex', $data);
     }
 
@@ -983,6 +985,11 @@ class HomePageController extends Controller
     {
         $delete = FAQCategory::findOrFail($id)->delete();
 
+        $delete_status = FAQ::where('category_id', $id)->get();
+        foreach ($delete_status as $delete) {
+            $delete->delete();
+        }
+
         if ($delete == true) {
             $notification = [
                 'success' => "FAQ Category Deleted Successfully.",
@@ -1002,8 +1009,7 @@ class HomePageController extends Controller
         $data['category'] = FAQCategory::findOrFail($cat_id);
         $data['faqs'] = FAQ::where('category_id', $cat_id)->get();
         return view('backend.homepage.faq.faqQuestions', $data);
-        // return $data['faqs'];
-        // return $cat_id;
+
     }
 
     // FAQ Questions  store
@@ -1116,6 +1122,7 @@ class HomePageController extends Controller
     // FAQ category delete 
     public function deleteFaqQues($id)
     {
+
         $delete = FAQ::findOrFail($id)->delete();
 
         if ($delete == true) {
@@ -1136,6 +1143,170 @@ class HomePageController extends Controller
         $data['messages'] = CustomerMessage::latest()->paginate(15);
         return view('backend.customerContact.inbox', $data);
     }
+
+    public function individualMessage($id)
+    {
+        $data['single_msg'] = CustomerMessage::findOrFail($id);
+        return view('backend.customerContact.individualMsg', $data);
+    }
+
+    public function updatContactStatus($id, $status)
+    {
+        if ($status == 0) {
+            $policy = CustomerMessage::findOrFail($id)->update([
+                'active_status' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status Activated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $policy = CustomerMessage::findOrFail($id)->update([
+                'active_status' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($policy == true) {
+                $notification = [
+                    'success' => "Status inactivated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+    }
+
+    // about us 
+    public function aboutUs()
+    {
+        $data['aboutUs'] = AboutUs::latest()->paginate(15);
+        return view('backend.aboutUs.aboutIndex', $data);
+    }
+
+    //store about us
+    public function storeAboutUs(Request $request)
+    {
+        Validator::make($request->all(), [
+            'description' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'description.required' => 'Please Enter The Description',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $about = new AboutUs();
+        $about->description = $request->description;
+        $about->active_status = $request->active_status;
+        $about->created_by = Auth::id();
+
+        if ($about->save()) {
+            return response()->json([
+                'success' => "About Us Saved Successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    public function updateAboutUs(Request $request)
+    {
+        Validator::make($request->all(), [
+            'description' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'description.required' => 'Please Enter The Description',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $about = AboutUs::findOrFail($request->edit_e);
+        $about->description = $request->description;
+        $about->active_status = $request->active_status;
+        $about->updated_by = Auth::id();
+
+        if ($about->save()) {
+            return response()->json([
+                'success' => "About Us Updated Successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // About Us update status 
+    public function updatAboutStatus($id, $status)
+    {
+        if ($status == 0) {
+            $about = AboutUs::findOrFail($id)->update([
+                'active_status' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($about == true) {
+                $notification = [
+                    'success' => "Status Activated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $about = AboutUs::findOrFail($id)->update([
+                'active_status' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($about == true) {
+                $notification = [
+                    'success' => "Status inactivated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+    }
+
+    // About Us delete 
+    public function deleteAboutUs($id)
+    {
+        $delete = FAQ::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "FAQ Item Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+
+
 
     
 }

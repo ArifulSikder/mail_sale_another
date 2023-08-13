@@ -71,8 +71,8 @@
                 </li>
 
                 <!-- HOME PAGE  -->
-                <li class="nav-item {{ request()->is(['home-details', 'meet-team', 'slider', 'product-guarantee']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['shome-details', 'meet-team', 'slider', 'product-guarantee']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['home-details', 'meet-team', 'slider', 'product-guarantee', 'show-about-us']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['shome-details', 'meet-team', 'slider', 'product-guarantee', 'show-about-us']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Home-page
@@ -103,13 +103,19 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Slider</p>
                             </a>
-                        </li>           
+                        </li> 
+                        <li class="nav-item">
+                            <a href="{{ route('show-about-us') }}" class="nav-link {{ request()->is(['show-about-us']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>About Us</p>
+                            </a>
+                        </li>              
                     </ul>
                 </li>
 
                 {{-- CUSTOMER CONTACT  --}}
-                <li class="nav-item {{ request()->is(['customer-contact']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['customer-contact']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Customer Contact
@@ -118,7 +124,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact']) ? 'active' : '' }}">
+                            <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Inbox</p>
                             </a>

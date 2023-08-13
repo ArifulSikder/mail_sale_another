@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Dashboard')
+@section('title', 'Inbox')
 
 @section('section')
 
@@ -130,12 +130,14 @@
             <div class="card-body p-0">
               <div class="mailbox-controls">
                 <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                <button type="button" class="btn btn-default btn-sm checkbox-toggle">
+                  <i class="far fa-square"></i>
                 </button>
+                {{-- <input class="btn btn-default" type="checkbox" name="" id="select_ids"> --}}
                 <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm">
+                  <a href="" class="btn btn-default btn-sm" id="deleteAll"> 
                     <i class="far fa-trash-alt"></i>
-                  </button>
+                  </a>
                   <button type="button" class="btn btn-default btn-sm">
                     <i class="fas fa-reply"></i>
                   </button>
@@ -168,19 +170,24 @@
                       <tr>
                         <td>
                           <div class="icheck-primary">
-                            <input type="checkbox" value="" id="{{ Str::replace(' ', '_', $message->name) }}">
+                            <input type="checkbox"  class="chcekbox_ids" id="check1">
                             <label for="{{ Str::replace(' ', '_', $message->name) }}"></label>
                           </div>
                         </td>
                         <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
-                        <td class="mailbox-name"><a href="read-mail.html">{{ $message->name }}</a></td>
+                        <td class="mailbox-name"><a href="{{ route('show-individual-message', ['id' => $message->id]) }}">{{ $message->name }}</a></td>
                         <td class="mailbox-subject">{{ Str::words($message->message, 10, ' ....')  }}</td>
-                        <td class="mailbox-attachment"><span
-                          class="badge badge-{{ $message->active_status == 0 ? 'danger': 'success' }}">{{ $message->active_status == 0 ? 'Inactive': 'Active' }}</span></td>
+                        <td class="mailbox-attachment">
+                          @if ($message->active_status == 0)
+                             <a href="{{ route('update-contact-status', ['id' => $message->id , 'status' => $message->active_status ]) }}" class=""><span class="badge badge-danger">Inactivated</span></a> 
+                          @else
+                            <a href="{{ route('update-contact-status', ['id' => $message->id , 'status' => $message->active_status ]) }}"><span class="badge badge-success">Activated</span></a>
+                          @endif
+                        </td>
                         <td class="mailbox-date">28 mins ago</td>
                       </tr>
                     @empty
-                      
+                      <tr>Empty</tr>
                     @endforelse
 
                   </tbody>
@@ -236,4 +243,44 @@
     <!-- /.content -->
   </div>
 
+@endsection
+
+@section('script')
+  {{-- <script>
+
+    $(function(e){
+      $("#select_ids").click(function(){ 
+        $('.chcekbox_ids').prop('checked', $(this).prop('checked'));
+      });
+
+      .$('#deleteAll').click(function (e) { 
+        e.preventDefault();
+        var all_ids = [];
+        $('input:checkbox[name=ids]:checked').$.each(function(){ 
+           all_ids.push($(this).val());
+        });
+
+        $.ajax({
+          type: "method",
+          url: "url",
+          data: {
+            ids:all_ids
+          },
+          headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+
+          success: function (response) {
+            if (response.success) {
+                toastr.success(response.success);
+            } else if (response.error) {
+                toastr.error(response.error);
+            }
+          }
+
+        });
+      });
+    });
+
+  </script> --}}
 @endsection

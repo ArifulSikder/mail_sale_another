@@ -42,6 +42,7 @@ return array(
     'App\\Http\\Middleware\\VerifyCsrfToken' => $baseDir . '/app/Http/Middleware/VerifyCsrfToken.php',
     'App\\Http\\Requests\\Auth\\LoginRequest' => $baseDir . '/app/Http/Requests/Auth/LoginRequest.php',
     'App\\Http\\Requests\\ProfileUpdateRequest' => $baseDir . '/app/Http/Requests/ProfileUpdateRequest.php',
+    'App\\Models\\AboutUs' => $baseDir . '/app/Models/AboutUs.php',
     'App\\Models\\AppSetting' => $baseDir . '/app/Models/AppSetting.php',
     'App\\Models\\BusinessPolicy' => $baseDir . '/app/Models/BusinessPolicy.php',
     'App\\Models\\Category' => $baseDir . '/app/Models/Category.php',

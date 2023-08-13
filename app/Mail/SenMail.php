@@ -23,7 +23,6 @@ class SenMail extends Mailable
         $this->data = $data;
     }
 
-
     /**
      * Get the message envelope.
      *
@@ -31,9 +30,7 @@ class SenMail extends Mailable
      */
     public function envelope()
     {
-        return new Envelope(
-            subject: 'Pvashop',
-        );
+        return new Envelope(subject: 'Pvashop');
     }
 
     /**
@@ -43,9 +40,7 @@ class SenMail extends Mailable
      */
     public function content()
     {
-        return new Content(
-            view: 'frontend.MailContent',
-        );
+        return new Content(view: 'frontend.MailContent');
     }
 
     /**

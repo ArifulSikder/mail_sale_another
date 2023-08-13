@@ -98,25 +98,25 @@
                             <div class="form-group">
                                 <label for="WhatsApp">WhatsApp</label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
-                            data-name="pva_title.png">Preview</span>
+                            data-name="whatsapp.png">Preview</span>
                                 <input type="text" class="form-control" placeholder="Enter WhatsApp Link Here" name="whatsapp" value="@if($app_data){{ $app_data->whatsapp }}@endif">
                             </div>
                             <div class="form-group">
                                 <label for="Telegram">Telegram</label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
-                            data-name="pva_title.png">Preview</span>
+                            data-name="telegram.png">Preview</span>
                                 <input type="text" class="form-control" placeholder="Enter Telegram Link Here" name="telegram" value="@if($app_data){{ $app_data->telegram }}@endif">
                             </div>
                             <div class="form-group">
                                 <label for="Github">Github</label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
-                            data-name="pva_title.png">Preview</span>
+                            data-name="github.png">Preview</span>
                                 <input type="text" class="form-control" placeholder="Enter Github Here" name="github" value="@if($app_data){{ $app_data->github }}@endif">
                             </div>
                             <div class="form-group">
                                 <label for="Youtube">Youtube</label>
                                 <span type="button" class="bg-success text-light px-2 float-right preview"
-                            data-name="pva_title.png">Preview</span>
+                            data-name="youtube.png">Preview</span>
                                 <input type="text" class="form-control" placeholder="Enter Youtube Here" name="youtube_link" value="@if($app_data){{ $app_data->youtube_link }}@endif">
                             </div>
                             <div class="form-group">

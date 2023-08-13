@@ -71,8 +71,8 @@
                 </li>
 
                 <!-- HOME PAGE  -->
-                <li class="nav-item {{ request()->is(['home-details', 'meet-team', 'slider', 'product-guarantee', 'show-about-us']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['shome-details', 'meet-team', 'slider', 'product-guarantee', 'show-about-us']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['home-details', 'meet-team', 'slider', 'product-guarantee' ]) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['shome-details', 'meet-team', 'slider', 'product-guarantee']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>
                             Home-page
@@ -103,7 +103,52 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Slider</p>
                             </a>
-                        </li> 
+                        </li>              
+                    </ul>
+                </li>
+
+                <!-- Stoct Management  -->
+                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons']) ? 'active' : '' }}">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <p>
+                            Product Management
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                            
+                        <li class="nav-item">
+                            <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Seller</p>
+                            </a>
+                        </li>   
+                        <li class="nav-item">
+                            <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Stock</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coupons') }}" class="nav-link {{ request()->is(['coupons']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Coupon</p>
+                            </a>
+                        </li>        
+                    </ul>
+                </li>
+
+                <!-- About us  -->
+                <li class="nav-item {{ request()->is(['show-about-us']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['show-about-us']) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            About Us
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('show-about-us') }}" class="nav-link {{ request()->is(['show-about-us']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>

@@ -7,7 +7,7 @@
     <!-- Content Header (Page header) -->
     <div class="content-header">
         <div class="container-fluid">
-            <div class="row mb-2">
+            <div class="mb-2 row">
                 <div class="col-sm-6">
                     <h1 class="m-0">FAQ Category</h1>
 
@@ -27,7 +27,7 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="d-flex justify-content-between my-1">
+            <div class="my-1 d-flex justify-content-between">
                 <div>
                     <button type="button" class="btn btn-success addnew" data-toggle="modal" data-target="#addNew">
                         <i class="fas fa-plus"></i> Add FAQ Category
@@ -73,7 +73,7 @@
                                                 data-toggle="dropdown">
                                                 Options
                                             </button>
-                                            <div class="dropdown-menu text-center bg-light-blue">
+                                            <div class="text-center dropdown-menu bg-light-blue">
                                                 @if ($category->active_status == 0)
                                                    <a href="{{ route('update-faq-status', ['id' => $category->id , 'status' => $category->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
                                                 @else
@@ -84,7 +84,7 @@
                                                     data-title="{{ $category->category_title }}"
                                                     data-logo_alt="{{ $category->logo_alt }}"
                                                     data-active_status="{{ $category->active_status }}"
-                                                    class="btn btn-success btn-sm editfaq  btn-block">
+                                                    class="btn btn-success btn-sm editfaq btn-block">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
 
@@ -126,7 +126,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="category_title">Category Title</label>
-                            <span type="button" class="bg-success text-light px-2 float-right preview"
+                            <span type="button" class="float-right px-2 bg-success text-light preview"
                                 data-name="faq_cat_title.png">Preview</span>
                             <input type="text" class="form-control" name="category_title" id="category_title"
                                 placeholder="Enter Category Title" >
@@ -136,7 +136,7 @@
                         
                         <div class="form-group">
                             <label for="category_logo" class="col-form-label">Category Logo:</label>
-                            <span type="button" class="bg-success text-light px-2 float-right preview"
+                            <span type="button" class="float-right px-2 bg-success text-light preview"
                                 data-name="faq_logo.png">Preview</span>
                             <input type="file" class="form-control photo" id="category_logo" name="category_logo">
 
@@ -274,7 +274,7 @@
                 error: function (error) {
                     $('.validate').text('');
                         $.each(error.responseJSON.errors, function (field_name, error) { 
-                             const errorElement = $('.validate[data-field="' + field_name + '"]');
+                             const errorElement = $('.validate_e[data-field="' + field_name + '"]');
                              if (errorElement.length > 0) {
                                 errorElement.text(error[0]);
                                 toastr.error(error);

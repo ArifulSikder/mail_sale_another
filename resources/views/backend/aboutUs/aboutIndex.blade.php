@@ -77,7 +77,7 @@
                                                 data-toggle="dropdown">
                                                 Options
                                             </button>
-                                            <div class="dropdown-menu text-center bg-light-blue">
+                                            <div class="text-center dropdown-menu bg-light-blue">
                                                 @if ($about->active_status == 0)
                                                    <a href="{{ route('update-about-status', ['id' => $about->id , 'status' => $about->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
                                                 @else
@@ -87,7 +87,7 @@
                                                     data-id="{{ $about->id }}"
                                                     data-description="{{ $about->description }}"
                                                     data-active_status="{{ $about->active_status }}"
-                                                    class="btn btn-success btn-sm editData  btn-block">
+                                                    class="btn btn-success btn-sm editData btn-block">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
 
@@ -129,7 +129,7 @@
                 <div class="modal-body">    
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <span type="button" class="bg-success text-light px-2 float-right preview"
+                        <span type="button" class="float-right px-2 bg-success text-light preview"
                               data-name="about_us.png">Preview</span>
                         <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" value=""> </textarea>
                             <span class="text-danger validate" data-field="description"></span>
@@ -172,10 +172,10 @@
 
                     <div class="form-group">
                         <label for="description">Description</label>
-                        <span type="button" class="bg-success text-light px-2 float-right preview"
+                        <span type="button" class="float-right px-2 bg-success text-light preview"
                               data-name="about_us.png">Preview</span>
                         <textarea type="text" class="form-control" name="description" id="editor_e" placeholder="Enter Description" value=""> </textarea>
-                            <span class="text-danger validate" data-field="description"></span>
+                            <span class="text-danger validate_e" data-field="description"></span>
 
                     </div>
 
@@ -187,7 +187,7 @@
                             <option value="0">Inactive</option>
                             <option value="1">Active</option>
                         </select>
-                        <span class="text-danger validate" data-field="active_status"></span>
+                        <span class="text-danger validate_e" data-field="active_status"></span>
                     </div>
 
 
@@ -321,7 +321,7 @@
                     error: function (error) {
                         $('.validate').text('');
                         $.each(error.responseJSON.errors, function (field_name, error) { 
-                             const errorElement = $('.validate[data-field="' + field_name + '"]');
+                             const errorElement = $('.validate_e[data-field="' + field_name + '"]');
                              if (errorElement.length > 0) {
                                 errorElement.text(error[0]);
                                 toastr.error(error);

@@ -81,7 +81,11 @@ class AppearanceController extends Controller
         );
 
         //mail class defining
-        Mail::to('islammahfuzul31@gmail.com')->send(new SenMail($data));
+        Mail::to($request->email)->send(new SenMail($data));
+
+
+            
+
 
 
         if ($message) {

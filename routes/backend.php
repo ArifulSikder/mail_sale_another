@@ -148,3 +148,25 @@ Route::post('store-pay-api', [PaymentApiController::class, 'storePayApi'])->name
 Route::post('update-pay-api', [PaymentApiController::class, 'updatePayApi'])->name('update-pay-api');
 Route::get('update-payapi-status/{id}/{status}', [PaymentApiController::class, 'updatApiStatus'])->name('update-payapi-status');
 Route::get('delete-payapi/{id}', [PaymentApiController::class, 'deletePayapi'])->name('delete-payapi');
+
+
+// Stock management 
+//  Stock
+Route::get('stocks', [HomePageController::class, 'indexStock'])->name('stocks');
+Route::post('store-stock', [HomePageController::class, 'storeStock'])->name('store-stock');
+Route::post('update-stock', [HomePageController::class, 'updateStock'])->name('update-stock');
+Route::get('delete-stock/{id}', [HomePageController::class, 'deleteStock'])->name('delete-stock');
+
+//seller
+Route::get('sellers', [HomePageController::class, 'indexSeller'])->name('sellers');
+Route::post('store-seller', [HomePageController::class, 'storeSeller'])->name('store-seller');
+Route::post('update-seller', [HomePageController::class, 'updateSeller'])->name('update-seller');
+Route::get('update-seller-status/{id}/{status}', [HomePageController::class, 'updatSellerStatus'])->name('update-seller-status');
+
+
+//coupon
+Route::get('coupons', [HomePageController::class, 'indexCoupon'])->name('coupons');
+Route::post('store-coupon', [HomePageController::class, 'storeCoupon'])->name('store-coupon');
+Route::post('update-coupon', [HomePageController::class, 'updateCoupon'])->name('update-coupon');
+Route::get('update-coupon-status/{id}/{status}', [HomePageController::class, 'updatCouponStatus'])->name('update-coupon-status');
+Route::get('delete-coupon/{id}', [HomePageController::class, 'deleteCoupon'])->name('delete-coupon');

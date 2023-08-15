@@ -38,6 +38,8 @@ Route::post('/stripe', [AppearanceController::class, 'stripePayment'])->name('st
 //contact 
 Route::post('store-customer-message', [AppearanceController::class, 'storeCustomerMessage'])->name('store-customer-message');
 
+//review 
+Route::post('store-customer-review', [AppearanceController::class, 'storeCustomerReview'])->name('store-customer-review');
 
 
 

@@ -133,6 +133,7 @@ Route::get('update-question-status/{id}/{status}', [HomePageController::class, '
 Route::get('customer-contact', [HomePageController::class, 'customerContact'])->name('customer-contact');
 Route::get('show-individual-message/{id}', [HomePageController::class, 'individualMessage'])->name('show-individual-message');
 Route::get('update-contact-status/{id}/{status}', [HomePageController::class, 'updatContactStatus'])->name('update-contact-status');
+Route::delete('delete-customer-message', [HomePageController::class, 'deleteCustomerMessage'])->name('delete-customer-message');
 
 // About Us
 Route::get('show-about-us', [HomePageController::class, 'aboutUs'])->name('show-about-us');

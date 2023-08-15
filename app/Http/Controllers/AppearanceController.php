@@ -11,10 +11,12 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
+use App\Mail\ReciveMail;
 use App\Mail\SenMail;
 use App\Models\CustomerMessage;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
+use App\Models\Review;
 use App\Models\Slider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
@@ -77,11 +79,19 @@ class AppearanceController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'message' => $request->message,
-            'subject' => "Welcome To Pvashop",
         );
 
-        //mail class defining
-        Mail::to($request->email)->send(new SenMail($data));
+        $user_data = array(
+            'name' => $request->name,
+            'email' => 'islammahfuzul31@gmail.com',
+            'link' => 'https://laravel.com/docs/9.x/mail',
+        );
+
+        //mail content to admin
+        Mail::to('islammahfuzul31@gmail.com')->send(new ReciveMail($data));
+
+        // mail content to user 
+        Mail::to($request->email)->send(new SenMail($user_data));
 
 
             
@@ -192,6 +202,8 @@ class AppearanceController extends Controller
 
     public function productDetails($category_slug, $product_slug)
     {
+
+        $data['reviews'] = Review::where('product_slug', $product_slug)->take(5)->get();
         $data['category'] = Category::where('slug', $category_slug)->first();
         $data['product'] = Product::with('advantages', 'details', 'descriptions', 'subcategory')
             ->where('active_status', 1)
@@ -478,6 +490,40 @@ class AppearanceController extends Controller
     public function aboutUs()
     {
         return view('frontend.about-us');
+    }
+
+    public function storeCustomerReview(Request $request)
+    {
+        Validator::make($request->all(), [
+            'rate' => 'required|numeric',
+            'name' => 'required|string|max:100',
+            'email' => 'required|string',
+            'review' => 'required|string',
+        ],[
+            'rate.required' => 'Please Select Rating Star',
+            'name.required' => 'Please Enter Your Name',
+            'email.required' => 'Please Enter Your Email',
+            'review.required' => 'Please Enter Your Review',
+        ])->validate();
+
+        $review = new Review(); 
+        $review->rating = $request->rate;
+        $review->name = $request->name;
+        $review->email = $request->email;
+        $review->customer_review = $request->review;
+        $review->product_slug = $request->product_slug;
+        $review->date = now();
+        $review->created_by = Auth::id();
+
+        if ($review->save()) {
+            return response()->json([
+                'success' => "Review Submitted successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
     }
 
 

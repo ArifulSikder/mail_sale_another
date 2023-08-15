@@ -130,23 +130,17 @@
             <div class="card-body p-0">
               <div class="mailbox-controls">
                 <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                  <i class="far fa-square"></i>
-                </button>
-                {{-- <input class="btn btn-default" type="checkbox" name="" id="select_ids"> --}}
-                <div class="btn-group">
-                  <a href="" class="btn btn-default btn-sm" id="deleteAll"> 
+                <span class="border pl-2 pr-1 py-1">
+                  <input style="cursor: pointer;" type="checkbox" name="" id="select_all_ids"> 
+                </span>
+                <div class="btn-group ml-2 mt-0">
+                  <!-- delete button -->
+                  <a class="btn btn-default btn-sm" id="deleteAllSelectedRecord"> 
                     <i class="far fa-trash-alt"></i>
                   </a>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-reply"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-share"></i>
-                  </button>
                 </div>
                 <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm">
+                <button type="button" class="btn btn-default btn-sm" id="pagereload">
                   <i class="fas fa-sync-alt"></i>
                 </button>
                 <div class="float-right">
@@ -167,11 +161,10 @@
                 <table class="table table-hover table-striped">
                   <tbody>
                     @forelse($messages as $message)
-                      <tr>
+                      <tr id="employee_ids{{ $message->id }}">
                         <td>
-                          <div class="icheck-primary">
-                            <input type="checkbox"  class="chcekbox_ids" id="check1">
-                            <label for="{{ Str::replace(' ', '_', $message->name) }}"></label>
+                          <div>
+                            <input style="cursor: pointer" type="checkbox" name="ids" id="" class="checkbox_ids" value="{{ $message->id }}">
                           </div>
                         </td>
                         <td class="mailbox-star"><a href="#"><i class="fas fa-star-o text-warning"></i></a></td>
@@ -194,30 +187,15 @@
                 </table>
                 <!-- /.table -->
               </div>
+              <div class="float-right my-2">
+                {{ $messages->links() }}
+            </div>
               <!-- /.mail-box-messages -->
             </div>
             <!-- /.card-body -->
             <div class="card-footer p-0">
               <div class="mailbox-controls">
                 <!-- Check all button -->
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle">
-                  <i class="far fa-square"></i>
-                </button>
-                <div class="btn-group">
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="far fa-trash-alt"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-reply"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm">
-                    <i class="fas fa-share"></i>
-                  </button>
-                </div>
-                <!-- /.btn-group -->
-                <button type="button" class="btn btn-default btn-sm">
-                  <i class="fas fa-sync-alt"></i>
-                </button>
                 <div class="float-right">
                   1-50/200
                   <div class="btn-group">
@@ -246,41 +224,51 @@
 @endsection
 
 @section('script')
-  {{-- <script>
+  <script>
 
     $(function(e){
-      $("#select_ids").click(function(){ 
-        $('.chcekbox_ids').prop('checked', $(this).prop('checked'));
+      $("#select_all_ids").click(function () { 
+        $('.checkbox_ids').prop('checked', $(this).prop('checked'));
       });
 
-      .$('#deleteAll').click(function (e) { 
-        e.preventDefault();
-        var all_ids = [];
-        $('input:checkbox[name=ids]:checked').$.each(function(){ 
-           all_ids.push($(this).val());
+      $('#deleteAllSelectedRecord').click(function (e) { 
+          e.preventDefault();
+          var all_ids = [];   
+          $('input:checkbox[name=ids]:checked').each(function(params) {
+            all_ids.push($(this).val()); 
+          });
+
+          $.ajax({
+            type: "DELETE",
+            url: "{{ route('delete-customer-message') }}",
+            data: {
+              ids:all_ids,
+            },
+            headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+              $.each(all_ids, function (key, val) { 
+                 $('#employee_ids'+val).remove();
+              });
+              if (response.success) {
+                  toastr.success(response.success);
+              } else if (response.error) {
+                  toastr.error(response.error);
+              }
+            },
+          });
         });
-
-        $.ajax({
-          type: "method",
-          url: "url",
-          data: {
-            ids:all_ids
-          },
-          headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-
-          success: function (response) {
-            if (response.success) {
-                toastr.success(response.success);
-            } else if (response.error) {
-                toastr.error(response.error);
-            }
-          }
-
-        });
-      });
     });
 
-  </script> --}}
+  </script>
+
+<script>
+  $(document).ready(function () {
+    $("#pagereload").click(function (e) { 
+      e.preventDefault();
+      window.location.reload();
+    });
+  });
+</script>
 @endsection

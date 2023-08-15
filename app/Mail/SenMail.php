@@ -12,15 +12,15 @@ use Illuminate\Queue\SerializesModels;
 class SenMail extends Mailable
 {
     use Queueable, SerializesModels;
-    public $data;
+    public $user_data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($user_data)
     {
-        $this->data = $data;
+        $this->user_data = $user_data;
     }
 
     /**
@@ -40,7 +40,7 @@ class SenMail extends Mailable
      */
     public function content()
     {
-        return new Content(view: 'frontend.MailContent');
+        return new Content(view: 'frontend.mail.MailContentUser');
     }
 
     /**

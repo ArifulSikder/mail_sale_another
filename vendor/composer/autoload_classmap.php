@@ -61,6 +61,7 @@ return array(
     'App\\Models\\ProductDescription' => $baseDir . '/app/Models/ProductDescription.php',
     'App\\Models\\ProductDetail' => $baseDir . '/app/Models/ProductDetail.php',
     'App\\Models\\ProductGuarantee' => $baseDir . '/app/Models/ProductGuarantee.php',
+    'App\\Models\\Review' => $baseDir . '/app/Models/Review.php',
     'App\\Models\\Seller' => $baseDir . '/app/Models/Seller.php',
     'App\\Models\\Slider' => $baseDir . '/app/Models/Slider.php',
     'App\\Models\\StockManagement' => $baseDir . '/app/Models/StockManagement.php',

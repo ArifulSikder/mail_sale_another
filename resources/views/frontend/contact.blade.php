@@ -59,6 +59,10 @@
                 headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 },
+                beforeSend: function() {
+                    // setting a timeout
+                    // $(placeholder).addClass('loading');
+                },
                 success: function (response) {
                         if (response.success) {
                             toastr.success(response.success);

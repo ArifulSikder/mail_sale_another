@@ -1143,7 +1143,7 @@ class HomePageController extends Controller
 
     public function customerContact()
     {
-        $data['messages'] = CustomerMessage::latest()->paginate(15);
+        $data['messages'] = CustomerMessage::latest()->paginate(5);
         return view('backend.customerContact.inbox', $data);
     }
 
@@ -1189,6 +1189,24 @@ class HomePageController extends Controller
             }
             return back()->with($notification);
         } 
+    }
+
+    public function deleteCustomerMessage(Request $request)
+    {
+        
+        foreach ($request->ids as $id) {
+            $delete = CustomerMessage::findOrFail($id)->delete();
+        }
+        if ($delete) {
+            return response()->json([
+                'success' => "Customer Message Deleted successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+
     }
 
     // about us 
@@ -1650,6 +1668,8 @@ class HomePageController extends Controller
 
         return back()->with($notification);
     }
+
+
 
 
 

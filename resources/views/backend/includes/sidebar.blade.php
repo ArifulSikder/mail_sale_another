@@ -108,8 +108,8 @@
                 </li>
 
                 <!-- Stoct Management  -->
-                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'active' : '' }}">
                         <i class="nav-icon fab fa-product-hunt"></i>
                         <p>
                             Product Management
@@ -122,6 +122,13 @@
                             <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Seller</p>
+                            </a>
+                        </li>   
+                            
+                        <li class="nav-item">
+                            <a href="{{ route('purchase') }}" class="nav-link {{ request()->is(['purchase']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Purchase</p>
                             </a>
                         </li>   
                         <li class="nav-item">

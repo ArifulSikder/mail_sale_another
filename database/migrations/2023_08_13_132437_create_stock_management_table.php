@@ -15,10 +15,11 @@ return new class extends Migration
     {
         Schema::create('stock_management', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');
+            $table->foreignId('product_id');
             $table->foreignId('seller_id');
             $table->integer('quantity');
             $table->integer('per_price');
+            $table->string('stock_date');
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();
             $table->softDeletes();

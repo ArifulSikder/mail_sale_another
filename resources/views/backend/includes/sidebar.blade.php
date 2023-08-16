@@ -38,12 +38,12 @@
                     </a>
                 </li>
 
-
-                <li class="nav-item {{ request()->is(['category','sub-category','products', 'product-advantages*', 'product-details*','product-description*']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['category','sub-category','products', 'product-advantages*', 'product-details*','product-description*']) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-copy"></i>
+                <!-- Product  Management  -->
+                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons', 'category','sub-category','products', 'product-advantages*', 'product-details*','product-description*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons', 'category','sub-category','products', 'product-advantages*', 'product-details*','product-description*']) ? 'active' : '' }}">
+                        <i class="nav-icon fab fa-product-hunt"></i>
                         <p>
-                            Product
+                            Product Management
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -66,7 +66,24 @@
                                 <p>Product</p>
                             </a>
                         </li>
-                    
+                        <li class="nav-item">
+                            <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Seller</p>
+                            </a>
+                        </li>   
+                        <li class="nav-item">
+                            <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Stock</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coupons') }}" class="nav-link {{ request()->is(['coupons']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Coupon</p>
+                            </a>
+                        </li>        
                     </ul>
                 </li>
 
@@ -107,38 +124,6 @@
                     </ul>
                 </li>
 
-                <!-- Stoct Management  -->
-                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons']) ? 'active' : '' }}">
-                        <i class="nav-icon fab fa-product-hunt"></i>
-                        <p>
-                            Product Management
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                            
-                        <li class="nav-item">
-                            <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Seller</p>
-                            </a>
-                        </li>   
-                        <li class="nav-item">
-                            <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Stock</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('coupons') }}" class="nav-link {{ request()->is(['coupons']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Coupon</p>
-                            </a>
-                        </li>        
-                    </ul>
-                </li>
-
                 <!-- About us  -->
                 <li class="nav-item {{ request()->is(['show-about-us']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['show-about-us']) ? 'active' : '' }}">
@@ -159,8 +144,8 @@
                 </li>
 
                 {{-- CUSTOMER CONTACT  --}}
-                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*', 'sms-templete']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*', 'sms-templete']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Customer Contact
@@ -173,7 +158,13 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Inbox</p>
                             </a>
-                        </li>        
+                        </li>    
+                        <li class="nav-item">
+                            <a href="{{ route('sms-templete') }}" class="nav-link {{ request()->is(['sms-templete']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>SMS Templete</p>
+                            </a>
+                        </li>     
                     </ul>
                 </li>
 

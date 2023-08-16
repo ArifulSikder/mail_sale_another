@@ -51,66 +51,6 @@ class AppearanceController extends Controller
         return view('frontend.contact');
     }
 
-
-
-    // store customer contact 
-    public function storeCustomerMessage(Request $request)
-    {
-        Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email',
-            'message' => 'required|string',
-        ],[
-            'category_id.required' => 'Please Enter The Category Title',
-            'question.required' => 'Please Enter The Question',
-            'answer.required' => 'Please Enter The Answer',
-            'active_status.required' =>  'Please Select The Status',
-        ])->validate();
-
-        $message = new CustomerMessage();  
-        $message->name = $request->name;
-        $message->email = $request->email;
-        $message->message = $request->message;
-        $message->created_by = Auth::id();
-        $message->save();
-
-
-        $data = array(
-            'name' => $request->name,
-            'email' => $request->email,
-            'message' => $request->message,
-        );
-
-        $user_data = array(
-            'name' => $request->name,
-            'email' => 'islammahfuzul31@gmail.com',
-            'link' => 'https://laravel.com/docs/9.x/mail',
-        );
-
-        //mail content to admin
-        Mail::to('islammahfuzul31@gmail.com')->send(new ReciveMail($data));
-
-        // mail content to user 
-        Mail::to($request->email)->send(new SenMail($user_data));
-
-
-            
-
-
-
-        if ($message) {
-            return response()->json([
-                'success' => "Message Send To Admin successfully.",
-            ]);
-        } else {
-            return response()->json([
-                'error' => "Opps! Something Went Wrong.",
-            ]);
-        }
-    }
-
-
-
     public function myAccount()
     {
         $data['countries'] = Country::orderBy('name', 'ASC')->get();

@@ -48,7 +48,7 @@
                                 <th scope="col" style="width: 20%">Seller Name</th>
                                 <th scope="col" style="width: 15%">Quantity</th>
                                 <th scope="col" style="width: 15%">Per Price</th>
-                                <th scope="col" style="width: 15%">Add Date</th>
+                                <th scope="col" style="width: 15%">Stock Date</th>
                                 <th scope="col" style="width: 15%">Action</th>
                             </tr>
                         </thead>
@@ -59,11 +59,11 @@
                             @foreach($stocks as $stock)
                                 <tr>
                                     <th>{{ $serials++ }}</th>
-                                    <td>{{ $stock->product_name }}</td>
+                                    <td>{{ $stock->product->name }}</td>
                                     <td>{{ $stock->seller->seller_name }}</td>
                                     <td>{{ $stock->quantity }}</td>
                                     <td>{{ $stock->per_price }}</td>
-                                    <td>{{ $stock->created_at->toFormateDate() }}</td>
+                                    <td>{{ $stock->stock_date }}</td>
                                     <td>    
                                         <button type="button" 
                                                 class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
@@ -73,9 +73,10 @@
                                             <div class="text-center dropdown-menu bg-light-blue">
                                                 <button type="button"
                                                     data-id="{{ $stock->id }}"
-                                                    data-product_name="{{ $stock->product_name }}"
+                                                    data-product_id="{{ $stock->product_id }}"
                                                     data-seller_id="{{ $stock->seller_id }}"
                                                     data-quantity="{{ $stock->quantity }}"
+                                                    data-stock_date="{{ $stock->stock_date }}"
                                                     data-per_price="{{ $stock->per_price }}"
                                                     class="btn btn-success btn-sm editData btn-block">
                                                     <i class="fas fa-edit"></i> Edit
@@ -84,11 +85,7 @@
                                                 <a href="{{ route('delete-stock', ['id' => $stock->id]) }}"
                                                     id="delete" class="btn btn-danger btn-sm btn-block"><i
                                                         class="fas fa-trash"></i> Delete</a>
-                                                
-
                                             </div>
-
-
                                     </td>
                                 </tr>
                             @endforeach
@@ -118,9 +115,15 @@
             <form id="formData">
                 <div class="modal-body">    
                     <div class="form-group">
-                        <label for="product_name">Product Name</label>
-                        <input type="text" class="form-control" name="product_name"  placeholder="Enter Product Name" >
-                        <span class="text-danger validate" data-field="product_name"></span>
+                        <label for="product_id">Product Name</label>
+                        <select class="form-control select2" name="product_id" id="product_id"
+                            data-placeholder="Select Product" style="width: 100%">
+                                <option value="">Select Product</option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>   
+                        <span class="text-danger validate" data-field="product_id"></span>
 
                     </div>
 
@@ -128,11 +131,10 @@
                         <label for="seller_id">Select Seller</label>
                         <select class="form-control select2" name="seller_id" id="seller_id"
                             data-placeholder="Select Seller" style="width: 100%">
-                            <option value="">Select Seller</option>
+                                <option value="">Select Seller</option>
                             @foreach ($sellers as $seller)
                                 <option value="{{ $seller->id }}">{{ $seller->seller_name }}</option>
                             @endforeach
-
                         </select>
                         <span class="text-danger validate" data-field="seller_id"></span>
                     </div>
@@ -141,8 +143,14 @@
                         <label for="quantity">Product Quantity</label>
                         <input type="number" class="form-control" name="quantity" placeholder="Enter Product Quantity" >
                         <span class="text-danger validate" data-field="quantity"></span>
-
                     </div>
+
+                    <div class="form-group">
+                        <label for="stock_date">Stock Date</label>
+                        <input type="date" class="form-control" name="stock_date"  >
+                        <span class="text-danger validate" data-field="stock_date"></span>
+                    </div>
+
                     <div class="form-group">
                         <label for="per_price">Price Per Product</label>
                         <input type="number" class="form-control" name="per_price" placeholder="Enter Product Price" >
@@ -162,11 +170,11 @@
 </div>
 
 <!-- edit stock -->
-<div class="modal fade" id="editseller" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="editstock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Edit Seller</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Edit Stock</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -176,8 +184,14 @@
                     <input type="hidden" id="id_e" name="edit_id">
 
                     <div class="form-group">
-                        <label for="product_name">Product Name</label>
-                        <input type="text" class="form-control" name="product_name"  id="product_name_e">
+                        <label for="product_id_e">Product Name</label>
+                        <select class="form-control select2" name="product_id" id="product_id_e"
+                            data-placeholder="Select Product" style="width: 100%">
+                                <option value="">Select Product</option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
                         <span class="text-danger validate_e" data-field="product_name"></span>
 
                     </div>
@@ -201,6 +215,13 @@
                         <span class="text-danger validate_e" data-field="quantity"></span>
 
                     </div>
+
+                    <div class="form-group">
+                        <label for="stock_date">Stock Date</label>
+                        <input type="date" class="form-control" name="stock_date"  id="stock_date_e">
+                        <span class="text-danger validate_e" data-field="stock_date"></span>
+                    </div>
+
                     <div class="form-group">
                         <label for="per_price">Price Per Product</label>
                         <input type="number" class="form-control" name="per_price" id="per_price_e" placeholder="Enter Product Price" >
@@ -266,15 +287,14 @@
               });
             });
 
-           
-
             $('.editData').click(function (e) {
                 e.preventDefault();
-                $('#editseller').modal('show');
+                $('#editstock').modal('show');
                 $('#id_e').val($(this).data('id'));
-                $('#product_name_e').val($(this).data('product_name'));
+                $('#product_id_e').val($(this).data('product_id')).trigger('change');
                 $('#seller_id_e').val($(this).data('seller_id')).trigger('change');
                 $('#quantity_e').val($(this).data('quantity'));
+                $('#stock_date_e').val($(this).data('stock_date'));
                 $('#per_price_e').val($(this).data('per_price'));
             });
 

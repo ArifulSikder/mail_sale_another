@@ -42,25 +42,14 @@
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
                 <li class="nav-item active">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('customer-contact') }}" class="nav-link">
                     <i class="fas fa-inbox"></i> Inbox
-                    <span class="badge bg-primary float-right">12</span>
+                    <span class="badge bg-primary float-right">{{ $msg_count }}</span>
                   </a>
                 </li>
                 <li class="nav-item">
                   <a href="#" class="nav-link">
                     <i class="far fa-envelope"></i> Sent
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-file-alt"></i> Drafts
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="fas fa-filter"></i> Junk
-                    <span class="badge bg-warning float-right">65</span>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -73,39 +62,6 @@
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Labels</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-minus"></i>
-                </button>
-              </div>
-            </div>
-            <div class="card-body p-0">
-              <ul class="nav nav-pills flex-column">
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle text-danger"></i>
-                    Important
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle text-warning"></i> Promotions
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a href="#" class="nav-link">
-                    <i class="far fa-circle text-primary"></i>
-                    Social
-                  </a>
-                </li>
-              </ul>
-            </div>
-            <!-- /.card-body -->
-          </div>
           <!-- /.card -->
         </div>
         <!-- /.col -->
@@ -139,22 +95,13 @@
                     <i class="far fa-trash-alt"></i>
                   </a>
                 </div>
+                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addNew">
+                  <i class="fas fa-reply"></i>
+                </button>
                 <!-- /.btn-group -->
                 <button type="button" class="btn btn-default btn-sm" id="pagereload">
                   <i class="fas fa-sync-alt"></i>
                 </button>
-                <div class="float-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-right"></i>
-                    </button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
                 <!-- /.float-right -->
               </div>
               <div class="table-responsive mailbox-messages">
@@ -193,24 +140,6 @@
               <!-- /.mail-box-messages -->
             </div>
             <!-- /.card-body -->
-            <div class="card-footer p-0">
-              <div class="mailbox-controls">
-                <!-- Check all button -->
-                <div class="float-right">
-                  1-50/200
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-left"></i>
-                    </button>
-                    <button type="button" class="btn btn-default btn-sm">
-                      <i class="fas fa-chevron-right"></i>
-                    </button>
-                  </div>
-                  <!-- /.btn-group -->
-                </div>
-                <!-- /.float-right -->
-              </div>
-            </div>
           </div>
           <!-- /.card -->
         </div>
@@ -219,6 +148,63 @@
       <!-- /.row -->
     </section>
     <!-- /.content -->
+  </div>
+
+
+
+  <!-- send email -->
+  <div class="modal fade" id="addNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Add Home Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="formData">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <span type="button" class="bg-success text-light px-2 float-right preview"
+                            data-name="pva_title.png">Preview</span>
+                        <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" >
+
+                            <span class="text-danger validate" data-field="title"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="description">Description</label>
+                        <span type="button" class="bg-success text-light px-2 float-right preview"
+                              data-name="pva_description.png">Preview</span>
+                        <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" value=""> </textarea>
+                            <span class="text-danger validate" data-field="description"></span>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="active_status">Active Status</label>
+                        <select class="form-control select2" name="active_status" id="active_status"
+                            data-placeholder="Select Active Status" style="width: 100%">
+                            <option value="">Choose Type</option>
+                            <option value="0">Inactive</option>
+                            <option value="1">Active</option>
+                        </select>
+                        <span class="text-danger validate" data-field="active_status"></span>
+                    </div>
+
+
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
   </div>
 
 @endsection

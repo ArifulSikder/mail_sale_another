@@ -4,13 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\Coupon;
 use App\Models\Product;
 use App\Models\ProductAdvantage;
 use App\Models\ProductDescription;
 use App\Models\ProductDetail;
+use App\Models\Seller;
+use App\Models\StockManagement;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Validator;
 
 class ProductController extends Controller
 {
@@ -308,7 +312,7 @@ class ProductController extends Controller
     //*************************************** product end ******************************************** */
 
 
-    // ++++++++++++++++++++++++++++++++++++++ start product description ********************************
+    //++++++++++++++++++++++++++++++++++++++ start product description ********************************
     public function productDescription($product_id)
     {
         $data['product'] = Product::findOrFail($product_id);
@@ -381,4 +385,364 @@ class ProductController extends Controller
         }
     }
     // ++++++++++++++++++++++++++++++++++++++ end product description ********************************
+
+
+    // STOCK MANAGEMENT /
+    // stock view
+    public function indexStock()
+    {
+        $data['stocks'] = StockManagement::latest()->paginate(15);
+        $data['products'] = Product::latest()->get();
+        $data['sellers'] = Seller::latest()->get();
+        return view('backend.stockManage.indexStock', $data);
+    }
+
+    // store stock
+    public function storeStock(Request $request)
+    {
+        Validator::make($request->all(), [
+            'product_id' => 'required|numeric',
+            'seller_id' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'stock_date' => 'required',
+            'per_price' => 'required|numeric',
+        ],[
+            'product_id.required' => 'Please Select Product',
+            'seller_id.required' => 'Please Select The Seller',
+            'quantity.required' => 'Please Enter The Quantity',
+            'stock_date.required' => 'Please Select Stock Date',
+            'per_price.required' => 'Please Enter The Product Per Price',
+        ])->validate();
+
+        $stock = new StockManagement();  
+        $stock->product_id = $request->product_id;
+        $stock->seller_id = $request->seller_id;
+        $stock->quantity = $request->quantity;
+        $stock->stock_date = $request->stock_date;
+        $stock->per_price = $request->per_price;
+        $stock->created_by = Auth::id();
+
+        if ($stock->save()) {
+            return response()->json([
+                'success' => "Stock Added Successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // update seller
+    public function updateStock(Request $request)
+    {
+        Validator::make($request->all(), [
+            'product_id' => 'required|string',
+            'seller_id' => 'required|numeric',
+            'quantity' => 'required|numeric',
+            'stock_date' => 'required',
+            'per_price' => 'required|numeric',
+        ],[
+            'product_id.required' => 'Please Select Product Name',
+            'seller_id.required' => 'Please Select The Seller',
+            'stock_date.required' => 'Please Select Stock Date',
+            'quantity.required' => 'Please Enter The Quantity',
+            'per_price.required' => 'Please Enter The Product Per Price',
+        ])->validate();
+
+        $stock = StockManagement::findOrFail($request->edit_id);  
+        $stock->seller_id = $request->seller_id;
+        $stock->stock_date = $request->stock_date;
+        $stock->quantity = $request->quantity;
+        $stock->per_price = $request->per_price;
+        $stock->updated_by = Auth::id();
+
+        if ($stock->save()) {
+            return response()->json([
+                'success' => "Stock Updated Successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    //delete stock
+    public function deleteStock($id)
+    {
+        $delete = StockManagement::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "Stock Item Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+    // add seller
+    public function indexSeller()
+    {
+        $data['sellers'] = Seller::latest()->paginate(15);
+        return view('backend.seller.indexSeller', $data);
+    }
+
+    // store seller
+    public function storeSeller(Request $request)
+    {
+        Validator::make($request->all(), [
+            'seller_name' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|string|max:20',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'seller_name.required' => 'Please Enter The Seller Name',
+            'address.required' => 'Please Enter The Seller Address',
+            'phone.required' => 'Please Enter The Seller Phone',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $seller = new Seller();  
+        $seller->seller_name = $request->seller_name;
+        $seller->address = $request->address;
+        $seller->phone = $request->phone;
+        $seller->active_status = $request->active_status;
+        $seller->created_by = Auth::id();
+
+        if ($seller->save()) {
+            return response()->json([
+                'success' => "Seller Saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // update seller
+    public function updateSeller(Request $request)
+    {
+        Validator::make($request->all(), [
+            'seller_name' => 'required|string',
+            'address' => 'required|string',
+            'phone' => 'required|string|max:20',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'seller_name.required' => 'Please Enter The Seller Name',
+            'address.required' => 'Please Enter The Seller Address',
+            'phone.required' => 'Please Enter The Seller Phone',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $seller = Seller::findOrFail($request->edit_id);  
+        $seller->seller_name = $request->seller_name;
+        $seller->address = $request->address;
+        $seller->phone = $request->phone;
+        $seller->active_status = $request->active_status;
+        $seller->updated_by = Auth::id();
+
+        if ($seller->save()) {
+            return response()->json([
+                'success' => "Seller Updated successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+     // About Us update status 
+     public function updatSellerStatus($id, $status)
+     {
+         if ($status == 0) {
+             $about = Seller::findOrFail($id)->update([
+                 'active_status' =>  '1',
+                 'updated_by' => Auth::id()
+             ]);
+ 
+             if ($about == true) {
+                 $notification = [
+                     'success' => "Status Activated Successfully.",
+                 ];
+             } else {
+                 $notification = [
+                     'error' => "Opps! There Is A Problem!",
+                 ];
+             }
+             return back()->with($notification);
+ 
+         } elseif($status == 1) {
+             $about = Seller::findOrFail($id)->update([
+                 'active_status' =>  '0',
+                 'updated_by' => Auth::id()
+             ]);
+ 
+             if ($about == true) {
+                 $notification = [
+                     'success' => "Status inactivated Successfully.",
+                 ];
+             } else {
+                 $notification = [
+                     'error' => "Opps! There Is A Problem!",
+                 ];
+             }
+             return back()->with($notification);
+         } 
+     }
+ 
+
+
+    // add coupon
+    public function indexCoupon()
+    {
+        $data['coupons'] = Coupon::latest()->paginate(15);
+        $data['products'] = Product::latest()->get();
+        return view('backend.coupon.indexCoupon', $data);
+    }
+
+    // store coupon
+    public function storeCoupon(Request $request)
+    {
+        Validator::make($request->all(), [
+            'coupon_name' => 'required|string',
+            'start_date' => 'required|string',
+            'end_date' => 'required|string|max:20',
+            'coupon_discount' => 'required|numeric|between:1,100',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'coupon_name.required' => 'Please Enter The Coupon Name',
+            'start_date.required' => 'Please Enter Start Date',
+            'end_date.required' => 'Please Enter End Date',
+            'coupon_discount.required' => 'Please Enter Coupon Discount',
+            'active_status.required' =>  'Please Select The Active Status',
+        ])->validate();
+
+        $coupon = new Coupon(); 
+        $coupon->coupon_name = $request->coupon_name;
+        $coupon->start_date = $request->start_date;
+        $coupon->end_date = $request->end_date;
+        $coupon->coupon_discount = $request->coupon_discount;
+        $coupon->limit = '100';
+        $coupon->active_status = $request->active_status;
+        $coupon->created_by = Auth::id();
+
+        if ($coupon->save()) {
+            return response()->json([
+                'success' => "Coupon Saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // update coupon
+    public function updateCoupon(Request $request)
+    {
+        Validator::make($request->all(), [
+            'coupon_name' => 'required|string',
+            'start_date' => 'required|string',
+            'end_date' => 'required|string|max:20',
+            'coupon_discount' => 'required|numeric|between:1,100',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'coupon_name.required' => 'Please Enter The Coupon Name',
+            'start_date.required' => 'Please Enter Start Date',
+            'end_date.required' => 'Please Enter End Date',
+            'coupon_discount.required' => 'Please Enter Coupon Discount',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $coupon = Coupon::findOrFail($request->edit_id); 
+        $coupon->coupon_name = $request->coupon_name;
+        $coupon->start_date = $request->start_date;
+        $coupon->end_date = $request->end_date;
+        $coupon->coupon_discount = $request->coupon_discount;
+        $coupon->active_status = $request->active_status;
+        $coupon->updated_by = Auth::id();
+
+        if ($coupon->save()) {
+            return response()->json([
+                'success' => "Coupon Updated successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    // Coupon update status 
+    public function updatCouponStatus($id, $status)
+    {
+        if ($status == 0) {
+            $about = Coupon::findOrFail($id)->update([
+                'active_status' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($about == true) {
+                $notification = [
+                    'success' => "Status Activated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $about = Coupon::findOrFail($id)->update([
+                'active_status' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($about == true) {
+                $notification = [
+                    'success' => "Status inactivated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+    }
+
+    // FAQ category delete 
+    public function deleteCoupon($id)
+    {
+        $delete = Coupon::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => "Coupon Deleted Successfully.",
+            ];
+        } else {
+            $notification = [
+                'error' => "Opps! There Is A Problem!",
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+
+
+
+
+
+
+
 }

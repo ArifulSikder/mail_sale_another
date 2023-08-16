@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\AppSettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CkEditorController;
+use App\Http\Controllers\CustomerMessageController;
 use App\Http\Controllers\HomePageController;
 use App\Http\Controllers\PaymentApiController;
 use App\Http\Controllers\ProductController;
@@ -68,14 +69,31 @@ Route::get('product-description/{product_id}', [ProductController::class, 'produ
 Route::post('add-product-description', [ProductController::class, 'storeProductDescription'])->name('add-product-description');
 Route::post('update-product-description', [ProductController::class, 'updateProductDescription'])->name('update-product-description');
 
+// Stock management 
+//  Stock
+Route::get('stocks', [ProductController::class, 'indexStock'])->name('stocks');
+Route::post('store-stock', [ProductController::class, 'storeStock'])->name('store-stock');
+Route::post('update-stock', [ProductController::class, 'updateStock'])->name('update-stock');
+Route::get('delete-stock/{id}', [ProductController::class, 'deleteStock'])->name('delete-stock');
+
+//seller
+Route::get('sellers', [ProductController::class, 'indexSeller'])->name('sellers');
+Route::post('store-seller', [ProductController::class, 'storeSeller'])->name('store-seller');
+Route::post('update-seller', [ProductController::class, 'updateSeller'])->name('update-seller');
+Route::get('update-seller-status/{id}/{status}', [ProductController::class, 'updatSellerStatus'])->name('update-seller-status');
+
+//coupon
+Route::get('coupons', [ProductController::class, 'indexCoupon'])->name('coupons');
+Route::post('store-coupon', [ProductController::class, 'storeCoupon'])->name('store-coupon');
+Route::post('update-coupon', [ProductController::class, 'updateCoupon'])->name('update-coupon');
+Route::get('update-coupon-status/{id}/{status}', [ProductController::class, 'updatCouponStatus'])->name('update-coupon-status');
+Route::get('delete-coupon/{id}', [ProductController::class, 'deleteCoupon'])->name('delete-coupon');
+
 // app settings
 Route::get('app-settings', [AppSettingController::class, 'index'])->name('app-settings');
 Route::post('store-app-setting', [AppSettingController::class, 'storeSetting'])->name('store-setting');
 
-
-
 //home page 
-
 Route::get('home-details', [HomePageController::class, 'showDetails'])->name('home-details');
 Route::post('store-home-details', [HomePageController::class, 'storeDetails'])->name('store-details');
 Route::post('update-home-details', [HomePageController::class, 'updateDetails'])->name('update-details');
@@ -120,7 +138,6 @@ Route::post('update-faq-category', [HomePageController::class, 'updateFaqCategor
 Route::get('update-faq-status/{id}/{status}', [HomePageController::class, 'updatFaqStatus'])->name('update-faq-status');
 Route::get('delete-faq-category/{id}', [HomePageController::class, 'deleteFaqCategory'])->name('delete-faq-category');
 
-
 // FAQ Question
 Route::get('add-faq-question/{cat_id}', [HomePageController::class, 'addFaqQuestion'])->name('add-faq-question');
 Route::post('store-faq-question', [HomePageController::class, 'StoreFaqQuestion'])->name('store-faq-question');
@@ -129,19 +146,12 @@ Route::get('update-question-status/{id}/{status}', [HomePageController::class, '
 Route::get('delete-faq-question/{id}', [HomePageController::class, 'deleteFaqQues'])->name('delete-faq-question');
 Route::get('update-question-status/{id}/{status}', [HomePageController::class, 'updatFaqQuesStatus'])->name('update-question-status');
 
-// Customer Contact 
-Route::get('customer-contact', [HomePageController::class, 'customerContact'])->name('customer-contact');
-Route::get('show-individual-message/{id}', [HomePageController::class, 'individualMessage'])->name('show-individual-message');
-Route::get('update-contact-status/{id}/{status}', [HomePageController::class, 'updatContactStatus'])->name('update-contact-status');
-Route::delete('delete-customer-message', [HomePageController::class, 'deleteCustomerMessage'])->name('delete-customer-message');
-
 // About Us
 Route::get('show-about-us', [HomePageController::class, 'aboutUs'])->name('show-about-us');
 Route::post('store-about-us', [HomePageController::class, 'storeAboutUs'])->name('store-about-us');
 Route::post('update-about-us', [HomePageController::class, 'updateAboutUs'])->name('update-about-us');
 Route::get('update-about-staus/{id}/{status}', [HomePageController::class, 'updatAboutStatus'])->name('update-about-status');
 Route::get('delete-about-us/{id}', [HomePageController::class, 'deleteAboutUs'])->name('delete-about-us');
-
 
 //Payment Api
 Route::get('pay-api-list', [PaymentApiController::class, 'payApiList'])->name('pay-api-list');
@@ -150,24 +160,15 @@ Route::post('update-pay-api', [PaymentApiController::class, 'updatePayApi'])->na
 Route::get('update-payapi-status/{id}/{status}', [PaymentApiController::class, 'updatApiStatus'])->name('update-payapi-status');
 Route::get('delete-payapi/{id}', [PaymentApiController::class, 'deletePayapi'])->name('delete-payapi');
 
+// Customer Contact 
+Route::get('customer-contact', [CustomerMessageController::class, 'customerContact'])->name('customer-contact');
+Route::get('show-individual-message/{id}', [CustomerMessageController::class, 'individualMessage'])->name('show-individual-message');
+Route::get('update-contact-status/{id}/{status}', [CustomerMessageController::class, 'updatContactStatus'])->name('update-contact-status');
+Route::delete('delete-customer-message', [CustomerMessageController::class, 'deleteCustomerMessage'])->name('delete-customer-message');
 
-// Stock management 
-//  Stock
-Route::get('stocks', [HomePageController::class, 'indexStock'])->name('stocks');
-Route::post('store-stock', [HomePageController::class, 'storeStock'])->name('store-stock');
-Route::post('update-stock', [HomePageController::class, 'updateStock'])->name('update-stock');
-Route::get('delete-stock/{id}', [HomePageController::class, 'deleteStock'])->name('delete-stock');
-
-//seller
-Route::get('sellers', [HomePageController::class, 'indexSeller'])->name('sellers');
-Route::post('store-seller', [HomePageController::class, 'storeSeller'])->name('store-seller');
-Route::post('update-seller', [HomePageController::class, 'updateSeller'])->name('update-seller');
-Route::get('update-seller-status/{id}/{status}', [HomePageController::class, 'updatSellerStatus'])->name('update-seller-status');
-
-
-//coupon
-Route::get('coupons', [HomePageController::class, 'indexCoupon'])->name('coupons');
-Route::post('store-coupon', [HomePageController::class, 'storeCoupon'])->name('store-coupon');
-Route::post('update-coupon', [HomePageController::class, 'updateCoupon'])->name('update-coupon');
-Route::get('update-coupon-status/{id}/{status}', [HomePageController::class, 'updatCouponStatus'])->name('update-coupon-status');
-Route::get('delete-coupon/{id}', [HomePageController::class, 'deleteCoupon'])->name('delete-coupon');
+// SMS Templete 
+Route::get('sms-templete', [CustomerMessageController::class, 'smsTemplete'])->name('sms-templete');
+Route::post('store-sms-templete', [CustomerMessageController::class, 'storeSmsTemplete'])->name('store-sms-templete');
+Route::post('update-sms-templete', [CustomerMessageController::class, 'updateSmsTemplete'])->name('update-sms-templete');
+Route::get('update-templete-status/{id}/{status}', [CustomerMessageController::class, 'updatTempleteStatus'])->name('update-templete-status');
+Route::get('delete-templete/{id}', [CustomerMessageController::class, 'deleteTemplete'])->name('delete-templete');

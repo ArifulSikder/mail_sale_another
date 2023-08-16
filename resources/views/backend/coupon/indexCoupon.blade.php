@@ -45,12 +45,13 @@
                             <tr>
                                 <th scope="col" style="width: 5%">Serial</th>
                                 <th scope="col" style="width: 15%">Coupon Name</th>
-                                <th scope="col" style="width: 15%">Start Date</th>
-                                <th scope="col" style="width: 15%">End Date</th>
-                                <th scope="col" style="width: 15%">Coupon Discount</th>
+                                <th scope="col" style="width: 13%">Start Date</th>
+                                <th scope="col" style="width: 13%">End Date</th>
+                                <th scope="col" style="width: 10%">Coupon Discount</th>
                                 <th scope="col" style="width: 10%">Active Status</th>
-                                <th scope="col" style="width: 10%">Add Date</th>
-                                <th scope="col" style="width: 15%">Action</th>
+                                <th scope="col" style="width: 10%">Validity Status</th>
+                                <th scope="col" style="width: 12%">Add Date</th>
+                                <th scope="col" style="width: 12%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -66,8 +67,12 @@
                                     <td>{{ $coupon->coupon_discount }} %</td>
                                         
                                     <td><span
-                                            class="badge badge-{{ $coupon->active_status == 0 ? 'danger': 'success' }}">{{ $coupon->active_status == 0 ? 'Inactive': 'Active' }}</span>
+                                            class="badge badge-{{ $coupon->active_status == 0 ? 'danger': 'success' }}">{{ $coupon->active_status == 0 ? 'Inactive': 'Active' }}
+                                        </span>
                                     </td>
+                                    <td><span
+                                        class="badge badge-{{ $coupon->active_status == 0 ? 'danger': 'success' }}">{{ $coupon->active_status == 0 ? 'Invalid': 'Valid' }}
+                                    </span></td>
                                     <td>{{ $coupon->created_at->toFormateDate() }}</td>
                                     <td>    
                                         <button type="button" 
@@ -133,13 +138,22 @@
 
                     </div>
                     <div class="form-group">
+                        <label for="products">Products</label>  <br>
+                        <select class="form-control js-example-basic-multiple"  name="products[]" multiple="multiple">
+                            @foreach ($products as $product)
+                            <option value="{{ $product->name }}">{{ $product->name }}</option>
+                            @endforeach
+                          </select>
+                        <span class="text-danger validate" data-field="products"></span>
+                    </div>
+                    <div class="form-group">
                         <label for="start_date">Start Date</label>
-                        <input type="date" class="form-control" name="start_date"  >
+                        <input type="datetime-local" class="form-control" name="start_date"  >
                         <span class="text-danger validate" data-field="start_date"></span>
 
                     </div>
                     <div class="form-group">
-                        <label for="end_date">Start Date</label>
+                        <label for="end_date">End Date</label>
                         <input type="date" class="form-control" name="end_date"  >
                         <span class="text-danger validate" data-field="end_date"></span>
 
@@ -329,6 +343,9 @@
                     }
 
                 });
+          });
+          $(document).ready(function() {
+              $('.js-example-basic-multiple').select2();
           });
     });  
   </script>

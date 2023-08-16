@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('start_date');
             $table->string('end_date');
             $table->integer('coupon_discount');
+            $table->integer('limit');
+            $table->boolean('validity_status')->default(1);
             $table->boolean('active_status')->default(1);
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();

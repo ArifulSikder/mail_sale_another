@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\AppearanceController;
+use App\Http\Controllers\CustomerMessageController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -35,12 +36,11 @@ Route::post('/login-from-checkout-page', [AppearanceController::class, 'loginFro
 Route::post('/order-information', [AppearanceController::class, 'orderInformation'])->name('order-information');
 Route::post('/stripe', [AppearanceController::class, 'stripePayment'])->name('stripe.post');
 
-//contact 
-Route::post('store-customer-message', [AppearanceController::class, 'storeCustomerMessage'])->name('store-customer-message');
-
 //review 
 Route::post('store-customer-review', [AppearanceController::class, 'storeCustomerReview'])->name('store-customer-review');
 
+//contact 
+Route::post('store-customer-message', [CustomerMessageController::class, 'storeCustomerMessage'])->name('store-customer-message');
 
 
 Route::get('/remove/{id}', function($id){

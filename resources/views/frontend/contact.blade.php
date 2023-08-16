@@ -33,7 +33,11 @@
 
                           <span class="text-danger validate" data-field="message"></span>
                       </div>
-                      <button type="submit" class="btn log-in-button">Submit</button>
+                      <button type="submit" class="btn log-in-button" id="submit">Submit</button>
+                      <div style="display: none" id="loading">
+                          <img style="height: 50px" src="{{ asset('frontend/assets/images/load.gif') }}" alt=""> <span>Snding Message To Admin</span>
+                      </div>
+                      
                   </form>
               </div>
           </div>
@@ -44,49 +48,58 @@
 
 @section('script')
     <script>
-        //add form
-        $("#formData").submit(function (e) {
-            e.preventDefault();
+        $(document).ready(function () {
+            
+                //add form
+            $("#formData").submit(function (e) {
+                e.preventDefault();
 
-            var formData = new FormData($("#formData")[0]);
-            $.ajax({
-                type: "POST",
-                url: "{{ route('store-customer-message') }}",
-                // dataType: "json",
-                contentType: false,
-                processData: false,
-                data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                beforeSend: function() {
-                    // setting a timeout
-                    // $(placeholder).addClass('loading');
-                },
-                success: function (response) {
-                        if (response.success) {
-                            toastr.success(response.success);
-                        } else if (response.error) {
-                            toastr.error(response.error);
+                var formData = new FormData($("#formData")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('store-customer-message') }}",
+                    // dataType: "json",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    beforeSend: function() {
+                            $("#submit").hide();
+                            $("#loading").show();
+                    },
+                    success: function (response) {
+                            if (response.success) {
+                                toastr.success(response.success);
+                            } else if (response.error) {
+                                toastr.error(response.error);
+                            }
+                    },
+                    error: function (error) {
+                        $('.validate').text('');
+                            $.each(error.responseJSON.errors, function (field_name, error) { 
+                                const errorElement = $('.validate[data-field="' + field_name + '"]');
+                                if (errorElement.length > 0) {
+                                    errorElement.text(error[0]);
+                                    toastr.error(error);
+                                }
+                        });
+                        $("#submit").show();
+                        $("#loading").hide();
+                    },
+                    complete: function (done) {
+                        if (done.status == 200) {
+                            window.location.reload();
                         }
-                },
-                error: function (error) {
-                    $('.validate').text('');
-                        $.each(error.responseJSON.errors, function (field_name, error) { 
-                             const errorElement = $('.validate[data-field="' + field_name + '"]');
-                             if (errorElement.length > 0) {
-                                errorElement.text(error[0]);
-                                toastr.error(error);
-                             }
-                    });
-                },
-                complete: function (done) {
-                    if (done.status == 200) {
-                        window.location.reload();
                     }
-                }
+                });
             });
+
+
+            
         });
+       
     </script>
 @endsection
 

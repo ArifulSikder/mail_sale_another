@@ -124,8 +124,6 @@
                     </ul>
                 </li>
 
-<<<<<<< HEAD
-=======
                 <!-- Stoct Management  -->
                 <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'active' : '' }}">
@@ -165,7 +163,6 @@
                     </ul>
                 </li>
 
->>>>>>> ariful
                 <!-- About us  -->
                 <li class="nav-item {{ request()->is(['show-about-us']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['show-about-us']) ? 'active' : '' }}">

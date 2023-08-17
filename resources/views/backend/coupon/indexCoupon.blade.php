@@ -71,7 +71,7 @@
                                         </span>
                                     </td>
                                     <td><span
-                                        class="badge badge-{{ $coupon->active_status == 0 ? 'danger': 'success' }}">{{ $coupon->active_status == 0 ? 'Invalid': 'Valid' }}
+                                        class="badge badge-{{ $coupon->end_date > $coupon->start_date ? 'danger': 'success' }}">{{ $coupon->end_date > $coupon->start_date ? 'Invalid': 'Valid' }}
                                     </span></td>
                                     <td>{{ $coupon->created_at->toFormateDate() }}</td>
                                     <td>    
@@ -138,12 +138,12 @@
 
                     </div>
                     <div class="form-group">
-                        <label for="products">Products</label>  <br>
-                        <select class="form-control js-example-basic-multiple"  name="products[]" multiple="multiple">
+                        <label for="product_id">Products</label>  <br>
+                        <select class="form-control js-example-basic-multiple" style="width: 100%"  name="product_id[]" multiple="multiple">
                             @foreach ($products as $product)
-                            <option value="{{ $product->name }}">{{ $product->name }}</option>
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
                             @endforeach
-                          </select>
+                        </select>
                         <span class="text-danger validate" data-field="products"></span>
                     </div>
                     <div class="form-group">
@@ -154,7 +154,7 @@
                     </div>
                     <div class="form-group">
                         <label for="end_date">End Date</label>
-                        <input type="date" class="form-control" name="end_date"  >
+                        <input type="datetime-local" class="form-control" name="end_date"  >
                         <span class="text-danger validate" data-field="end_date"></span>
 
                     </div>
@@ -162,9 +162,12 @@
                         <label for="coupon_discount">Coupon Discount</label>
                         <input type="number" class="form-control" name="coupon_discount" placeholder="Enter Coupon Discount">
                         <span class="text-danger validate" data-field="coupon_discount"></span>
-
                     </div>
-
+                    <div class="form-group">
+                        <label for="limit">Limit</label>
+                        <input type="number" class="form-control" name="limit" placeholder="Enter Limit">
+                        <span class="text-danger validate" data-field="limit"></span>
+                    </div>
                     <div class="form-group">
                         <label for="active_status">Active Status</label>
                         <select class="form-control select2" name="active_status" id="active_status"

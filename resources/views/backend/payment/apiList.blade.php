@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Product Guarantee')
+@section('title', 'API List')
 
 @section('section')
     <div class="content-wrapper">
@@ -9,14 +9,14 @@
             <div class="container-fluid">
                 <div class="mb-2 row">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Api List</h1>
+                        <h1 class="m-0">API List</h1>
 
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="{{ url('dashboard') }}">Dashboard</a>
                             </li>
-                            <li class="breadcrumb-item active">Api List</li>
+                            <li class="breadcrumb-item active">API List</li>
                         </ol>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
@@ -30,14 +30,14 @@
                 <div class="my-1 d-flex justify-content-between">
                     <div>
                         <button type="button" class="btn btn-success " data-toggle="modal" data-target="#addapi"><i
-                                class="fas fa-plus"></i> Add Api</button>
+                                class="fas fa-plus"></i> Add API</button>
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="search" placeholder="Search By Category Name">
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-header">Api List Table</div>
+                    <div class="card-header">API List Table</div>
                     <div class="card-body">
                         <table class="table table-bordered">
                             <thead>

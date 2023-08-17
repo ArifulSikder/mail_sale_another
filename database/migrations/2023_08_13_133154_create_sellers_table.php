@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('sellers', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('seller_name');
+            $table->string('seller_name');
             $table->string('address');
             $table->string('phone');
             $table->boolean('active_status')->default(1);

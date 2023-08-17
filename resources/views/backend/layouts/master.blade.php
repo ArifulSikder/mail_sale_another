@@ -27,7 +27,15 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     <div id="preloader">
-        <div id="loader"></div>
+        <div class="load-me">
+            <div class="la-ball-running-dots la-2x ball-color">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
     </div>
     <div class="wrapper">
         <!-- Navbar -->
@@ -126,9 +134,14 @@
     {{-- custom script --}}
     <script>
         window.onload = function() {
-            $('.wrapper, .main-footer').css('display', 'block');
-            $('#content').fadeOut().css('display', 'none');
-        }
+            window.addEventListener("beforeunload", function(e) {
+                $('#preloader').fadeIn();
+                $('.wrapper,.main-footer').hide();
+
+            });
+            $('#preloader').fadeOut();
+            $('.wrapper,.main-footer').show();
+        };
     </script>
 
     @if (Session::has('success'))

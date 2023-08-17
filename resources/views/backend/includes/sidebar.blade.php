@@ -124,6 +124,45 @@
                     </ul>
                 </li>
 
+                <!-- Stoct Management  -->
+                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'active' : '' }}">
+                        <i class="nav-icon fab fa-product-hunt"></i>
+                        <p>
+                            Product Management
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                            
+                        <li class="nav-item">
+                            <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Seller</p>
+                            </a>
+                        </li>   
+                            
+                        <li class="nav-item">
+                            <a href="{{ route('purchase') }}" class="nav-link {{ request()->is(['purchase']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Purchase</p>
+                            </a>
+                        </li>   
+                        <li class="nav-item">
+                            <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Stock</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('coupons') }}" class="nav-link {{ request()->is(['coupons']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Coupon</p>
+                            </a>
+                        </li>        
+                    </ul>
+                </li>
+
                 <!-- About us  -->
                 <li class="nav-item {{ request()->is(['show-about-us']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['show-about-us']) ? 'active' : '' }}">

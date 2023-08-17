@@ -11,23 +11,17 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
-use App\Mail\ReciveMail;
-use App\Mail\SenMail;
-use App\Models\CustomerMessage;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
+use App\Models\ProductGuarantee;
 use App\Models\Review;
 use App\Models\Slider;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
-use Illuminate\View\View;
 use Stripe\Stripe;
-use Stripe\Token;
 use Stripe\Charge;
 
 
@@ -39,6 +33,7 @@ class AppearanceController extends Controller
             ->where('active_status', 1)
             ->get();
         $data['meet_teams'] = MeetTeam::where('active_status', '1')->oldest()->take(3)->get();
+        $data['gurantees'] = ProductGuarantee::where('active_status', '1')->oldest()->take(3)->get();
         $data['home_pave']  = HomePaveshop::where('active_status', '1')->first();
         $data['slider']     = Slider::where('active_status', '1')->first();
 

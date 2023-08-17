@@ -1,4 +1,5 @@
-    <!-- footer Section start -->
+   
+   <!-- footer Section start -->
     <footer class="footer_area">
       <div class="footer-top">
         <div class="container">
@@ -9,13 +10,13 @@
                   <div class="footer-about">
                     <h5 class="footer-title">About Us</h5>
                     <img class="footer-logo" src="./assets/images/logo.png" alt="">
-                    <p>Maecenas pellentesque placerat quam, in finibus nisl tincidunt sed. Aliquam magna
-                        augue, malesuada ut feugiat eget, cursus eget felis.</p>
+                    <p>{{ $setting != null ? $setting->about_des : '' }}</p>
+                      
                     <div class="social_icon">
-                        <a href=""><i class="fab fa-facebook-f"></i></a>
-                        <a href=""><i class="fab fa-linkedin-in"></i></a>
-                        <a href=""> <i class="fab fa-instagram"></i></a>
-                        <a href=""> <i class="fab fa-twitter"></i></a>
+                        <a href="{{ $setting != null ? $setting->fb_link : '#' }}" target="blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="{{ $setting != null ? $setting->linkedin_link : '#' }}" target="blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="{{ $setting != null ? $setting->instagram_link : '#' }}" target="blank"> <i class="fab fa-instagram"></i></a>
+                        <a href="{{ $setting != null ? $setting->twitter_link : '#' }}" target="blank"> <i class="fab fa-twitter"></i></a>
                     </div>
                   </div>
                 </div>
@@ -42,15 +43,16 @@
                     <ul>
                         <li>
                             <i class="fas fa-home"></i>
-                            25 Kaki Bukit, Ave 3, 415923
+                            {{ $setting != null ? $setting->address : '' }}
                         </li>
                         <li>
                             <i class="fas fa-phone-alt"></i>
-                           +6589296011
+                            {{ $setting != null ? $setting->phone : '' }}
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            hossainaltab2820@gmail.com
+                            {{ $setting != null ? $setting->email : '' }}
+
                         </li>
                     </ul>
                 </div>

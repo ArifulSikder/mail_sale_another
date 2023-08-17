@@ -1,4 +1,6 @@
-    <!-- header section start -->
+
+
+<!-- header section start -->
     <header class="header">
       <!-- Header Top Start -->
       <div class="header-top section">
@@ -10,12 +12,12 @@
                   <!-- Header Links -->
                   <ul class="header-links">
                     <li class="header-social">
-                      <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
-                      <a href="#"><i class="fa-brands fa-instagram"></i></a>
-                      <a href="#"><i class="fa-brands fa-twitter"></i></a>
-                      <a href="#"><i class="fa-regular fa-envelope"></i></a>
-                      <a href="#"><i class="fa-brands fa-pinterest-p"></i></a>
-                      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                      <a href="{{ $setting != null ? $setting->fb_link : '#' }}"><i class="fa-brands fa-facebook-f"></i></a>
+                      <a href="{{ $setting != null ? $setting->instagram_link : '#' }}"><i class="fa-brands fa-instagram"></i></a>
+                      <a href="{{ $setting != null ? $setting->twitter_link : '#' }}"><i class="fa-brands fa-twitter"></i></a>
+                      <a href="{{ $setting != null ? $setting->email : '#' }}"><i class="fa-regular fa-envelope"></i></a>
+                      <a href="{{ $setting != null ? $setting->pinterest_link : '#' }}"><i class="fa-brands fa-pinterest-p"></i></a>
+                      <a href="{{ $setting != null ? $setting->linkedin_link : '#' }}"><i class="fa-brands fa-linkedin"></i></a>
                     </li>
                         @guest
                           <li><a href="{{ url('login') }}"><i class="fa fa-user-circle-o"></i>Sign Up</a></li>
@@ -37,7 +39,7 @@
               <!-- Header Logo -->
               <div class="header-logo col-md-4 col-sm-4">
                   <a href="{{ url('/') }}" class="logo">
-                    <img src="{{ asset('frontend/assets/images/logo.png') }}" alt="Logo">
+                    <img src="{{ asset($setting->logo) }}" alt="{{ $setting->logo_alt }}">
                   </a>
               </div>
               <!-- Header Banner -->

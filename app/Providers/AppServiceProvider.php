@@ -17,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
+
     }
 
     /**
@@ -33,6 +34,8 @@ class AppServiceProvider extends ServiceProvider
           return  $this->format('Y-m-d');
         });
 
+        $setting = \App\Models\AppSetting::first();
+        View::share('setting', $setting);
         
         $categories = Category::with('subcategories')->where('parent_id', null)->where('active_status', 1)->get();
         View::share('categories', $categories);

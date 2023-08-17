@@ -11,6 +11,7 @@ use App\Models\ProductDescription;
 use App\Models\ProductDetail;
 use App\Models\Seller;
 use App\Models\StockManagement;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -603,19 +604,22 @@ class ProductController extends Controller
     // add coupon
     public function indexCoupon()
     {
+        
         $data['coupons'] = Coupon::latest()->paginate(15);
         $data['products'] = Product::latest()->get();
         return view('backend.coupon.indexCoupon', $data);
+        // return Carbon::now();
+      
     }
 
     // store coupon
     public function storeCoupon(Request $request)
     {
-   
         Validator::make($request->all(), [
             'coupon_name' => 'required|string',
             'start_date' => 'required|string',
             'limit' => 'required|numeric',
+            'product_id' => 'required',
             'end_date' => 'required|string|max:20',
             'coupon_discount' => 'required|numeric|between:1,100',
             'active_status' =>  'required|in:0,1',
@@ -625,6 +629,7 @@ class ProductController extends Controller
             'end_date.required' => 'Please Enter End Date',
             'coupon_discount.required' => 'Please Enter Coupon Discount',
             'limit.required' => 'Please Enter Limit',
+            'product_id.required' => 'Please Select The Products',
             'active_status.required' =>  'Please Select The Active Status',
         ])->validate();
 
@@ -661,19 +666,25 @@ class ProductController extends Controller
             'coupon_name' => 'required|string',
             'start_date' => 'required|string',
             'end_date' => 'required|string|max:20',
+            'product_id' => 'required|numeric',
+            'limit' => 'required|numeric',
             'coupon_discount' => 'required|numeric|between:1,100',
             'active_status' =>  'required|in:0,1',
         ],[
             'coupon_name.required' => 'Please Enter The Coupon Name',
             'start_date.required' => 'Please Enter Start Date',
             'end_date.required' => 'Please Enter End Date',
+            'limit.required' => 'Please Enter Limit',
+            'product_id.required' => 'Please Select The Products',
             'coupon_discount.required' => 'Please Enter Coupon Discount',
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
 
         $coupon = Coupon::findOrFail($request->edit_id); 
         $coupon->coupon_name = $request->coupon_name;
+        $coupon->product_id = $request->product_id;
         $coupon->start_date = $request->start_date;
+        $coupon->limit = $request->limit;
         $coupon->end_date = $request->end_date;
         $coupon->coupon_discount = $request->coupon_discount;
         $coupon->active_status = $request->active_status;

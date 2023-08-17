@@ -45,6 +45,10 @@
   }
 
 </style>
+
+@php
+    $setting = \App\Models\AppSetting::first();
+@endphp
   <!-- product details section start -->
   <section class="product_details">
     <div class="container">
@@ -83,22 +87,22 @@
               <div class="items d-flex text-center">
                 <img src="{{ asset('frontend') }}/assets/images/all-images/25b6.png" width="15" height="15" alt="Email">
                 <h6 class="fw-bold ms-2 me-1">Email:</h6>&nbsp;
-                <p>pvaeshop@gmail.com</p>
+                <p>{{ $setting != null ? $setting->email : '#' }}</p>
               </div>
               <div class="items d-flex text-center">
                 <img src="{{ asset('frontend') }}/assets/images/all-images/25b6.png" width="15" height="15" alt="Skype">
                 <h6 class="fw-bold ms-2 me-1">Skype:</h6>&nbsp;
-                <p>live:.cid.3e346e647754bcb7</p>
+                <p>{{ $setting != null ? $setting->skype : '#' }}</p>
               </div>
               <div class="items d-flex text-center">
                 <img src="{{ asset('frontend') }}/assets/images/all-images/25b6.png" width="15" height="15" alt="TELEGRAM">
                 <h6 class="fw-bold ms-2 me-1">TELEGRAM:</h6>&nbsp;
-                <p>Pvaeshop</p>
+                <p>{{ $setting != null ? $setting->telegram : '#' }}</p>
               </div>
               <div class="items d-flex text-center">
                 <img src="{{ asset('frontend') }}/assets/images/all-images/25b6.png" width="15" height="15" alt="WhatsApp">
                 <h6 class="fw-bold ms-2 me-1">WhatsApp: </h6>&nbsp;
-                <p>+12135109004</p>
+                <p>{{ $setting != null ? $setting->whatsapp : '#' }}</p>
               </div>
               <div class="quantity">
                 <form action="{{ route('add-to-cart') }}" method="POST">
@@ -367,11 +371,11 @@
                            }
                       });
                   },
-                  // complete: function (done) {
-                  //     if (done.status == 200) {
-                  //         window.location.reload();
-                  //     }
-                  // }
+                  complete: function (done) {
+                      if (done.status == 200) {
+                          window.location.reload();
+                      }
+                  }
                   
 
               });

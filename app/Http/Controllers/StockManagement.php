@@ -29,7 +29,7 @@ class StockManagement extends Controller
                 'product_id' => 'required|integer|min:1',
                 'seller_id' => 'required|integer|min:1',
                 'quantity' => 'required|integer|min:1',
-                'per_price' => 'required|date|min:1',
+                'per_price' => 'required|min:1',
             ],
             [
                 'date.required' => 'Date is required',

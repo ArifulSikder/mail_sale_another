@@ -1,7 +1,7 @@
 
 @extends('backend.layouts.master')
 
-@section('title', 'Add Policy')
+@section('title', 'App Setting')
 
 @section('section')
 <div class="content-wrapper">

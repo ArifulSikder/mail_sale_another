@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'Meet Team')
+@section('title', 'Slider')
 
 @section('section')
     <div class="content-wrapper">

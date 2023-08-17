@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'About Us')
+@section('title', 'Coupon')
 
 @section('section')
 <div class="content-wrapper">
@@ -45,35 +45,47 @@
                             <tr>
                                 <th scope="col" style="width: 5%">Serial</th>
                                 <th scope="col" style="width: 15%">Coupon Name</th>
-                                <th scope="col" style="width: 13%">Start Date</th>
-                                <th scope="col" style="width: 13%">End Date</th>
+                                <th scope="col" style="width: 15%">Product Name</th>
+                                <th scope="col" style="width: 10%">Start Date</th>
+                                <th scope="col" style="width: 10%">End Date</th>
                                 <th scope="col" style="width: 10%">Coupon Discount</th>
                                 <th scope="col" style="width: 10%">Active Status</th>
                                 <th scope="col" style="width: 10%">Validity Status</th>
-                                <th scope="col" style="width: 12%">Add Date</th>
-                                <th scope="col" style="width: 12%">Action</th>
+                                <th scope="col" style="width: 15%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php
                                 $serials = ($coupons->currentpage() - 1) * $coupons->perpage() + 1;
+
+                                
                             @endphp 
                             @foreach($coupons as $coupon)
                                 <tr>
                                     <th>{{ $serials++ }}</th>
                                     <td>{{ $coupon->coupon_name }}</td>
-                                    <td>{{ $coupon->start_date }}</td>
-                                    <td>{{ $coupon->end_date }}</td>
+                                    <td>{{ $coupon->product->name }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($coupon->start_date) }}</td>
+                                    <td>{{ \Carbon\Carbon::parse($coupon->end_date) }}</td>
                                     <td>{{ $coupon->coupon_discount }} %</td>
-                                        
+                                    
                                     <td><span
                                             class="badge badge-{{ $coupon->active_status == 0 ? 'danger': 'success' }}">{{ $coupon->active_status == 0 ? 'Inactive': 'Active' }}
                                         </span>
                                     </td>
-                                    <td><span
-                                        class="badge badge-{{ $coupon->end_date > $coupon->start_date ? 'danger': 'success' }}">{{ $coupon->end_date > $coupon->start_date ? 'Invalid': 'Valid' }}
-                                    </span></td>
-                                    <td>{{ $coupon->created_at->toFormateDate() }}</td>
+                                    <td>
+                                            @php
+                                                $startDateTime = \Carbon\Carbon::parse($coupon->start_date);
+                                                $endDateTime = \Carbon\Carbon::parse($coupon->end_date);
+                                                $currentDateTime = \Carbon\Carbon::now();
+
+                                                if ($currentDateTime->between($startDateTime, $endDateTime) || $currentDateTime->eq($startDateTime) || $currentDateTime->eq($endDateTime)) {
+                                                    echo "<span class='badge badge-success'>Valid</span>";
+                                                } else {
+                                                    echo "<span class='badge badge-danger'>invalid</span>";
+                                                }
+                                            @endphp
+                                    </td>
                                     <td>    
                                         <button type="button" 
                                                 class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
@@ -89,8 +101,10 @@
                                                 <button type="button"
                                                     data-id="{{ $coupon->id }}"
                                                     data-coupon_name="{{ $coupon->coupon_name }}"
+                                                    data-product_id="{{ $coupon->product_id }}"
                                                     data-start_date="{{ $coupon->start_date }}"
                                                     data-end_date="{{ $coupon->end_date }}"
+                                                    data-limit="{{ $coupon->limit }}"
                                                     data-coupon_discount="{{ $coupon->coupon_discount }}"
                                                     data-active_status="{{ $coupon->active_status }}"
                                                     class="btn btn-success btn-sm editData btn-block">
@@ -209,14 +223,25 @@
 
                     </div>
                     <div class="form-group">
+                        <label for="product_id">Product</label>
+                        <select class="form-control select2" name="product_id" id="product_id_e"
+                            data-placeholder="Select Product" style="width: 100%">
+                            <option value="">Choose Product</option>
+                            @foreach ($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
+                        <span class="text-danger validate_e" data-field="product_id"></span>
+                    </div>
+                    <div class="form-group">
                         <label for="start_date">Start Date</label>
-                        <input type="date" class="form-control" name="start_date"  id="start_date_e">
+                        <input type="datetime-local" class="form-control" name="start_date"  id="start_date_e">
                         <span class="text-danger validate_e" data-field="start_date"></span>
 
                     </div>
                     <div class="form-group">
-                        <label for="end_date">Start Date</label>
-                        <input type="date" class="form-control" name="end_date"  id="end_date_e">
+                        <label for="end_date">End Date</label>
+                        <input type="datetime-local" class="form-control" name="end_date"  id="end_date_e">
                         <span class="text-danger validate_e" data-field="end_date"></span>
 
                     </div>
@@ -226,7 +251,11 @@
                         <span class="text-danger validate_e" data-field="coupon_discount"></span>
 
                     </div>
-
+                    <div class="form-group">
+                        <label for="limit">Limit</label>
+                        <input type="number" class="form-control" name="limit" id="limit_e">
+                        <span class="text-danger validate" data-field="limit"></span>
+                    </div>
                     <div class="form-group">
                         <label for="active_status">Active Status</label>
                         <select class="form-control select2" name="active_status" id="active_status_e"
@@ -304,7 +333,9 @@
                 $('#coupon_name_e').val($(this).data('coupon_name'));
                 $('#start_date_e').val($(this).data('start_date'));
                 $('#end_date_e').val($(this).data('end_date'));
+                $('#limit_e').val($(this).data('limit'));
                 $('#coupon_discount_e').val($(this).data('coupon_discount'));
+                $('#product_id_e').val($(this).data('product_id')).trigger('change');
                 $('#active_status_e').val($(this).data('active_status')).trigger('change');
             });
 

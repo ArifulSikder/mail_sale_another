@@ -46,8 +46,9 @@
                                     <th scope="col" style="width: 5%">Serial</th>
                                     <th scope="col" style="width: 20%">Product Name</th>
                                     <th scope="col" style="width: 20%">Seller Name</th>
-                                    <th scope="col" style="width: 15%">Quantity</th>
-                                    <th scope="col" style="width: 15%">Per Price</th>
+                                    <th scope="col" style="width: 10%">Quantity</th>
+                                    <th scope="col" style="width: 10%">Per Price</th>
+                                    <th scope="col" style="width: 10%">Lot Number</th>
                                     <th scope="col" style="width: 15%">Date</th>
                                     <th scope="col" style="width: 15%">Action</th>
                                 </tr>
@@ -63,7 +64,7 @@
                                         <td>{{ $purchase->seller->seller_name }}</td>
                                         <td>{{ $purchase->quantity }}</td>
                                         <td>{{ $purchase->per_price }}</td>
-                                        <td>{{ $purchase->lot_number }}</td>
+                                        <td>{{ $purchase->id }}</td>
                                         <td>{{ $purchase->date->toFormateDate() }}</td>
                                         <td>
                                             <button type="button"
@@ -72,12 +73,12 @@
                                                 Options
                                             </button>
                                             <div class="text-center dropdown-menu bg-light-blue">
-                                                <button type="button" data-purchase="{{ $purchase }}"
+                                                <button type="button" data-purchase="{{ $purchase }}" data-date="{{  \Carbon\Carbon::parse($purchase->date)->format('Y-m-d\TH:i:s'); }}"
                                                     class="btn btn-success btn-sm editData btn-block">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
 
-                                                <a href="{{ route('delete-purchase', ['id' => $purchase->id]) }}" id="delete"
+                                                <a href="{{ route('delete-purchase', ['purchase' => $purchase->id]) }}" id="delete"
                                                     class="btn btn-danger btn-sm btn-block"><i class="fas fa-trash"></i>
                                                     Delete</a>
                                             </div>
@@ -179,17 +180,29 @@
                 </div>
                 <form id="editData">
                     <div class="modal-body">
-                        <input type="hidden" id="id_e" name="edit_id">
-
+                        <input type="hidden" name="id" id="id_e">
+                        
                         <div class="form-group">
-                            <label for="product_name">Product Name</label>
-                            <input type="text" class="form-control" name="product_name" id="product_name_e">
-                            <span class="text-danger validate_e" data-field="product_name"></span>
+                            <label for="date_e">Purchase Date</label>
+                            <input type="datetime-local" class="form-control" name="date" id="date_e" placeholder="Select Date">
+                            <span class="text-danger validate" data-field="date"></span>
 
+                        </div>
+                        <div class="form-group">
+                            <label for="product_id_e">Product Name</label>
+                            <select class="form-control select2" name="product_id" id="product_id_e"
+                                data-placeholder="Select Product" style="width: 100%">
+                                <option value="">Select Product</option>
+                                @foreach ($products as $product)
+                                    <option value="{{ $product->id }}">{{ $product->name }}</option>
+                                @endforeach
+
+                            </select>
+                            <span class="text-danger validate" data-field="product_id"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="seller_id">Select Seller</label>
+                            <label for="seller_id_e">Select Seller</label>
                             <select class="form-control select2" name="seller_id" id="seller_id_e"
                                 data-placeholder="Select Seller" style="width: 100%">
                                 <option value="">Select Seller</option>
@@ -198,20 +211,20 @@
                                 @endforeach
 
                             </select>
-                            <span class="text-danger validate_e" data-field="seller_id"></span>
+                            <span class="text-danger validate" data-field="seller_id"></span>
                         </div>
 
                         <div class="form-group">
-                            <label for="quantity">Product Quantity</label>
-                            <input type="number" class="form-control" name="quantity" id="quantity_e">
-                            <span class="text-danger validate_e" data-field="quantity"></span>
+                            <label for="quantity_e">Product Quantity</label>
+                            <input type="number" class="form-control" name="quantity" id="quantity_e" placeholder="Enter Product Quantity">
+                            <span class="text-danger validate" data-field="quantity"></span>
 
                         </div>
                         <div class="form-group">
-                            <label for="per_price">Price Per Product</label>
+                            <label for="per_price_e">Price Per Product</label>
                             <input type="number" class="form-control" name="per_price" id="per_price_e"
                                 placeholder="Enter Product Price">
-                            <span class="text-danger validate_e" data-field="per_price"></span>
+                            <span class="text-danger validate" data-field="per_price"></span>
 
                         </div>
 
@@ -219,7 +232,7 @@
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Save</button>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
                     </div>
                 </form>
             </div>
@@ -278,12 +291,17 @@
 
             $('.editData').click(function(e) {
                 e.preventDefault();
+                
+
+
+                console.log($(this).data('purchase').id);
                 $('#editseller').modal('show');
-                $('#id_e').val($(this).data('id'));
-                $('#product_name_e').val($(this).data('product_name'));
-                $('#seller_id_e').val($(this).data('seller_id')).trigger('change');
-                $('#quantity_e').val($(this).data('quantity'));
-                $('#per_price_e').val($(this).data('per_price'));
+                $('#id_e').val($(this).data('purchase').id);
+                $('#product_id_e').val($(this).data('purchase').product_id).trigger('change');
+                $('#seller_id_e').val($(this).data('purchase').seller_id).trigger('change');
+                $('#quantity_e').val($(this).data('purchase').quantity);
+                $('#per_price_e').val($(this).data('purchase').per_price);
+                $('#date_e').val($(this).data('date'));
             });
 
             $("#editData").submit(function(e) {
@@ -292,7 +310,7 @@
                 var formdata = new FormData($("#editData")[0]);
                 $.ajax({
                     type: "POST",
-                    url: "{{ route('update-stock') }}",
+                    url: "{{ route('update-purchase') }}",
                     contentType: false,
                     processData: false,
                     headers: {

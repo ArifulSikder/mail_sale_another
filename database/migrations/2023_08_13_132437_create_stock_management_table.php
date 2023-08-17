@@ -16,10 +16,8 @@ return new class extends Migration
         Schema::create('stock_management', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id');
-            $table->foreignId('seller_id');
             $table->integer('quantity');
-            $table->integer('per_price');
-            $table->string('stock_date');
+            $table->double('average_per_price', 8,2);
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();
             $table->softDeletes();

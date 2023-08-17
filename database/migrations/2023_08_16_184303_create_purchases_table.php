@@ -20,7 +20,6 @@ return new class extends Migration
             $table->foreignId('seller_id');
             $table->integer('quantity')->min(1);
             $table->double('per_price', 8,2);
-            $table->integer('lot_number');
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();
             $table->softDeletes();

@@ -144,6 +144,60 @@ class ProductController extends Controller
         
     }
 
+    // seller update status 
+    public function updatePinStatus($id, $status)
+    {
+        $pin_count = Product::where('pinned', 1)->count();
+        
+        if ($pin_count >= 6 && $status == 0) {
+            $notification = [
+                'error' => "You have reached the maximum product count",
+            ];
+            return back()->with($notification);
+            
+        } 
+        
+        if ($status == 0) {
+            $pinn = Product::findOrFail($id)->update([
+                'pinned' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($pinn == true) {
+                $notification = [
+                    'success' => "Product Pinned Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $pinn = Product::findOrFail($id)->update([
+                'pinned' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($pinn == true) {
+                $notification = [
+                    'success' => "Product Unpinned Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+
+      
+        
+        
+
+    }
+
     public function productAdvantages($product_id)
     {
         $data['product'] = Product::findOrFail($product_id);
@@ -560,7 +614,7 @@ class ProductController extends Controller
         }
     }
 
-     // About Us update status 
+     // seller update status 
      public function updatSellerStatus($id, $status)
      {
          if ($status == 0) {

@@ -67,20 +67,33 @@
                                     </td>
                                     <td>{{ $category->created_at->toFormateDate() }}</td>
                                     <td>
+                                        <div class="dropdown">
+                                            <button type="button"
+                                                class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
+                                                data-toggle="dropdown">
+                                                Options
+                                            </button>
+                                            <div class="dropdown-menu text-center bg-light-blue">
+                                                <button type="button"  
+                                                    data-id="{{ $category->id }}"
+                                                    data-name="{{ $category->name }}"
+                                                    data-slug="{{ $category->slug }}"
+                                                    data-parent_id="{{ $category->parent_id }}"
+                                                    data-active_status="{{ $category->active_status }}"
+                                                    class="btn btn-success btn-sm editData  btn-block">
+                                                    <i class="fas fa-edit"></i> Edit
+                                                </button>
 
-                                        <button type="button" data-toggle="modal" data-target="#editNew"
+                                                <a href="{{ url('subcategory-description/'. $category->id) }}"
+                                                    class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Description</a> 
 
-                                        data-id="{{ $category->id }}"
-                                        data-name="{{ $category->name }}"
-                                        data-slug="{{ $category->slug }}"
-                                        data-parent_id="{{ $category->parent_id }}"
-                                        data-active_status="{{ $category->active_status }}"
+                                                <a href="{{ url('delete-subcategory/'. $category->id) }}"
+                                                    id="delete" class="btn btn-danger btn-sm btn-block"><i
+                                                        class="fas fa-trash"></i>Delete</a>
+                                                
 
-                                        class="btn btn-success btn-sm editData">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
-                                        <a href="{{ url('delete-subcategory/'. $category->id) }}"
-                                            id="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></a>
+                                            </div>
+                                        </div>
 
                                     </td>
                                 </tr>
@@ -306,7 +319,7 @@
 
     $('.editData').click(function (e) { 
         e.preventDefault();
-
+        $('#editNew').modal('show');
         $('#category_id_e').val($(this).data('parent_id')).trigger('change');
         $('#sub_category_id').val($(this).data('id'));
         $('#sub_name_e').val($(this).data('name'));

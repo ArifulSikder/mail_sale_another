@@ -39,8 +39,8 @@
                 </li>
 
                 <!-- Product  Management  -->
-                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons', 'category','sub-category','products', 'product-advantages*', 'product-details*','product-description*', 'purchase']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons', 'category','sub-category','products', 'product-advantages*', 'product-details*','product-description*', 'purchase']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons', 'category','sub-category','products', 'product-advantages*', 'product-details*','product-description*', 'purchase', 'subcategory-description*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons', 'category','sub-category','products', 'product-advantages*', 'product-details*','product-description*', 'purchase', 'subcategory-description*']) ? 'active' : '' }}">
                         <i class="nav-icon fab fa-product-hunt"></i>
                         <p>
                             Product Management
@@ -55,7 +55,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('sub-category') }}" class="nav-link {{ request()->is(['sub-category']) ? 'active' : '' }}">
+                            <a href="{{ route('sub-category') }}" class="nav-link {{ request()->is(['sub-category', 'subcategory-description*']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product Sub-category</p>
                             </a>
@@ -63,7 +63,7 @@
                         <li class="nav-item">
                             <a href="{{ route('products') }}" class="nav-link {{ request()->is(['products', 'product-advantages*', 'product-details*','product-description*']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Product</p>
+                                <p>Products</p>
                             </a>
                         </li>
                         <li class="nav-item">
@@ -130,40 +130,7 @@
                     </ul>
                 </li>
 
-                <!-- Stoct Management  -->
-                {{-- <li class="nav-item {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['stocks', 'sellers', 'coupons','purchase']) ? 'active' : '' }}">
-                        <i class="nav-icon fab fa-product-hunt"></i>
-                        <p>
-                            Product Management
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                            
-                        <li class="nav-item">
-                            <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Seller</p>
-                            </a>
-                        </li>   
-                            
-                         
-                        <li class="nav-item">
-                            <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Stock</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('coupons') }}" class="nav-link {{ request()->is(['coupons']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Coupon</p>
-                            </a>
-                        </li>        
-                    </ul>
-                </li> --}}
-
+                
                 <!-- About us  -->
                 <li class="nav-item {{ request()->is(['show-about-us']) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['show-about-us']) ? 'active' : '' }}">
@@ -183,9 +150,9 @@
                     </ul>
                 </li>
 
-                {{-- CUSTOMER CONTACT  --}}
-                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*', 'sms-templete']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*', 'sms-templete']) ? 'active' : '' }}">
+                <!-- CUSTOMER CONTACT  -->
+                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Customer Contact
@@ -198,13 +165,7 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Inbox</p>
                             </a>
-                        </li>    
-                        <li class="nav-item">
-                            <a href="{{ route('sms-templete') }}" class="nav-link {{ request()->is(['sms-templete']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>SMS Templete</p>
-                            </a>
-                        </li>     
+                        </li>       
                     </ul>
                 </li>
 
@@ -256,9 +217,9 @@
                     </ul>
                 </li>
 
-                <!-- BUSINESS POLICY -->
-                <li class="nav-item {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['add-business-policy', 'show-business-policy']) ? 'active' : '' }}">
+                <!-- Settings -->
+                <li class="nav-item {{ request()->is(['add-business-policy', 'show-business-policy', 'sms-templete', 'set-email']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['add-business-policy', 'show-business-policy', 'sms-templete', 'set-email']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             Settings
@@ -278,6 +239,18 @@
                                 <p>Show Business Policy</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('sms-templete') }}" class="nav-link {{ request()->is(['sms-templete']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>SMS Templete</p>
+                            </a>
+                        </li>  
+                        <li class="nav-item">
+                            <a href="{{ route('set-email') }}" class="nav-link {{ request()->is(['set-email']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Set Email</p>
+                            </a>
+                        </li> 
                     </ul>
                 </li>
 

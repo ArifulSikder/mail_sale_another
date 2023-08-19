@@ -10,6 +10,7 @@ use App\Http\Controllers\PaymentApiController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreviewImageController;
+use App\Http\Controllers\SettingController;
 
 Route::get('dashboard', function () {
     return view('backend.dashboard.index');
@@ -42,6 +43,10 @@ Route::get('sub-category', [CategoryController::class, 'indexSubCategory'])->nam
 //sub-category
 Route::post('store-sub-category', [CategoryController::class, 'storeSubCategory'])->name('store-sub-category');
 Route::post('update-sub-category', [CategoryController::class, 'updateSubCategory'])->name('update-sub-category');
+Route::get('/subcategory-description/{id}', [CategoryController::class, 'descriptionSubCategory']);
+Route::post('store-subcategory-description', [CategoryController::class, 'storeSubCategoryDes'])->name('store-subcategory-description');
+Route::post('edit-subcategory-description', [CategoryController::class, 'editSubCategoryDes'])->name('edit-subcategory-description');
+Route::get('update-subcatdes-status/{id}/{status}', [CategoryController::class, 'updatSubCatDesStatus'])->name('update-subcatdes-status');
 Route::get('/delete-subcategory/{category_id}', [CategoryController::class, 'deleteCategory']);
 Route::get('/get-sub-category-ajax', [CategoryController::class, 'getSubCategoryAjax']);
 //product
@@ -49,6 +54,7 @@ Route::get('products', [ProductController::class, 'index'])->name('products');
 Route::post('store-product', [ProductController::class, 'storeProduct'])->name('store-product');
 Route::post('update-product', [ProductController::class, 'updateProduct'])->name('update-product');
 Route::get('delete-product/{product_id}', [ProductController::class, 'deleteProduct']);
+Route::get('update-pin-status/{id}/{status}', [ProductController::class, 'updatePinStatus'])->name('update-pin-status');
 
 //product advantage
 Route::get('product-advantages/{product_id}', [ProductController::class, 'productAdvantages']);
@@ -166,9 +172,20 @@ Route::get('show-individual-message/{id}', [CustomerMessageController::class, 'i
 Route::get('update-contact-status/{id}/{status}', [CustomerMessageController::class, 'updatContactStatus'])->name('update-contact-status');
 Route::delete('delete-customer-message', [CustomerMessageController::class, 'deleteCustomerMessage'])->name('delete-customer-message');
 
+Route::post('get-emails', [CustomerMessageController::class, 'getEmails'])->name('get-emails');
+
 // SMS Templete 
 Route::get('sms-templete', [CustomerMessageController::class, 'smsTemplete'])->name('sms-templete');
 Route::post('store-sms-templete', [CustomerMessageController::class, 'storeSmsTemplete'])->name('store-sms-templete');
 Route::post('update-sms-templete', [CustomerMessageController::class, 'updateSmsTemplete'])->name('update-sms-templete');
 Route::get('update-templete-status/{id}/{status}', [CustomerMessageController::class, 'updatTempleteStatus'])->name('update-templete-status');
 Route::get('delete-templete/{id}', [CustomerMessageController::class, 'deleteTemplete'])->name('delete-templete');
+Route::get('get-templete/{id}', [CustomerMessageController::class, 'getTemplete'])->name('get-templete');
+
+//Set ENV
+Route::get('set-email', [SettingController::class, 'setEmail'])->name('set-email');
+Route::post('store-email-data', [SettingController::class, 'storeEmail'])->name('store-email-data');
+Route::post('update-email-data', [SettingController::class, 'updateEmail'])->name('update-email-data');
+Route::get('update-email-status/{id}/{status}', [SettingController::class, 'updatEmailStatus'])->name('update-email-status');
+Route::get('delete-email/{id}', [SettingController::class, 'deleteEmail'])->name('delete-email');
+

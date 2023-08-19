@@ -78,7 +78,7 @@
                                 <img class="d-none mb-3" src="" id="previewLogo" width="60px" alt="">
                             </div>
                             <div>
-                                <img  src="@if($app_data){{ $app_data->logo }}@endif" width="60px" alt="">
+                                <img  src="@if($app_data){{ asset($app_data->logo) }}@endif" width="200px" alt="">
                             </div>
                         </div>
                         <div class="col-4">
@@ -129,7 +129,7 @@
                                 <img class="d-none" src="" id="previewFavicon" width="60px" alt="">
                             </div>
                             <div>
-                                <img  src="@if($app_data){{ $app_data->favicon }}@endif" width="60px" alt="">
+                                <img  src="@if($app_data){{ asset($app_data->favicon) }}@endif" width="60px" alt="">
                             </div>
                         </div>
                         <div class="col-4">

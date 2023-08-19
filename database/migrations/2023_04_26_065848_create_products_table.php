@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreignId('sub_category_id');
             $table->string('name');
             $table->string('slug');
+            $table->boolean('pinned')->default(0);
             $table->double('selling_price', 8,2);
             $table->boolean('active_status')->default(1);
             $table->foreignId('created_by');

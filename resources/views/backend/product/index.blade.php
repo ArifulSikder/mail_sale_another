@@ -10,6 +10,7 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1 class="m-0">Products</h1>
+                    
 
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -44,15 +45,15 @@
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 5%">Serial</th>
-                                <th scope="col" style="width: 8%">Thumbnail</th>
-                                <th scope="col" style="width: 15%">Product Name</th>
+                                <th scope="col" style="width: 10%">Thumbnail</th>
+                                <th scope="col" style="width: 10%">Product Name</th>
                                 <th scope="col" style="width: 10%">Category Name</th>
-                                <th scope="col" style="width: 15%">Subcategory Name</th>
-                                <th scope="col" style="width: 15%">Slug</th>
-                                <th scope="col" style="width: 7%">Selling Price</th>
-                                <th scope="col" style="width: 8%">Active Status</th>
-                                <th scope="col" style="width: 7%">Add Date</th>
-                                <th scope="col" style="width: 20%">Action</th>
+                                <th scope="col" style="width: 10%">Subcategory Name</th>
+                                <th scope="col" style="width: 10%">Slug</th>
+                                <th scope="col" style="width: 10%">Selling Price</th>
+                                <th scope="col" style="width: 10%">Active Status</th>
+                                <th scope="col" style="width: 10%">Pin Status</th>
+                                <th scope="col" style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -73,7 +74,9 @@
                                     <td><span
                                             class="badge badge-{{ $product->active_status == 0 ? 'danger': 'success' }}">{{ $product->active_status == 0 ? 'Inactive': 'Active' }}</span>
                                     </td>
-                                    <td>{{ $product->created_at->toFormateDate() }}</td>
+                                    <td> 
+                                        <span class="badge badge-{{ $product->pinned == 0 ? 'danger': 'success' }}">{{ $product->pinned == 0 ? 'Unpinned': 'Pinned' }}</span>
+                                    </td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button"
@@ -92,6 +95,12 @@
                                                     class="btn btn-success btn-sm editData myProduct btn-block">
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
+
+                                                @if ($product->pinned == 1)
+                                                    <a href="{{ route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ]) }}"  class="btn btn-danger btn-sm btn-block"><i class="fas fa-thumbtack"></i> Unpin Product</a> 
+                                                @else
+                                                    <a href="{{ route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ]) }}"  class="btn btn-success btn-sm btn-block"><i class="fas fa-thumbtack"></i> Pin Product</a>
+                                                @endif
 
                                                 <a href="{{ url('product-advantages/'. $product->id) }}"
                                                     class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Advantages</a>

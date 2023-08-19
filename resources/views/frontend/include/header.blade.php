@@ -12,12 +12,12 @@
                   <!-- Header Links -->
                   <ul class="header-links">
                     <li class="header-social">
-                      <a href="{{ $setting != null ? $setting->fb_link : '#' }}"><i class="fa-brands fa-facebook-f"></i></a>
-                      <a href="{{ $setting != null ? $setting->instagram_link : '#' }}"><i class="fa-brands fa-instagram"></i></a>
-                      <a href="{{ $setting != null ? $setting->twitter_link : '#' }}"><i class="fa-brands fa-twitter"></i></a>
-                      <a href="{{ $setting != null ? $setting->email : '#' }}"><i class="fa-regular fa-envelope"></i></a>
-                      <a href="{{ $setting != null ? $setting->pinterest_link : '#' }}"><i class="fa-brands fa-pinterest-p"></i></a>
-                      <a href="{{ $setting != null ? $setting->linkedin_link : '#' }}"><i class="fa-brands fa-linkedin"></i></a>
+                      <a href="{{ $setting ? $setting->fb_link : '#' }}"><i class="fa-brands fa-facebook-f"></i></a>
+                      <a href="{{ $setting ? $setting->instagram_link : '#' }}"><i class="fa-brands fa-instagram"></i></a>
+                      <a href="{{ $setting ? $setting->twitter_link : '#' }}"><i class="fa-brands fa-twitter"></i></a>
+                      <a href="{{ $setting ? $setting->email : '#' }}"><i class="fa-regular fa-envelope"></i></a>
+                      <a href="{{ $setting ? $setting->pinterest_link : '#' }}"><i class="fa-brands fa-pinterest-p"></i></a>
+                      <a href="{{ $setting ? $setting->linkedin_link : '#' }}"><i class="fa-brands fa-linkedin"></i></a>
                     </li>
                         @guest
                           <li><a href="{{ url('login') }}"><i class="fa fa-user-circle-o"></i>Sign Up</a></li>

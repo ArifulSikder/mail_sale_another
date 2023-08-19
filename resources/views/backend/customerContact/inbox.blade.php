@@ -95,7 +95,7 @@
                     <i class="far fa-trash-alt"></i>
                   </a>
                 </div>
-                <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#addNew">
+                <button type="button" class="btn btn-default btn-sm" id="reply">
                   <i class="fas fa-reply"></i>
                 </button>
                 <!-- /.btn-group -->
@@ -139,6 +139,7 @@
             </div>
               <!-- /.mail-box-messages -->
             </div>
+
             <!-- /.card-body -->
           </div>
           <!-- /.card -->
@@ -153,54 +154,52 @@
 
 
   <!-- send email -->
-  <div class="modal fade" id="addNew" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="sendMail" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Add Home Details</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Send Email TO Customers</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <form id="formData">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <span type="button" class="bg-success text-light px-2 float-right preview"
-                            data-name="pva_title.png">Preview</span>
-                        <input type="text" class="form-control" name="title" id="title" placeholder="Enter Title" >
+              <div class="modal-body">
+                <div class="form-group">
+                    <label for="templete_name">Templete Name</label>
+                    <select class="form-control select2 target" name="templete_name" id="templete_name"
+                        data-placeholder="Select Templetet" style="width: 100%">
+                        <option value="">Select Templetet</option>
+                        @foreach($templetes as $templete)
+                            <option value="{{ $templete->id }}">{{ $templete->templete_name }}</option>
+                        @endforeach
+                    </select>
+                </div>
 
-                            <span class="text-danger validate" data-field="title"></span>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Enter Subject" >
+                        <span class="text-danger validate" data-field="subject"></span>
+                </div>
 
-                    </div>
+                <div class="form-group">
+                    <label for="visit_link">Visit Link</label>
+                    <input type="text" class="form-control" name="visit_link" id="visit_link" placeholder="Input Visit Link Here.." >
+                        <span class="text-danger validate" data-field="visit_link"></span>
+                </div>
 
-                    <div class="form-group">
-                        <label for="description">Description</label>
-                        <span type="button" class="bg-success text-light px-2 float-right preview"
-                              data-name="pva_description.png">Preview</span>
-                        <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" value=""> </textarea>
-                            <span class="text-danger validate" data-field="description"></span>
-
-                    </div>
-
-                    <div class="form-group">
-                        <label for="active_status">Active Status</label>
-                        <select class="form-control select2" name="active_status" id="active_status"
-                            data-placeholder="Select Active Status" style="width: 100%">
-                            <option value="">Choose Type</option>
-                            <option value="0">Inactive</option>
-                            <option value="1">Active</option>
-                        </select>
-                        <span class="text-danger validate" data-field="active_status"></span>
-                    </div>
-
-
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea type="text" class="form-control" name="message" id="editor"> </textarea>
+                        <span class="text-danger validate" data-field="message"></span>
 
                 </div>
 
+            </div>
+
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save</button>
+                    <button type="submit" class="btn btn-primary">Send</button>
                 </div>
             </form>
         </div>
@@ -208,9 +207,33 @@
   </div>
 
 @endsection
+@include('components.ckeditor')
 
 @section('script')
   <script>
+
+    $(document).ready(function () {
+        ckeditor("editor")
+
+        $( ".target" ).on( "change", function() {
+          var id = $(this).val();
+          $.ajax({
+            type: "GET",
+            url: "get-templete/"+id,
+            data: "data",
+            success: function (response) {
+              if (response.status == 200) {
+                $("#subject").val(response.templete.subject);
+                $("#visit_link").val(response.templete.visit_link);
+                $('#active_status').val(response.templete.active_status).trigger('change');
+                CKEDITOR.instances['editor'].setData(response.templete.message);
+              }
+            }
+          });
+        } );
+    });
+    
+
 
     $(function(e){
       $("#select_all_ids").click(function () { 
@@ -251,10 +274,47 @@
 
 <script>
   $(document).ready(function () {
+
     $("#pagereload").click(function (e) { 
       e.preventDefault();
       window.location.reload();
     });
   });
+</script>
+
+<script>
+  $(document).ready(function () {
+      $('#reply').click(function(e) {
+          e.preventDefault();
+          var selectedValues = [];
+
+          $('.checkbox_ids').each(function() {
+              if ($(this).is(':checked')) {
+                  selectedValues.push($(this).val());
+              }
+          });
+
+          if (selectedValues == null || selectedValues.length === 0) {
+              console.log('Array is null or empty.');
+          } else {
+            $('#sendMail').modal('show');
+
+            $.ajax({
+              type: "POST",
+              url: "{{ route('get-emails') }}",
+              data: {
+                ids:selectedValues,
+              },
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              success: function (response) {
+                console.log(response);
+              }
+            });
+          }
+      });
+  });
+  
 </script>
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SubCategoryDescription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
@@ -184,6 +185,108 @@ class CategoryController extends Controller
         
     }
 
+    public function descriptionSubCategory($id)
+    {
+        $data['subcategory'] = Category::findOrFail($id);
+        $data['sub_descriptions'] = SubCategoryDescription::where('subcategory_id', $id)->latest()->paginate(15);
+        return view('backend.product.sub_category.descriptionIndex', $data);
+    }
+
+    public function storeSubCategoryDes(Request $request)
+    {
+        Validator::make($request->all(), [
+            'subcategory_id' => 'required|numeric',
+            'description' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'subcategory_id.required' => 'Subcategory Required',
+            'description.required' => 'Please Enter The Description',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $subDescription = new SubCategoryDescription();
+        $subDescription->subcategory_id = $request->subcategory_id;
+        $subDescription->description = $request->description;
+        $subDescription->active_status = $request->active_status;
+        $subDescription->created_by = Auth::id();
+
+        if ($subDescription->save()) {
+            return response()->json([
+                'success' => "SubCategory Description saved successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    public function editSubCategoryDes(Request $request)
+    {
+        Validator::make($request->all(), [
+            'subcategory_id' => 'required|numeric',
+            'description' => 'required|string',
+            'active_status' =>  'required|in:0,1',
+        ],[
+            'subcategory_id.required' => 'Subcategory Required',
+            'description.required' => 'Please Enter The Description',
+            'active_status.required' =>  'Please Select The Status',
+        ])->validate();
+
+        $subDescription = SubCategoryDescription::findOrFail($request->edit_id);
+        $subDescription->subcategory_id = $request->subcategory_id;
+        $subDescription->description = $request->description;
+        $subDescription->active_status = $request->active_status;
+        $subDescription->created_by = Auth::id();
+
+        if ($subDescription->save()) {
+            return response()->json([
+                'success' => "SubCategory Description Updated Successfully.",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    public function updatSubCatDesStatus($id, $status)
+    {
+        if ($status == 0) {
+            $team = SubCategoryDescription::findOrFail($id)->update([
+                'active_status' =>  '1',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($team == true) {
+                $notification = [
+                    'success' => "Status Activated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+
+        } elseif($status == 1) {
+            $team = SubCategoryDescription::findOrFail($id)->update([
+                'active_status' =>  '0',
+                'updated_by' => Auth::id()
+            ]);
+
+            if ($team == true) {
+                $notification = [
+                    'success' => "Status inactivated Successfully.",
+                ];
+            } else {
+                $notification = [
+                    'error' => "Opps! There Is A Problem!",
+                ];
+            }
+            return back()->with($notification);
+        } 
+    }
     //*************************************** sub category end ******************************************** */
 
 

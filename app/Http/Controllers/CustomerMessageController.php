@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
+use SebastianBergmann\Template\Template;
 
 class CustomerMessageController extends Controller
 {
@@ -66,6 +67,7 @@ class CustomerMessageController extends Controller
     {
         $data['msg_count'] = CustomerMessage::count();
         $data['messages'] = CustomerMessage::latest()->paginate(15);
+        $data['templetes'] = SmsTemplete::latest()->get();
         return view('backend.customerContact.inbox', $data);
     }
 
@@ -144,7 +146,7 @@ class CustomerMessageController extends Controller
      public function storeSmsTemplete(Request $request)
      {
         Validator::make($request->all(), [
-            'templete_name' => 'required|string|max:100',
+            'templete_name' => 'required|string|max:100|unique:sms_templetes',
             'subject' => 'required|max:100',
             'visit_link' => 'required|string',
             'message' => 'required|string',
@@ -270,6 +272,34 @@ class CustomerMessageController extends Controller
         }
 
         return back()->with($notification);
+    }
+
+    //get templete 
+    public function getTemplete($id)
+    {
+        $templete = SmsTemplete::findOrFail($id);
+        if ($templete) {
+            return response()->json([
+                'status' => 200,
+                'templete' => $templete,
+            ]);
+        } else {
+            return response()->json([
+                'status' => 200,
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+
+
+    public function getEmails(Request $request)
+    {
+        $emails = CustomerMessage::whereIn('id', $request->ids)->select('email')->get();
+        return response()->json([
+            'status' => 200,
+            'emails' => $emails,
+        ]);
     }
 
 }

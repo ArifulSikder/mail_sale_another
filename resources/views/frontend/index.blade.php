@@ -10,7 +10,7 @@
     <!-- Hero section start -->
     <section class="hero_area">
         <div class="container">
-            @if ($slider !== null)
+            @if ($slider)
                 <div class="hero-bg" style="background-image: url({{ $slider->background_photo }});">
                     <!-- <div class="row">
                     <div class="col-6 d-flex align-self-center"> -->
@@ -40,7 +40,7 @@
         <div class="container">
             <div class="pricing_table_content">
                 <div class="section-title">
-                    <h2>{{ $setting != null ? $setting->product_heading : '' }}</h2>
+                    <h2>{{ $setting ? $setting->product_heading : '' }}</h2>
                 </div>
                 <div class="row">
                     @forelse ($products as $product)
@@ -124,11 +124,11 @@
             <div class="about-shop-content">
                 <div class="section-title text-center">
                     <h2>
-                        {{ $home_pave != null ? $home_pave->title : '' }}
+                        {{ $home_pave  ? $home_pave->title : '' }}
                     </h2>
                 </div>
                 <div class="content text-center">
-                    {!! $home_pave != null ? $home_pave->description : '' !!}
+                    {!! $home_pave ? $home_pave->description : '' !!}
 
                 </div>
                 <div class="box">
@@ -140,7 +140,7 @@
                                         @if ($gurantee->logo_type == 1)
                                             {!! $gurantee->logo !!}
                                         @else
-                                            <img style="width: 80px" src="{{ $gurantee->logo }}" alt="">
+                                            <img style="width: 80px" src="{{ asset($gurantee->logo) }}" alt="">
                                         @endif
                                     </div>
                                     <div class="box-text">
@@ -219,7 +219,7 @@
         <div class="container">
             <div class="team-wrapper">
                 <div class="section-title">
-                    <h2>MEET OUR AMAZING TEAM</h2>
+                    <h2>{{ $setting ? $setting->team_heading : '' }}</h2>
                 </div>
                 <div class="row">
                     @forelse($meet_teams as $team)
@@ -242,8 +242,6 @@
                         </div>
                     @empty
                     @endforelse
-
-
                 </div>
             </div>
         </div>

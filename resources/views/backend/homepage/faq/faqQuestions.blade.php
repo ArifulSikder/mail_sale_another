@@ -70,7 +70,6 @@
                                                         <a href="{{ route('update-question-status', ['id' => $faq->id , 'status' => $faq->active_status ]) }}" class=""><span class="badge badge-danger">Inactivated</span></a> 
                                                     @else
                                                         <a href="{{ route('update-question-status', ['id' => $faq->id , 'status' => $faq->active_status ]) }}"><span class="badge badge-success">Activated</span></a>
-                                                        
                                                     @endif
                                                 </div>
                                                 <div class="col-2">

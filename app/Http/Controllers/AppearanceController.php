@@ -16,6 +16,7 @@ use App\Models\MeetTeam;
 use App\Models\ProductGuarantee;
 use App\Models\Review;
 use App\Models\Slider;
+use App\Models\SubCategoryDescription;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
@@ -120,6 +121,7 @@ class AppearanceController extends Controller
         $data['products'] = Product::latest()
             ->where('active_status', 1)
             ->paginate(12);
+
         return view('frontend.pricing', $data);
     }
 
@@ -130,7 +132,13 @@ class AppearanceController extends Controller
             ->where('active_status', 1)
             ->paginate(12);
         $data['slider'] = Slider::where('active_status', '1')->first();
-        
+
+        $id = Category::where('slug', $slug)->value('id');
+        $data['descriptions'] = SubCategoryDescription::where('subcategory_id', $id)
+            ->where('active_status', 1)
+            ->latest()
+            ->get();
+
         return view('frontend.pricing', $data);
   
     }

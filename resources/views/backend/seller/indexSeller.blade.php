@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'About Us')
+@section('title', 'Sellers')
 
 @section('section')
 <div class="content-wrapper">
@@ -137,8 +137,6 @@
                         <span class="text-danger validate" data-field="phone"></span>
 
                     </div>
-
-
 
                     <div class="form-group">
                         <label for="active_status">Active Status</label>

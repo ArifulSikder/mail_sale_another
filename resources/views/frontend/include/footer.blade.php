@@ -10,13 +10,13 @@
                   <div class="footer-about">
                     <h5 class="footer-title">About Us</h5>
                     <img class="footer-logo" src="./assets/images/logo.png" alt="">
-                    <p>{{ $setting != null ? $setting->about_des : '' }}</p>
+                    <p>{{ $setting ? $setting->about_des : '' }}</p>
                       
                     <div class="social_icon">
-                        <a href="{{ $setting != null ? $setting->fb_link : '#' }}" target="blank"><i class="fab fa-facebook-f"></i></a>
-                        <a href="{{ $setting != null ? $setting->linkedin_link : '#' }}" target="blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a href="{{ $setting != null ? $setting->instagram_link : '#' }}" target="blank"> <i class="fab fa-instagram"></i></a>
-                        <a href="{{ $setting != null ? $setting->twitter_link : '#' }}" target="blank"> <i class="fab fa-twitter"></i></a>
+                        <a href="{{ $setting ? $setting->fb_link : '#' }}" target="blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="{{ $setting ? $setting->linkedin_link : '#' }}" target="blank"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="{{ $setting ? $setting->instagram_link : '#' }}" target="blank"> <i class="fab fa-instagram"></i></a>
+                        <a href="{{ $setting ? $setting->twitter_link : '#' }}" target="blank"> <i class="fab fa-twitter"></i></a>
                     </div>
                   </div>
                 </div>
@@ -43,15 +43,15 @@
                     <ul>
                         <li>
                             <i class="fas fa-home"></i>
-                            {{ $setting != null ? $setting->address : '' }}
+                            {{ $setting ? $setting->address : '' }}
                         </li>
                         <li>
                             <i class="fas fa-phone-alt"></i>
-                            {{ $setting != null ? $setting->phone : '' }}
+                            {{ $setting ? $setting->phone : '' }}
                         </li>
                         <li>
                             <i class="fas fa-envelope"></i>
-                            {{ $setting != null ? $setting->email : '' }}
+                            {{ $setting ? $setting->email : '' }}
 
                         </li>
                     </ul>

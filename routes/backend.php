@@ -80,7 +80,7 @@ Route::post('update-product-description', [ProductController::class, 'updateProd
 //  Stock
 Route::get('stocks', [ProductController::class, 'indexStock'])->name('stocks');
 Route::post('store-stock', [ProductController::class, 'storeStock'])->name('store-stock');
-Route::post('update-stock', [ProductController::class, 'updateStock'])->name('update-stock');
+Route::post('update-stock-alert', [ProductController::class, 'updateStockAlert'])->name('update-stock-alert');
 Route::get('delete-stock/{id}', [ProductController::class, 'deleteStock'])->name('delete-stock');
 
 //seller
@@ -174,6 +174,7 @@ Route::get('update-contact-status/{id}/{status}', [CustomerMessageController::cl
 Route::delete('delete-customer-message', [CustomerMessageController::class, 'deleteCustomerMessage'])->name('delete-customer-message');
 
 Route::post('get-emails', [CustomerMessageController::class, 'getEmails'])->name('get-emails');
+Route::post('send-msg-customer', [CustomerMessageController::class, 'sendMsgCustomer'])->name('send-msg-customer');
 
 // SMS Templete 
 Route::get('sms-templete', [CustomerMessageController::class, 'smsTemplete'])->name('sms-templete');

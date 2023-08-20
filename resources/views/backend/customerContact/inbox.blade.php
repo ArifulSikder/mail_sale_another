@@ -164,38 +164,38 @@
                 </button>
             </div>
             <form id="formData">
-              <div class="modal-body">
-                <div class="form-group">
-                    <label for="templete_name">Templete Name</label>
-                    <select class="form-control select2 target" name="templete_name" id="templete_name"
-                        data-placeholder="Select Templetet" style="width: 100%">
-                        <option value="">Select Templetet</option>
-                        @foreach($templetes as $templete)
-                            <option value="{{ $templete->id }}">{{ $templete->templete_name }}</option>
-                        @endforeach
-                    </select>
+                <div class="modal-body">
+                  <div class="form-group">
+                      <label for="templete_name">Templete Name</label>
+                      <select class="form-control select2 target templete" name="templete_name" id="templete_name"
+                          data-placeholder="Select Templetet" style="width: 100%">
+                          <option value="">Select Templetet</option>
+                          @foreach($templetes as $templete)
+                              <option value="{{ $templete->id }}">{{ $templete->templete_name }}</option>
+                          @endforeach
+                      </select>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="subject">Subject</label>
+                      <input type="text" class="form-control subject" name="subject" id="subject" placeholder="Enter Subject" >
+                          <span class="text-danger validate" data-field="subject"></span>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="visit_link">Visit Link</label>
+                      <input type="text" class="form-control visit_link" name="visit_link" id="visit_link" placeholder="Input Visit Link Here.." >
+                          <span class="text-danger validate" data-field="visit_link"></span>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="message">Message</label>
+                      <textarea type="text" class="form-control" name="message" id="editor"> </textarea>
+                          <span class="text-danger validate" data-field="message"></span>
+
+                  </div>
+
                 </div>
-
-                <div class="form-group">
-                    <label for="subject">Subject</label>
-                    <input type="text" class="form-control" name="subject" id="subject" placeholder="Enter Subject" >
-                        <span class="text-danger validate" data-field="subject"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="visit_link">Visit Link</label>
-                    <input type="text" class="form-control" name="visit_link" id="visit_link" placeholder="Input Visit Link Here.." >
-                        <span class="text-danger validate" data-field="visit_link"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Message</label>
-                    <textarea type="text" class="form-control" name="message" id="editor"> </textarea>
-                        <span class="text-danger validate" data-field="message"></span>
-
-                </div>
-
-            </div>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -309,12 +309,35 @@
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
               success: function (response) {
-                console.log(response);
+                selectedEmails = response.emails;
               }
             });
           }
       });
   });
+
+  $(document).ready(function () {
+      $("#formData").submit(function (e) {
+            e.preventDefault();
+            var formdata = new FormData($("#formData")[0]); 
+
+            $.ajax({
+              type: "POST",
+              url: "{{ route('send-msg-customer') }}",
+              contentType: false,
+              processData: false,
+              data: formData,
+              dataType: 'json', 
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              success: function (response) {
+                console.log(response);
+              }
+            });
+        });
+  });
   
 </script>
+
 @endsection

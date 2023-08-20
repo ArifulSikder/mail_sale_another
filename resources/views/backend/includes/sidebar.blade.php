@@ -1,6 +1,6 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4 bg-light-blue">
     <!-- Brand Logo -->
-    <a href="{{ url('/') }}" class="text-center brand-link">
+    <a href="{{ url('/') }}" target="_blank" class="text-center brand-link">
         <span class="brand-text font-weight-light">Altab Mail Sale</span>
     </a>
 
@@ -93,6 +93,23 @@
                     </ul>
                 </li>
 
+                <li class="nav-item {{ request()->is(['orders']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['orders']) ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-copy"></i>
+                        <p>
+                            Sales
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('orders') }}" class="nav-link {{ request()->is(['orders']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Orders</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- HOME PAGE  -->
                 <li class="nav-item {{ request()->is(['home-details', 'meet-team', 'slider', 'product-guarantee' ]) ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is(['shome-details', 'meet-team', 'slider', 'product-guarantee']) ? 'active' : '' }}">

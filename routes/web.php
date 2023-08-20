@@ -30,14 +30,20 @@ Route::post('/update-cart', [AppearanceController::class, 'updateCart'])->name('
 Route::get('/remove-product-item', [AppearanceController::class, 'removeProductItem']);
 Route::get('/card-subtotal', [AppearanceController::class, 'cartSubtotal']);
 
+
+//review 
+Route::post('store-customer-review', [AppearanceController::class, 'storeCustomerReview'])->name('store-customer-review');
+
 //checkout
 Route::get('/checkout', [AppearanceController::class, 'checkout'])->name('checkout');
 Route::post('/login-from-checkout-page', [AppearanceController::class, 'loginFromCheckoutPage'])->name('login-from-checkout-page');
 Route::post('/order-information', [AppearanceController::class, 'orderInformation'])->name('order-information');
 Route::post('/stripe', [AppearanceController::class, 'stripePayment'])->name('stripe.post');
 
-//review 
-Route::post('store-customer-review', [AppearanceController::class, 'storeCustomerReview'])->name('store-customer-review');
+//paypal
+route::get('processSuccessPaypal',[AppearanceController::class,'processSuccessPaypal'])->name('processSuccessPaypal');
+route::get('processCancelPaypal',[AppearanceController::class,'processCancelPaypal'])->name('processCancelPaypal');
+Route::get('/payment-success', [AppearanceController::class, 'paymentSuccessMessage'])->name('payment-success');
 
 //contact 
 Route::post('store-customer-message', [CustomerMessageController::class, 'storeCustomerMessage'])->name('store-customer-message');

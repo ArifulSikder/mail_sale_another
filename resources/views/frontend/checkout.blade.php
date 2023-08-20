@@ -4,6 +4,10 @@
 
 @section('sideSection')
 
+@push('css')
+	<script src="https://www.paypal.com/sdk/js?client-id={{env('PAYPAL_SANDBOX_CLIENT_ID')}}"></script>
+@endpush
+
     <!-- checkout section start -->
     <section class="checkout-area">
         <div class="container">
@@ -207,17 +211,18 @@
                                         <strong class="text-danger d-block">{{ $message }}</strong>
                                     @enderror
                                 </div>
+                                @guest
                                 <div class="mb-3">
                                     <label class="onclick-item">
                                         <input type="checkbox" name="create_account" value="1"
                                             data-bs-toggle="collapse" data-bs-target="#create-account"
-                                            aria-expanded="false" aria-controls="create-account" />
+                                            aria-expanded="false" aria-controls="create-account" @error('username') checked @enderror @error('password') checked @enderror/>
                                         <span class="ms-1 click-me" data-bs-toggle="collapse"
                                             data-bs-target="#create-account" aria-expanded="false"
                                             aria-controls="create-account">Create an account?
                                         </span>
                                     </label>
-                                    <div class="collapse" id="create-account">
+                                    <div class="collapse @error('username') show @enderror @error('password') show @enderror" id="create-account">
                                         <div class="create-account">
                                             <div class="my-3">
                                                 <label for="username" class="form-label">Account username *</label>
@@ -225,6 +230,9 @@
                                                     <input type="text" class="form-control" name="username"
                                                         placeholder="username">
                                                 </div>
+                                                @error('username')
+                                                    <strong class="text-danger">{{ $message }}</strong>
+                                                @enderror
                                             </div>
                                             <div class="mb-3">
                                                 <label for="password" class="form-label">Create account password *</label>
@@ -232,10 +240,15 @@
                                                     <input type="password" class="form-control" name="password"
                                                         placeholder="password">
                                                 </div>
+                                                
+                                                @error('password')
+                                                    <strong class="text-danger">{{ $message }}</strong>
+                                                @enderror
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endguest
                                 <div class="mb-3 ">
                                     <h4 class="orderheader">Additional information</h4>
                                     <label for="Order" class="form-label form-label">Order notes (optional)</label>
@@ -259,22 +272,22 @@
                                         <tbody>
                                             @foreach (Cart::content() as $cart)
                                                 <tr class="cart_item">
-                                                    <input type="hidden" name="product_id" value="{{ $cart['id'] }}">
-                                                    <input type="hidden" name="product_quantity"
+                                                    <input type="hidden" name="product_id[]" value="{{ $cart['id'] }}">
+                                                    <input type="hidden" name="product_quantity[]"
                                                         value="{{ $cart['qty'] }}">
                                                     <td class="product-name">{{ $cart['name'] }}</td>
-                                                    <td class="product-total"><strong>${{ $cart['price'] }} </strong></td>
+                                                    <td class="product-total"><strong>${{ $cart['price'] }}*{{ $cart['qty'] }} </strong></td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr class="cart-subtotal">
                                                 <th>Subtotal</th>
-                                                <td><strong>${{ Cart::subtotal() }}</strong></td>
+                                                <td class="text-right"><strong>${{ Cart::subtotal() }}</strong></td>
                                             </tr>
                                             <tr class="order-total">
                                                 <th>Total</th>
-                                                <td><strong>${{ Cart::subtotal() }}</strong> </td>
+                                                <td class="text-right"><strong>${{ Cart::subtotal() }}</strong> </td>
                                             </tr>
                                         </tfoot>
 
@@ -308,6 +321,11 @@
                                                         src="{{ asset('frontend') }}/assets/images/all-images/payoneer.png"
                                                         alt="payoneer">
                                                 </label>
+                                            </li>
+                                            <li>
+                                                @error('payment_method')
+                                                    <strong class="text-danger d-block">{{ $message }}</strong>
+                                                @enderror
                                             </li>
                                         </ul>
                                     </div>
@@ -347,6 +365,14 @@
 @endsection
 
 @section('script')
+@if($errors->any())
+@foreach ($errors->all() as $error)
+<script>
+    toastr.error("{{$error}}")
+</script>
+@endforeach
+@endif
+
     <script>
         $(document).ready(function() {
 

@@ -43,7 +43,7 @@
                                 <div class='col-xs-12 form-group card required'>
                                     <label class='control-label'>Card Number</label> <input autocomplete='off'
                                         class='form-control card-number' name="card_number" id="card_number"
-                                        size='20' type='text'>
+                                        size='20' type='text' maxlength="19">
                                 </div>
                             </div>
 
@@ -75,7 +75,7 @@
                             <div class="row">
                                 <div class="col-xs-12">
                                     <button class="btn btn-primary btn-lg btn-block" type="submit">Pay Now
-                                        (${{ $selling_price * $product_quantity }})</button>
+                                        (${{ Cart::subtotal()}})</button>
                                 </div>
                             </div>
 
@@ -88,85 +88,86 @@
 </body>
 
 <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-<script>
-    $('#card_number').on('keyup', function(e) {
-        var val = $(this).val();
-        var newval = '';
-        val = val.replace(/\s/g, '');
-        for (var i = 0; i < val.length; i++) {
-            if (i % 4 == 0 && i > 0) newval = newval.concat(' ');
-            newval = newval.concat(val[i]);
-        }
-        $(this).val(newval);
-    });
-</script>
 
 <script type="text/javascript">
-    $(function() {
+    $(document).ready(function() {
+        $('#card_number').on('keyup', function(e) {
+            var val = $(this).val();
+            var newval = '';
+            val = val.replace(/\s/g, '');
+            for (var i = 0; i < val.length; i++) {
+                if (i % 4 == 0 && i > 0) newval = newval.concat(' ');
+                newval = newval.concat(val[i]);
+            }
+            $(this).val(newval);
+        });
 
-        /*------------------------------------------
-        --------------------------------------------
-        Stripe Payment Code
-        --------------------------------------------
-        --------------------------------------------*/
+        $(function() {
 
-        var $form = $(".require-validation");
+            /*------------------------------------------
+            --------------------------------------------
+            Stripe Payment Code
+            --------------------------------------------
+            --------------------------------------------*/
 
-        $('form.require-validation').bind('submit', function(e) {
-            var $form = $(".require-validation"),
-                inputSelector = ['input[type=email]', 'input[type=password]',
-                    'input[type=text]', 'input[type=file]',
-                    'textarea'
-                ].join(', '),
-                $inputs = $form.find('.required').find(inputSelector),
-                $errorMessage = $form.find('div.error'),
-                valid = true;
-            $errorMessage.addClass('hide');
+            var $form = $(".require-validation");
 
-            $('.has-error').removeClass('has-error');
-            $inputs.each(function(i, el) {
-                var $input = $(el);
-                if ($input.val() === '') {
-                    $input.parent().addClass('has-error');
-                    $errorMessage.removeClass('hide');
+            $('form.require-validation').bind('submit', function(e) {
+                var $form = $(".require-validation"),
+                    inputSelector = ['input[type=email]', 'input[type=password]',
+                        'input[type=text]', 'input[type=file]',
+                        'textarea'
+                    ].join(', '),
+                    $inputs = $form.find('.required').find(inputSelector),
+                    $errorMessage = $form.find('div.error'),
+                    valid = true;
+                $errorMessage.addClass('hide');
+
+                $('.has-error').removeClass('has-error');
+                $inputs.each(function(i, el) {
+                    var $input = $(el);
+                    if ($input.val() === '') {
+                        $input.parent().addClass('has-error');
+                        $errorMessage.removeClass('hide');
+                        e.preventDefault();
+                    }
+                });
+
+                if (!$form.data('cc-on-file')) {
                     e.preventDefault();
+                    Stripe.setPublishableKey($form.data('stripe-publishable-key'));
+                    Stripe.createToken({
+                        number: $('.card-number').val(),
+                        cvc: $('.card-cvc').val(),
+                        exp_month: $('.card-expiry-month').val(),
+                        exp_year: $('.card-expiry-year').val()
+                    }, stripeResponseHandler);
                 }
+
             });
 
-            if (!$form.data('cc-on-file')) {
-                e.preventDefault();
-                Stripe.setPublishableKey($form.data('stripe-publishable-key'));
-                Stripe.createToken({
-                    number: $('.card-number').val(),
-                    cvc: $('.card-cvc').val(),
-                    exp_month: $('.card-expiry-month').val(),
-                    exp_year: $('.card-expiry-year').val()
-                }, stripeResponseHandler);
+            /*------------------------------------------
+            --------------------------------------------
+            Stripe Response Handler
+            --------------------------------------------
+            --------------------------------------------*/
+            function stripeResponseHandler(status, response) {
+                if (response.error) {
+                    $('.error')
+                        .removeClass('hide')
+                        .find('.alert')
+                        .text(response.error.message);
+                } else {
+                    /* token contains id, last4, and card type */
+                    var token = response['id'];
+
+                    $form.find('input[type=text]').empty();
+                    $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
+                    $form.get(0).submit();
+                }
             }
 
         });
-
-        /*------------------------------------------
-        --------------------------------------------
-        Stripe Response Handler
-        --------------------------------------------
-        --------------------------------------------*/
-        function stripeResponseHandler(status, response) {
-            if (response.error) {
-                $('.error')
-                    .removeClass('hide')
-                    .find('.alert')
-                    .text(response.error.message);
-            } else {
-                /* token contains id, last4, and card type */
-                var token = response['id'];
-
-                $form.find('input[type=text]').empty();
-                $form.append("<input type='hidden' name='stripeToken' value='" + token + "'/>");
-                $form.get(0).submit();
-            }
-        }
-
     });
 </script>
 

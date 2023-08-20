@@ -101,7 +101,10 @@ class Cart
       }
       return $count;
   }
-
+  public static function forget()
+  {
+    return session()->forget('cart');
+  }
   public static function content()
   {
     if (session()->get('cart') === null) {

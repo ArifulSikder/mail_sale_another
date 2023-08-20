@@ -11,19 +11,24 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
+use App\Http\Requests\OrderInformationRequest;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
+use App\Models\Order;
+use App\Models\Payment;
 use App\Models\ProductGuarantee;
+use App\Models\PurchaseProduct;
 use App\Models\Review;
 use App\Models\Slider;
 use App\Models\SubCategoryDescription;
+use App\Rules\UniqueStripeToken;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
+use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Stripe\Stripe;
-use Stripe\Charge;
 
 
 class AppearanceController extends Controller
@@ -281,134 +286,6 @@ class AppearanceController extends Controller
         }
     }
 
-    public function orderInformation(Request $request)
-    {
-        $request->validate(
-            [
-                'id' => 'nullable|numeric',
-                'f_name' => 'required|string|max:255',
-                'l_name' => 'required|string|max:255',
-                'company_name' => 'required|string|max:255',
-                'code' => 'required|string',
-                'street' => 'required|string|max:255',
-                'address' => 'nullable|max:255',
-                'town' => 'required|string|max:255',
-                'country' => 'nullable|max:255',
-                'post_code' => 'required|string|max:255',
-                'phone' => 'required|string|max:255',
-                'email' => 'required|email',
-                'note' => 'nullable|max:1000',
-                'product_id' => 'required|numeric',
-                'product_quantity' => 'required|numeric',
-                'payment_method' => 'required|numeric',
-                'agree' => 'required|numeric',
-            ],
-            [
-                'f_name.required' => 'First name is required.',
-                'l_name.required' => 'Last name is required.',
-                'company_name.required' => 'Company name is required.',
-                'code.required' => 'Country name is required.',
-                'street.required' => 'Street is required.',
-                'town.required' => 'Town is required.',
-                'post_code.required' => 'Post code is required.',
-                'phone.required' => 'Phone number is required.',
-                'email.required' => 'required|email:rfc,dns|unique:users,email',
-                'payment_method.required' => 'Please select a payment type.',
-                'agree.required' => 'Please agree with us.',
-            ],
-        );
-
-        if ($request->create_account == 1) {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'email' => 'required|email:rfc,dns|unique:users,email',
-                    'username' => 'required|unique:users,username',
-                    'password' => ['required', Password::min(8), 'string'],
-                ],
-                [
-                    'email.required' => 'Email is required',
-                    'username.required' => 'Username is required',
-                    'password.required' => 'Password is required',
-                ],
-            );
-
-            // $user = new User();
-
-            // $user->type = 'Customer';
-            // $user->username = $request->username;
-            // $user->email = $request->email;
-            // $user->password = Hash::make($request->password);
-            // $user->save();
-        }
-        $data['selling_price'] = Product::findOrFail($request->product_id)->selling_price;
-        $data['product_quantity'] = $request->product_quantity;
-        session(['request_data' => json_encode($request->all())]);
-        if ($request->payment_method == 1) {
-            return view('frontend.stripe', $data);
-        } elseif ($request->payment_method == 2) {
-            return view('frontend.paypal');
-        } elseif ($request->payment_method == 3) {
-            return view('frontend.payoneer');
-        }
-    }
-
-    public function stripePayment(Request $request)
-    {
-        $hello = $request['card_number'] = str_replace(' ', '', $request->card_number);
-
-        $rules = [
-            'card_name' => 'required|string',
-            'card_number' => 'required|digits_between:15,16|numeric',
-            'expiry_month' => 'required|numeric|min:1|max:12',
-            'expiry_year' => ['required', 'numeric', 'digits_between:2,4'],
-            'card_cvc' => ['required', 'numeric', 'digits_between:3,4'],
-        ];
-        //Validation message
-        $customMessage = [
-            'card_name.required' => 'Card name is required',
-            'card_number.required' => 'Number is required',
-            'expiry_month.required' => 'Month is required',
-            'expiry_year.required' => 'Year is required',
-            'card_cvc.required' => 'CVC is required',
-        ];
-        $validator = Validator::make($request->all(), $rules, $customMessage);
-        if ($validator->fails()) {
-            return Redirect::back()->withErrors($validator);
-        }
-
-        Stripe::setApiKey(env('STRIPE_SECRET'));
-        $customer = \Stripe\Customer::create([
-            'address' => [
-                'line1' => 'Virani Chowk',
-                'postal_code' => '360001',
-                'city' => 'Rajkot',
-                'state' => 'GJ',
-                'country' => 'IN',
-            ],
-            'email' => 'demo@gmail.com',
-            'name' => 'Hardik Savani',
-            'source' => $request->stripeToken,
-        ]);
-
-        $hi = \Stripe\Charge::create([
-            'amount' => 100 * 100,
-            'currency' => 'usd',
-            'customer' => $customer->id,
-            'description' => 'this is description',
-            'shipping' => [
-                'name' => 'Jenny Rosen',
-                'address' => [
-                    'line1' => '510 Townsend St',
-                    'postal_code' => '98140',
-                    'city' => 'San Francisco',
-                    'state' => 'CA',
-                    'country' => 'US',
-                ],
-            ],
-        ]);
-    }
-
     public function refundPolicy()
     {
         return view('frontend.refund');
@@ -467,6 +344,275 @@ class AppearanceController extends Controller
                 'error' => "Opps! Something Went Wrong.",
             ]);
         }
+    }
+
+
+    
+    public function orderInformation(OrderInformationRequest $request)
+    {
+
+        if ($request->create_account == 1) {
+            $user = new User();
+
+            $user->type = 'Customer';
+            $user->username = $request->username;
+            $user->email = $request->email;
+            $user->f_name = $request->f_name;
+            $user->l_name = $request->l_name;
+            $user->company_name = $request->company_name;
+            $user->code = $request->code;
+            $user->street = $request->street;
+            $user->address = $request->address;
+            $user->town = $request->town;
+            $user->city = $request->town;
+            $user->country = $request->country;
+            $user->post_code = $request->post_code;
+            $user->phone = $request->phone;
+            $user->email = $request->email;
+            $user->password = Hash::make($request->password);
+            $user->save();
+
+            $credentials = [];
+            $credentials['email'] = $user->email;
+            $credentials['password'] = $request->password;
+
+            Auth::attempt($credentials);
+        }
+
+
+        session(['request_data' => json_encode($request->all())]);
+        if ($request->payment_method == 1) {
+            return view('frontend.stripe');
+        } elseif ($request->payment_method == 2) {
+            $provider = new PayPalClient();
+            $provider->setApiCredentials(config('paypal'));
+            $paypalToken = $provider->getAccessToken();
+
+            $response = $provider->createOrder([
+                'intent' => 'CAPTURE',
+                'application_context' => [
+                    'return_url' => route('processSuccessPaypal'),
+                    'cancel_url' => route('processCancelPaypal'),
+                ],
+                'purchase_units' => [
+                    0 => [
+                        'amount' => [
+                            'currency_code' => 'USD',
+                            'value' => Cart::subtotal(),
+                        ],
+                    ],
+                ],
+            ]);
+
+            dd($request->all(), $response);
+            if (isset($response['id']) && $response['id'] != null) {
+                // redirect to approve href
+                foreach ($response['links'] as $links) {
+                    if ($links['rel'] == 'approve') {
+                        return redirect()->away($links['href']);
+                    }
+                }
+
+                $message = [
+                    'error' => 'Something went wrong.',
+                ];
+                return redirect()
+                    ->route('checkout')
+                    ->with($message);
+            } else {
+                $message = [
+                    'error' => 'Something went wrong.',
+                ];
+                return redirect()
+                    ->route('checkout')
+                    ->with($response['message'] ?? $message);
+            }
+        } elseif ($request->payment_method == 3) {
+            return view('frontend.payoneer');
+        }
+    }
+
+    public function stripePayment(Request $request)
+    {
+        $user = json_decode(session('request_data'), true);
+        $request['card_number'] = str_replace(' ', '', $request->card_number);
+
+        $rules = [
+            'card_name' => 'required|string',
+            'card_number' => 'required|digits_between:15,16|numeric',
+            'expiry_month' => 'required|numeric|min:1|max:12',
+            'expiry_year' => ['required', 'numeric', 'digits_between:2,4'],
+            'card_cvc' => ['required', 'numeric', 'digits_between:3,4'],
+            'stripeToken' => ['required', new UniqueStripeToken()],
+        ];
+        //Validation message
+        $customMessage = [
+            'card_name.required' => 'Card name is required',
+            'card_number.required' => 'Number is required',
+            'expiry_month.required' => 'Month is required',
+            'expiry_year.required' => 'Year is required',
+            'card_cvc.required' => 'CVC is required',
+        ];
+        $validator = Validator::make($request->all(), $rules, $customMessage);
+        if ($validator->fails()) {
+            return Redirect::back()->withErrors($validator);
+        }
+
+        try {
+            Stripe::setApiKey(env('STRIPE_SECRET'));
+            $customer = \Stripe\Customer::create([
+                'email' => $user['email'],
+                'name' => $user['f_name'] . ' ' . $user['l_name'],
+                'source' => $request->stripeToken,
+            ]);
+
+            $stripe = \Stripe\Charge::create([
+                'amount' => Cart::subtotal() * 100,
+                'currency' => 'usd',
+                'customer' => $customer->id,
+                'description' => $user['note'] == null ? 'Empty description' : $user['note'],
+                'shipping' => [
+                    'name' => $user['f_name'] . ' ' . $user['l_name'],
+                    'address' => [
+                        'line1' => $user['address'],
+                        'postal_code' => $user['post_code'],
+                        'city' => $user['town'],
+                        'state' => $user['street'],
+                        'country' => $user['code'],
+                    ],
+                ],
+            ]);
+        } catch (\Exception $th) {
+            // return view('errors.400');
+            return $th;
+        }
+
+        if ($stripe['status'] === 'succeeded') {
+            $order = new Order();
+
+            $order->user_id = $user['id'];
+            $order->f_name = $user['f_name'];
+            $order->l_name = $user['l_name'];
+            $order->company_name = $user['company_name'];
+            $order->code = $user['code'];
+            $order->street = $user['street'];
+            $order->address = $user['address'];
+            $order->town = $user['town'];
+            $order->country = $user['country'];
+            $order->post_code = $user['post_code'];
+            $order->phone = $user['phone'];
+            $order->email = $user['email'];
+            $order->note = $user['note'];
+            $order->total_price = Cart::subtotal();
+            $order->payment_method = $user['payment_method'];
+            $order->agree = $user['agree'];
+            $order->save();
+
+            $count = count($user['product_id']);
+            for ($i = 0; $i < $count; $i++) {
+                $selling_price = Product::findOrFail($user['product_id'][$i])->selling_price;
+
+                $purchase_product = new PurchaseProduct();
+                $purchase_product->order_id = $order->id;
+                $purchase_product->product_id = $user['product_id'][$i];
+                $purchase_product->product_quantity = $user['product_quantity'][$i];
+                $purchase_product->sales_price = $selling_price;
+                $purchase_product->save();
+            }
+
+            $payment = new Payment();
+            $payment->order_id = $order->id;
+            $payment->card_name = $request->card_name;
+            $payment->card_number = $request->card_number;
+            $payment->expiry_month = $request->expiry_month;
+            $payment->expiry_year = $request->expiry_year;
+            $payment->card_cvc = $request->card_cvc;
+            $payment->stripeToken = $request->stripeToken;
+            $payment->amount = Cart::subtotal();
+            $payment->save();
+
+            Cart::forget();
+
+            return redirect()->route('payment-success');
+        }
+    }
+
+    public function processSuccessPaypal(Request $request)
+    {
+        $provider = new PayPalClient();
+        $provider->setApiCredentials(config('paypal'));
+        $provider->getAccessToken();
+        $response = $provider->capturePaymentOrder($request['token']);
+
+        $user = json_decode(session('request_data'), true);
+
+        if (isset($response['status']) && $response['status'] == 'COMPLETED') {
+            $order = new Order();
+
+            $order->user_id = $user['id'];
+            $order->f_name = $user['f_name'];
+            $order->l_name = $user['l_name'];
+            $order->company_name = $user['company_name'];
+            $order->code = $user['code'];
+            $order->street = $user['street'];
+            $order->address = $user['address'];
+            $order->town = $user['town'];
+            $order->country = $user['country'];
+            $order->post_code = $user['post_code'];
+            $order->phone = $user['phone'];
+            $order->email = $user['email'];
+            $order->note = $user['note'];
+            $order->total_price = Cart::subtotal();
+            $order->payment_method = $user['payment_method'];
+            $order->agree = $user['agree'];
+            $order->save();
+
+            $count = count($user['product_id']);
+            for ($i = 0; $i < $count; $i++) {
+                $selling_price = Product::findOrFail($user['product_id'][$i])->selling_price;
+
+                $purchase_product = new PurchaseProduct();
+                $purchase_product->order_id = $order->id;
+                $purchase_product->product_id = $user['product_id'][$i];
+                $purchase_product->product_quantity = $user['product_quantity'][$i];
+                $purchase_product->sales_price = $selling_price;
+                $purchase_product->save();
+            }
+
+            
+            $payment = new Payment();
+            $payment->order_id = $order->id;
+            $payment->card_name = "Paypal";
+            $payment->amount = Cart::subtotal();
+            $payment->save();
+
+
+            Cart::forget();
+
+            return redirect()->route('payment-success');
+        } else {
+            $message = [
+                'error' => 'Something went wrong.',
+            ];
+            return redirect()
+                ->back()
+                ->with($response['message'] ?? $message);
+        }
+    }
+
+    public function processCancelPaypal(Request $request)
+    {
+        $message = [
+            'error' => 'You have canceled the transaction.',
+        ];
+        return redirect()
+            ->route('checkout')
+            ->with($response['message'] ?? $message);
+    }
+
+    public function paymentSuccessMessage()
+    {
+        return view('frontend.payment.payment_success_message');
     }
 
 

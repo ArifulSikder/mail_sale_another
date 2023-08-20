@@ -6,6 +6,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CkEditorController;
 use App\Http\Controllers\CustomerMessageController;
 use App\Http\Controllers\HomePageController;
+use App\Http\Controllers\OrderControllerBackend;
 use App\Http\Controllers\PaymentApiController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
@@ -189,3 +190,6 @@ Route::post('update-email-data', [SettingController::class, 'updateEmail'])->nam
 Route::get('update-email-status/{id}/{status}', [SettingController::class, 'updatEmailStatus'])->name('update-email-status');
 Route::get('delete-email/{id}', [SettingController::class, 'deleteEmail'])->name('delete-email');
 
+
+//order 
+Route::get('orders', [OrderControllerBackend::class, 'orderIndex'])->name('orders');

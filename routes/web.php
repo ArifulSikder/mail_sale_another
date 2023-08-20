@@ -3,6 +3,7 @@
 use App\Http\Controllers\UserAccountController;
 use App\Http\Controllers\AppearanceController;
 use App\Http\Controllers\CustomerMessageController;
+use App\Http\Controllers\MyAccountController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -16,6 +17,14 @@ Route::get('product/{category_slug}/{product_slug}', [AppearanceController::clas
 
 Route::get('/contact', [AppearanceController::class, 'contact']);
 Route::get('/my-account', [AppearanceController::class, 'myAccount'])->middleware('auth');
+Route::get('/my-account/dashboard', [MyAccountController::class, 'dashboard'])->middleware('auth');
+Route::get('/my-account/orders', [MyAccountController::class, 'orders'])->middleware('auth');
+Route::get('/my-account/downlaods', [MyAccountController::class, 'downlaods'])->middleware('auth');
+Route::get('/my-account/addresses', [MyAccountController::class, 'addresses'])->middleware('auth');
+Route::get('/my-account/details', [MyAccountController::class, 'details'])->middleware('auth');
+Route::get('/my-account/logout', [MyAccountController::class, 'logout'])->middleware('auth');
+
+
 Route::get('/cart', [AppearanceController::class, 'cart']);
 Route::post('/validate-userdata', [AppearanceController::class, 'validateUserdata']);
 Route::post('/profile-photo-upload-ajax', [AppearanceController::class, 'profilePhotoUpload']);

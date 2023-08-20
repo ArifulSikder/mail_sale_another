@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('product_id');
             $table->integer('quantity');
+            $table->integer('stock_alert')->nullable();
             $table->double('average_per_price', 8,2);
             $table->foreignId('created_by');
             $table->foreignId('updated_by')->nullable();

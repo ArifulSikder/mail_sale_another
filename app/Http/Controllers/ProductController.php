@@ -489,27 +489,17 @@ class ProductController extends Controller
     }
 
     // update seller
-    public function updateStock(Request $request)
+    public function updateStockAlert(Request $request)
     {
+
         Validator::make($request->all(), [
-            'product_id' => 'required|string',
-            'seller_id' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'stock_date' => 'required',
-            'per_price' => 'required|numeric',
+            'stock_alert' => 'required|numeric',
         ],[
-            'product_id.required' => 'Please Select Product Name',
-            'seller_id.required' => 'Please Select The Seller',
-            'stock_date.required' => 'Please Select Stock Date',
-            'quantity.required' => 'Please Enter The Quantity',
-            'per_price.required' => 'Please Enter The Product Per Price',
+            'stock_alert.required' => 'Please Enter Stock Alert',
         ])->validate();
 
         $stock = StockManagement::findOrFail($request->edit_id);  
-        $stock->seller_id = $request->seller_id;
-        $stock->stock_date = $request->stock_date;
-        $stock->quantity = $request->quantity;
-        $stock->per_price = $request->per_price;
+        $stock->stock_alert = $request->stock_alert;
         $stock->updated_by = Auth::id();
 
         if ($stock->save()) {

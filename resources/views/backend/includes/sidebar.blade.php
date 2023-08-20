@@ -75,7 +75,7 @@
                         <li class="nav-item">
                             <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Add Stock</p>
+                                <p>Stock</p>
                             </a>
                         </li>
                         <li class="nav-item">

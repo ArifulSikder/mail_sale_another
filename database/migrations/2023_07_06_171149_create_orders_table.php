@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->nullable();
             $table->string('f_name')->nullable();
             $table->string('l_name')->nullable();
             $table->string('company_name')->nullable();
@@ -26,11 +27,13 @@ return new class extends Migration
             $table->string('code')->nullable();
             $table->string('post_code')->nullable();
             $table->string('phone')->nullable();
-            $table->string('email')->unique();
+            $table->string('email');
+            $table->string('status', 15)->default('Pending');
             $table->string('note', 1000)->nullable();
-            $table->boolean('applied_coupon')->nullable()->comment('0=not applied, 1=applied')->default(0);
-            $table->double('sales_price', 8,2)->nullable();
-            $table->integer('payment_method')->nullable()->comment('1=stripe, 2=paypal');
+            $table->double('total_price', 8,2)->nullable();
+            $table->double('applied_coupon', 8,2)->nullable()->default(0);
+            $table->boolean('agree')->nullable()->comment('0=not agreed, 1=agreed')->default(0);
+            $table->integer('payment_method')->nullable()->comment('1=stripe, 2=paypal, 3=payoneer');
             $table->softDeletes();
             $table->timestamps();
         });

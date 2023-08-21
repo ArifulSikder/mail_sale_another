@@ -16,7 +16,7 @@
                 <div class="my_account_body">
                     <div class="row">
                         <div class="col-lg-4 col-md-12 col-sm-12">
-                            <div x-data="{ imagePreview: '{{ Auth::user()->photo == '' ? asset('frontend/assets/images/all-images/img_1.png') : Auth::user()->photo }}' }" class="nav flex-column nav-pills mb-5" id="v-pills-tab"
+                            <div x-data="{ imagePreview: '{{ Auth::user()->photo == '' ? asset('frontend/assets/images/all-images/img_1.png') : asset(Auth::user()->photo)  }}' }" class="nav flex-column nav-pills mb-5" id="v-pills-tab"
                                 role="tablist" aria-orientation="vertical">
                                 <input id="profileImage" class="d-none" type="file" x-ref='photo'
                                     x-on:change="
@@ -36,25 +36,15 @@
                                 </div>
                                 <a href="{{ url('my-account/dashboard') }}" class="nav-link tab-button active text-uppercase">Dashboard</a>
 
-                                <a href="{{ url('my-account/orders') }}" class="nav-link tab-button text-uppercase" id="v-pills-orders-tab"
-                                    data-bs-toggle="pill"
-                                    aria-controls="v-pills-orders" aria-selected="false">Orders</a>
+                                <a href="{{ url('my-account/orders') }}" class="nav-link tab-button text-uppercase" >Orders</a>
 
-                                <a href="{{ url('my-account/downlaods') }}" class="nav-link tab-button text-uppercase" id="v-pills-downloads-tab"
-                                    data-bs-toggle="pill"
-                                    aria-controls="v-pills-downloads" aria-selected="false">Downloads</a>
+                                <a href="{{ url('my-account/downlaods') }}" class="nav-link tab-button text-uppercase">Downloads</a>
 
-                                <a href="{{ url('my-account/addresses') }}" class="nav-link tab-button text-uppercase" id="v-pills-address-tab"
-                                    data-bs-toggle="pill"
-                                    aria-controls="v-pills-address" aria-selected="false">Addresses</a>
+                                <a href="{{ url('my-account/addresses') }}" class="nav-link tab-button text-uppercase">Addresses</a>
 
-                                <a href="{{ url('my-account/details') }}" class="nav-link tab-button text-uppercase" id="v-pills-account-tab"
-                                    data-bs-toggle="pill"
-                                    aria-controls="v-pills-account" aria-selected="false">Account details</a>
+                                <a href="{{ url('my-account/details') }}" class="nav-link tab-button text-uppercase" >Account details</a>
 
-                                <a href="{{ url('my-account/logout') }}" class="nav-link tab-button text-uppercase" id="v-pills-logout-tab"
-                                    data-bs-toggle="pill"
-                                    aria-controls="v-pills-logout" aria-selected="false">Logout</a>
+                                <a href="{{ url('my-account/logout') }}" class="nav-link tab-button text-uppercase" >Logout</a>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-12 col-sm-12">

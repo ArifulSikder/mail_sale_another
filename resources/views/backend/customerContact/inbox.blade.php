@@ -319,6 +319,8 @@
   $(document).ready(function () {
       $("#formData").submit(function (e) {
             e.preventDefault();
+
+            CKEDITOR.instances.editor.updateElement();
             var formdata = new FormData($("#formData")[0]); 
 
             $.ajax({
@@ -326,7 +328,7 @@
               url: "{{ route('send-msg-customer') }}",
               contentType: false,
               processData: false,
-              data: formData,
+              data: formdata,
               dataType: 'json', 
               headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

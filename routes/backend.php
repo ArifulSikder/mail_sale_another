@@ -194,3 +194,6 @@ Route::get('delete-email/{id}', [SettingController::class, 'deleteEmail'])->name
 
 //order 
 Route::get('orders', [OrderControllerBackend::class, 'orderIndex'])->name('orders');
+
+
+

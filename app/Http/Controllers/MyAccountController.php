@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MyAccountController extends Controller
 {
@@ -13,7 +15,8 @@ class MyAccountController extends Controller
 
     public function orders()
     {
-        return view('frontend.my_account.orders');
+        $data['orders'] = Order::where('user_id', Auth::id())->get();
+        return view('frontend.my_account.orders', $data);
     }
 
     public function downlaods()

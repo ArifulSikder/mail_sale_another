@@ -1,3 +1,4 @@
+@extends('frontend.my-account')
 @section('myAccount')
     <div class="tab-pane fade" id="v-pills-address" role="tabpanel" aria-labelledby="v-pills-address-tab" tabindex="0">
         <div class="billing-address">

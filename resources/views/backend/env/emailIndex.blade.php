@@ -184,7 +184,7 @@
     </div>
 </div>
 
-<!-- edit Seller -->
+<!-- edit email -->
 <div class="modal fade" id="editseller" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">

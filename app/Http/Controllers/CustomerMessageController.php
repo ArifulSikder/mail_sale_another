@@ -313,7 +313,16 @@ class CustomerMessageController extends Controller
 
     public function sendMsgCustomer(Request $request)
     {
+        return $request;
         $emails = json_decode(session('emails'), true);
-        
+        $user_data = [
+            'sub' => $request->name,
+            'message' => $request->name,
+            'visit_link' => $request->name,
+        ];
+        foreach ($emails as $email) {
+           
+            Mail::to($request->email)->send(new SenMail($user_data));
+        }
     }
 }

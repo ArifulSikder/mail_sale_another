@@ -57,22 +57,12 @@ class SettingController extends Controller
         $setMail->active_status = $request->active_status;
         $setMail->created_by = Auth::id();
         $setMail->save();
-        $data = [
-            'mailer' => $request->mailer,
-            'host' => $request->host,
-            'port' => $request->port,
-            'username' => $request->username,
-            'password' => $request->password,
-            'encription' => $request->encription,
-            'address' => $request->address,
-            'name' => $request->name,
-        ];
-
+     
         if ($request->active_status == 1) {
             SetEmail::Where('active_status', 1)
                 ->where('id', '!=', $setMail->id)
                 ->update(['active_status' => 0]);
-            $this->setEnvMailer($data);
+            $this->setEnvMailer($setMail);
         }
 
         Artisan::call('config:clear');
@@ -142,19 +132,20 @@ class SettingController extends Controller
     public function updatEmailStatus($id, $status)
     {
         if ($status == 0) {
-            $about = SetEmail::findOrFail($id)->update([
+            $setMail = SetEmail::findOrFail($id);
+            $setMail->update([
                 'active_status' => '1',
                 'updated_by' => Auth::id(),
             ]);
 
-            if ($status == 1) {
+            if ($status == 0) {
                 SetEmail::Where('active_status', 1)
-                    ->where('id', '!=', $about->id)
+                    ->where('id', '!=', $setMail->id)
                     ->update(['active_status' => 0]);
-                $this->setEnvMailer($data);
+                $this->setEnvMailer($setMail);
             }
 
-            if ($about == true) {
+            if ($setMail == true) {
                 $notification = [
                     'success' => 'Status Activated Successfully.',
                 ];
@@ -165,12 +156,13 @@ class SettingController extends Controller
             }
             return back()->with($notification);
         } elseif ($status == 1) {
-            $about = SetEmail::findOrFail($id)->update([
+            $setMail = SetEmail::findOrFail($id);
+            $setMail->update([
                 'active_status' => '0',
                 'updated_by' => Auth::id(),
             ]);
 
-            if ($about == true) {
+            if ($setMail == true) {
                 $notification = [
                     'success' => 'Status inactivated Successfully.',
                 ];
@@ -204,16 +196,16 @@ class SettingController extends Controller
     {
         $envFile = app()->environmentFilePath();
         $content = file_get_contents($envFile);
-
+      
         $replacements = [
-            'MAIL_MAILER' => $data['mailer'],
-            'MAIL_HOST' => $data['host'],
-            'MAIL_PORT' => $data['port'],
-            'MAIL_USERNAME' => $data['username'],
-            'MAIL_PASSWORD' => $data['password'],
-            'MAIL_ENCRYPTION' => $data['encription'],
-            'MAIL_FROM_ADDRESS' => $data['address'],
-            'MAIL_FROM_NAME' => $data['name'],
+            'MAIL_MAILER' => $data->mailer,
+            'MAIL_HOST' => $data->host,
+            'MAIL_PORT' => $data->port,
+            'MAIL_USERNAME' => $data->username,
+            'MAIL_PASSWORD' => $data->password,
+            'MAIL_ENCRYPTION' => $data->encription,
+            'MAIL_FROM_ADDRESS' => $data->address,
+            'MAIL_FROM_NAME' => $data->name,
         ];
 
         foreach ($replacements as $key => $newValue) {

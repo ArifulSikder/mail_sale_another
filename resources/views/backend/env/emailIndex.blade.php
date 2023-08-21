@@ -287,6 +287,7 @@
                       } else if (response.error) {
                           toastr.error(response.error);
                       }
+                    // console.log(response);
                   },
                   error: function (error) {
                       $('.validate').text('');

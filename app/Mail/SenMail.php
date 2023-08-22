@@ -30,7 +30,7 @@ class SenMail extends Mailable
      */
     public function envelope()
     {
-        return new Envelope(subject: 'Pvashop');
+        return new Envelope(subject: $this->user_data['subject']);
     }
 
     /**

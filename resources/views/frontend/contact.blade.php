@@ -30,12 +30,11 @@
                       <div class="mb-3">
                           <label for="Order" class="form-label form-label">Your Message (required)</label>
                           <textarea rows="5" name="message"></textarea>
-
                           <span class="text-danger validate" data-field="message"></span>
                       </div>
                       <button type="submit" class="btn log-in-button" id="submit">Submit</button>
                       <div style="display: none" id="loading">
-                          <img style="height: 50px" src="{{ asset('frontend/assets/images/load.gif') }}" alt=""> <span>Snding Message To Admin</span>
+                          <img style="height: 50px" src="{{ asset('frontend/assets/images/load.gif') }}" alt=""> <span>Sending Message To Admin</span>
                       </div>
                       
                   </form>
@@ -58,7 +57,6 @@
                 $.ajax({
                     type: "POST",
                     url: "{{ route('store-customer-message') }}",
-                    // dataType: "json",
                     contentType: false,
                     processData: false,
                     data: formData,

@@ -168,8 +168,8 @@
                 </li>
 
                 <!-- CUSTOMER CONTACT  -->
-                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Customer Contact
@@ -178,9 +178,9 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'active' : '' }}">
+                            <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Inbox</p>
+                                <p>Inbox</p>    
                             </a>
                         </li>       
                     </ul>

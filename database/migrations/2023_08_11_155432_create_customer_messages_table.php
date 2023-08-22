@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email');
             $table->longText('message');
             $table->boolean('active_status')->default(1);
-            $table->foreignId('created_by');
+            $table->foreignId('created_by')->nullable();
             $table->foreignId('updated_by')->nullable();    
             $table->softDeletes();
             $table->timestamps();

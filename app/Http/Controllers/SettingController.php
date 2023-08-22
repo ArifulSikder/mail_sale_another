@@ -19,17 +19,16 @@ class SettingController extends Controller
 
     public function storeEmail(Request $request)
     {
-        Validator::make(
-            $request->all(),
+        Validator::make($request->all(),
             [
-                'mailer' => 'required|string',
-                'host' => 'required|string',
-                'port' => 'required|numeric',
-                'username' => 'required|string',
-                'password' => 'required|string',
-                'encription' => 'required|string',
-                'address' => 'required|string',
-                'name' => 'required|string',
+                'mailer' => 'required|string|regex:/^\S*$/u',
+                'host' => 'required|string|regex:/^\S*$/u',
+                'port' => 'required|numeric|regex:/^\S*$/u',
+                'username' => 'required|string|regex:/^\S*$/u',
+                'password' => 'required|string|regex:/^\S*$/u',
+                'encription' => 'required|string|regex:/^\S*$/u',
+                'address' => 'required|string|regex:/^\S*$/u',
+                'name' => 'required|string|regex:/^\S*$/u',
                 'active_status' => 'required|in:0,1',
             ],
             [
@@ -80,17 +79,16 @@ class SettingController extends Controller
 
     public function updateEmail(Request $request)
     {
-        Validator::make(
-            $request->all(),
+        Validator::make($request->all(),
             [
-                'mailer' => 'required|string',
-                'host' => 'required|string',
-                'port' => 'required|numeric',
-                'username' => 'required|string',
-                'password' => 'required|string',
-                'encription' => 'required|string',
-                'address' => 'required|string',
-                'name' => 'required|string',
+                'mailer' => 'required|string|regex:/^\S*$/u',
+                'host' => 'required|string|regex:/^\S*$/u',
+                'port' => 'required|numeric|regex:/^\S*$/u',
+                'username' => 'required|string|regex:/^\S*$/u',
+                'password' => 'required|string|regex:/^\S*$/u',
+                'encription' => 'required|string|regex:/^\S*$/u',
+                'address' => 'required|string|regex:/^\S*$/u',
+                'name' => 'required|string|regex:/^\S*$/u',
                 'active_status' => 'required|in:0,1',
             ],
             [
@@ -117,8 +115,18 @@ class SettingController extends Controller
         $setMail->name = $request->name;
         $setMail->active_status = $request->active_status;
         $setMail->created_by = Auth::id();
+        $setMail->save();
 
-        if ($setMail->save()) {
+        if ($request->active_status == 1) {
+            SetEmail::Where('active_status', 1)
+                ->where('id', '!=', $setMail->id)
+                ->update(['active_status' => 0]);
+            $this->setEnvMailer($setMail);
+        }
+
+        Artisan::call('config:clear');
+
+        if ($setMail) {
             return response()->json([
                 'success' => 'Mail Updated Successfully.',
             ]);

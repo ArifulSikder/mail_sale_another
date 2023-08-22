@@ -41,15 +41,16 @@
             </div>
             <div class="card-body p-0">
               <ul class="nav nav-pills flex-column">
-                <li class="nav-item active">
-                  <a href="{{ route('customer-contact') }}" class="nav-link">
+                <li class="nav-item" >
+                  <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact']) ? 'active' : '' }}" >
                     <i class="fas fa-inbox"></i> Inbox
-                    <span class="badge bg-primary float-right">{{ $msg_count }}</span>
+                    <span class="badge bg-warning float-right">{{ $msg_count_inbox }}</span>
                   </a>
                 </li>
                 <li class="nav-item">
-                  <a href="#" class="nav-link">
+                  <a href="{{ route('send-mail-index') }}" class="nav-link {{ request()->is(['send-mail-index']) ? 'active' : '' }}">
                     <i class="far fa-envelope"></i> Sent
+                    <span class="badge bg-warning float-right">{{ $msg_count_send }}</span>
                   </a>
                 </li>
                 <li class="nav-item">
@@ -124,7 +125,7 @@
                             <a href="{{ route('update-contact-status', ['id' => $message->id , 'status' => $message->active_status ]) }}"><span class="badge badge-success">Activated</span></a>
                           @endif
                         </td>
-                        <td class="mailbox-date">28 mins ago</td>
+                        <td class="mailbox-date">{{ $message->created_at->diffForHumans() }}</td>
                       </tr>
                     @empty
                       <tr>Empty</tr>
@@ -199,7 +200,10 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Send</button>
+                    <button type="submit" class="btn btn-primary" id="submit">Send</button>
+                    <div style="display: none" id="loading">
+                      <img style="height: 50px" src="{{ asset('frontend/assets/images/load.gif') }}" alt=""> <span>Sending Message To Customerts</span>
+                  </div>
                 </div>
             </form>
         </div>
@@ -333,8 +337,33 @@
               headers: {
                   'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
               },
+              beforeSend: function() {
+                        $("#submit").hide();
+                        $("#loading").show();
+              },
               success: function (response) {
-                console.log(response);
+                      if (response.success) {
+                          toastr.success(response.success);
+                      } else if (response.error) {
+                          toastr.error(response.error);
+                      }
+              },
+              error: function (error) {
+                  $('.validate').text('');
+                  $.each(error.responseJSON.errors, function (field_name, error) { 
+                        const errorElement = $('.validate[data-field="' + field_name + '"]');
+                        if (errorElement.length > 0) {
+                          errorElement.text(error[0]);
+                          toastr.error(error);
+                        }
+                  });
+                  $("#submit").show();
+                  $("#loading").hide();
+              },
+              complete: function (done) {
+                  if (done.status == 200) {
+                      window.location.reload();
+                  }
               }
             });
         });

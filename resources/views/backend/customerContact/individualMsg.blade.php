@@ -41,26 +41,16 @@
               </div>
               <div class="card-body p-0">
                 <ul class="nav nav-pills flex-column">
-                  <li class="nav-item active">
-                    <a href="#" class="nav-link">
+                  <li class="nav-item" >
+                    <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact']) ? 'active' : '' }}" >
                       <i class="fas fa-inbox"></i> Inbox
-                      <span class="badge bg-primary float-right">12</span>
+                      <span class="badge bg-warning float-right">{{ $msg_count_inbox }}</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{ route('send-mail-index') }}" class="nav-link {{ request()->is(['send-mail-index']) ? 'active' : '' }}">
                       <i class="far fa-envelope"></i> Sent
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="far fa-file-alt"></i> Drafts
-                    </a>
-                  </li>
-                  <li class="nav-item">
-                    <a href="#" class="nav-link">
-                      <i class="fas fa-filter"></i> Junk
-                      <span class="badge bg-warning float-right">65</span>
+                      <span class="badge bg-warning float-right">{{ $msg_count_send }}</span>
                     </a>
                   </li>
                   <li class="nav-item">
@@ -74,29 +64,9 @@
             </div>
             <!-- /.card -->
             <div class="card">
-              <div class="card-header">
-                <h3 class="card-title">Labels</h3>
-
-                <div class="card-tools">
-                  <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                    <i class="fas fa-minus"></i>
-                  </button>
-                </div>
-              </div>
+              
               <!-- /.card-header -->
-              <div class="card-body p-0">
-                <ul class="nav nav-pills flex-column">
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="far fa-circle text-danger"></i> Important</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="far fa-circle text-warning"></i> Promotions</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="#"><i class="far fa-circle text-primary"></i> Social</a>
-                  </li>
-                </ul>
-              </div>
+        
               <!-- /.card-body -->
             </div>
             <!-- /.card -->
@@ -119,7 +89,7 @@
                   <span class="mailbox-read-time float-right">{{ $single_msg->created_at }} PM</span></h6>
               </div>
               <!-- /.mailbox-read-info -->
-              <div class="mailbox-controls with-border text-center">
+              {{-- <div class="mailbox-controls with-border text-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-default btn-sm" data-container="body" title="Delete">
                     <i class="far fa-trash-alt"></i>
@@ -135,10 +105,16 @@
                 <button type="button" class="btn btn-default btn-sm" title="Print">
                   <i class="fas fa-print"></i>
                 </button>
-              </div>
+              </div> --}}
               <!-- /.mailbox-controls -->
               <div class="mailbox-read-message">
-                <p>{{ $single_msg->message }}</p>
+                @if ($single_msg->subject)
+                  <p>Subject: {{ $single_msg->subject }}</p>
+                @endif
+                @if ($single_msg->subject)
+                  <p>Visit Link: {{ $single_msg->visit_link }}</p>
+                @endif
+                <p>Message: {!! $single_msg->message !!}</p>
               </div>
               <!-- /.mailbox-read-message -->
             </div>

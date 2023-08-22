@@ -40,66 +40,68 @@
             <div class="card">
                 <div class="card-header">Email Setup Table</div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 5%">Serial</th>
-                                <th scope="col" style="width: 10%">MAIL MAILER</th>
-                                <th scope="col" style="width: 10%">MAIL HOST</th>
-                                <th scope="col" style="width: 10%">MAIL PORT</th>
-                                <th scope="col" style="width: 10%">MAIL USERNAME</th>
-                                <th scope="col" style="width: 10%">MAIL PASSWORD</th>
-                                <th scope="col" style="width: 10%">MAIL ENCRYPTION</th>
-                                <th scope="col" style="width: 10%">MAIL FROM ADDRESS</th>
-                                <th scope="col" style="width: 10%">MAIL FROM NAME</th>
-                                <th scope="col" style="width: 10%">Status</th>
-                                <th scope="col" style="width: 10%">Action</th>
-                            </tr>   
-                        </thead>
-                        <tbody>
-                            @php
-                                $serials = ($email_data->currentpage() - 1) * $email_data->perpage() + 1;
-                            @endphp 
-                            @foreach($email_data as $data)
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <th>{{ $serials++ }}</th>
-                                    <td>{{ $data->mailer }}</td>
-                                    <td>{{ $data->host }}</td>
-                                    <td>{{ $data->port }}</td>
-                                    <td>{{ $data->username }}</td>
-                                    <td>{{ $data->password }}</td>
-                                    <td>{{ $data->encription }}</td>
-                                    <td>{{ $data->address }}</td>
-                                    <td>{{ $data->name }}</td>
-                                    <td><span
-                                            class="badge badge-{{ $data->active_status == 0 ? 'danger': 'success' }}">{{ $data->active_status == 0 ? 'Inactive': 'Active' }}</span>
-                                    </td>
-                                    <td>    
-                                        <button type="button" 
-                                                class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
-                                                data-toggle="dropdown">
-                                                Options
-                                            </button>
-                                            <div class="text-center dropdown-menu bg-light-blue">
-                                                @if ($data->active_status == 0)
-                                                   <a href="{{ route('update-email-status', ['id' => $data->id , 'status' => $data->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
-                                                @else
-                                                    <a href="{{ route('update-email-status', ['id' => $data->id , 'status' => $data->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
-                                                @endif
-                                                <button type="button" data-email="{{ $data }}"
-                                                    class="btn btn-success btn-sm editData btn-block">
-                                                    <i class="fas fa-edit"></i> Edit
+                                    <th scope="col" style="width: 5%">Serial</th>
+                                    <th scope="col" style="width: 10%">MAIL MAILER</th>
+                                    <th scope="col" style="width: 10%">MAIL HOST</th>
+                                    <th scope="col" style="width: 10%">MAIL PORT</th>
+                                    <th scope="col" style="width: 10%">MAIL USERNAME</th>
+                                    <th scope="col" style="width: 10%">MAIL PASSWORD</th>
+                                    <th scope="col" style="width: 10%">MAIL ENCRYPTION</th>
+                                    <th scope="col" style="width: 10%">MAIL FROM ADDRESS</th>
+                                    <th scope="col" style="width: 10%">MAIL FROM NAME</th>
+                                    <th scope="col" style="width: 10%">Status</th>
+                                    <th scope="col" style="width: 10%">Action</th>
+                                </tr>   
+                            </thead>
+                            <tbody>
+                                @php
+                                    $serials = ($email_data->currentpage() - 1) * $email_data->perpage() + 1;
+                                @endphp 
+                                @foreach($email_data as $data)
+                                    <tr>
+                                        <th>{{ $serials++ }}</th>
+                                        <td>{{ $data->mailer }}</td>
+                                        <td>{{ $data->host }}</td>
+                                        <td>{{ $data->port }}</td>
+                                        <td>{{ $data->username }}</td>
+                                        <td>{{ $data->password }}</td>
+                                        <td>{{ $data->encription }}</td>
+                                        <td>{{ $data->address }}</td>
+                                        <td>{{ $data->name }}</td>
+                                        <td><span
+                                                class="badge badge-{{ $data->active_status == 0 ? 'danger': 'success' }}">{{ $data->active_status == 0 ? 'Inactive': 'Active' }}</span>
+                                        </td>
+                                        <td>    
+                                            <button type="button" 
+                                                    class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Options
                                                 </button>
-                                                <a href="{{ route('delete-email', ['id' => $data->id]) }}"
-                                                    id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i> Delete</a>
-                                            </div>
+                                                <div class="text-center dropdown-menu bg-light-blue">
+                                                    @if ($data->active_status == 0)
+                                                    <a href="{{ route('update-email-status', ['id' => $data->id , 'status' => $data->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
+                                                    @else
+                                                        <a href="{{ route('update-email-status', ['id' => $data->id , 'status' => $data->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
+                                                    @endif
+                                                    <button type="button" data-email="{{ $data }}"
+                                                        class="btn btn-success btn-sm editData btn-block">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </button>
+                                                    <a href="{{ route('delete-email', ['id' => $data->id]) }}"
+                                                        id="delete" class="btn btn-danger btn-sm btn-block"><i
+                                                            class="fas fa-trash"></i> Delete</a>
+                                                </div>
 
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
                     <div class="float-right my-2">
                         {{ $email_data->links() }}
                     </div>

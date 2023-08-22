@@ -170,11 +170,17 @@ Route::get('delete-payapi/{id}', [PaymentApiController::class, 'deletePayapi'])-
 // Customer Contact 
 Route::get('customer-contact', [CustomerMessageController::class, 'customerContact'])->name('customer-contact');
 Route::get('show-individual-message/{id}', [CustomerMessageController::class, 'individualMessage'])->name('show-individual-message');
+Route::get('show-individual-sent/{id}', [CustomerMessageController::class, 'individualSent'])->name('show-individual-sent');
 Route::get('update-contact-status/{id}/{status}', [CustomerMessageController::class, 'updatContactStatus'])->name('update-contact-status');
 Route::delete('delete-customer-message', [CustomerMessageController::class, 'deleteCustomerMessage'])->name('delete-customer-message');
 
 Route::post('get-emails', [CustomerMessageController::class, 'getEmails'])->name('get-emails');
 Route::post('send-msg-customer', [CustomerMessageController::class, 'sendMsgCustomer'])->name('send-msg-customer');
+
+// send inbox 
+Route::get('send-mail-index', [CustomerMessageController::class, 'sendMailIndex'])->name('send-mail-index');
+Route::delete('delete-sent-message', [CustomerMessageController::class, 'deleteSentMessage'])->name('delete-sent-message');
+
 
 // SMS Templete 
 Route::get('sms-templete', [CustomerMessageController::class, 'smsTemplete'])->name('sms-templete');

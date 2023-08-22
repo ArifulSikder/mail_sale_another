@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('payment_apis', function (Blueprint $table) {
             $table->id();
-            $table->string('payment_type');
-            $table->string('mode');
+            $table->string('payment_type')->comment('1=stripe, 2=paypal');
+            $table->string('mode')->comment('1=sendbox, 2=live');
             $table->string('client_id');
             $table->string('client_secret');
             $table->string('app_id');

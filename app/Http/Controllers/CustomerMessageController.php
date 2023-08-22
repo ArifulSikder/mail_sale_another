@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ReciveMail;
 use App\Mail\SenMail;
 use App\Models\CustomerMessage;
+use App\Models\SendMsgCustomer;
 use App\Models\SmsTemplete;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -50,8 +51,9 @@ class CustomerMessageController extends Controller
         // mail content to user
         $user_data = [
             'name' => $request->name,
-            'email' => 'islammahfuzul31@gmail.com',
-            'link' => 'https://laravel.com/docs/9.x/mail',
+            'subject' => 'subject add hobe',
+            'message' => $request->message,
+            'visit_link' => 'https://laravel.com/docs/9.x/mail',
         ];
         Mail::to($request->email)->send(new SenMail($user_data));
 
@@ -69,7 +71,8 @@ class CustomerMessageController extends Controller
     // view customer message  in admin dashboard
     public function customerContact()
     {
-        $data['msg_count'] = CustomerMessage::count();
+        $data['msg_count_send'] = SendMsgCustomer::count();
+        $data['msg_count_inbox'] = CustomerMessage::count();
         $data['messages'] = CustomerMessage::latest()->paginate(15);
         $data['templetes'] = SmsTemplete::latest()->get();
         return view('backend.customerContact.inbox', $data);
@@ -78,7 +81,17 @@ class CustomerMessageController extends Controller
     // view indivudual message  in admin dashboard
     public function individualMessage($id)
     {
+        $data['msg_count_send'] = SendMsgCustomer::count();
+        $data['msg_count_inbox'] = CustomerMessage::count();
         $data['single_msg'] = CustomerMessage::findOrFail($id);
+        return view('backend.customerContact.individualMsg', $data);
+    }
+
+    public function individualSent($id)
+    {
+        $data['msg_count_send'] = SendMsgCustomer::count();
+        $data['msg_count_inbox'] = CustomerMessage::count();
+        $data['single_msg'] = SendMsgCustomer::findOrFail($id);
         return view('backend.customerContact.individualMsg', $data);
     }
 
@@ -137,6 +150,8 @@ class CustomerMessageController extends Controller
         }
     }
 
+    
+
     // sms templete
     public function smsTemplete()
     {
@@ -150,8 +165,8 @@ class CustomerMessageController extends Controller
         Validator::make(
             $request->all(),
             [
-                'templete_name' => 'required|string|max:100|unique:sms_templetes',
-                'subject' => 'required|max:100',
+                'templete_name' => 'required|string|unique:sms_templetes',
+                'subject' => 'required',
                 'visit_link' => 'required|string',
                 'message' => 'required|string',
                 'active_status' => 'required|in:0,1',
@@ -302,6 +317,7 @@ class CustomerMessageController extends Controller
     public function getEmails(Request $request)
     {
         $emails = CustomerMessage::whereIn('id', $request->ids)
+            ->where('active_status', 1)
             ->select('email')
             ->get();
        
@@ -313,16 +329,65 @@ class CustomerMessageController extends Controller
 
     public function sendMsgCustomer(Request $request)
     {
-        return $request;
+        Validator::make($request->all(),[
+                'templete_name' => 'required|string',
+                'subject' => 'required|max:100',
+                'visit_link' => 'required',
+                'message' => 'required',
+            ],
+            [
+                'templete_name.required' => 'Please Enter The Templete Name',
+                'subject.required' => 'Please Enter The Subject',
+                'visit_link.required' => 'Please Input The Visit Link',
+                'message.required' => 'Please Enter The Message',
+            ],
+        )->validate();
+
         $emails = json_decode(session('emails'), true);
         $user_data = [
-            'sub' => $request->name,
-            'message' => $request->name,
-            'visit_link' => $request->name,
+            'subject' => $request->subject,
+            'message' => $request->message,
+            'visit_link' => $request->visit_link,
         ];
+
         foreach ($emails as $email) {
-           
-            Mail::to($request->email)->send(new SenMail($user_data));
+            $send = new SendMsgCustomer();
+            $send->email = $email['email'];
+            $send->templete_name = $request->templete_name;
+            $send->subject = $request->subject;
+            $send->visit_link = $request->visit_link;
+            $send->message = $request->message;
+            $send->created_by = Auth::id();                 
+            $send->save();  
+            Mail::to($email)->send(new SenMail($user_data));
+        }
+
+        return response()->json([
+            'success' => 'SMS Send To Customers Successfully.',
+        ]);
+    }
+
+    public function sendMailIndex()
+    {
+        $data['msg_count_send'] = SendMsgCustomer::count();
+        $data['msg_count_inbox'] = CustomerMessage::count();
+        $data['messages'] = SendMsgCustomer::latest()->paginate(15);
+        return view('backend.customerContact.sendIndes', $data);
+    }
+
+    public function deleteSentMessage(Request $request)
+    {
+        foreach ($request->ids as $id) {
+            $delete = SendMsgCustomer::findOrFail($id)->delete();
+        }
+        if ($delete) {
+            return response()->json([
+                'success' => 'Customer Message Deleted successfully.',
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Opps! Something Went Wrong.',
+            ]);
         }
     }
 }

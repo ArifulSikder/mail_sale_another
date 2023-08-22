@@ -39,74 +39,76 @@
                 <div class="card">
                     <div class="card-header">API List Table</div>
                     <div class="card-body">
-                        <table class="table table-bordered">
-                            <thead>
-                                <tr>
-                                    <th scope="col" style="width: 5%">Serial</th>
-                                    <th scope="col" style="width: 15%">Type</th>
-                                    <th scope="col" style="width: 15%">Mode</th>
-                                    <th scope="col" style="width: 10%">Client ID</th>
-                                    <th scope="col" style="width: 15%">Client Secret</th>
-                                    <th scope="col" style="width: 10%">App ID</th>
-                                    <th scope="col" style="width: 10%">Active Status</th>
-                                    <th scope="col" style="width: 10%">Add Date</th>
-                                    <th scope="col" style="width: 10%">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php
-                                    $serials = ($api_list->currentpage() - 1) * $api_list->perpage() + 1;
-                                @endphp 
-                                @foreach($api_list as $api)
-                                    <tr >
-                                        <td>{{ $serials++ }}</td>
-                                        <td>{{ $api->payment_type == 0 ? 'Stripe': 'Paypal' }}</td>
-                                        <td>{{ $api->mode == 0 ? 'Sendbox API': 'Live API' }}</td>
-                                        <td>{{ $api->client_id }}</td>
-                                        <td>{{ $api->client_secret }}</td>
-                                        <td>{{ $api->app_id }}</td>
-                                        <td>
-                                            <span
-                                            class="badge badge-{{ $api->active_status == 0 ? 'danger': 'success' }}">{{ $api->active_status == 0 ? 'Inactive': 'Active' }}</span>
-                                        </td>
-                                        <td>{{ $api->created_at->toFormateDate() }}</td>
-                                        <td>
-                                            <button type="button" 
-                                                class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
-                                                data-toggle="dropdown">
-                                                Options
-                                            </button>
-                                            <div class="dropdown-menu text-center bg-light-blue">
-                                                @if ($api->active_status == 0)
-                                                   <a href="{{ route('update-payapi-status', ['id' => $api->id , 'status' => $api->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
-                                                @else
-                                                    <a href="{{ route('update-payapi-status', ['id' => $api->id , 'status' => $api->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
-                                                @endif
-
-                                                <button type="button" 
-                                                    data-id="{{ $api->id }}"
-                                                    data-payment_type="{{ $api->payment_type }}"
-                                                    data-mode="{{ $api->mode }}"
-                                                    data-client_id="{{ $api->client_id }}"
-                                                    data-client_secret="{{ $api->client_secret }}"
-                                                    data-app_id="{{ $api->app_id }}"
-                                                    data-active_status="{{ $api->active_status }}"
-                                                    class="btn btn-success btn-sm edit_api  btn-block">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </button>
-                                                
-
-                                                <a href="{{ route('delete-payapi',['id' => $api->id] ) }}"
-                                                    id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i> Delete</a>
-                                                
-                                            </div>
-                                        </td>
+                        <div class="table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col" style="width: 5%">Serial</th>
+                                        <th scope="col" style="width: 15%">Type</th>
+                                        <th scope="col" style="width: 15%">Mode</th>
+                                        <th scope="col" style="width: 10%">Client ID</th>
+                                        <th scope="col" style="width: 15%">Client Secret</th>
+                                        <th scope="col" style="width: 10%">App ID</th>
+                                        <th scope="col" style="width: 10%">Active Status</th>
+                                        <th scope="col" style="width: 10%">Add Date</th>
+                                        <th scope="col" style="width: 10%">Action</th>
                                     </tr>
-                                @endforeach
-                               
-                            </tbody>
-                        </table>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $serials = ($api_list->currentpage() - 1) * $api_list->perpage() + 1;
+                                    @endphp 
+                                    @foreach($api_list as $api)
+                                        <tr >
+                                            <td>{{ $serials++ }}</td>
+                                            <td>{{ $api->payment_type == 1 ? 'Stripe': 'Paypal' }}</td>
+                                            <td>{{ $api->mode == 1 ? 'Sendbox API': 'Live API' }}</td>
+                                            <td>{{ $api->client_id }}</td>
+                                            <td>{{ $api->client_secret }}</td>
+                                            <td>{{ $api->app_id }}</td>
+                                            <td>
+                                                <span
+                                                class="badge badge-{{ $api->active_status == 0 ? 'danger': 'success' }}">{{ $api->active_status == 0 ? 'Inactive': 'Active' }}</span>
+                                            </td>
+                                            <td>{{ $api->created_at->toFormateDate() }}</td>
+                                            <td>
+                                                <button type="button" 
+                                                    class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Options
+                                                </button>
+                                                <div class="dropdown-menu text-center bg-light-blue">
+                                                    @if ($api->active_status == 0)
+                                                    <a href="{{ route('update-payapi-status', ['id' => $api->id , 'status' => $api->active_status ]) }}" class="btn btn-success btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Active</a> 
+                                                    @else
+                                                        <a href="{{ route('update-payapi-status', ['id' => $api->id , 'status' => $api->active_status ]) }}" class="btn btn-danger btn-sm btn-block"><i class="fas fa-angle-double-right"></i> Inactive</a> 
+                                                    @endif
+
+                                                    <button type="button" 
+                                                        data-id="{{ $api->id }}"
+                                                        data-payment_type="{{ $api->payment_type }}"
+                                                        data-mode="{{ $api->mode }}"
+                                                        data-client_id="{{ $api->client_id }}"
+                                                        data-client_secret="{{ $api->client_secret }}"
+                                                        data-app_id="{{ $api->app_id }}"
+                                                        data-active_status="{{ $api->active_status }}"
+                                                        class="btn btn-success btn-sm edit_api  btn-block">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </button>
+                                                    
+
+                                                    <a href="{{ route('delete-payapi',['id' => $api->id] ) }}"
+                                                        id="delete" class="btn btn-danger btn-sm btn-block"><i
+                                                            class="fas fa-trash"></i> Delete</a>
+                                                    
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                
+                                </tbody>
+                            </table>
+                        </div><!-- table-wrapper -->
                         <div class="float-right my-2">
                             {{ $api_list->links() }}
                         </div>
@@ -134,8 +136,8 @@
                                 <select class="form-control select2 payment_type" name="payment_type"
                                     id="payment_type" data-placeholder="Select Logo Type" style="width: 100%">
                                     <option value="">Choose Payment Type</option>
-                                    <option value="0">Stripe</option>    <!-- value = 0 is stripe -->
-                                    <option value="1">Paypal</option>   <!-- value = 1 is paypal -->
+                                    <option value="1">Stripe</option>    <!-- value =1 is stripe -->
+                                    <option value="2">Paypal</option>   <!-- value = 2 is paypal -->
                                 </select>
                                 
                                     <span class="text-danger validate" data-field="payment_type"></span>
@@ -147,8 +149,8 @@
                                 <select class="form-control select2 mode" name="mode"
                                     id="mode" data-placeholder="Select Mode" style="width: 100%">
                                     <option value="">Choose Payment Type</option>
-                                    <option value="0">Sendbox API</option>    <!-- value = 0 is sendbox -->
-                                    <option value="1">Live API</option>       <!-- value = 1 is Live -->
+                                    <option value="1">Sendbox API</option>    <!-- value = 1 is sendbox -->
+                                    <option value="2">Live API</option>       <!-- value = 2 is Live -->
                                 </select>
                                 
                                     <span class="text-danger validate" data-field="mode"></span>

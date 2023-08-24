@@ -75,7 +75,8 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('backend/plugins/adminlte.min.js') }}"></script>
     {{-- apex chart  --}}
-    <script src="{{ asset('backend/plugins/apex-chart/apexcharts.min.js') }}"></script>
+    {{-- <script src="{{ asset('backend/plugins/apex-chart/apexcharts.min.js') }}"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     {{-- toastr --}}
     <script src="{{ asset('backend/plugins/toastr/toastr.min.js') }}"></script>
     {{-- sweetalert2 --}}

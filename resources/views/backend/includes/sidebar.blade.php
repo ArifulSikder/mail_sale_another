@@ -49,6 +49,30 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
+                            <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Seller</p>
+                            </a>
+                        </li>   
+                        <li class="nav-item">
+                            <a href="{{ route('purchase') }}" class="nav-link {{ request()->is(['purchase']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Purchase</p>
+                            </a>
+                        </li>  
+                        <li class="nav-item">
+                            <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Stock</p>
+                            </a>
+                        </li>  
+                        <li class="nav-item">
+                            <a href="{{ route('coupons') }}" class="nav-link {{ request()->is(['coupons']) ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Coupon</p>
+                            </a>
+                        </li>  
+                        <li class="nav-item">
                             <a href="{{ route('category') }}" class="nav-link {{ request()->is(['category']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Product Category</p>
@@ -66,30 +90,7 @@
                                 <p>Products</p>
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a href="{{ route('sellers') }}" class="nav-link {{ request()->is(['sellers']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Seller</p>
-                            </a>
-                        </li>   
-                        <li class="nav-item">
-                            <a href="{{ route('stocks') }}" class="nav-link {{ request()->is(['stocks']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Stock</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('coupons') }}" class="nav-link {{ request()->is(['coupons']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Coupon</p>
-                            </a>
-                        </li>  
-                        <li class="nav-item">
-                            <a href="{{ route('purchase') }}" class="nav-link {{ request()->is(['purchase']) ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Purchase</p>
-                            </a>
-                        </li>        
+                       
                     </ul>
                 </li>
 

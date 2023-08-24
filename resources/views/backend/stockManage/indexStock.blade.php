@@ -1,6 +1,6 @@
 @extends('backend.layouts.master')
 
-@section('title', 'About Us')
+@section('title', 'Stock')
 
 @section('section')
     <div class="content-wrapper">
@@ -56,6 +56,18 @@
                                     $serials = ($stocks->currentpage() - 1) * $stocks->perpage() + 1;
                                 @endphp
                                 @foreach ($stocks as $stock)
+                                    @php
+                                        $alert = \app\Models\StockManagement::where('id', $stock->id)
+                                            ->where('quantity', '<=', $stock->stock_alert)
+                                            ->first();
+                                    @endphp
+                                    @if ($alert)
+                                        @push('js')
+                                            <script>
+                                                toastr.error("{{ $stock->product->name }} Is Low Stock.");
+                                            </script>
+                                        @endpush
+                                    @endif
                                     <tr>
                                         <th>{{ $serials++ }}</th>
                                         <td>{{ $stock->product->name }}</td>
@@ -64,12 +76,14 @@
                                         <td>
                                             @if ($stock->stock_alert == null)
                                                 <span class="text-info">No alert Quantity added</span>
-                                            @elseif($stock->quantity <= $stock->stock_alert)    
-                                                ({{ $stock->stock_alert }})<span class="text-danger">Low Stock</span> <i class="fas fa-exclamation-triangle text-danger"></i>
+                                            @elseif($stock->quantity <= $stock->stock_alert)
+                                                ({{ $stock->stock_alert }})
+                                                <span class="text-danger">Low Stock</span> <i
+                                                    class="fas fa-exclamation-triangle text-danger"></i>
                                             @elseif ($stock->quantity >= $stock->stock_alert)
                                                 ({{ $stock->stock_alert }})<span class="text-success">Enough Stock</span>
                                             @endif
-                                        </td>
+                                        </td>   
                                         <td>
                                             <button type="button"
                                                 class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
@@ -77,9 +91,8 @@
                                                 Options
                                             </button>
                                             <div class="text-center dropdown-menu bg-light-blue">
-                                                <button type="button"
-                                                     data-id="{{ $stock->id }}"
-                                                     data-stock_alert="{{ $stock->stock_alert }}"
+                                                <button type="button" data-id="{{ $stock->id }}"
+                                                    data-stock_alert="{{ $stock->stock_alert }}"
                                                     class="btn btn-danger btn-sm editStock btn-block">
                                                     <i class="fas fa-exclamation-triangle"></i> Add Alert
                                                 </button>
@@ -174,7 +187,7 @@
     </div> --}}
 
     <!-- edit stock -->
-    <div class="modal fade" id="editstock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {{-- <div class="modal fade" id="editstock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
@@ -203,7 +216,7 @@
                 </form>
             </div>
         </div>
-    </div>
+    </div> --}}
 
 
 @endsection
@@ -302,5 +315,6 @@
             });
         });
     </script>
+
 
 @endsection

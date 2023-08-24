@@ -79,7 +79,7 @@
               </div>
               <h2 class="dollar">{{ $product->selling_price }}$</h2>
               <div class="service">
-                @if ($product && count($product->details) > 0)
+                @if ($product && count($product->details) > 0 && $product->details->where('active_status', 1)->first())
                     {!! $product->details->where('active_status', 1)->first()->content !!}
                 @endif
               </div>

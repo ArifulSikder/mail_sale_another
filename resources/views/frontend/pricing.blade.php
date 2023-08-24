@@ -69,9 +69,14 @@
     <section class="about-account-area">
         <div class="container">
             <div class="wrapper content">
-                @foreach ($descriptions as $description)
-                    {!! $description->description; !!}
-                @endforeach
+                @isset($descriptions)
+                    @foreach ($descriptions as $description)
+                        {!! $description->description; !!}
+                    @endforeach
+                @endisset
+                    
+   
+                
             </div>
         </div>
     </section>

@@ -12,10 +12,12 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
 use App\Http\Requests\OrderInformationRequest;
+use App\Models\AboutUs;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
 use App\Models\Order;
 use App\Models\Payment;
+use App\Models\ProductDetail;
 use App\Models\ProductGuarantee;
 use App\Models\PurchaseProduct;
 use App\Models\Review;
@@ -37,6 +39,7 @@ class AppearanceController extends Controller
     {
         $data['products']   = Product::with('advantages', 'details', 'descriptions')
             ->where('active_status', 1)
+            ->where('pinned', 1)
             ->get();
         $data['meet_teams'] = MeetTeam::where('active_status', '1')->oldest()->take(3)->get();
         $data['gurantees'] = ProductGuarantee::where('active_status', '1')->oldest()->take(3)->get();
@@ -159,6 +162,7 @@ class AppearanceController extends Controller
             ->first();
 
         return view('frontend.product-details', $data);
+        // return $data['product'];
     }
 
     public function addToCard(Request $request)
@@ -309,7 +313,8 @@ class AppearanceController extends Controller
 
     public function aboutUs()
     {
-        return view('frontend.about-us');
+        $data['about_us'] = AboutUs::where('active_status', 1)->first();
+        return view('frontend.about-us', $data);
     }
 
     public function storeCustomerReview(Request $request)

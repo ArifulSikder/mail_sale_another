@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 22, 2023 at 03:59 PM
+-- Generation Time: Aug 24, 2023 at 05:57 PM
 -- Server version: 8.0.30
 -- PHP Version: 8.1.10
 
@@ -43,8 +43,9 @@ CREATE TABLE `about_us` (
 --
 
 INSERT INTO `about_us` (`id`, `description`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, '<h6><strong>&ldquo;WHAT IS PVA ACCOUNT&rdquo;????</strong></h6>\r\n\r\n<p>The&nbsp;<strong>PVA</strong>&nbsp;is a (phone verified account) this is a genuine account, which is phone verified account so non-pva has not been phone verified. Facebook phone verified account and other social media account have more privileges than Non-pva and also pva can add more friend in a safe way,send more message, post updates with URL and most important is that PVA won&rsquo;t ban easily as Non-PVA.</p>\r\n\r\n<h6><strong>&ldquo;WHAT WE SERVE&rdquo;</strong></h6>\r\n\r\n<p>We are here to serve you the best quality&nbsp;<strong>pva account</strong>&nbsp;in the&nbsp;<strong>best and cheap price</strong>&nbsp;we provide the different types of accounts according to our client&rsquo;s need. We will never give the fake account. we provide the best and 100% Working PVA Accounts. All Accounts are created with Unique IP PVA Accounts are 100% Verified, We Never Negotiate on Quality. You can&nbsp;<strong>Buy Instagram Accounts in bulk ,</strong>&nbsp;<strong>bulk email-business account,</strong>&nbsp;<strong>buy Facebook account,</strong>&nbsp;<strong>twitter pva accounts</strong></p>\r\n\r\n<p><strong>&ldquo;WHAT YOU GET IN OUR SERVICES&rdquo;</strong></p>\r\n\r\n<p>we allow more privileges than non-pva, we allow posting without captchas also provide it from our website.This&nbsp;<strong>PVA</strong>&nbsp;is Good and Profitable way to Grow Your Business all the&nbsp;<strong>social media accounts</strong>&nbsp;You can&nbsp;<strong>buy genuine real instagram likes and followers</strong>&nbsp;and also get&nbsp;<strong>bulk verify email accounts</strong>&nbsp;and also&nbsp;<strong>get google voice call phone number account</strong>&nbsp;you can buy&nbsp;<strong>buy old pinterest and hotmail PVA accounts.</strong></p>\r\n\r\n<p>For Any Query Please contact us Via Chat.We are Here 24hrs in Your Service.</p>\r\n\r\n<p>Thanks</p>\r\n\r\n<p>PVAESHOP &amp; TEAM</p>', 0, 1, 1, NULL, '2023-08-11 22:10:13', '2023-08-12 00:01:01'),
-(2, '<h6>&nbsp;</h6>\r\n\r\n<h6><strong>&ldquo;WHAT IS PVA ACCOUNT&rdquo;????</strong></h6>\r\n\r\n<p>The&nbsp;<strong>PVA</strong>&nbsp;is a (phone verified account) this is a genuine account, which is phone verified account so non-pva has not been phone verified. Facebook phone verified account and other social media account have more privileges than Non-pva and also pva can add more friend in a safe way,send more message, post updates with URL and most important is that PVA won&rsquo;t ban easily as Non-PVA.</p>\r\n\r\n<h6><strong>&ldquo;WHAT WE SERVE&rdquo;</strong></h6>\r\n\r\n<p>We are here to serve you the best quality&nbsp;<strong>pva account</strong>&nbsp;in the&nbsp;<strong>best and cheap price</strong>&nbsp;we provide the different types of accounts according to our client&rsquo;s need. We will never give the fake account. we provide the best and 100% Working PVA Accounts. All Accounts are created with Unique IP PVA Accounts are 100% Verified, We Never Negotiate on Quality. You can&nbsp;<strong>Buy Instagram Accounts in bulk ,</strong>&nbsp;<strong>bulk email-business account,</strong>&nbsp;<strong>buy Facebook account,</strong>&nbsp;<strong>twitter pva accounts</strong></p>\r\n\r\n<p><strong>&ldquo;WHAT YOU GET IN OUR SERVICES&rdquo;</strong></p>\r\n\r\n<p>we allow more privileges than non-pva, we allow posting without captchas also provide it from our website.This&nbsp;<strong>PVA</strong>&nbsp;is Good and Profitable way to Grow Your Business all the&nbsp;<strong>social media accounts</strong>&nbsp;You can&nbsp;<strong>buy genuine real instagram likes and followers</strong>&nbsp;and also get&nbsp;<strong>bulk verify email accounts</strong>&nbsp;and also&nbsp;<strong>get google voice call phone number account</strong>&nbsp;you can buy&nbsp;<strong>buy old pinterest and hotmail PVA accounts.</strong></p>\r\n\r\n<p>For Any Query Please contact us Via Chat.We are Here 24hrs in Your Service.</p>\r\n\r\n<p>Thanks</p>\r\n\r\n<p>PVAESHOP &amp; TEAM</p>', 0, 1, 1, NULL, '2023-08-12 00:00:22', '2023-08-13 08:13:35');
+(1, '<h6><strong>&ldquo;WHAT IS PVA ACCOUNT&rdquo;</strong></h6>\r\n\r\n<p>The&nbsp;<strong>PVA</strong>&nbsp;is a (phone verified account) this is a genuine account, which is phone verified account so non-pva has not been phone verified. Facebook phone verified account and other social media account have more privileges than Non-pva and also pva can add more friend in a safe way,send more message, post updates with URL and most important is that PVA won&rsquo;t ban easily as Non-PVA.</p>\r\n\r\n<h6><strong>&ldquo;WHAT WE SERVE&rdquo;</strong></h6>\r\n\r\n<p>We are here to serve you the best quality&nbsp;<strong>pva account</strong>&nbsp;in the&nbsp;<strong>best and cheap price</strong>&nbsp;we provide the different types of accounts according to our client&rsquo;s need. We will never give the fake account. we provide the best and 100% Working PVA Accounts. All Accounts are created with Unique IP PVA Accounts are 100% Verified, We Never Negotiate on Quality. You can&nbsp;<strong>Buy Instagram Accounts in bulk ,</strong>&nbsp;<strong>bulk email-business account,</strong>&nbsp;<strong>buy Facebook account,</strong>&nbsp;<strong>twitter pva accounts</strong></p>\r\n\r\n<p><strong>&ldquo;WHAT YOU GET IN OUR SERVICES&rdquo;</strong></p>\r\n\r\n<p>we allow more privileges than non-pva, we allow posting without captchas also provide it from our website.This&nbsp;<strong>PVA</strong>&nbsp;is Good and Profitable way to Grow Your Business all the&nbsp;<strong>social media accounts</strong>&nbsp;You can&nbsp;<strong>buy genuine real instagram likes and followers</strong>&nbsp;and also get&nbsp;<strong>bulk verify email accounts</strong>&nbsp;and also&nbsp;<strong>get google voice call phone number account</strong>&nbsp;you can buy&nbsp;<strong>buy old pinterest and hotmail PVA accounts.</strong></p>\r\n\r\n<p>For Any Query Please contact us Via Chat.We are Here 24hrs in Your Service.</p>\r\n\r\n<p>Thanks</p>\r\n\r\n<p>PVAESHOP &amp; TEAM</p>', 0, 1, 1, NULL, '2023-08-11 22:10:13', '2023-08-24 15:40:46'),
+(2, '<h6>&nbsp;</h6>\r\n\r\n<h6><strong>&ldquo;WHAT IS PVA ACCOUNT&rdquo;????</strong></h6>\r\n\r\n<p>The&nbsp;<strong>PVA</strong>&nbsp;is a (phone verified account) this is a genuine account, which is phone verified account so non-pva has not been phone verified. Facebook phone verified account and other social media account have more privileges than Non-pva and also pva can add more friend in a safe way,send more message, post updates with URL and most important is that PVA won&rsquo;t ban easily as Non-PVA.</p>\r\n\r\n<h6><strong>&ldquo;WHAT WE SERVE&rdquo;</strong></h6>\r\n\r\n<p>We are here to serve you the best quality&nbsp;<strong>pva account</strong>&nbsp;in the&nbsp;<strong>best and cheap price</strong>&nbsp;we provide the different types of accounts according to our client&rsquo;s need. We will never give the fake account. we provide the best and 100% Working PVA Accounts. All Accounts are created with Unique IP PVA Accounts are 100% Verified, We Never Negotiate on Quality. You can&nbsp;<strong>Buy Instagram Accounts in bulk ,</strong>&nbsp;<strong>bulk email-business account,</strong>&nbsp;<strong>buy Facebook account,</strong>&nbsp;<strong>twitter pva accounts</strong></p>\r\n\r\n<p><strong>&ldquo;WHAT YOU GET IN OUR SERVICES&rdquo;</strong></p>\r\n\r\n<p>we allow more privileges than non-pva, we allow posting without captchas also provide it from our website.This&nbsp;<strong>PVA</strong>&nbsp;is Good and Profitable way to Grow Your Business all the&nbsp;<strong>social media accounts</strong>&nbsp;You can&nbsp;<strong>buy genuine real instagram likes and followers</strong>&nbsp;and also get&nbsp;<strong>bulk verify email accounts</strong>&nbsp;and also&nbsp;<strong>get google voice call phone number account</strong>&nbsp;you can buy&nbsp;<strong>buy old pinterest and hotmail PVA accounts.</strong></p>\r\n\r\n<p>For Any Query Please contact us Via Chat.We are Here 24hrs in Your Service.</p>\r\n\r\n<p>Thanks</p>\r\n\r\n<p>PVAESHOP &amp; TEAM</p>', 1, 1, 1, NULL, '2023-08-12 00:00:22', '2023-08-24 15:41:33'),
+(3, '<h6>We are here to serve you the best quality&nbsp;<strong>pva account</strong>&nbsp;in the&nbsp;<strong>best and cheap price</strong>&nbsp;we provide the different types of accounts according to our client&rsquo;s need. We will never give the fake account. we provide the best and 100% Working PVA Accounts. All Accounts are created with Unique IP PVA Accounts are 100% Verified, We Never Negotiate on Quality. You can&nbsp;<strong>Buy Instagram Accounts in bulk ,</strong>&nbsp;<strong>bulk email-business account,</strong>&nbsp;<strong>buy Facebook account,</strong>&nbsp;<strong>twitter pva accounts</strong></h6>\r\n\r\n<p><strong>&ldquo;WHAT YOU GET IN OUR SERVICES&rdquo;</strong></p>\r\n\r\n<p>we allow more privileges than non-pva, we allow posting without captchas also provide it from our website.This&nbsp;<strong>PVA</strong>&nbsp;is Good and Profitable way to Grow Your Business all the&nbsp;<strong>social media accounts</strong>&nbsp;You can&nbsp;<strong>buy genuine real instagram likes and followers</strong>&nbsp;and also get&nbsp;<strong>bulk verify email accounts</strong>&nbsp;and also&nbsp;<strong>get google voice call phone number account</strong>&nbsp;you can buy&nbsp;<strong>buy old pinterest and hotmail PVA accounts.</strong></p>\r\n\r\n<p>For Any Query Please contact us Via Chat.We are Here 24hrs in Your Service.</p>\r\n\r\n<p>Thanks</p>\r\n\r\n<p>PVAESHOP &amp; TEAM</p>', 1, 1, NULL, '2023-08-24 15:41:28', '2023-08-24 15:40:46', '2023-08-24 15:41:28');
 
 -- --------------------------------------------------------
 
@@ -141,14 +142,16 @@ CREATE TABLE `categories` (
 --
 
 INSERT INTO `categories` (`id`, `name`, `slug`, `active_status`, `parent_id`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'BULLDOZER', '#', 1, NULL, 1, NULL, NULL, '2023-06-06 10:24:42', '2023-06-06 10:24:42'),
+(1, 'BULLDOZER', '#', 0, NULL, 1, 1, NULL, '2023-06-06 10:24:42', '2023-08-24 14:19:08'),
 (2, 'Mobile updated', 'mobile-updated', 1, 6, 1, 1, NULL, '2023-06-06 10:24:55', '2023-08-18 05:56:04'),
 (3, 'Google', '#', 1, NULL, 1, 1, NULL, '2023-06-13 11:17:03', '2023-08-05 00:11:48'),
 (4, 'Google Account', 'google-account', 1, 3, 1, NULL, NULL, '2023-06-13 11:18:25', '2023-06-13 11:18:25'),
 (5, 'Google Bulk Account', 'google-bulk-account', 1, 3, 1, NULL, NULL, '2023-06-13 11:19:11', '2023-06-13 11:19:11'),
 (6, 'Facebook', '#', 1, NULL, 1, NULL, NULL, '2023-07-22 12:30:17', '2023-07-22 12:30:17'),
 (7, 'Facebook Account', 'facebook-account', 1, 6, 1, NULL, NULL, '2023-07-22 12:30:53', '2023-07-22 12:30:53'),
-(8, 'facebook group', 'facebook-group', 1, 6, 1, 1, NULL, '2023-07-28 10:38:16', '2023-07-31 02:50:01');
+(8, 'facebook group', 'facebook-group', 1, 6, 1, 1, NULL, '2023-07-28 10:38:16', '2023-07-31 02:50:01'),
+(9, 'Google Drive', 'google-drive', 1, 3, 1, NULL, NULL, '2023-08-24 14:50:21', '2023-08-24 14:50:21'),
+(10, 'Facebook Page', 'facebook-page', 1, 6, 1, NULL, NULL, '2023-08-24 14:55:52', '2023-08-24 14:55:52');
 
 -- --------------------------------------------------------
 
@@ -429,6 +432,7 @@ INSERT INTO `countries` (`id`, `name`, `code`, `deleted_at`, `created_at`, `upda
 CREATE TABLE `coupons` (
   `id` bigint UNSIGNED NOT NULL,
   `coupon_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `coupon_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_id` bigint UNSIGNED NOT NULL,
   `start_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `end_date` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -446,12 +450,11 @@ CREATE TABLE `coupons` (
 -- Dumping data for table `coupons`
 --
 
-INSERT INTO `coupons` (`id`, `coupon_name`, `product_id`, `start_date`, `end_date`, `coupon_discount`, `limit`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Hannah Henry', 6, '2023-08-10T14:45', '2023-08-23T16:01', 15, 111, 1, 1, 1, NULL, '2023-08-16 22:56:53', '2023-08-17 06:36:51'),
-(2, 'Hannah Henry', 5, '2023-08-15T02:45', '2023-08-17T16:05', 99, 100, 1, 1, 1, NULL, '2023-08-16 22:56:53', '2023-08-17 04:04:31'),
-(3, 'Hannah Henry', 1, '2023-08-10T14:45', '2023-08-17T19:39', 99, 100, 1, 1, 1, NULL, '2023-08-16 22:56:53', '2023-08-17 13:38:10'),
-(4, 'Arsenio Barron', 3, '2023-08-03T07:14', '2023-08-17T18:48', 95, 100, 1, 1, 1, NULL, '2023-08-17 06:30:31', '2023-08-17 07:02:08'),
-(5, 'Arsenio Barron', 3, '2023-08-16T07:14', '2023-08-17T18:48', 95, 100, 1, 1, 1, NULL, '2023-08-17 06:30:31', '2023-08-17 07:02:35');
+INSERT INTO `coupons` (`id`, `coupon_name`, `coupon_code`, `product_id`, `start_date`, `end_date`, `coupon_discount`, `limit`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
+(1, 'Sade Spence', '#sade234', 5, '2016-12-12T18:20', '2018-03-07T09:31', 53, 100, 1, 1, 1, NULL, '2023-08-24 06:26:16', '2023-08-24 06:26:23'),
+(2, 'Sade Spence', '#sade234', 4, '2023-08-17T18:20', '2023-08-31T09:31', 53, 100, 1, 1, 1, NULL, '2023-08-24 06:26:16', '2023-08-24 06:28:18'),
+(3, 'Mikayla Stout', '#mikayla32', 7, '2023-08-24T16:30', '2023-08-31T17:28', 65, 100, 1, 1, 1, NULL, '2023-08-24 06:27:27', '2023-08-24 06:30:30'),
+(4, 'Mikayla Stout', '#mikayla3', 6, '2023-08-24T16:30', '2023-08-31T17:28', 65, 100, 1, 1, NULL, NULL, '2023-08-24 06:27:27', '2023-08-24 06:27:27');
 
 -- --------------------------------------------------------
 
@@ -478,7 +481,8 @@ CREATE TABLE `customer_messages` (
 
 INSERT INTO `customer_messages` (`id`, `name`, `email`, `message`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'Mohammad Cline', 'mahfujul.dev@gmail.com', 'Perspiciatis cupidi', 1, NULL, 1, NULL, '2023-08-22 04:45:14', '2023-08-22 14:54:41'),
-(2, 'Cooper Mann', 'islammahfuz31@gmail.com', 'Est a aute labore co', 1, 1, NULL, NULL, '2023-08-22 13:24:32', '2023-08-22 13:24:32');
+(2, 'Cooper Mann', 'islammahfuz31@gmail.com', 'Est a aute labore co', 1, 1, NULL, NULL, '2023-08-22 13:24:32', '2023-08-22 13:24:32'),
+(3, 'saiful islam', 'saiful.is00007@gmail.com', 'i want to buy  something', 1, 1, NULL, '2023-08-23 04:37:23', '2023-08-22 16:36:13', '2023-08-23 04:37:23');
 
 -- --------------------------------------------------------
 
@@ -549,7 +553,7 @@ CREATE TABLE `f_a_q_s` (
 INSERT INTO `f_a_q_s` (`id`, `category_id`, `question`, `answer`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Are these Facebook Accounts suspend in future?22', 'All of these Facebook Accounts are real as we provide you it from human user...', 0, 1, 1, '2023-08-13 09:06:32', '2023-08-10 22:59:54', '2023-08-13 09:06:32'),
 (2, 1, 'Is this safe to use on Facebook?', 'This is totally safe to using. Because of its your Facebook account never ban.', 0, 1, 1, NULL, '2023-08-10 23:00:22', '2023-08-12 01:57:00'),
-(3, 2, 'Does Pvaeshop provide real Twitter Accounts?', 'All of these Twitter Accounts are real as we provide you it from human user.', 0, 1, 1, NULL, '2023-08-12 01:57:39', '2023-08-18 11:37:22');
+(3, 2, 'Does Pvaeshop provide real Twitter Accounts?', 'All of these Twitter Accounts are real as we provide you it from human user.', 0, 1, 1, '2023-08-24 15:40:57', '2023-08-12 01:57:39', '2023-08-24 15:40:57');
 
 -- --------------------------------------------------------
 
@@ -578,10 +582,10 @@ INSERT INTO `home_paveshops` (`id`, `title`, `description`, `active_status`, `cr
 (2, 'Fugiat deserunt ali', '<p><strong>GET REAL GMAIL PVA ACCOUNTS.BUY GMAIL OLD ACCOUNTS. PVA ACCOUNTS MANUALLY CREATED ACCOUNTS ON DISCOUNT RATE.</strong></p><p><i>GET REAL GMAIL PVA ACCOUNTS.BUY GMAIL OLD ACCOUNTS. PVA ACCOUNTS MANUALLY CREATED ACCOUNTS ON DISCOUNT RAT</i></p>', 1, 1, 1, '2023-08-09 04:06:41', '2023-08-08 07:45:37', '2023-08-09 04:06:41'),
 (3, 'Dolorem laboris veli', '<p><strong>GET REAL GMAIL PVA ACCOUNTS.BUY GMAIL OLD ACCOUNTS. PVA ACCOUNTS MANUALLY CREATED ACCOUNTS ON DISCOUNT RATE.</strong></p><p><i>GET REAL GMAIL PVA ACCOUNTS.BUY GMAIL OLD ACCOUNTS. PVA ACCOUNTS MANUALLY CREATED ACCOUNTS ON DISCOUNT RAT</i></p>', 0, 1, 1, NULL, '2023-08-08 10:15:30', '2023-08-18 12:11:09'),
 (4, 'Perferendis voluptat', '<p>Perferendis voluptat<strong>Perferendis vol</strong></p>', 0, 1, 1, NULL, '2023-08-09 04:05:42', '2023-08-18 12:11:05'),
-(5, 'Perferendis voluptat', '<p>Perferendis volupta tPerferendis voluptatPerf erendis voluptatP erferendis voluptatPerf erendis volupta tPerferendis @@@@@ @@@@@&nbsp;Perf rendis voluptatP erferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendisPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendisPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendisPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendisPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis voluptatPerferendis</p>', 0, 1, 1, NULL, '2023-08-09 04:06:16', '2023-08-18 12:10:52'),
+(5, 'Pvashop Details', '<h2><span style=\"font-size:14px\">You can connect your Gmail account to Inbox in Meta Business Suite and manage your business&rsquo;s communications in one place. With Gmail in Inbox, you can:You can select a saved reply to insert it into the body of the email. Using saved replies can help you avoid rewriting answers to commonly asked questions about your business.You can mark messages as unread, archive them, or add labels to help you find them later more easily. Select a filter in Inbox to view a specific set of emails, such as unread or sent.</span></h2>', 1, 1, 1, NULL, '2023-08-09 04:06:16', '2023-08-24 15:06:31'),
 (6, 'In eos accusantium e', '<p>In eos accusantium e adfkjasd sadf</p>', 0, 1, NULL, '2023-08-09 04:07:32', '2023-08-09 04:07:23', '2023-08-09 04:07:32'),
-(7, 'Ipsa voluptate volu', '<p>ou have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>\r\n\r\n<p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Pvaeshop. This policy is not applicable to any information collected offline or via channels other than this website.</p>\r\n\r\n<h4><strong>Consent</strong></h4>\r\n\r\n<p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>\r\n\r\n<h4><strong>Information we collect</strong></h4>\r\n\r\n<p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>\r\n\r\n<p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>\r\n\r\n<p>&nbsp;</p>', 1, 1, 1, NULL, '2023-08-09 07:30:47', '2023-08-18 12:11:27'),
-(8, 'Ut ex aut corporis o', '<h2>Gmail Phone Verified Accounts</h2>\r\n\r\n<p>Despite the numerous social media tools and tricks that have reformed the way businesses promote themselves online, email marketing still holds the position as the most reliable one. Emails are not just great for online communication. Today, it has become a powerful tool used for more important and official work. Emails serve as the main gateway to access many online services; from bank account verification to registration on all social media platforms to other online services such as Amazon or forums, everything requires a valid email address. There are a lot of email providers in the market and most of them function the same. However,&nbsp;<strong>Gmail</strong>&nbsp;is way ahead of its competition.Gmail is the most popular free email service provider with nearly 30% of all its users open their emails every day. While plenty of people use Gmail for personal work, it also has great functionality for businesses as well.&nbsp;<img alt=\"\" src=\"http://localhost/mail_sale_another/public/uploads/1774568669648585.jpg\" style=\"height:360px; width:875px\" /></p>', 0, 1, 1, NULL, '2023-08-18 12:09:31', '2023-08-18 12:11:22');
+(7, 'Ipsa voluptate volu', '<p>ou have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.</p>\r\n\r\n<p>This Privacy Policy applies only to our online activities and is valid for visitors to our website with regards to the information that they shared and/or collect in Pvaeshop. This policy is not applicable to any information collected offline or via channels other than this website.</p>\r\n\r\n<h4><strong>Consent</strong></h4>\r\n\r\n<p>By using our website, you hereby consent to our Privacy Policy and agree to its terms.</p>\r\n\r\n<h4><strong>Information we collect</strong></h4>\r\n\r\n<p>The personal information that you are asked to provide, and the reasons why you are asked to provide it, will be made clear to you at the point we ask you to provide your personal information.</p>\r\n\r\n<p>If you contact us directly, we may receive additional information about you such as your name, email address, phone number, the contents of the message and/or attachments you may send us, and any other information you may choose to provide.</p>\r\n\r\n<p>&nbsp;</p>', 0, 1, 1, NULL, '2023-08-09 07:30:47', '2023-08-24 15:02:30'),
+(8, 'Ut ex aut corporis o', '<h2>Gmail Phone Verified Accounts</h2>\r\n\r\n<p>Despite the numerous social media tools and tricks that have reformed the way businesses promote themselves online, email marketing still holds the position as the most reliable one. Emails are not just great for online communication. Today, it has become a powerful tool used for more important and official work. Emails serve as the main gateway to access many online services; from bank account verification to registration on all social media platforms to other online services such as Amazon or forums, everything requires a valid email address. There are a lot of email providers in the market and most of them function the same. However,&nbsp;<strong>Gmail</strong>&nbsp;is way ahead of its competition.Gmail is the most popular free email service provider with nearly 30% of all its users open their emails every day. While plenty of people use Gmail for personal work, it also has great functionality for businesses as well.&nbsp;<img alt=\"\" src=\"http://localhost/mail_sale_another/public/uploads/1774568669648585.jpg\" style=\"height:360px; width:875px\" /></p>', 0, 1, 1, NULL, '2023-08-18 12:09:31', '2023-08-24 15:02:30');
 
 -- --------------------------------------------------------
 
@@ -608,9 +612,9 @@ CREATE TABLE `meet_teams` (
 --
 
 INSERT INTO `meet_teams` (`id`, `name`, `designation`, `description`, `photo`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'Virginia Bush', 'Nostrum laudantium', 'Sapiente excepturi n', 'public/uploads/1773294742677852.jpg', 1, 1, 1, NULL, '2023-08-04 04:40:52', '2023-08-04 04:41:01'),
-(2, 'Vincent Castillo', 'Unde sint sequi susc', 'Ex ducimus et odio', 'public/uploads/1773362416839896.jpg', 1, 1, 1, NULL, '2023-08-04 04:41:14', '2023-08-04 22:36:31'),
-(3, 'Josiah Olsen', 'Est impedit asperio', 'Debitis officia et p', 'public/uploads/1773362428299323.jpg', 1, 1, 1, NULL, '2023-08-04 04:41:42', '2023-08-04 22:36:41');
+(1, 'Mr. Ahad', 'Support', '24/7 days support given', 'public/uploads/1773294742677852.jpg', 1, 1, 1, NULL, '2023-08-04 04:40:52', '2023-08-24 15:17:51'),
+(2, 'Mr. Noyon', 'Manager', 'Well managed products', 'public/uploads/1773362416839896.jpg', 1, 1, 1, NULL, '2023-08-04 04:41:14', '2023-08-24 15:16:56'),
+(3, 'Mr Altab', 'Owner', '10 years working in this field', 'public/uploads/1773362428299323.jpg', 1, 1, 1, NULL, '2023-08-04 04:41:42', '2023-08-24 15:16:10');
 
 -- --------------------------------------------------------
 
@@ -643,25 +647,25 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (26, '2023_07_30_161526_create_sliders_table', 5),
 (27, '2023_08_03_063245_create_product_guarantees_table', 5),
 (28, '2023_08_06_094155_create_business_policies_table', 6),
-(40, '2023_03_22_172813_create_app_settings_table', 8),
-(42, '2023_08_07_042521_create_f_a_q_s_table', 9),
+(40, '2023_03_22_172813_create_app_settings_table', 7),
+(42, '2023_08_07_042521_create_f_a_q_s_table', 8),
 (43, '2023_08_07_043021_create_f_a_q_categories_table', 9),
-(46, '2023_08_11_181906_create_about_us_table', 12),
-(59, '2023_08_14_062050_create_reviews_table', 15),
-(71, '2023_08_13_133154_create_sellers_table', 16),
-(72, '2023_08_13_135020_create_coupons_table', 16),
-(73, '2023_08_16_113556_create_sms_templetes_table', 16),
-(78, '2023_08_18_174547_create_sub_category_descriptions_table', 18),
-(79, '2023_08_18_211708_create_set_emails_table', 19),
-(81, '2023_04_26_065848_create_products_table', 19),
-(83, '2023_07_28_184114_create_purchase_products_table', 21),
-(84, '2023_07_28_193433_create_payments_table', 21),
-(85, '2023_08_13_132437_create_stock_management_table', 21),
-(86, '2023_08_16_184303_create_purchases_table', 22),
-(87, '2023_07_06_171149_create_orders_table', 23),
-(88, '2023_08_11_155432_create_customer_messages_table', 23),
-(92, '2023_08_11_095354_create_payment_apis_table', 24),
-(97, '2023_08_22_190417_create_send_msg_customers_table', 25);
+(46, '2023_08_11_181906_create_about_us_table', 10),
+(59, '2023_08_14_062050_create_reviews_table', 11),
+(71, '2023_08_13_133154_create_sellers_table', 12),
+(73, '2023_08_16_113556_create_sms_templetes_table', 14),
+(78, '2023_08_18_174547_create_sub_category_descriptions_table', 15),
+(79, '2023_08_18_211708_create_set_emails_table', 16),
+(81, '2023_04_26_065848_create_products_table', 17),
+(84, '2023_07_28_193433_create_payments_table', 18),
+(87, '2023_07_06_171149_create_orders_table', 19),
+(88, '2023_08_11_155432_create_customer_messages_table', 20),
+(92, '2023_08_11_095354_create_payment_apis_table', 21),
+(97, '2023_08_22_190417_create_send_msg_customers_table', 22),
+(109, '2023_07_28_184114_create_purchase_products_table', 23),
+(110, '2023_08_13_132437_create_stock_management_table', 24),
+(111, '2023_08_16_184303_create_purchases_table', 25),
+(112, '2023_08_13_135020_create_coupons_table', 26);
 
 -- --------------------------------------------------------
 
@@ -701,7 +705,9 @@ CREATE TABLE `orders` (
 
 INSERT INTO `orders` (`id`, `user_id`, `f_name`, `l_name`, `company_name`, `city`, `address`, `street`, `town`, `country`, `code`, `post_code`, `phone`, `email`, `status`, `note`, `total_price`, `applied_coupon`, `agree`, `payment_method`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 1, 'Jade Goodman', 'Lionel Stanley', 'Fleming Perkins Trading', NULL, 'Quod aut voluptates', 'In commodi maiores e', 'Minus molestias exce', 'Sapiente odio aut su', 'NE', 'Blanditiis quia magn', '65', 'dupux@mailinator.com', 'Pending', 'Temporibus consequat', 816.00, 0.00, 1, 1, NULL, '2023-08-21 05:48:44', '2023-08-21 05:48:44'),
-(2, 1, 'Elton', 'Randall', 'Duffy Bird Traders', NULL, 'Repudiandae et earum', 'Pariatur Officia re', 'Molestiae ipsa alia', 'Recusandae Sed dele', 'GR', 'Voluptatum id nihil', '23', 'kecax@mailinator.com', 'Pending', 'Cupiditate non quide', 371.00, 0.00, 1, 1, NULL, '2023-08-21 06:49:48', '2023-08-21 06:49:48');
+(2, 1, 'Elton', 'Randall', 'Duffy Bird Traders', NULL, 'Repudiandae et earum', 'Pariatur Officia re', 'Molestiae ipsa alia', 'Recusandae Sed dele', 'GR', 'Voluptatum id nihil', '23', 'kecax@mailinator.com', 'Pending', 'Cupiditate non quide', 371.00, 0.00, 1, 1, NULL, '2023-08-21 06:49:48', '2023-08-21 06:49:48'),
+(3, 1, 'Uriah Warner', 'Barrett Franks', 'Byrd and Wise LLC', NULL, 'Et corporis sed volu', 'Aut et sed deserunt', 'Incidunt optio sed', 'Ratione reiciendis a', 'HM', 'Unde fuga Deserunt', '74', 'qanul@mailinator.com', 'Pending', 'Dolore sunt velit e', 541.00, 0.00, 1, 1, NULL, '2023-08-23 17:39:37', '2023-08-23 17:39:37'),
+(4, 1, 'Montana Short', 'Rowan Perry', 'Owen and Lindsey Traders', NULL, 'Odio nisi et nemo ir', 'Nihil mollit illo co', 'Quia quas eaque non', 'Id sit totam commod', 'CM', 'Dolore laudantium q', '4', 'hajef@mailinator.com', 'Pending', 'Tenetur ut enim dese', 2698.00, 0.00, 1, 1, NULL, '2023-08-23 17:44:18', '2023-08-23 17:44:18');
 
 -- --------------------------------------------------------
 
@@ -742,7 +748,9 @@ CREATE TABLE `payments` (
 
 INSERT INTO `payments` (`id`, `order_id`, `card_name`, `card_number`, `expiry_month`, `expiry_year`, `card_cvc`, `stripeToken`, `amount`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 1, 'ahad', 4242424242424242, 12, 2028, 123, 'tok_1NhQykSAN6jKDLrcExUPmrO7', 816.00, NULL, '2023-08-21 05:48:44', '2023-08-21 05:48:44'),
-(2, 2, 'ahad', 4242424242424242, 12, 2028, 123, 'tok_1NhRvsSAN6jKDLrc0GuQ5Bkq', 371.00, NULL, '2023-08-21 06:49:49', '2023-08-21 06:49:49');
+(2, 2, 'ahad', 4242424242424242, 12, 2028, 123, 'tok_1NhRvsSAN6jKDLrc0GuQ5Bkq', 371.00, NULL, '2023-08-21 06:49:49', '2023-08-21 06:49:49'),
+(3, 3, 'ahad', 4242424242424242, 12, 2028, 123, 'tok_1NiL1eSAN6jKDLrcUrapnulN', 541.00, NULL, '2023-08-23 17:39:37', '2023-08-23 17:39:37'),
+(4, 4, 'ahad', 4242424242424242, 12, 2028, 123, 'tok_1NiL6JSAN6jKDLrc2gapHnEO', 2698.00, NULL, '2023-08-23 17:44:18', '2023-08-23 17:44:18');
 
 -- --------------------------------------------------------
 
@@ -824,14 +832,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `thumbnail`, `category_id`, `sub_category_id`, `name`, `slug`, `pinned`, `selling_price`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 'public/uploads/1774671905556006.png', 3, 4, 'Gail Vaughns', 'gail-vaughns', 0, 816.00, 1, 1, 1, NULL, '2023-08-19 15:30:16', '2023-08-19 16:00:37'),
-(2, 'public/uploads/1774671945924489.png', 3, 5, 'Cain Mckayd', 'cain-mckayd', 1, 386.00, 1, 1, 1, NULL, '2023-08-19 15:30:55', '2023-08-20 03:42:18'),
-(3, 'public/uploads/1774671972789759.png', 6, 7, 'Christine Penningtond', 'christine-penningtond', 0, 644.00, 1, 1, 1, NULL, '2023-08-19 15:31:20', '2023-08-20 03:42:14'),
-(4, 'public/uploads/1774671994612906.png', 3, 4, 'Eliana Riversd', 'eliana-riversd', 1, 541.00, 1, 1, 1, NULL, '2023-08-19 15:31:41', '2023-08-19 16:03:19'),
-(5, 'public/uploads/1774672018001798.png', 6, 8, 'Rosalyn Hodgesd', 'rosalyn-hodgesd', 1, 371.00, 1, 1, 1, NULL, '2023-08-19 15:32:03', '2023-08-19 15:37:18'),
-(6, 'public/uploads/1774672042894813.png', 6, 2, 'Brody Adamss', 'brody-adamss', 1, 697.00, 1, 1, 1, NULL, '2023-08-19 15:32:27', '2023-08-19 15:37:14'),
-(7, 'public/uploads/1774672067321715.png', 6, 2, 'Phelan Goodmand', 'phelan-goodmand', 1, 267.00, 1, 1, 1, NULL, '2023-08-19 15:32:51', '2023-08-19 15:37:11'),
-(8, 'public/uploads/1774672067626549.png', 6, 2, 'Phelan Goodmand', 'phelan-goodmand', 1, 267.00, 1, 1, 1, NULL, '2023-08-19 15:32:52', '2023-08-19 15:37:07');
+(1, 'public/uploads/1774671905556006.png', 3, 4, 'Gail Vaughns', 'gail-vaughns', 0, 816.00, 0, 1, 1, '2023-08-24 14:24:24', '2023-08-19 15:30:16', '2023-08-24 14:24:24'),
+(2, 'public/uploads/1775120910147989.jpg', 3, 4, 'Gmail Acoount', 'gmail-acoount', 1, 100.00, 1, 1, 1, NULL, '2023-08-19 15:30:55', '2023-08-24 14:28:49'),
+(3, 'public/uploads/1775122067584536.jpg', 6, 7, 'Facebook Account', 'facebook-account', 1, 20.00, 1, 1, 1, NULL, '2023-08-19 15:31:20', '2023-08-24 14:45:24'),
+(4, 'public/uploads/1775121607822087.jpg', 3, 5, 'Bulk Gmail Account', 'bulk-gmail-account', 1, 10.00, 1, 1, 1, NULL, '2023-08-19 15:31:41', '2023-08-24 14:38:06'),
+(5, 'public/uploads/1775121564864176.jpeg', 6, 8, 'Facebook Group', 'facebook-group', 1, 50.00, 1, 1, 1, NULL, '2023-08-19 15:32:03', '2023-08-24 14:37:25'),
+(6, 'public/uploads/1774672042894813.png', 6, 2, 'Brody Adamss', 'brody-adamss', 0, 697.00, 0, 1, 1, NULL, '2023-08-19 15:32:27', '2023-08-24 14:47:31'),
+(7, 'public/uploads/1775122518500155.jpg', 3, 9, 'Google Drive Storage', 'google-drive-storage', 1, 25.00, 1, 1, 1, NULL, '2023-08-19 15:32:51', '2023-08-24 14:52:34'),
+(8, 'public/uploads/1775122763633945.jpg', 6, 10, 'Facebook Page', 'facebook-page', 1, 30.00, 1, 1, 1, NULL, '2023-08-19 15:32:52', '2023-08-24 14:56:28');
 
 -- --------------------------------------------------------
 
@@ -859,7 +867,38 @@ INSERT INTO `product_advantages` (`id`, `product_id`, `title`, `active_status`, 
 (1, 1, 'Advantage 1', 1, 1, NULL, '2023-06-16 11:46:20', '2023-06-06 10:25:53', '2023-06-16 11:46:20'),
 (2, 1, 'dsfds', 1, 1, NULL, '2023-06-16 11:46:20', '2023-06-11 11:34:47', '2023-06-16 11:46:20'),
 (3, 1, 'dfffffffffffffffff', 1, 1, NULL, '2023-06-16 11:46:20', '2023-06-11 11:34:53', '2023-06-16 11:46:20'),
-(4, 1, '5465456', 1, 1, NULL, '2023-06-16 11:46:20', '2023-06-11 11:35:01', '2023-06-16 11:46:20');
+(4, 1, '5465456', 1, 1, NULL, '2023-06-16 11:46:20', '2023-06-11 11:35:01', '2023-06-16 11:46:20'),
+(5, 2, '100 GMAIL Accounts', 1, 1, NULL, NULL, '2023-08-24 14:27:31', '2023-08-24 14:27:31'),
+(6, 2, '100% Real', 1, 1, NULL, NULL, '2023-08-24 14:27:46', '2023-08-24 14:27:46'),
+(7, 2, 'Fast Delivery with 48 hours', 1, 1, NULL, NULL, '2023-08-24 14:27:57', '2023-08-24 14:27:57'),
+(8, 2, 'Replacement policy', 1, 1, NULL, NULL, '2023-08-24 14:28:07', '2023-08-24 14:28:07'),
+(9, 2, 'Satisfaction Guaranteed', 1, 1, NULL, NULL, '2023-08-24 14:28:14', '2023-08-24 14:28:14'),
+(10, 5, '100 Facebook Group', 1, 1, 1, NULL, '2023-08-24 14:38:36', '2023-08-24 14:39:08'),
+(11, 5, '100% Real', 1, 1, NULL, NULL, '2023-08-24 14:39:19', '2023-08-24 14:39:19'),
+(12, 5, 'Fast Delivery with 48 hours', 1, 1, NULL, NULL, '2023-08-24 14:39:26', '2023-08-24 14:39:26'),
+(13, 5, 'Replacement policy', 1, 1, NULL, NULL, '2023-08-24 14:39:34', '2023-08-24 14:39:34'),
+(14, 5, 'Satisfaction Guaranteed', 1, 1, NULL, NULL, '2023-08-24 14:39:41', '2023-08-24 14:39:41'),
+(15, 3, '500 Bulk Account', 1, 1, NULL, '2023-08-24 14:41:53', '2023-08-24 14:40:55', '2023-08-24 14:41:53'),
+(16, 3, '100% Real', 1, 1, NULL, NULL, '2023-08-24 14:41:04', '2023-08-24 14:41:04'),
+(17, 3, 'Fast Delivery with 48 hours', 1, 1, NULL, NULL, '2023-08-24 14:41:13', '2023-08-24 14:41:13'),
+(18, 3, 'Replacement policy', 1, 1, NULL, NULL, '2023-08-24 14:41:19', '2023-08-24 14:41:19'),
+(19, 3, 'Satisfaction Guaranteed', 1, 1, NULL, NULL, '2023-08-24 14:41:26', '2023-08-24 14:41:26'),
+(20, 4, '500 Bulk Account', 1, 1, NULL, NULL, '2023-08-24 14:42:30', '2023-08-24 14:42:30'),
+(21, 4, '100% Real', 1, 1, NULL, NULL, '2023-08-24 14:42:39', '2023-08-24 14:42:39'),
+(22, 4, 'Fast Delivery with 48 hours', 1, 1, NULL, NULL, '2023-08-24 14:42:44', '2023-08-24 14:42:44'),
+(23, 4, 'Replacement policy', 1, 1, NULL, NULL, '2023-08-24 14:42:54', '2023-08-24 14:42:54'),
+(24, 4, 'Satisfaction Guaranteed', 1, 1, NULL, NULL, '2023-08-24 14:43:17', '2023-08-24 14:43:17'),
+(25, 3, 'Old Account', 1, 1, NULL, NULL, '2023-08-24 14:46:39', '2023-08-24 14:46:39'),
+(26, 7, '500 Google Drive', 1, 1, NULL, NULL, '2023-08-24 14:53:21', '2023-08-24 14:53:21'),
+(27, 7, '100 Gb Storage', 1, 1, NULL, NULL, '2023-08-24 14:53:40', '2023-08-24 14:53:40'),
+(28, 7, 'Fast Delivery with 48 hours', 1, 1, NULL, NULL, '2023-08-24 14:53:46', '2023-08-24 14:53:46'),
+(29, 7, 'Replacement policy', 1, 1, NULL, NULL, '2023-08-24 14:53:53', '2023-08-24 14:53:53'),
+(30, 7, 'Satisfaction Guaranteed', 1, 1, NULL, NULL, '2023-08-24 14:54:00', '2023-08-24 14:54:00'),
+(31, 8, '100 Facebook Pages', 1, 1, NULL, NULL, '2023-08-24 14:56:55', '2023-08-24 14:56:55'),
+(32, 8, '100% Real', 1, 1, NULL, NULL, '2023-08-24 14:57:01', '2023-08-24 14:57:01'),
+(33, 8, 'Fast Delivery with 48 hours', 1, 1, NULL, NULL, '2023-08-24 14:57:07', '2023-08-24 14:57:07'),
+(34, 8, 'Replacement policy', 1, 1, NULL, NULL, '2023-08-24 14:57:11', '2023-08-24 14:57:11'),
+(35, 8, 'Satisfaction Guaranteed', 1, 1, NULL, NULL, '2023-08-24 14:57:16', '2023-08-24 14:57:16');
 
 -- --------------------------------------------------------
 
@@ -884,7 +923,13 @@ CREATE TABLE `product_descriptions` (
 --
 
 INSERT INTO `product_descriptions` (`id`, `product_id`, `content`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, '<h2>Instagram Accounts Buy for Sale</h2><p><a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\">Instagram</a> is one of the top social networking gates for sharing photos where users can apply different filters to take photos and make it more interesting and can share them on many social networks such as Reddit, Facebook, and Twitter, Tested and especially functional PVA S account.So,you can <strong>Instagram Accounts </strong><a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>Buy</strong></a><strong> for Sale</strong> from us.</p><p><br> </p><p>You can order many PVA accounts from us. You will be amazed when you know that each account is created with a unique IP address and we will deliver it after we check it thoroughly. All the PVA accounts we have created are just examples of absolute accuracy and absolute technology.</p><p><br> </p><p>If you are interested in buying PVA accounts you can get it from us by enjoying attractive prices and offers. Mass PVA Instagram accounts can be the perfect tool for your business and personal needs. Our great packages for mass PVA Instagram accounts are always there to help you so you can buy Instagram PVA accounts in no time.</p><h2>Instagram account for sale</h2><p><img src=\"http://localhost/altab_mail_sell/frontend/assets/images/all-images/insta-1.png\" alt=\"\"></p><p>Photos and videos can speak louder and more confidently. Thus, <a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>Instagram</strong></a> is gaining popularity for business promotion. Our Instagram accounts can be the right incentive to promote your exclusive clicks or sell your brand.</p><p>In addition to providing Instagram <a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>accounts for sale</strong></a>, we also add followers to Instagram accounts according to the needs of our customers. Marketing and promotion strategies are changing. That’s why you need a smart and effective way to promote your business and You can get many offers at cheap prices, but such businesses may not meet your business goals. Therefore, we have created the most revolutionary and effectively designed Instagram account.</p><p>Anyone can use these accounts to increase the number of followers and tags “I like”. This will help you create a reliable and growing platform for your <a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>business socially</strong></a>. If your business needs a huge number of Instagram followers on Instagram, this can be done very easily, because our experts are always ready to meet your personal needs. You can understand Instagram accounts at a very competitive price. Your experts are available 24×7 to solve all your questions and problems.</p>', 1, 1, 1, NULL, '2023-06-11 10:52:04', '2023-06-11 11:46:22');
+(1, 1, '<h2>Instagram Accounts Buy for Sale</h2><p><a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\">Instagram</a> is one of the top social networking gates for sharing photos where users can apply different filters to take photos and make it more interesting and can share them on many social networks such as Reddit, Facebook, and Twitter, Tested and especially functional PVA S account.So,you can <strong>Instagram Accounts </strong><a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>Buy</strong></a><strong> for Sale</strong> from us.</p><p><br> </p><p>You can order many PVA accounts from us. You will be amazed when you know that each account is created with a unique IP address and we will deliver it after we check it thoroughly. All the PVA accounts we have created are just examples of absolute accuracy and absolute technology.</p><p><br> </p><p>If you are interested in buying PVA accounts you can get it from us by enjoying attractive prices and offers. Mass PVA Instagram accounts can be the perfect tool for your business and personal needs. Our great packages for mass PVA Instagram accounts are always there to help you so you can buy Instagram PVA accounts in no time.</p><h2>Instagram account for sale</h2><p><img src=\"http://localhost/altab_mail_sell/frontend/assets/images/all-images/insta-1.png\" alt=\"\"></p><p>Photos and videos can speak louder and more confidently. Thus, <a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>Instagram</strong></a> is gaining popularity for business promotion. Our Instagram accounts can be the right incentive to promote your exclusive clicks or sell your brand.</p><p>In addition to providing Instagram <a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>accounts for sale</strong></a>, we also add followers to Instagram accounts according to the needs of our customers. Marketing and promotion strategies are changing. That’s why you need a smart and effective way to promote your business and You can get many offers at cheap prices, but such businesses may not meet your business goals. Therefore, we have created the most revolutionary and effectively designed Instagram account.</p><p>Anyone can use these accounts to increase the number of followers and tags “I like”. This will help you create a reliable and growing platform for your <a href=\"http://localhost/altab_mail_sell/product/ghutmil-management#\"><strong>business socially</strong></a>. If your business needs a huge number of Instagram followers on Instagram, this can be done very easily, because our experts are always ready to meet your personal needs. You can understand Instagram accounts at a very competitive price. Your experts are available 24×7 to solve all your questions and problems.</p>', 1, 1, 1, NULL, '2023-06-11 10:52:04', '2023-06-11 11:46:22'),
+(2, 2, '<h3>Introductions</h3>\r\n\r\n<p><strong>Gmail</strong>&nbsp;is a free esail service provided by Google. In many ways, Gmail is like any other email service: You can&nbsp;<strong>send and receive emails</strong>,&nbsp;<strong>block spam</strong>, create an&nbsp;<strong>address book</strong>, and perform other basic email tasks. But it also has some more unique features that help make it one of the most popular online email services.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<h3>Google accounts</h3>\r\n\r\n<p>Creating a&nbsp;<strong>Google account</strong>&nbsp;is needed to access&nbsp;<strong>Gmail</strong>&nbsp;because it is just one of the many services offered by Google to registered users. Signing up for a Google account is free and easy, and naming your new&nbsp;<strong>Gmail address</strong>&nbsp;will be a part of the sign-up process. This means whenever you&#39;re signed in to Gmail, you are automatically signed in to your Google account. You&#39;ll be able to easily access other Google services like&nbsp;<strong>Google Docs</strong>,&nbsp;<strong>Calendar</strong>, and<strong>&nbsp;YouTube</strong>.</p>', 1, 1, 1, NULL, '2023-08-24 16:07:52', '2023-08-24 16:20:18'),
+(3, 3, '<h1>What is a Facebook Profile?</h1>\r\n\r\n<p><strong>Definition</strong>: A Facebook profile is an individual&#39;s personal account, where he or she can post updates, upload photos, share videos, maintain a friends list and provide personal information. Though &quot;profile&quot; is often used to refer to the page of both personal or professional accounts, businesses have Facebook &quot;Pages&quot; which offer advertising features.</p>\r\n\r\n<p>&nbsp;</p>\r\n\r\n<p>profiles have&nbsp;<strong>friends</strong>. Pages can invite users to&nbsp;<strong>follow</strong>&nbsp;their page as a fan.</p>\r\n\r\n<p>Profiles are for intended strictly for individual people only and are meant for non-commercial purposes. In fact, to use one for commercial gain is a violation of&nbsp;<a href=\"https://www.facebook.com/legal/terms\" target=\"_blank\">Facebook&#39;s terms of service</a>&nbsp;and can get the account suspended.</p>\r\n\r\n<p>Pages, by contrast, resemble profiles, but are meant for businesses and organizations. Pages can run Facebook ads and promotions. Pages must be affiliated with at least one profile, so for business owners uninitiated to Facebook, creating a personal profile is a prerequisite. However, Facebook allows users to&nbsp;<a href=\"https://www.facebook.com/help/116067818477568\" target=\"_blank\">convert your profile into a page</a>, which will carry over all of your followers and friends.</p>', 1, 1, NULL, NULL, '2023-08-24 16:33:43', '2023-08-24 16:33:43'),
+(4, 8, '<h2>What Does Facebook Page Mean?</h2>\r\n\r\n<p>A Facebook page is a public profile created by businesses, organizations, celebrities and anyone seeking to promote themselves publicly through social media. Facebook pages work much like personal profile pages, except that they have &ldquo;fans&rdquo; instead of &ldquo;friends.&rdquo; These pages are publicly visible online and often post status updates, links, events, photos and videos to their fans&rsquo; news feeds and walls.</p>\r\n\r\n<p>Facebook pages provide a way for businesses and other organizations to interact with &ndash; rather than just advertise to &ndash; potential customers. They also provides a simple hub of information about the page&rsquo;s owner.</p>\r\n\r\n<p>Pages are&nbsp;<strong>places on Facebook where artists, public figures, businesses, brands, organizations and nonprofits can connect with their fans or customers</strong>. When someone likes or follows a Page on Facebook, they can start seeing updates from that Page in their Feed. To see an example of a Page, see the screenshot below.</p>', 1, 1, NULL, NULL, '2023-08-24 16:36:01', '2023-08-24 16:36:01'),
+(5, 7, '<h3>What is Google Drive?</h3>\r\n\r\n<p>Google Drive is a cloud-based storage service that enables users to store and access files online. The service syncs stored documents, photos and more across all the user&#39;s devices, including mobile devices, tablets and PCs.</p>\r\n\r\n<p>Google Drive integrates with the company&#39;s other services and systems -- including&nbsp;<a href=\"https://www.techtarget.com/whatis/definition/Google-Docs\">Google Docs</a>, Gmail, Android,&nbsp;<a href=\"https://www.techtarget.com/whatis/definition/Google-Chrome-OS\">Chrome</a>, YouTube,&nbsp;<a href=\"https://www.techtarget.com/searchbusinessanalytics/definition/Google-Analytics\">Google Analytics</a>&nbsp;and&nbsp;<a href=\"https://www.techtarget.com/whatis/definition/Google-plus\">Google+</a>. Google Drive competes with Microsoft OneDrive, Apple iCloud, Box, Dropbox and SugarSync.</p>\r\n\r\n<h3>How does Google Drive work?</h3>\r\n\r\n<p>To get started with Google Drive, the user must create or sign in to a Google account. Then, the user types&nbsp;<em>drive.google.com</em>&nbsp;into their browser. My Drive will automatically appear, which can contain uploaded or synced files and folders, as well as&nbsp;<a href=\"https://www.techtarget.com/whatis/definition/Google-Spreadsheets\">Google Sheets</a>, Google Slides and Google Docs files. Then, the user can either upload files from their computer or create files in Google Drive.</p>\r\n\r\n<p>Alternatively, the user can download a Google Drive application to one or more devices. A Google Drive folder will appear along with other folders in each device&#39;s file system. Files that the user adds to one folder are available through a Google Drive web app or the Google Drive folder on each device.</p>\r\n\r\n<p>When a user creates a file or folder, they become its&nbsp;<em>owner</em>&nbsp;by default. The owner can control the level of visibility -- public or privately shared with specific Google accounts -- and transfer ownership to another user using Gmail addresses. The owner can also regulate permissions for both folders and files, using access levels such as&nbsp;<em>editor</em>,&nbsp;<em>viewer</em>&nbsp;and&nbsp;<em>commenter</em>.</p>', 1, 1, NULL, NULL, '2023-08-24 16:51:13', '2023-08-24 16:51:13'),
+(6, 5, '<h2><strong>How to write a Facebook Group Description?</strong></h2>\r\n\r\n<p><em>&ldquo;Your group description should state the intent of your group clearly to help new members understand how to best contribute and engage,&rdquo;</em>&nbsp;says&nbsp;<a href=\"https://www.facebook.com/community/getting-started-with-groups/how-to-set-up-a-facebook-group/\" rel=\"noopener\" target=\"_blank\">Facebook</a>.</p>\r\n\r\n<p>In addition to that, one thing that you CANNOT miss out on is:</p>\r\n\r\n<p>Telling potential members what makes your group unique and the things existing members identify with.</p>\r\n\r\n<p>Doing this makes it easier for them to decide whether or not they should join your group.</p>\r\n\r\n<p>Hence, it&rsquo;s absolutely a no-brainer.</p>\r\n\r\n<p>Sharing with you our learnings on how to write the best description for your group on Facebook.</p>\r\n\r\n<h3><strong>Things to keep in mind to write the best group description for Facebook</strong></h3>\r\n\r\n<h4><strong>1. Include a mission statement&nbsp;</strong></h4>\r\n\r\n<p>No Facebook group description is ever COMPLETE without a mission statement.</p>\r\n\r\n<p>Now, what&rsquo;s exactly a mission statement?</p>\r\n\r\n<p>To put it simply, a mission statement is something that explains very clearly: your reason for starting the group and what you intend to achieve with it.</p>\r\n\r\n<p>If you&rsquo;ve done this well, half your job of getting people to hit that join button is done.</p>\r\n\r\n<p>Have a look at the description of our&nbsp;<a href=\"https://www.facebook.com/groups/fbgroupgrowth\" rel=\"noopener\" target=\"_blank\">Facebook group</a>. Tamanna Dhamija (CEO and Founder of&nbsp;<a href=\"https://www.convosight.com/\">Convosight</a>) started this group in May 2020 and she has clearly stated:&nbsp;what led her to it&nbsp;and&nbsp;what she wishes to accomplish with the group.</p>', 1, 1, NULL, NULL, '2023-08-24 16:51:58', '2023-08-24 16:51:58'),
+(7, 4, '<h1>Learn about bulk email best practices</h1>\r\n\r\n<p>When you send commercial or bulk emails, it&rsquo;s important to follow best practices that respect your recipient&#39;s inbox and follow local regulations and&nbsp;<a href=\"https://www.google.com/gmail/about/policy/\">Gmail policies</a>.</p>\r\n\r\n<p>To run an effective email campaign, messages you send should connect you and your recipients in a meaningful way. Check below for recommendations to help improve the effectiveness of your bulk emails.</p>\r\n\r\n<h2>Get your recipients&rsquo; consent</h2>\r\n\r\n<p>Many countries and regions have requirements to get consent before you send commercial emails to customers. Before you send them an email, it&rsquo;s best to get clear consent by giving customers the option to opt-in or subscribe to your email list.&nbsp;</p>\r\n\r\n<p>Many countries and regions also have requirements to provide a way for recipients to unsubscribe. If you&rsquo;re a Google Workspace Individual subscriber, you can use multi-send mode to send commercial or bulk emails that have an unsubscribe option built in.&nbsp;<a href=\"https://support.google.com/google-workspace-individual/answer/11243118\" rel=\"noopener\">Learn more about multi-send mode</a>.&nbsp;&nbsp;</p>\r\n\r\n<p><strong>Tip:&nbsp;</strong>Keep in mind that customers can&rsquo;t unsubscribe from certain kinds of messages, such as order confirmations and receipt messages.</p>\r\n\r\n<h2><a id=\"spam-warnings\" name=\"spam-warnings\"></a>Follow applicable SPAM laws</h2>\r\n\r\n<p>In many countries and regions, commercial or bulk emails must include information to identify the sender.&nbsp;</p>\r\n\r\n<p>If you are a Google Workspace Individual Subscriber that uses Gmail layouts, you can customize the footer content to include:</p>\r\n\r\n<ul>\r\n	<li>Business name&nbsp;</li>\r\n	<li>Business address&nbsp;</li>\r\n	<li>Phone number&nbsp;</li>\r\n</ul>', 1, 1, NULL, NULL, '2023-08-24 16:52:49', '2023-08-24 16:52:49');
 
 -- --------------------------------------------------------
 
@@ -910,7 +955,13 @@ CREATE TABLE `product_details` (
 
 INSERT INTO `product_details` (`id`, `product_id`, `content`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 1, '<ol><li>All accounts permanent (Guaranteed)</li><li>100% Satisfaction Guarantee</li><li>No bots, programs/software used</li><li>Delivery Time 4Hours</li><li>100% safe and stable accounts</li><li>Real High-Quality Work</li><li>100% Safe and Guaranteed</li><li>100% Customer Satisfaction</li></ol><p>You save time and effort</p><p>* Safe and discreet-protected by the Data Protection</p><p>* Manual Order processing and Quality Assurance</p><p>* Free support and customized solutions</p><h4><strong>If you feeling any problem and knowing more about us then contact Email/ Skype.</strong></h4><blockquote><p><i>24 Hours Reply/Contact</i></p></blockquote>', 1, 1, 1, NULL, '2023-06-07 12:42:20', '2023-06-11 11:45:18'),
-(2, 1, '<p>Showing results for <a href=\"https://www.google.com/search?sxsrf=APwXEdfyvFGngqbleB7HF9RxugA68pxSMQ:1686417077839&amp;q=ckeditor+5+value+pass+when+edit&amp;spell=1&amp;sa=X&amp;ved=2ahUKEwjCnfiWmbn_AhWtcmwGHaibD6MQkeECKAB6BAgJEAE\"><i><strong>ckeditor</strong></i> 5 value pass when edit</a><br>Search instead for <a href=\"https://www.google.com/search?sxsrf=APwXEdfyvFGngqbleB7HF9RxugA68pxSMQ:1686417077839&amp;q=ck+editor+5+value+pass+when+edit&amp;nfpr=1&amp;sa=X&amp;ved=2ahUKEwjCnfiWmbn_AhWtcmwGHaibD6MQvgUoAXoECAkQAg\">ck editor 5 value pass when edit</a><br> </p><h2>Search Results</h2><p><br> </p><h3><a href=\"https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/getting-and-setting-data.html\">Getting and setting data - CKEditor 5 Documentation</a></h3><figure class=\"image\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB0klEQVR4Ae1XtVIEQRTcv8AlQ1L0AyAkgxCXFHfZBJcEl+gi3DPc3SHELcI1u8d2FYPvzdwuDq+qT1am+9mI9NQSbSgk2YYGFZwqoA/AYJINBUsvLdmSHO+J6ZOwCE6JGS7gxidj8GnY6SuAdEhaQl/jT7QxQXR7TnSyRzTXSJTvpTEK5rwguxCN1pGq9ZaYLeBUWEC3DI+Ja4hIU4y4CEkk3BjUXDtcQ1p0CMj3Rp5Jt/HqQ1Ih54Yb91EPIOCnBSKEBfA9B6ns8lQwTwjEigtQMQhDTWipF9SEkACESm+Lvd2qJ7u6BHBIOWPoFICXP00A8A0F/Au4Of+wJVl8HqgJ+GIBbC6QXVUGszVSjt8UFUe2qqBdXMDJLme5jX3+fJbHHhk6gqh910UVtVWp4gJAQEYyaU/X/IZpH5PkQJb7vrgAwBBGdMwioV7RCC2XvKooV9uGBCteb/HLaGDREfce9+G9BgEvltsGCMH34/UyuZzrfXFUG7cLhE9BEMI2FvCK6/2UL78NtZ6IKgvzqH3HVRWG9mCIFNmWaz+YgOAtpDtfCL2fys6Jyp8BXPhkLEjMUizJMUm5oFw0fgIxOAbAKb0wlg5Ew/gBOMHYLOzM7gBTgTg6TqwBDAAAAABJRU5ErkJggg==\" alt=\"\"></figure><p><a href=\"https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/getting-and-setting-data.html\">CKEditor</a></p><p><a href=\"https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/getting-and-setting-data.html\">https://ckeditor.com › installation › getting-started › g...</a></p><p> </p><p> </p><p><strong>CKEditor 5</strong> allows you to retrieve the data from and save it to your server ... Classic <strong>editor</strong> will automatically update the <strong>value</strong> of the &lt;textarea&gt; element&nbsp;...</p><p><br> </p><h3><a href=\"https://ckeditor.com/old/forums/Support/How-can-I-pass-values-plugin-when-editor-starts\">How can I pass values to a plugin when the editor starts up?</a></h3><p><a href=\"https://ckeditor.com/old/forums/Support/How-can-I-pass-values-plugin-when-editor-starts\">https://ckeditor.com › old › forums › Support › How-...</a></p><p> </p><p> </p><p>Jul 14, 2008 · 3 posts · 2 authors</p><p>I want to use the AddItem method to add the items dynamically when the <strong>editor</strong> instance is instantiated. ... oFCKeditor.myCustomValue = \'\"some&nbsp;...</p><p><br> </p><h3><a href=\"https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/observables.html\">Observables - CKEditor 5 Documentation</a></h3><p><a href=\"https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/observables.html\">https://ckeditor.com › latest › framework › deep-dive</a></p><p> </p><p> </p><p>Observables are objects which have properties that can be observed. That means when the <strong>value</strong> of such property changes, an event is fired by the observable and&nbsp;...</p>', 0, 1, 1, NULL, '2023-06-10 11:23:26', '2023-06-11 11:44:53');
+(2, 1, '<p>Showing results for <a href=\"https://www.google.com/search?sxsrf=APwXEdfyvFGngqbleB7HF9RxugA68pxSMQ:1686417077839&amp;q=ckeditor+5+value+pass+when+edit&amp;spell=1&amp;sa=X&amp;ved=2ahUKEwjCnfiWmbn_AhWtcmwGHaibD6MQkeECKAB6BAgJEAE\"><i><strong>ckeditor</strong></i> 5 value pass when edit</a><br>Search instead for <a href=\"https://www.google.com/search?sxsrf=APwXEdfyvFGngqbleB7HF9RxugA68pxSMQ:1686417077839&amp;q=ck+editor+5+value+pass+when+edit&amp;nfpr=1&amp;sa=X&amp;ved=2ahUKEwjCnfiWmbn_AhWtcmwGHaibD6MQvgUoAXoECAkQAg\">ck editor 5 value pass when edit</a><br> </p><h2>Search Results</h2><p><br> </p><h3><a href=\"https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/getting-and-setting-data.html\">Getting and setting data - CKEditor 5 Documentation</a></h3><figure class=\"image\"><img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAB0klEQVR4Ae1XtVIEQRTcv8AlQ1L0AyAkgxCXFHfZBJcEl+gi3DPc3SHELcI1u8d2FYPvzdwuDq+qT1am+9mI9NQSbSgk2YYGFZwqoA/AYJINBUsvLdmSHO+J6ZOwCE6JGS7gxidj8GnY6SuAdEhaQl/jT7QxQXR7TnSyRzTXSJTvpTEK5rwguxCN1pGq9ZaYLeBUWEC3DI+Ja4hIU4y4CEkk3BjUXDtcQ1p0CMj3Rp5Jt/HqQ1Ih54Yb91EPIOCnBSKEBfA9B6ns8lQwTwjEigtQMQhDTWipF9SEkACESm+Lvd2qJ7u6BHBIOWPoFICXP00A8A0F/Au4Of+wJVl8HqgJ+GIBbC6QXVUGszVSjt8UFUe2qqBdXMDJLme5jX3+fJbHHhk6gqh910UVtVWp4gJAQEYyaU/X/IZpH5PkQJb7vrgAwBBGdMwioV7RCC2XvKooV9uGBCteb/HLaGDREfce9+G9BgEvltsGCMH34/UyuZzrfXFUG7cLhE9BEMI2FvCK6/2UL78NtZ6IKgvzqH3HVRWG9mCIFNmWaz+YgOAtpDtfCL2fys6Jyp8BXPhkLEjMUizJMUm5oFw0fgIxOAbAKb0wlg5Ew/gBOMHYLOzM7gBTgTg6TqwBDAAAAABJRU5ErkJggg==\" alt=\"\"></figure><p><a href=\"https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/getting-and-setting-data.html\">CKEditor</a></p><p><a href=\"https://ckeditor.com/docs/ckeditor5/latest/installation/getting-started/getting-and-setting-data.html\">https://ckeditor.com › installation › getting-started › g...</a></p><p> </p><p> </p><p><strong>CKEditor 5</strong> allows you to retrieve the data from and save it to your server ... Classic <strong>editor</strong> will automatically update the <strong>value</strong> of the &lt;textarea&gt; element&nbsp;...</p><p><br> </p><h3><a href=\"https://ckeditor.com/old/forums/Support/How-can-I-pass-values-plugin-when-editor-starts\">How can I pass values to a plugin when the editor starts up?</a></h3><p><a href=\"https://ckeditor.com/old/forums/Support/How-can-I-pass-values-plugin-when-editor-starts\">https://ckeditor.com › old › forums › Support › How-...</a></p><p> </p><p> </p><p>Jul 14, 2008 · 3 posts · 2 authors</p><p>I want to use the AddItem method to add the items dynamically when the <strong>editor</strong> instance is instantiated. ... oFCKeditor.myCustomValue = \'\"some&nbsp;...</p><p><br> </p><h3><a href=\"https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/observables.html\">Observables - CKEditor 5 Documentation</a></h3><p><a href=\"https://ckeditor.com/docs/ckeditor5/latest/framework/deep-dive/observables.html\">https://ckeditor.com › latest › framework › deep-dive</a></p><p> </p><p> </p><p>Observables are objects which have properties that can be observed. That means when the <strong>value</strong> of such property changes, an event is fired by the observable and&nbsp;...</p>', 0, 1, 1, NULL, '2023-06-10 11:23:26', '2023-06-11 11:44:53'),
+(3, 2, '<p><strong>Gmail sd</strong>&nbsp;is a free esail service provided by Google. In many ways, Gmail is like any other email service: You can&nbsp;<strong>send and receive emails</strong>,&nbsp;<strong>block spam</strong>, create an&nbsp;<strong>address book</strong></p>', 1, 1, 1, NULL, '2023-08-24 17:18:27', '2023-08-24 17:41:27'),
+(4, 8, '<p>A Facebook page is a public profile created by businesses, organizations, celebrities and anyone seeking to promote themselves publicly through social media. Facebook pages work much like personal profile pages, except that they have &ldquo;fans&rdquo; instead of &ldquo;friends.&rdquo;</p>', 1, 1, NULL, NULL, '2023-08-24 17:42:28', '2023-08-24 17:42:28'),
+(5, 7, '<p>Google Drive is a cloud-based storage service that enables users to store and access files online. The service syncs stored documents, photos and more across all the user&#39;s devices, including mobile devices, tablets and PCs</p>', 1, 1, NULL, NULL, '2023-08-24 17:43:07', '2023-08-24 17:43:07'),
+(6, 5, '<p>&ldquo;Your group description should state the intent of your group clearly to help new members understand how to best contribute and engage,&rdquo;&nbsp;says&nbsp;<a href=\"https://www.facebook.com/community/getting-started-with-groups/how-to-set-up-a-facebook-group/\" rel=\"noopener\" target=\"_blank\">Facebook</a>.</p>', 1, 1, NULL, NULL, '2023-08-24 17:43:52', '2023-08-24 17:43:52'),
+(7, 4, '<p>When you send commercial or bulk emails, it&rsquo;s important to follow best practices that respect your recipient&#39;s inbox and follow local regulations and&nbsp;<a href=\"https://www.google.com/gmail/about/policy/\">Gmail policies</a>.</p>', 1, 1, NULL, NULL, '2023-08-24 17:56:19', '2023-08-24 17:56:19'),
+(8, 3, '<p>A Facebook profile is an individual&#39;s personal account, where he or she can post updates, upload photos, share videos, maintain a friends list and provide personal information.</p>', 1, 1, NULL, NULL, '2023-08-24 17:56:43', '2023-08-24 17:56:43');
 
 -- --------------------------------------------------------
 
@@ -937,10 +988,10 @@ CREATE TABLE `product_guarantees` (
 --
 
 INSERT INTO `product_guarantees` (`id`, `logo_type`, `logo`, `title`, `short_description`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(6, 1, '<i class=\"fas fa-mouse\"></i>', 'Optio ipsum incidi', 'Rem culpa saepe ipsu', 1, 1, 1, NULL, '2023-08-05 21:33:11', '2023-08-10 23:13:31'),
-(7, 0, 'public/uploads/1774484317220696.jpg', 'Cupiditate rerum rer', 'Perspiciatis pariat', 1, 1, NULL, NULL, '2023-08-17 13:48:38', '2023-08-17 13:48:38'),
-(8, 0, 'public/uploads/1774484338639535.png', 'Similique qui sunt', 'Sed quidem nostrud f', 1, 1, NULL, NULL, '2023-08-17 13:48:58', '2023-08-17 13:48:58'),
-(9, 1, '<i class=\"fas fa-home\"></i>', 'Aute quod excepturi', 'Ut sint consectetur', 1, 1, NULL, NULL, '2023-08-17 13:49:06', '2023-08-17 13:49:06');
+(6, 1, '<i class=\"fas fa-percent\"></i>', '100% Guarantee', 'We Provide You 100% guarantee about any products', 1, 1, 1, NULL, '2023-08-05 21:33:11', '2023-08-24 15:11:07'),
+(7, 0, 'public/uploads/1775123915942991.png', 'Real Products', 'No doubt, Our products are real', 1, 1, 1, NULL, '2023-08-17 13:48:38', '2023-08-24 15:14:47'),
+(8, 0, 'public/uploads/1774484338639535.png', 'Similique qui sunt', 'Sed quidem nostrud f', 1, 1, NULL, '2023-08-24 15:12:17', '2023-08-17 13:48:58', '2023-08-24 15:12:17'),
+(9, 1, '<i class=\"fas fa-coins\"></i>', 'Money Back Gurantee', 'If any problem about money we back your money', 1, 1, 1, NULL, '2023-08-17 13:49:06', '2023-08-24 15:13:07');
 
 -- --------------------------------------------------------
 
@@ -967,9 +1018,11 @@ CREATE TABLE `purchases` (
 --
 
 INSERT INTO `purchases` (`id`, `date`, `product_id`, `seller_id`, `quantity`, `per_price`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, '1977-09-18 12:52:00', 3, 2, 300, 100.00, 1, NULL, NULL, '2023-08-20 05:56:09', '2023-08-20 05:59:17'),
-(2, '2023-08-19 22:51:00', 1, 1, 194, 534.00, 1, NULL, NULL, '2023-08-20 09:07:49', '2023-08-20 09:07:49'),
-(3, '2023-08-19 22:15:00', 4, 2, 735, 628.00, 1, NULL, NULL, '2023-08-20 09:17:08', '2023-08-20 09:17:08');
+(1, '1990-07-11 03:12:00', 8, 1, 62, 354.00, 1, NULL, NULL, '2023-08-23 11:23:40', '2023-08-23 11:23:40'),
+(2, '2011-08-16 07:43:00', 6, 2, 50, 411.00, 1, NULL, NULL, '2023-08-23 11:23:44', '2023-08-23 16:37:19'),
+(3, '1993-03-11 12:08:00', 4, 1, 5, 366.00, 1, NULL, NULL, '2023-08-23 11:23:49', '2023-08-23 11:23:49'),
+(4, '2023-08-23 01:44:00', 4, 1, 100, 757.00, 1, NULL, NULL, '2023-08-23 11:24:38', '2023-08-23 11:24:38'),
+(5, '2012-12-07 07:55:00', 1, 3, 973, 202.00, 1, NULL, NULL, '2023-08-23 11:25:36', '2023-08-23 11:25:36');
 
 -- --------------------------------------------------------
 
@@ -993,8 +1046,9 @@ CREATE TABLE `purchase_products` (
 --
 
 INSERT INTO `purchase_products` (`id`, `order_id`, `product_id`, `product_quantity`, `sales_price`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 1, 1, 1, 816.00, NULL, '2023-08-21 05:48:44', '2023-08-21 05:48:44'),
-(2, 2, 5, 1, 371.00, NULL, '2023-08-21 06:49:49', '2023-08-21 06:49:49');
+(1, 3, 4, 1, 541.00, NULL, '2023-08-23 17:39:37', '2023-08-23 17:39:37'),
+(2, 4, 7, 2, 267.00, NULL, '2023-08-23 17:44:18', '2023-08-23 17:44:18'),
+(3, 4, 4, 4, 541.00, NULL, '2023-08-23 17:44:18', '2023-08-23 17:44:18');
 
 -- --------------------------------------------------------
 
@@ -1085,7 +1139,8 @@ INSERT INTO `send_msg_customers` (`id`, `email`, `templete_name`, `subject`, `me
 (1, 'mahfujul.dev@gmail.com', '1', 'Soluta laborum Culp', '<p>as their primary communication channel as well as for direct social communication. One cannot overlook the importance of having a good email marketing service as it can enhance your online business growth to a whole new level. If you&rsquo;re looking f</p>', 'https://www.facebook.com/', 1, NULL, '2023-08-22 15:30:12', '2023-08-22 15:06:16', '2023-08-22 15:30:12'),
 (2, 'islammahfuz31@gmail.com', '1', 'Soluta laborum Culp', '<p>as their primary communication channel as well as for direct social communication. One cannot overlook the importance of having a good email marketing service as it can enhance your online business growth to a whole new level. If you&rsquo;re looking f</p>', 'https://www.facebook.com/', 1, NULL, '2023-08-22 15:30:12', '2023-08-22 15:06:19', '2023-08-22 15:30:12'),
 (3, 'mahfujul.dev@gmail.com', '1', 'Soluta laborum Culp', '<p>as their primary communication channel as well as for direct social communication. One cannot overlook the importance of having a good email marketing service as it can enhance your online business growth to a whole new level. If you&rsquo;re looking f</p>', 'https://www.facebook.com/', 1, NULL, NULL, '2023-08-22 15:40:33', '2023-08-22 15:40:33'),
-(4, 'islammahfuz31@gmail.com', '1', 'Soluta laborum Culp', '<p>as their primary communication channel as well as for direct social communication. One cannot overlook the importance of having a good email marketing service as it can enhance your online business growth to a whole new level. If you&rsquo;re looking f</p>', 'https://www.facebook.com/', 1, NULL, NULL, '2023-08-22 15:40:37', '2023-08-22 15:40:37');
+(4, 'islammahfuz31@gmail.com', '1', 'Soluta laborum Culp', '<p>as their primary communication channel as well as for direct social communication. One cannot overlook the importance of having a good email marketing service as it can enhance your online business growth to a whole new level. If you&rsquo;re looking f</p>', 'https://www.facebook.com/', 1, NULL, NULL, '2023-08-22 15:40:37', '2023-08-22 15:40:37'),
+(5, 'saiful.is00007@gmail.com', '1', 'Pvashop', '<p>Thanks for letting us.</p>', 'https://www.facebook.com/', 1, NULL, '2023-08-23 04:37:14', '2023-08-22 16:38:10', '2023-08-23 04:37:14');
 
 -- --------------------------------------------------------
 
@@ -1147,9 +1202,10 @@ CREATE TABLE `sliders` (
 
 INSERT INTO `sliders` (`id`, `background_photo`, `photo_alt`, `title`, `short_description`, `subcategory_id`, `active_status`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
 (1, 'public/uploads/1773294834608813.png', 'Fugiat eos perfere', 'Aut ipsum soluta vi', 'Sint quaerat corpori', '8', 1, 1, NULL, '2023-08-04 04:45:08', '2023-08-04 04:42:19', '2023-08-04 04:45:08'),
-(2, 'public/uploads/1773300159615881.png', 'Vitae ullam numquam', 'Natus aliquam laboru', 'Quaerat praesentium Quaerat praesentium Quaerat praesentium', '7', 0, 1, 1, NULL, '2023-08-04 06:06:33', '2023-08-05 00:27:02'),
-(3, 'public/uploads/1773367694752824.jpg', 'Placeat in debitis', 'Sapiente sint omnis', 'Est quidem proident', '3', 1, 1, 1, NULL, '2023-08-05 00:00:24', '2023-08-19 04:06:13'),
-(4, 'public/uploads/1773418205624125.png', 'Quo reprehenderit e', 'Tempora minima eum q', 'Qui facilis autem is', '3', 0, 1, 1, NULL, '2023-08-05 13:23:15', '2023-08-19 04:06:10');
+(2, 'public/uploads/1773300159615881.png', 'Vitae ullam numquam', 'Natus aliquam laboru', 'Quaerat praesentium Quaerat praesentium Quaerat praesentium', '7', 0, 1, 1, '2023-08-24 14:12:37', '2023-08-04 06:06:33', '2023-08-24 14:12:37'),
+(3, 'public/uploads/1775120323129710.jpeg', 'Placeat in debitis', 'What is social media account?', 'A social media account is a personal or business account that is created on a social media platform such as Facebook, Twitter, Instagram, LinkedIn,', '3', 1, 1, 1, NULL, '2023-08-05 00:00:24', '2023-08-24 14:17:40'),
+(4, 'public/uploads/1773418205624125.png', 'Quo reprehenderit e', 'Tempora minima eum q', 'Qui facilis autem is', '3', 0, 1, 1, '2023-08-24 14:12:32', '2023-08-05 13:23:15', '2023-08-24 14:12:32'),
+(5, 'public/uploads/1775119972186273.png', 'Ea omnis dolorum par', 'Similique recusandae', 'Aut recusandae Magn', '7', 1, 1, NULL, '2023-08-24 14:12:21', '2023-08-24 14:12:06', '2023-08-24 14:12:21');
 
 -- --------------------------------------------------------
 
@@ -1189,7 +1245,7 @@ CREATE TABLE `stock_management` (
   `id` bigint UNSIGNED NOT NULL,
   `product_id` bigint UNSIGNED NOT NULL,
   `quantity` int NOT NULL,
-  `stock_alert` int DEFAULT NULL,
+  `stock_alert` int NOT NULL DEFAULT '0',
   `average_per_price` double(8,2) NOT NULL,
   `created_by` bigint UNSIGNED NOT NULL,
   `updated_by` bigint UNSIGNED DEFAULT NULL,
@@ -1203,9 +1259,10 @@ CREATE TABLE `stock_management` (
 --
 
 INSERT INTO `stock_management` (`id`, `product_id`, `quantity`, `stock_alert`, `average_per_price`, `created_by`, `updated_by`, `deleted_at`, `created_at`, `updated_at`) VALUES
-(1, 3, 9, 10, 100.00, 1, 1, NULL, '2023-08-20 05:56:10', '2023-08-20 06:32:57'),
-(2, 1, 99, 100, 534.00, 1, 1, NULL, '2023-08-20 09:07:49', '2023-08-20 09:15:23'),
-(3, 4, 735, NULL, 628.00, 1, NULL, NULL, '2023-08-20 09:17:08', '2023-08-20 09:17:08');
+(1, 8, 62, 100, 354.00, 1, 1, NULL, '2023-08-23 11:23:40', '2023-08-23 11:25:19'),
+(2, 6, 907, 0, 411.00, 1, 1, NULL, '2023-08-23 11:23:44', '2023-08-23 16:37:19'),
+(3, 4, 105, 10, 561.50, 1, 1, NULL, '2023-08-23 11:23:49', '2023-08-23 11:24:38'),
+(4, 1, 1, 0, 202.00, 1, NULL, NULL, '2023-08-23 11:25:36', '2023-08-23 11:25:36');
 
 -- --------------------------------------------------------
 
@@ -1496,7 +1553,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `about_us`
 --
 ALTER TABLE `about_us`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `app_settings`
@@ -1514,7 +1571,7 @@ ALTER TABLE `business_policies`
 -- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `countries`
@@ -1526,13 +1583,13 @@ ALTER TABLE `countries`
 -- AUTO_INCREMENT for table `coupons`
 --
 ALTER TABLE `coupons`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `customer_messages`
 --
 ALTER TABLE `customer_messages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `failed_jobs`
@@ -1568,19 +1625,19 @@ ALTER TABLE `meet_teams`
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=98;
+  MODIFY `id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
 
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `payment_apis`
@@ -1604,19 +1661,19 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `product_advantages`
 --
 ALTER TABLE `product_advantages`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `product_descriptions`
 --
 ALTER TABLE `product_descriptions`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `product_details`
 --
 ALTER TABLE `product_details`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `product_guarantees`
@@ -1628,13 +1685,13 @@ ALTER TABLE `product_guarantees`
 -- AUTO_INCREMENT for table `purchases`
 --
 ALTER TABLE `purchases`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `purchase_products`
 --
 ALTER TABLE `purchase_products`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `reviews`
@@ -1652,7 +1709,7 @@ ALTER TABLE `sellers`
 -- AUTO_INCREMENT for table `send_msg_customers`
 --
 ALTER TABLE `send_msg_customers`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `set_emails`
@@ -1664,7 +1721,7 @@ ALTER TABLE `set_emails`
 -- AUTO_INCREMENT for table `sliders`
 --
 ALTER TABLE `sliders`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sms_templetes`
@@ -1676,7 +1733,7 @@ ALTER TABLE `sms_templetes`
 -- AUTO_INCREMENT for table `stock_management`
 --
 ALTER TABLE `stock_management`
-  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` bigint UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `sub_category_descriptions`

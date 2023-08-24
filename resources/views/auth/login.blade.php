@@ -1,49 +1,55 @@
 <x-app-layout>
-          <!-- sign up section start -->
-          <section class="sign-up-form">
-            <div class="container">
-                <div class="content wrapper">
-                    <div class="my_account_header">
-                        <div class="header_title">
-                            <h1 class="text-center">My Account</h1>
-                        </div>
+    <!-- sign up section start -->
+    <section class="sign-up-form">
+        <div class="container">
+            <div class="content wrapper">
+                <div class="my_account_header">
+                    <div class="header_title">
+                        <h1 class="text-center">My Account</h1>
                     </div>
-                    <div class="my_account_body">
-                        <div class="row">
-                            <div class="col-6 offset-3">
-                                <h3>Login</h3>
-                                <form class="form-one"method="POST" action="{{ route('login') }}" autocomplete="off" >
-                                    @csrf
-                                    <div class="mb-3 mt-3">
-                                      <label for="emailLogin">Username or email address *</label>
-                                      <input type="text" class="form-control" id="emailLogin" name="email" autocomplete="off">
-                                      @error('email')
-                                          <strong class="text-danger">{{ $message }}</strong>
-                                      @enderror
-                                    </div>
-                                    <div class="mb-3">
-                                      <label for="password">Password *</label>
-                                      <input type="password" class="form-control shadow-inset" id="password" name="password" required>
-                                      @error('password')
+                </div>
+                <div class="my_account_body">
+                    <div class="row">
+                        <div class="col-md-6 offset-md-3 col-sm-12 offset-sm-0">
+                            <h3 class="text-center">Login</h3>
+                            <form class="form-one"method="POST" action="{{ route('login') }}" autocomplete="off">
+                                @csrf
+                                <div class="mb-3 mt-3">
+                                    <label for="emailLogin">Username or email address *</label>
+                                    <input type="text" class="form-control" id="emailLogin" name="email"
+                                        autocomplete="off">
+                                    @error('email')
                                         <strong class="text-danger">{{ $message }}</strong>
-                                      @enderror
-                                    </div>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="remember" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
-                                            Remember me
-                                        </label>
-                                      </div>
-                                    <button type="submit" class="btn log-in-button mt-3">LOG IN</button>
-                                    <div class="forget">
-                                        @if (Route::has('password.request'))
-                                            <a  href="{{ route('password.request') }}">Lost your password?</a>
-                                        @endif
-                                    </div>
-                                </form>
-                            </div>
+                                    @enderror
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password">Password *</label>
+                                    <input type="password" class="form-control shadow-inset" id="password"
+                                        name="password" required>
+                                    @error('password')
+                                        <strong class="text-danger">{{ $message }}</strong>
+                                    @enderror
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" value=""
+                                        id="flexCheckDefault">
+                                    <label class="form-check-label" for="flexCheckDefault">
+                                        Remember me
+                                    </label>
+                                </div>
+                                <button type="submit" class="btn log-in-button mt-3">LOG IN</button>
+                                <div class="forget">
+                                    <a href="{{ url('register') }}">Sign Up</a>
+                                </div>
+                                <div class="forget">
+                                    @if (Route::has('password.request'))
+                                        <a href="{{ route('password.request') }}">Lost your password?</a>
+                                    @endif
+                                </div>
+                            </form>
+                        </div>
 
-                            {{-- <div class="col-6">
+                        {{-- <div class="col-6">
                                 <h3>REGISTER</h3>
                                 <form class="form-two" method="POST" action="{{ route('register') }}">
                                     @csrf
@@ -79,17 +85,17 @@
                                     <button type="submit" class="btn log-in-button">REGISTER</button>
                                   </form>
                             </div> --}}
-                        </div>
                     </div>
                 </div>
             </div>
-        </section>
-        <!-- sign up section end -->
+        </div>
+    </section>
+    <!-- sign up section end -->
 
-        @push('js')
-            <script>
-              $(document).ready(function () {
-                $('#username').blur(function (e) {
+    @push('js')
+        <script>
+            $(document).ready(function() {
+                $('#username').blur(function(e) {
                     e.preventDefault();
                     $('#usernameMsg').text('');
                     var username = $(this).val();
@@ -105,12 +111,12 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == 200) {
                                 $('#usernameMsg').text('');
                             }
                         },
-                        error: function (error) {
+                        error: function(error) {
                             $('usernameMsg').text('');
                             $.each(error.responseJSON.errors, function(field_name, error) {
                                 if (field_name == 'username') {
@@ -122,14 +128,14 @@
                 });
 
 
-                $('#email_register').blur(function (e) {
+                $('#email_register').blur(function(e) {
                     e.preventDefault();
                     $('#emailMsg').text('');
                     var email = $(this).val();
                     var array = {
                         'email': email
                     }
-                      $.ajax({
+                    $.ajax({
                         type: "POST",
                         url: "{{ url('validate-userdata') }}",
                         data: array,
@@ -137,12 +143,12 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == 200) {
                                 $('#emailMsg').text('');
                             }
                         },
-                        error: function (error) {
+                        error: function(error) {
                             $('emailMsg').text('');
                             $.each(error.responseJSON.errors, function(field_name, error) {
 
@@ -155,7 +161,7 @@
                     });
                 });
 
-                $('#pwd').keyup(function (e) {
+                $('#pwd').keyup(function(e) {
                     e.preventDefault();
                     $('#passwordMsg').text('');
 
@@ -172,25 +178,24 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        success: function (response) {
+                        success: function(response) {
                             if (response.status == 200) {
                                 $('#passwordMsg').text('');
                             }
                         },
-                        error: function (error) {
+                        error: function(error) {
                             $('passwordMsg').text('');
 
                             $.each(error.responseJSON.errors, function(field_name, error) {
-                                    if (field_name == 'password') {
-                                        $('#passwordMsg').html(error[0]);
-                                    }
+                                if (field_name == 'password') {
+                                    $('#passwordMsg').html(error[0]);
+                                }
                             })
 
                         }
                     });
                 });
-              });
-            </script>
-        @endpush
+            });
+        </script>
+    @endpush
 </x-app-layout>
-

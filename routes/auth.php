@@ -57,3 +57,9 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 });
+
+
+//otp login
+Route::get('otp-verification', [RegisteredUserController::class, 'otpVerification'])->name('otp-verification');
+Route::post('re-send-otp', [RegisteredUserController::class, 'reSendOtp'])->name('re-send-otp');
+Route::post('submit-opt', [RegisteredUserController::class, 'submitOtp'])->name('submit-opt');

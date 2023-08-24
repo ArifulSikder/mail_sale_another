@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\AppSetting;
 use App\Models\Category;
 use Carbon\Carbon;
 use Illuminate\Support\ServiceProvider;
@@ -34,7 +35,7 @@ class AppServiceProvider extends ServiceProvider
           return  $this->format('Y-m-d');
         });
 
-        $setting = \App\Models\AppSetting::first();
+        $setting = AppSetting::first();
         View::share('setting', $setting);
         
         $categories = Category::with('subcategories')->where('parent_id', null)->where('active_status', 1)->get();

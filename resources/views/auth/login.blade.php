@@ -10,7 +10,7 @@
                     </div>
                     <div class="my_account_body">
                         <div class="row">
-                            <div class="col-6">
+                            <div class="col-6 offset-3">
                                 <h3>Login</h3>
                                 <form class="form-one"method="POST" action="{{ route('login') }}" autocomplete="off" >
                                     @csrf
@@ -43,7 +43,7 @@
                                 </form>
                             </div>
 
-                            <div class="col-6">
+                            {{-- <div class="col-6">
                                 <h3>REGISTER</h3>
                                 <form class="form-two" method="POST" action="{{ route('register') }}">
                                     @csrf
@@ -78,7 +78,7 @@
                                     </div>
                                     <button type="submit" class="btn log-in-button">REGISTER</button>
                                   </form>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>

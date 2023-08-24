@@ -62,6 +62,7 @@ return array(
     'App\\Models\\HomePaveshop' => $baseDir . '/app/Models/HomePaveshop.php',
     'App\\Models\\MeetTeam' => $baseDir . '/app/Models/MeetTeam.php',
     'App\\Models\\Order' => $baseDir . '/app/Models/Order.php',
+    'App\\Models\\OtpVarification' => $baseDir . '/app/Models/OtpVarification.php',
     'App\\Models\\Payment' => $baseDir . '/app/Models/Payment.php',
     'App\\Models\\PaymentApi' => $baseDir . '/app/Models/PaymentApi.php',
     'App\\Models\\Product' => $baseDir . '/app/Models/Product.php',

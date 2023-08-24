@@ -81,11 +81,11 @@ class AppearanceController extends Controller
                 'password' => [
                     'required',
                     Password::min(8)
-                        ->letters()
-                        ->mixedCase()
-                        ->numbers()
-                        ->symbols()
-                        ->uncompromised(),
+                        // ->letters()
+                        // ->mixedCase()
+                        // ->numbers()
+                        // ->symbols()
+                        // ->uncompromised(),
                 ],
             ])->validate();
         }

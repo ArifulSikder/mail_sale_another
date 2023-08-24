@@ -1,31 +1,40 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+<x-app-layout>
+    <!-- sign up section start -->
+    <section class="sign-up-form">
+      <div class="container">
+          <div class="content wrapper">
+              <div class="my_account_header">
+                  <div class="header_title">
+                      <h1 class="text-center">My Account</h1>
+                  </div>
+              </div>
+              <div class="my_account_body">
+                  <div class="row">
+                      <div class="col-6 offset-3">
+                          <h3>Submit OPT</h3>
+                          <form class="form-one"method="POST" action="{{ route('login') }}" autocomplete="off" >
+                              @csrf
+                              <div class="mb-3 mt-3">
+                                <label for="code">Code</label>
+                                <input type="text" class="form-control" id="code" name="otp" autocomplete="off">
+                                @error('otp')
+                                    <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
+                              </div>
+                              <div class="mb-3">
+                                <label for="password">Password *</label>
+                                <input type="password" class="form-control shadow-inset" id="password" name="password" required>
+                                @error('password')
+                                  <strong class="text-danger">{{ $message }}</strong>
+                                @enderror
+                              </div>
+                              <button type="submit" class="btn log-in-button mt-3">Submit</button>
+                          </form>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+</x-app-layout>
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-        </div>
-    @endif
-
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
-
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
-            </div>
-        </form>
-
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
-
-            <button type="submit" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                {{ __('Log Out') }}
-            </button>
-        </form>
-    </div>
-</x-guest-layout>

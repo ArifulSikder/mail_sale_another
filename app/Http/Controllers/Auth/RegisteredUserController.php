@@ -32,62 +32,110 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
-
         $validator = Validator::make($request->all(), [
             'email_register' => 'required|email:rfc,dns|unique:users,email',
             'username' => 'required|unique:users,username',
             'password_register' => [
                 'required',
-                Password::min(8)
-                    // ->letters()
-                    // ->mixedCase()
-                    // ->numbers()
-                    // ->symbols()
-                    // ->uncompromised()
+                Password::min(8),
+                // ->letters()
+                // ->mixedCase()
+                // ->numbers()
+                // ->symbols()
+                // ->uncompromised()
             ],
         ]);
 
-        $validator->setAttributeNames([
-            'username' => 'username',
-            'email_register' => 'email',
-            'password_register' => 'password',
-        ])->validate();
+        $validator
+            ->setAttributeNames([
+                'username' => 'username',
+                'email_register' => 'email',
+                'password_register' => 'password',
+            ])
+            ->validate();
 
+        $now = Carbon::now();
+        $data['opt'] = OtpVarification::where('email', $request->email_register)
+            ->where('expire_at', '>', $now)
+            ->first();
 
-        $this->giveOtp($request->email_register);
-
-        
-        $user = User::create([
-            'type' => 'Customer',
-            'username' => $request->username,
-            'email' => $request->email_register,
-            'password' => Hash::make($request->password_register),
-        ]);
-
-        event(new Registered($user));
-
-        Auth::login($user);
-
-        if (auth()->user()->type == "Customer") {
-            return redirect('/my-account');
+        if ($data['opt']) {
+            $data['opt'] = $data['opt']->update([
+                'type' => 'Customer',
+                'username' => $request->username,
+                'email' => $request->email_register,
+                'password' => Hash::make($request->password_register),
+                'otp' => rand(111111, 999999),
+                'expire_at' => Carbon::now()->addMinutes(2),
+            ]);
         } else {
-            return redirect("/dashboard");
+            $data['opt'] = OtpVarification::create([
+                'type' => 'Customer',
+                'username' => $request->username,
+                'email' => $request->email_register,
+                'password' => Hash::make($request->password_register),
+                'otp' => rand(111111, 999999),
+                'expire_at' => Carbon::now()->addMinutes(2),
+            ]);
+
+            Mail::to($request->email_register)->send(new OtpMail($data['opt']));
         }
+
+        session(['email' => $data['opt']->email]);
+        return redirect('/otp-verification')->with('myOtpData');
     }
 
-    public function giveOtp($email)
+    public function reSendOtp(Request $request)
     {
-        $opt = OtpVarification::create([
-            'email' => $email,
-            'otp' => rand(123456, 999999),
-            'expire_at' => Carbon::now()->addMinutes(1)
+        $data['opt'] = OtpVarification::where('email', $request->email);
+
+        $data['opt']->first()->update([
+            'otp' => rand(111111, 999999),
+            'expire_at' => Carbon::now()->addMinutes(2),
         ]);
 
-        
-        Mail::to($email)->send(new OtpMail($opt));
+        $data['opt'] = $data['opt']->first();
 
+        Mail::to($request->email)->send(new OtpMail($data['opt']));
+
+        return redirect('/otp-verification');
+    }
+
+    public function otpVerification()
+    {
         return view('auth.verify-email');
+    }
+
+    public function submitOtp(Request $request): RedirectResponse
+    {
+        $now = Carbon::now();
+        $verificationCode = OtpVarification::where('email', $request->email)
+            ->where('expire_at', '>', $now)
+            ->where('otp', $request->otp)
+            ->latest()
+            ->first();
+
+        if ($verificationCode !== null) {
+            $user = User::create([
+                'type' => 'Customer',
+                'username' => $verificationCode->username,
+                'email' => $verificationCode->email,
+                'password' => $verificationCode->password,
+            ]);
+
+            event(new Registered($user));
+
+            Auth::login($user);
+
+            if (auth()->user()->type == 'Customer') {
+                return redirect('/my-account/dashboard');
+            } else {
+                return redirect('/dashboard');
+            }
+        } else {
+            return redirect('/otp-verification')->with(['message' => 'Your submitted opt is not current!']);
+        }
     }
 }

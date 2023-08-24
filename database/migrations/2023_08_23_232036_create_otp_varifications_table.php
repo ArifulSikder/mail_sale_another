@@ -15,8 +15,11 @@ return new class extends Migration
     {
         Schema::create('otp_varifications', function (Blueprint $table) {
             $table->id();
-            $table->string('email');
             $table->string('otp');
+            $table->string('type');
+            $table->string('username');
+            $table->string('email');
+            $table->string('password');
             $table->timestamp('expire_at');
             $table->timestamps();
         });

@@ -118,6 +118,7 @@ class RegisteredUserController extends Controller
             
 
         if ($verificationCode->first() !== null) {
+            $verificationCode = $verificationCode->first();
             $user = User::create([
                 'type' => 'Customer',
                 'username' => $verificationCode->username,

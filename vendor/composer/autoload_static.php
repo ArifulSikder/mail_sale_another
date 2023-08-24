@@ -627,6 +627,7 @@ class ComposerStaticInit53c7c16e336b74777d3b002864745fb0
         'App\\Models\\HomePaveshop' => __DIR__ . '/../..' . '/app/Models/HomePaveshop.php',
         'App\\Models\\MeetTeam' => __DIR__ . '/../..' . '/app/Models/MeetTeam.php',
         'App\\Models\\Order' => __DIR__ . '/../..' . '/app/Models/Order.php',
+        'App\\Models\\OtpVarification' => __DIR__ . '/../..' . '/app/Models/OtpVarification.php',
         'App\\Models\\Payment' => __DIR__ . '/../..' . '/app/Models/Payment.php',
         'App\\Models\\PaymentApi' => __DIR__ . '/../..' . '/app/Models/PaymentApi.php',
         'App\\Models\\Product' => __DIR__ . '/../..' . '/app/Models/Product.php',

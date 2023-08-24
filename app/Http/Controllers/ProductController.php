@@ -442,7 +442,6 @@ class ProductController extends Controller
     // ++++++++++++++++++++++++++++++++++++++ end product description ********************************
 
 
-    // STOCK MANAGEMENT /
     // stock view
     public function indexStock()
     {
@@ -453,42 +452,42 @@ class ProductController extends Controller
     }
 
     // store stock
-    public function storeStock(Request $request)
-    {
-        Validator::make($request->all(), [
-            'product_id' => 'required|numeric',
-            'seller_id' => 'required|numeric',
-            'quantity' => 'required|numeric',
-            'stock_date' => 'required',
-            'per_price' => 'required|numeric',
-        ],[
-            'product_id.required' => 'Please Select Product',
-            'seller_id.required' => 'Please Select The Seller',
-            'quantity.required' => 'Please Enter The Quantity',
-            'stock_date.required' => 'Please Select Stock Date',
-            'per_price.required' => 'Please Enter The Product Per Price',
-        ])->validate();
+    // public function storeStock(Request $request)
+    // {
+    //     Validator::make($request->all(), [
+    //         'product_id' => 'required|numeric',
+    //         'seller_id' => 'required|numeric',
+    //         'quantity' => 'required|numeric',
+    //         'stock_date' => 'required',
+    //         'per_price' => 'required|numeric',
+    //     ],[
+    //         'product_id.required' => 'Please Select Product',
+    //         'seller_id.required' => 'Please Select The Seller',
+    //         'quantity.required' => 'Please Enter The Quantity',
+    //         'stock_date.required' => 'Please Select Stock Date',
+    //         'per_price.required' => 'Please Enter The Product Per Price',
+    //     ])->validate();
 
-        $stock = new StockManagement();  
-        $stock->product_id = $request->product_id;
-        $stock->seller_id = $request->seller_id;
-        $stock->quantity = $request->quantity;
-        $stock->stock_date = $request->stock_date;
-        $stock->per_price = $request->per_price;
-        $stock->created_by = Auth::id();
+    //     $stock = new StockManagement();  
+    //     $stock->product_id = $request->product_id;
+    //     $stock->seller_id = $request->seller_id;
+    //     $stock->quantity = $request->quantity;
+    //     $stock->stock_date = $request->stock_date;
+    //     $stock->per_price = $request->per_price;
+    //     $stock->created_by = Auth::id();
 
-        if ($stock->save()) {
-            return response()->json([
-                'success' => "Stock Added Successfully.",
-            ]);
-        } else {
-            return response()->json([
-                'error' => "Opps! Something Went Wrong.",
-            ]);
-        }
-    }
+    //     if ($stock->save()) {
+    //         return response()->json([
+    //             'success' => "Stock Added Successfully.",
+    //         ]);
+    //     } else {
+    //         return response()->json([
+    //             'error' => "Opps! Something Went Wrong.",
+    //         ]);
+    //     }
+    // }
 
-    // update seller
+    // update stock
     public function updateStockAlert(Request $request)
     {
 
@@ -651,9 +650,7 @@ class ProductController extends Controller
         
         $data['coupons'] = Coupon::latest()->paginate(15);
         $data['products'] = Product::latest()->get();
-        return view('backend.coupon.indexCoupon', $data);
-        // return Carbon::now();
-      
+        return view('backend.coupon.indexCoupon', $data);      
     }
 
     // store coupon
@@ -661,6 +658,7 @@ class ProductController extends Controller
     {
         Validator::make($request->all(), [
             'coupon_name' => 'required|string',
+            'coupon_code' => 'required|regex:/^\S*$/u',
             'start_date' => 'required|string',
             'limit' => 'required|numeric',
             'product_id' => 'required',
@@ -669,6 +667,7 @@ class ProductController extends Controller
             'active_status' =>  'required|in:0,1',
         ],[
             'coupon_name.required' => 'Please Enter The Coupon Name',
+            'coupon_code.required' => 'Please Enter The Coupon Code',
             'start_date.required' => 'Please Enter Start Date',
             'end_date.required' => 'Please Enter End Date',
             'coupon_discount.required' => 'Please Enter Coupon Discount',
@@ -681,6 +680,7 @@ class ProductController extends Controller
         foreach ($ids as $id) {
             $coupon = new Coupon(); 
             $coupon->coupon_name = $request->coupon_name;
+            $coupon->coupon_code = $request->coupon_code;
             $coupon->product_id = $id;
             $coupon->start_date = $request->start_date;
             $coupon->limit = $request->limit;
@@ -708,6 +708,7 @@ class ProductController extends Controller
     {
         Validator::make($request->all(), [
             'coupon_name' => 'required|string',
+            'coupon_code' => 'required|regex:/^\S*$/u',
             'start_date' => 'required|string',
             'end_date' => 'required|string|max:20',
             'product_id' => 'required|numeric',
@@ -716,6 +717,7 @@ class ProductController extends Controller
             'active_status' =>  'required|in:0,1',
         ],[
             'coupon_name.required' => 'Please Enter The Coupon Name',
+            'coupon_code.required' => 'Please Enter The Coupon Code',
             'start_date.required' => 'Please Enter Start Date',
             'end_date.required' => 'Please Enter End Date',
             'limit.required' => 'Please Enter Limit',
@@ -726,6 +728,7 @@ class ProductController extends Controller
 
         $coupon = Coupon::findOrFail($request->edit_id); 
         $coupon->coupon_name = $request->coupon_name;
+        $coupon->coupon_code = $request->coupon_code;
         $coupon->product_id = $request->product_id;
         $coupon->start_date = $request->start_date;
         $coupon->limit = $request->limit;

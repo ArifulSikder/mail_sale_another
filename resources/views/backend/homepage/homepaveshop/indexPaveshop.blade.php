@@ -64,10 +64,11 @@
                                     <td>{{ $detail->title }}</td>
                                     <td>{!! Str::words($detail->description, 15, '....')  !!}
                                          @if (Str::of($detail->description)->wordCount() > 15)
-                                        <a  class="editdes" style="cursor: pointer;" data-description="{{ $detail ->description }}">
-                                            See More
-                                        </a>
-                                    @endif</td>
+                                            <a  class="editdes" style="cursor: pointer;" data-description="{{ $detail ->description }}">
+                                                See More
+                                            </a>
+                                        @endif
+                                    </td>
                                     <td><span
                                             class="badge badge-{{ $detail->active_status == 0 ? 'danger': 'success' }}">{{ $detail->active_status == 0 ? 'Inactive': 'Active' }}</span>
                                     </td>
@@ -142,7 +143,7 @@
                         <label for="description">Description</label>
                         <span type="button" class="bg-success text-light px-2 float-right preview"
                               data-name="pva_description.png">Preview</span>
-                        <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" value=""> </textarea>
+                        <textarea type="text" class="form-control" name="description" id="editor" placeholder="Enter Description" > </textarea>
                             <span class="text-danger validate" data-field="description"></span>
 
                     </div>

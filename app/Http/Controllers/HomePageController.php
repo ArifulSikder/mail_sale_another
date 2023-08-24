@@ -47,6 +47,12 @@ class HomePageController extends Controller
             'created_by' => Auth::id()
         ]);
 
+        if ($request->active_status == 1) {
+            HomePaveshop::Where('active_status', 1)
+                ->where('id', '!=', $homePabeshop->id)
+                ->update(['active_status' => 0]);
+        }
+
         if ($homePabeshop) {
             return response()->json([
                 'success' => "Details saved successfully.",
@@ -79,6 +85,12 @@ class HomePageController extends Controller
             'updated_by' => Auth::id()
         ]);
 
+        if ($request->active_status == 1) {
+            HomePaveshop::Where('active_status', 1)
+                ->where('id', '!=', $request->edit_e)
+                ->update(['active_status' => 0]);
+        }
+
         if ($homePabeshop) {
             return response()->json([
                 'success' => "Details Updated successfully.",
@@ -99,6 +111,10 @@ class HomePageController extends Controller
                 'active_status' =>  '1',
                 'updated_by' => Auth::id()
             ]);
+
+            HomePaveshop::Where('active_status', 1)
+                ->where('id', '!=', $id)
+                ->update(['active_status' => 0]);
 
             if ($team == true) {
                 $notification = [
@@ -365,6 +381,12 @@ class HomePageController extends Controller
             'created_by' => Auth::id()
         ]);
 
+        if ($request->active_status == 1) {
+            Slider::Where('active_status', 1)
+                ->where('id', '!=', $slider->id)
+                ->update(['active_status' => 0]);
+        }
+
         if ($slider) {
             return response()->json([
                 'success' => "Slider saved successfully.",
@@ -413,6 +435,11 @@ class HomePageController extends Controller
                 'active_status' =>  $request->active_status,
                 'updated_by' => Auth::id()
             ]);
+            if ($request->active_status == 1) {
+                Slider::Where('active_status', 1)
+                    ->where('id', '!=', $slider->id)
+                    ->update(['active_status' => 0]);
+            }
             if ($slider) {
                 return response()->json([
                     'success' => "Slider updated successfully.",
@@ -433,6 +460,11 @@ class HomePageController extends Controller
                 'active_status' =>  $request->active_status,
                 'updated_by' => Auth::id()
             ]);
+            if ($request->active_status == 1) {
+                Slider::Where('active_status', 1)
+                    ->where('id', '!=', $id)
+                    ->update(['active_status' => 0]);
+            }
             if ($slider) {
                 return response()->json([
                     'success' => "Slider updated successfully.",
@@ -449,12 +481,16 @@ class HomePageController extends Controller
     public function updateSliderStatus($id, $status)
     {
         if ($status == 0) {
-            $team = Slider::findOrFail($id)->update([
+            $slider = Slider::findOrFail($id)->update([
                 'active_status' =>  '1',
                 'updated_by' => Auth::id()
             ]);
 
-            if ($team == true) {
+            Slider::Where('active_status', 1)
+                ->where('id', '!=', $id)
+                ->update(['active_status' => 0]);
+  
+            if ($slider == true) {
                 $notification = [
                     'success' => "Status Activated Successfully.",
                 ];
@@ -1156,6 +1192,12 @@ class HomePageController extends Controller
         $about->active_status = $request->active_status;
         $about->created_by = Auth::id();
 
+        if ($request->active_status == 1) {
+            AboutUs::Where('active_status', 1)
+                ->where('id', '!=', $about->id)
+                ->update(['active_status' => 0]);
+        }
+
         if ($about->save()) {
             return response()->json([
                 'success' => "About Us Saved Successfully.",
@@ -1182,6 +1224,12 @@ class HomePageController extends Controller
         $about->active_status = $request->active_status;
         $about->updated_by = Auth::id();
 
+        if ($request->active_status == 1) {
+            AboutUs::Where('active_status', 1)
+                ->where('id', '!=', $request->edit_e)
+                ->update(['active_status' => 0]);
+        }
+
         if ($about->save()) {
             return response()->json([
                 'success' => "About Us Updated Successfully.",
@@ -1201,6 +1249,10 @@ class HomePageController extends Controller
                 'active_status' =>  '1',
                 'updated_by' => Auth::id()
             ]);
+
+            AboutUs::Where('active_status', 1)
+                ->where('id', '!=', $id)
+                ->update(['active_status' => 0]);
 
             if ($about == true) {
                 $notification = [
@@ -1235,7 +1287,7 @@ class HomePageController extends Controller
     // About Us delete 
     public function deleteAboutUs($id)
     {
-        $delete = FAQ::findOrFail($id)->delete();
+        $delete = AboutUs::findOrFail($id)->delete();
 
         if ($delete == true) {
             $notification = [
@@ -1249,11 +1301,6 @@ class HomePageController extends Controller
 
         return back()->with($notification);
     }
-
-
-
-
-
 
 
     

@@ -14,7 +14,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Product Details</h1>
+                    <h1 class="m-0">Product Details ({{ $product->name }})</h1>
 
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -65,7 +65,13 @@
                             @foreach($productDetails as $detail)
                                 <tr>
                                     <th scope="row">{{ $serials++ }}</th>
-                                    <td>{!! Str::limit( $detail->content, 500) !!}</td>
+                                    <td>{!! Str::words($detail->content, 20, '....')  !!}
+                                        @if (Str::of($detail->content)->wordCount() > 20)
+                                           <a  class="editdes" style="cursor: pointer;" data-description="{{ $detail ->content }}">
+                                               See More
+                                           </a>
+                                       @endif
+                                    </td>
                                     <td>
                                         <span
                                             class="badge badge-{{ $detail->active_status == 0 ? 'danger': 'success' }}">{{ $detail->active_status == 0 ? 'Inactive': 'Active' }}</span>
@@ -128,13 +134,15 @@
                         <option value="0">Inactive</option>
                         <option value="1">Active</option>
                     </select>
-                    <span class="text-danger" id="errors_status"></span>
+                    <span class="text-danger validate" data-field="active_status"></span>
+
                 </div>
 
                 <div class="form-group">
-                    <label for="content">Content</label>
-                    <textarea class="myEditor"  name="content" id="content" cols="30" rows="10"></textarea>
-                    <span class="text-danger" id="errors_content"></span>
+                    <label for="content">Product Details</label>
+                    <textarea type="text" class="form-control" name="content" id="editor" placeholder="Enter Details" > </textarea>
+                    <span class="text-danger validate" data-field="content"></span>
+
                 </div>
 
             </div>
@@ -171,13 +179,15 @@
                         <option value="0">Inactive</option>
                         <option value="1">Active</option>
                     </select>
-                    <span class="text-danger" id="errors_status_e"></span>
+                    <span class="text-danger validate_e" data-field="active_status"></span>
+
                 </div>
 
                 <div class="form-group">
                     <label for="content_e">Content</label>
-                    <textarea class="myEditor_e"  name="content" id="content_e" cols="30" rows="10"></textarea>
-                    <span class="text-danger" id="errors_content_e"></span>
+                    <<textarea type="text" class="form-control" name="content" id="editor_e" placeholder="Enter Description" > </textarea>
+                    <span class="text-danger validate_e" data-field="content"></span>
+
                 </div>
 
             </div>
@@ -193,196 +203,140 @@
 </div>
   <!-- /.modal -->
 
-@endsection
 
+  
+  {{-- show Description  --}}
+<div class="modal fade" id="showdes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Show Description</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group" >
+                        <label for="description">Description</label>
+
+                        <p id="description"></p>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+        </div>
+    </div>
+</div>
+
+@endsection
+@include('backend.includes.preview')
+@include('components.ckeditor')
 @section('script')
 <script>
     $(document).ready(function () {
-        //ck editor 5 
-    
+            // ck editor 
+            ckeditor("editor")
+            ckeditor("editor_e")
 
+            $("#formData").submit(function (e) { 
+              e.preventDefault();
+              
+              CKEDITOR.instances.editor.updateElement();
+              var formdata = new FormData($("#formData")[0]);
+              $.ajax({
+                  type: "POST",
+                  url: "{{ route('add-product-details') }}",
+                  contentType: false,
+                  processData: false,
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  data: formdata,
+                  success: function (response) {
+                      if (response.success) {
+                          toastr.success(response.success);
+                      } else if (response.error) {
+                          toastr.error(response.error);
+                      }
+                  },
+                  error: function (error) {
+                      $('.validate').text('');
+                      $.each(error.responseJSON.errors, function (field_name, error) { 
+                           const errorElement = $('.validate[data-field="' + field_name + '"]');
+                           if (errorElement.length > 0) {
+                              errorElement.text(error[0]);
+                              toastr.error(error);
+                           }
+                      });
+                  },
+                  complete: function (done) {
+                      if (done.status == 200) {
+                          window.location.reload();
+                      }
+                  }
+                  
 
-        ClassicEditor
-            .create( document.querySelector( '.myEditor' ) ,{
-                toolbar: {
-                    items: [
-                        'undo', 'redo',
-                        '|', 'heading',
-                        '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                        '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                        //'-', // break point
-                        '|', 'alignment',
-                        'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                        '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent',
+              });
+            });
 
-                        'Source', 'Save', 'NewPage', 'Preview', 'Print', 'Templates' ,
-                        'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', 
-                        'Find', 'Replace', 'SelectAll', 'Scayt' ,
-                        'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ,
-                        'Underline', 'Strike',  'CopyFormatting', 'RemoveFormat' ,
-                        'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ,
-                        'Unlink', 'Anchor' ,
-                        'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ,
-                        'Styles', 'Format', 'Font' , 
-                        'TextColor', 'BGColor' ,
-                        'Maximize', 'ShowBlocks' ,
-                        'About' 
-                    ],
-                    shouldNotGroupWhenFull: true
-                }
-            })
-            .catch( error => {
-                console.error( error );
-        });
+            $('.editdes').click(function (e) {
+                e.preventDefault();
+                $('#showdes').modal('show');
+                $("#description").html($(this).data('description'));
+            });
 
-        let editor;
-        ClassicEditor
-                .create(document.querySelector('#content_e'),{
-                    toolbar: {
-                    items: [
-                        'undo', 'redo',
-                        '|', 'heading',
-                        '|', 'fontfamily', 'fontsize', 'fontColor', 'fontBackgroundColor',
-                        '|', 'bold', 'italic', 'strikethrough', 'subscript', 'superscript', 'code',
-                        //'-', // break point
-                        '|', 'alignment',
-                        'link', 'uploadImage', 'blockQuote', 'codeBlock',
-                        '|', 'bulletedList', 'numberedList', 'todoList', 'outdent', 'indent',
+          $('.editDetail').click(function (e) {
+                e.preventDefault();
+                $('#id_e').val($(this).data('id'));
+                $('#active_status_e').val($(this).data('active_status')).trigger('change');
+                CKEDITOR.instances['editor_e'].setData($(this).data('content'));
+          });
 
-                        'Source', 'Save', 'NewPage', 'Preview', 'Print', 'Templates' ,
-                        'Cut', 'Copy', 'Paste', 'PasteText', 'PasteFromWord', 
-                        'Find', 'Replace', 'SelectAll', 'Scayt' ,
-                        'Form', 'Checkbox', 'Radio', 'TextField', 'Textarea', 'Select', 'Button', 'ImageButton', 'HiddenField' ,
-                        'Underline', 'Strike',  'CopyFormatting', 'RemoveFormat' ,
-                        'CreateDiv', 'JustifyLeft', 'JustifyCenter', 'JustifyRight', 'JustifyBlock', '-', 'BidiLtr', 'BidiRtl', 'Language' ,
-                        'Unlink', 'Anchor' ,
-                        'Image', 'Flash', 'Table', 'HorizontalRule', 'Smiley', 'SpecialChar', 'PageBreak', 'Iframe' ,
-                        'Styles', 'Format', 'Font' , 
-                        'TextColor', 'BGColor' ,
-                        'Maximize', 'ShowBlocks' ,
-                        'About' 
-                    ],
-                    shouldNotGroupWhenFull: true
-                }
-                })
-                .then(newEditor => {
-                    editor = newEditor;
-                    // Set the initial value of the editor
-                    editor.setData('');
-                })
-                .catch(error => {
-                    console.error(error);
+          $("#editData").submit(function (e) { 
+                e.preventDefault();
+                
+                CKEDITOR.instances.editor_e.updateElement();
+                var formdata = new FormData($("#editData")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('update-product-details') }}",
+                    contentType: false,
+                    processData: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: formdata,
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.success);
+                        } else if (response.error) {
+                            toastr.error(response.error);
+                        }
+                    },
+                    error: function (error) {
+                        $('.validate').text('');
+                        $.each(error.responseJSON.errors, function (field_name, error) { 
+                             const errorElement = $('.validate_e[data-field="' + field_name + '"]');
+                             if (errorElement.length > 0) {
+                                errorElement.text(error[0]);
+                                toastr.error(error);
+                             }
+                        });
+                    },
+
+                    complete: function (done) {
+                        if (done.status == 200) {
+                            window.location.reload();
+                        }
+                    }
+
                 });
-
-        //add details
-        $('.addnew').click(function (e) { 
-            e.preventDefault();
-            
-            $('#errors_content').text('');
-            $('#errors_status').text('');
-            
-            $('#errors_content_e').text('');
-            $('#errors_status_e').text('');
-        });
-        
-        //add form
-        $("form#formData").submit(function (e) {
-            e.preventDefault();
-
-            var formData = new FormData($("#formData")[0]);
-            $.ajax({
-                type: "POST",
-                url: "{{ route('add-product-details') }}",
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    if (response.success == true) {
-                        toastr.success("Product Details Added Successfully!");
-                    } else if (response.success == false) {
-                        toastr.error("Somentings Went Wrong!");
-                    }
-                },
-                error: function (error) {
-                    $('#errors_content').text('');
-                    $('#errors_status').text('');
-
-                    $.each(error.responseJSON.errors, function (field_name, error) {
-                        if (field_name == 'content') {
-                            $('#errors_content').text(error);
-                            toastr.error(error)
-                        } else if (field_name == 'active_status') {
-                            $('#errors_status').text(error);
-                            toastr.error(error)
-                        }
-                    });
-                },
-                complete: function (done) {
-                    if (done.status == 200) {
-                        window.location.reload();
-                    }
-                }
-            });
-        });
-        
-        $(".editDetail").click(function (e) { 
-            e.preventDefault();
-            $("#id_e").val($(this).data('id'));
-            $("#active_status_e").val($(this).data('active_status')).trigger('change');
-            
-            if (editor) {
-                editor.setData($(this).data('content'))
-            }
-        });
-        //edit form
-        $("form#editData").submit(function (e) {
-            e.preventDefault();
-
-            var formData = new FormData($("#editData")[0]);
-            $.ajax({
-                type: "POST",
-                url: "{{ route('update-product-details') }}",
-                dataType: "json",
-                contentType: false,
-                processData: false,
-                data: formData,
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                success: function (response) {
-                    if (response.success == true) {
-                        toastr.success("Product Details Updated Successfully!");
-                    } else if (response.success == false) {
-                        toastr.error("Somentings Went Wrong!");
-                    }
-                },
-                error: function (error) {
-                    $('#errors_content_e').text('');
-                    $('#errors_status_e').text('');
-
-                    $.each(error.responseJSON.errors, function (field_name, error) {
-                        if (field_name == 'content') {
-                            $('#errors_content_e').text(error);
-                            toastr.error(error)
-                        } else if (field_name == 'active_status') {
-                            $('#errors_status_e').text(error);
-                            toastr.error(error)
-                        }
-                    });
-                },
-                complete: function (done) {
-                    if (done.status == 200) {
-                        window.location.reload();
-                    }
-                }
-            });
-        });
-
-    });
+          });
+    }); 
 </script>
 
 @endsection

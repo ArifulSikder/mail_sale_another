@@ -40,11 +40,13 @@
             <div class="card">
                 <div class="card-header">Coupon Table</div>
                 <div class="card-body">
+                    <div class="table-responsive">
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 5%">Serial</th>
                                 <th scope="col" style="width: 15%">Coupon Name</th>
+                                <th scope="col" style="width: 10%">Coupon Code</th>
                                 <th scope="col" style="width: 15%">Product Name</th>
                                 <th scope="col" style="width: 10%">Start Date</th>
                                 <th scope="col" style="width: 10%">End Date</th>
@@ -64,6 +66,7 @@
                                 <tr>
                                     <th>{{ $serials++ }}</th>
                                     <td>{{ $coupon->coupon_name }}</td>
+                                    <td>{{ $coupon->coupon_code }}</td>
                                     <td>{{ $coupon->product->name }}</td>
                                     <td>{{ \Carbon\Carbon::parse($coupon->start_date) }}</td>
                                     <td>{{ \Carbon\Carbon::parse($coupon->end_date) }}</td>
@@ -101,6 +104,7 @@
                                                 <button type="button"
                                                     data-id="{{ $coupon->id }}"
                                                     data-coupon_name="{{ $coupon->coupon_name }}"
+                                                    data-coupon_code="{{ $coupon->coupon_code }}"
                                                     data-product_id="{{ $coupon->product_id }}"
                                                     data-start_date="{{ $coupon->start_date }}"
                                                     data-end_date="{{ $coupon->end_date }}"
@@ -122,6 +126,7 @@
                             @endforeach
                         </tbody>
                     </table>
+                    </div>
                     <div class="float-right my-2">
                         {{ $coupons->links() }}
                     </div>
@@ -152,8 +157,14 @@
 
                     </div>
                     <div class="form-group">
+                        <label for="coupon_code">Coupon Code</label>
+                        <input type="text" class="form-control" name="coupon_code"  placeholder="Coupon Code" >
+                        <span class="text-danger validate" data-field="coupon_code"></span>
+
+                    </div>
+                    <div class="form-group">
                         <label for="product_id">Products</label>  <br>
-                        <select class="form-control js-example-basic-multiple" style="width: 100%"  name="product_id[]" multiple="multiple">
+                        <select class="form-control js-example-basic-multiple" style="width: 100%"  name="product_id[]" multiple="multiple" data-placeholder="Select Products">
                             @foreach ($products as $product)
                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
                             @endforeach
@@ -220,6 +231,12 @@
                         <label for="coupon_name">Coupon Name</label>
                         <input type="text" class="form-control" name="coupon_name"  id="coupon_name_e" >
                         <span class="text-danger validate_e" data-field="coupon_name"></span>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="coupon_code">Coupon Code</label>
+                        <input type="text" class="form-control" name="coupon_code" id="coupon_code_e"  placeholder="Coupon Code" >
+                        <span class="text-danger validate_e" data-field="coupon_code"></span>
 
                     </div>
                     <div class="form-group">
@@ -331,6 +348,7 @@
                 $('#editCoupon').modal('show');
                 $('#id_e').val($(this).data('id'));
                 $('#coupon_name_e').val($(this).data('coupon_name'));
+                $('#coupon_code_e').val($(this).data('coupon_code'));
                 $('#start_date_e').val($(this).data('start_date'));
                 $('#end_date_e').val($(this).data('end_date'));
                 $('#limit_e').val($(this).data('limit'));

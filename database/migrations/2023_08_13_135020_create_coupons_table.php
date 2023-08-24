@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->string('coupon_name');
+            $table->string('coupon_code');
             $table->foreignId('product_id');
             $table->string('start_date');
             $table->string('end_date');

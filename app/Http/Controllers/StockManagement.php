@@ -8,6 +8,7 @@ use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StockManagement as Stock;
+use Illuminate\Support\Facades\Validator;
 
 class StockManagement extends Controller
 {
@@ -162,4 +163,7 @@ class StockManagement extends Controller
 
         return;
     }
+
+
+
 }

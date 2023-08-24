@@ -9,7 +9,7 @@
 
 
     <div class="table-responsive">
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <tr>
               <th scope="col">Serial</th>
@@ -19,7 +19,6 @@
               <th scope="col">Total</th>
               <th scope="col">Status</th>
               <th scope="col">Payment</th>
-              <th scope="col">Action</th>
             </tr>
           </thead>
           <tbody>
@@ -33,13 +32,10 @@
                     <td>{{ $order->status }}</td>
                     <td>
                         @if ($order->payment_method == 1)
-                            <span>Stripe</span>
+                            <p>Stripe</p>
                             @else
-                            <span>Paypal</span>
+                            <p>Paypal</p>
                             @endif
-                    </td>
-                    <td>
-                        <a href="" id="delete" class="btn btn-danger btn-sm btn-block"><i class="fas fa-trash"></i></a>
                     </td>
                 </tr>
             @endforeach

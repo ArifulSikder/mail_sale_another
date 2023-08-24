@@ -14,7 +14,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1 class="m-0">Product Description</h1>
+                    <h1 class="m-0">Product Description({{ $product->name }})</h1>
 
                 </div><!-- /.col -->
                 <div class="col-sm-6">
@@ -65,7 +65,13 @@
                             @foreach($productDescriptions as $detail)
                                 <tr>
                                     <th scope="row">{{ $serials++ }}</th>
-                                    <td>{!! Str::limit( $detail->content, 500) !!}</td>
+                                    <td>{!! Str::words($detail->content, 20, '....')  !!}
+                                        @if (Str::of($detail->content)->wordCount() > 20)
+                                           <a  class="editdes" style="cursor: pointer;" data-description="{{ $detail ->content }}">
+                                               See More
+                                           </a>
+                                       @endif
+                                    </td>
                                     <td>
                                         <span
                                             class="badge badge-{{ $detail->active_status == 0 ? 'danger': 'success' }}">{{ $detail->active_status == 0 ? 'Inactive': 'Active' }}</span>
@@ -128,13 +134,14 @@
                         <option value="0">Inactive</option>
                         <option value="1">Active</option>
                     </select>
-                    <span class="text-danger" id="errors_status"></span>
+                    <span class="text-danger validate" data-field="active_status"></span>
                 </div>
 
                 <div class="form-group">
                     <label for="content">Content</label>
-                    <textarea class="myEditor"  name="content" id="content" cols="30" rows="10"></textarea>
-                    <span class="text-danger" id="errors_content"></span>
+                    <textarea type="text" class="form-control" name="content" id="editor" placeholder="Enter Description" > </textarea>
+                    <span class="text-danger validate" data-field="content"></span>
+
                 </div>
 
             </div>
@@ -171,13 +178,15 @@
                         <option value="0">Inactive</option>
                         <option value="1">Active</option>
                     </select>
-                    <span class="text-danger" id="errors_status_e"></span>
+                    <span class="text-danger validate_e" data-field="active_status"></span>
+
                 </div>
 
                 <div class="form-group">
                     <label for="content_e">Content</label>
-                    <textarea class="myEditor_e"  name="content" id="content_e" cols="30" rows="10"></textarea>
-                    <span class="text-danger" id="errors_content_e"></span>
+                    <textarea type="text" class="form-control" name="content" id="editor_e"  > </textarea>
+                    <span class="text-danger validate_e" data-field="content"></span>
+
                 </div>
 
             </div>
@@ -193,13 +202,43 @@
 </div>
   <!-- /.modal -->
 
+
+  {{-- show Description  --}}
+<div class="modal fade" id="showdes" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Show Description</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+                <div class="modal-body">
+
+                    <div class="form-group" >
+                        <label for="description">Description</label>
+
+                        <p id="description"></p>
+
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+        </div>
+    </div>
+</div>
 @endsection
 
 @section('script')
-<script>
+@include('backend.includes.preview')
+@include('components.ckeditor')
+{{-- <script>
     $(document).ready(function () {
         //ck editor 5 
-    
+        ckeditor("editor")
+        ckeditor("editor_e")
 
 
         ClassicEditor
@@ -383,6 +422,109 @@
         });
 
     });
-</script>
+</script> --}}
 
+<script>
+    $(document).ready(function () {
+            // ck editor 
+            ckeditor("editor")
+            ckeditor("editor_e")
+
+            $("#formData").submit(function (e) { 
+              e.preventDefault();
+              
+              CKEDITOR.instances.editor.updateElement();
+              var formdata = new FormData($("#formData")[0]);
+              $.ajax({
+                  type: "POST",
+                  url: "{{ route('add-product-description') }}",
+                  contentType: false,
+                  processData: false,
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                  },
+                  data: formdata,
+                  success: function (response) {
+                      if (response.success) {
+                          toastr.success(response.success);
+                      } else if (response.error) {
+                          toastr.error(response.error);
+                      }
+                  },
+                  error: function (error) {
+                      $('.validate').text('');
+                      $.each(error.responseJSON.errors, function (field_name, error) { 
+                           const errorElement = $('.validate[data-field="' + field_name + '"]');
+                           if (errorElement.length > 0) {
+                              errorElement.text(error[0]);
+                              toastr.error(error);
+                           }
+                      });
+                  },
+                  complete: function (done) {
+                      if (done.status == 200) {
+                          window.location.reload();
+                      }
+                  }
+                  
+
+              });
+            });
+
+            $('.editdes').click(function (e) {
+                e.preventDefault();
+                $('#showdes').modal('show');
+                $("#description").html($(this).data('description'));
+            });
+
+          $('.editDetail').click(function (e) {
+                e.preventDefault();
+                $('#id_e').val($(this).data('id'));
+                $('#active_status_e').val($(this).data('active_status')).trigger('change');
+                CKEDITOR.instances['editor_e'].setData($(this).data('content'));
+          });
+
+          $("#editData").submit(function (e) { 
+                e.preventDefault();
+                
+                CKEDITOR.instances.editor_e.updateElement();
+                var formdata = new FormData($("#editData")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('update-product-description') }}",
+                    contentType: false,
+                    processData: false,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    data: formdata,
+                    success: function (response) {
+                        if (response.success) {
+                            toastr.success(response.success);
+                        } else if (response.error) {
+                            toastr.error(response.error);
+                        }
+                    },
+                    error: function (error) {
+                        $('.validate').text('');
+                        $.each(error.responseJSON.errors, function (field_name, error) { 
+                             const errorElement = $('.validate_e[data-field="' + field_name + '"]');
+                             if (errorElement.length > 0) {
+                                errorElement.text(error[0]);
+                                toastr.error(error);
+                             }
+                        });
+                    },
+
+                    complete: function (done) {
+                        if (done.status == 200) {
+                            window.location.reload();
+                        }
+                    }
+
+                });
+          });
+    });  
+</script>
+    
 @endsection

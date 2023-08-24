@@ -56,7 +56,7 @@
                                     <div class="pricing-table-body card-body">
                                         <h5 class="card-title">{{ $product->selling_price }}$</h5>
                                         <ul>
-                                            @forelse ($product->advantages->where('active_status', 1) as $advantage)
+                                            @forelse ($product->advantages->where('active_status', 1)->take(5) as $advantage)
                                                 <li>{{ $advantage->title }}</li>
                                             @empty
                                                 <li class="text-danger">Data Not Found!</li>
@@ -69,49 +69,11 @@
                             </div>
                         </div>
                     @empty
-
+                        <div class="text-center mt-3">
+                            <span style='color:red' >No Product Available Yet!!</span></br><bR/>
+                        </div>
                     @endforelse
 
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="pricing-table-item">
-                            <div class="card text-center">
-                                <div class="pricing-table-header card-header">
-                                    NORMAL GMAIL
-                                </div>
-                                <div class="pricing-table-body card-body">
-                                    <h5 class="card-title">45$</h5>
-                                    <ul>
-                                        <li>100 GMAIL Accounts</li>
-                                        <li>100% Real</li>
-                                        <li>Fast Delivery with 48 hours</li>
-                                        <li>Replacement policy</li>
-                                        <li>Satisfaction Guaranteed</li>
-                                    </ul>
-                                    <a href="./product-details.html" class="btn custom_button">Order</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6 col-sm-12">
-                        <div class="pricing-table-item">
-                            <div class="card text-center">
-                                <div class="pricing-table-header card-header">
-                                    NORMAL GMAIL
-                                </div>
-                                <div class="pricing-table-body card-body">
-                                    <h5 class="card-title">45$</h5>
-                                    <ul>
-                                        <li>100 GMAIL Accounts</li>
-                                        <li>100% Real</li>
-                                        <li>Fast Delivery with 48 hours</li>
-                                        <li>Replacement policy</li>
-                                        <li>Satisfaction Guaranteed</li>
-                                    </ul>
-                                    <a href="./product-details.html" class="btn custom_button">Order</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

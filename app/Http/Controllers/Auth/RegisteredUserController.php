@@ -114,10 +114,10 @@ class RegisteredUserController extends Controller
         $verificationCode = OtpVarification::where('email', $request->email)
             ->where('expire_at', '>', $now)
             ->where('otp', $request->otp)
-            ->latest()
-            ->first();
+            ->latest();
+            
 
-        if ($verificationCode !== null) {
+        if ($verificationCode->first() !== null) {
             $user = User::create([
                 'type' => 'Customer',
                 'username' => $verificationCode->username,
@@ -128,7 +128,7 @@ class RegisteredUserController extends Controller
             event(new Registered($user));
 
             Auth::login($user);
-
+            $verificationCode->delete();
             if (auth()->user()->type == 'Customer') {
                 return redirect('/my-account/dashboard');
             } else {

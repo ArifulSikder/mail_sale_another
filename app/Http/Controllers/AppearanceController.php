@@ -13,10 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Cart;
 use App\Http\Requests\OrderInformationRequest;
 use App\Models\AboutUs;
-<<<<<<< HEAD
-=======
 use App\Models\FAQCategory;
->>>>>>> origin/mahfujul_islam_sylhet
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
 use App\Models\Order;
@@ -316,14 +313,10 @@ class AppearanceController extends Controller
         return view('frontend.disclaimer');
     }
     public function faq()
-<<<<<<< HEAD
     {
-        return view('frontend.faq');
-=======
-    {   
+ 
         $data['faq_cat'] = FAQCategory::where('active_status', 1)->with('question')->get();
         return view('frontend.faq', $data);
->>>>>>> origin/mahfujul_islam_sylhet
     }
 
     public function aboutUs()
@@ -424,7 +417,6 @@ class AppearanceController extends Controller
                 ],
             ]);
 
-            dd($request->all(), $response);
             if (isset($response['id']) && $response['id'] != null) {
                 // redirect to approve href
                 foreach ($response['links'] as $links) {

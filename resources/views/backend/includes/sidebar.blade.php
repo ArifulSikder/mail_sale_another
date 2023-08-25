@@ -198,21 +198,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-<<<<<<< HEAD
-                            <a href="{{ route('add-seo-pages') }}" class="nav-link {{ request()->is('add-seo-pages') ? 'active' : '' }}">
-=======
                             <a href="{{  url('add-seo-pages')  }}" class="nav-link {{ request()->is('add-seo-pages') ? 'active' : '' }}">
->>>>>>> main
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Seo Page</p>    
                             </a>
                         </li>       
                         <li class="nav-item">
-<<<<<<< HEAD
-                            <a href="{{ route('pages-list') }}" class="nav-link {{ request()->is('pages-list','page-content-update*') ? 'active' : '' }}">
-=======
                             <a href="{{  url('pages-list') }}" class="nav-link {{ request()->is('pages-list','page-content-update*') ? 'active' : '' }}">
->>>>>>> main
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pages List</p>    
                             </a>

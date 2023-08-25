@@ -15,9 +15,4 @@ storage/framework
 /storage/app/public/files/
 /storage/app/public/tiles/
 /storage/logs/laravel.log
-<<<<<<< HEAD
 /vendor
-/composer.log
-=======
-/vendor
->>>>>>> main

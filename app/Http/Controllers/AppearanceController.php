@@ -313,12 +313,7 @@ class AppearanceController extends Controller
         return view('frontend.disclaimer');
     }
     public function faq()
-<<<<<<< HEAD
     {
- 
-=======
-    {   
->>>>>>> origin/mahfujul_islam_sylhet
         $data['faq_cat'] = FAQCategory::where('active_status', 1)->with('question')->get();
         return view('frontend.faq', $data);
     }

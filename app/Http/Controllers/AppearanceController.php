@@ -147,6 +147,10 @@ class AppearanceController extends Controller
 
     public function categoryWiseProduct($slug)
     {
+        
+        $seo = SeoPage::where('slug', $slug)->where('type', 'product_category')->first();
+        perform_seo($seo);
+        
         $data['category'] = Category::where('slug', $slug)->first();
         $data['products'] = Product::where('sub_category_id', $data['category']->id)
             ->where('active_status', 1)

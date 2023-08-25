@@ -4,7 +4,11 @@
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
 <<<<<<< HEAD
+<<<<<<< HEAD
         'reference' => '17688c4b0b2baf25d17fd6da7af26c3d02761a40',
+=======
+        'reference' => '3bc1969a5b5492562ba1d55c52ae7117d4be6c35',
+>>>>>>> origin/mahfujul_islam_sylhet
 =======
         'reference' => '3bc1969a5b5492562ba1d55c52ae7117d4be6c35',
 >>>>>>> origin/mahfujul_islam_sylhet
@@ -408,7 +412,11 @@
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
 <<<<<<< HEAD
+<<<<<<< HEAD
             'reference' => '17688c4b0b2baf25d17fd6da7af26c3d02761a40',
+=======
+            'reference' => '3bc1969a5b5492562ba1d55c52ae7117d4be6c35',
+>>>>>>> origin/mahfujul_islam_sylhet
 =======
             'reference' => '3bc1969a5b5492562ba1d55c52ae7117d4be6c35',
 >>>>>>> origin/mahfujul_islam_sylhet

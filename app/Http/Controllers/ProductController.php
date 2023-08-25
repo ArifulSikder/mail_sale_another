@@ -144,7 +144,7 @@ class ProductController extends Controller
         
     }
 
-    // seller update status 
+    //  update pin status 
     public function updatePinStatus($id, $status)
     {
         $pin_count = Product::where('pinned', 1)->count();

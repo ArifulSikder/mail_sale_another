@@ -5,7 +5,11 @@
 namespace Composer\Autoload;
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 class ComposerStaticInit067239e2866d95d1f9a4da1f90222a12
+=======
+class ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff
+>>>>>>> origin/mahfujul_islam_sylhet
 =======
 class ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff
 >>>>>>> origin/mahfujul_islam_sylhet
@@ -6488,9 +6492,15 @@ class ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff
     {
         return \Closure::bind(function () use ($loader) {
 <<<<<<< HEAD
+<<<<<<< HEAD
             $loader->prefixLengthsPsr4 = ComposerStaticInit067239e2866d95d1f9a4da1f90222a12::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit067239e2866d95d1f9a4da1f90222a12::$prefixDirsPsr4;
             $loader->classMap = ComposerStaticInit067239e2866d95d1f9a4da1f90222a12::$classMap;
+=======
+            $loader->prefixLengthsPsr4 = ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff::$classMap;
+>>>>>>> origin/mahfujul_islam_sylhet
 =======
             $loader->prefixLengthsPsr4 = ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInitaf76708e6b5094c1c2e92f1d17f476ff::$prefixDirsPsr4;

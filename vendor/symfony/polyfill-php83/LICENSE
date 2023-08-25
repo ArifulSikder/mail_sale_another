@@ -1,8 +1,12 @@
+<<<<<<< HEAD
 <<<<<<< HEAD:vendor/doctrine/deprecations/LICENSE
 Copyright (c) 2020-2021 Doctrine Project
 =======
 Copyright (c) 2022 Fabien Potencier
 >>>>>>> origin/mahfujul_islam_sylhet:vendor/symfony/polyfill-php83/LICENSE
+=======
+Copyright (c) 2022 Fabien Potencier
+>>>>>>> origin/mahfujul_islam_sylhet
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

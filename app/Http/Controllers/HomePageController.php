@@ -1058,12 +1058,22 @@ class HomePageController extends Controller
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
 
+        $active_count = FAQ::where('category_id', $request->category_id)->where('active_status', 1)->count();
+
+        if ($active_count >= 3 && $request->active_status == 1) {
+            return response()->json([
+                'error' => "You have reached the maximum active count",
+            ]);
+        }
+
         $faq = new FAQ();  
         $faq->category_id = $request->category_id;
         $faq->question = $request->question;
         $faq->answer = $request->answer;
         $faq->active_status = $request->active_status;
         $faq->created_by = Auth::id();
+        
+        
 
         if ($faq->save()) {
             return response()->json([
@@ -1091,14 +1101,24 @@ class HomePageController extends Controller
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
 
+        $active_count = FAQ::where('category_id', $request->category_id)->where('active_status', 1)->count();
+
+        
+
         $id = $request->edit_id;
         $faq = FAQ::findOrFail($id);
 
         $faq->category_id = $request->category_id;
         $faq->question = $request->question;
         $faq->answer = $request->answer;
-        $faq->active_status = $request->active_status;
         $faq->updated_by = Auth::id();
+
+        if ($active_count >= 3 && $faq->active_status == 0) {
+            return response()->json([
+                'error' => "You have reached the maximum active count",
+            ]);
+        }
+        $faq->active_status = $request->active_status;
 
         if ($faq->save()) {
             return response()->json([
@@ -1115,6 +1135,15 @@ class HomePageController extends Controller
     public function updatFaqQuesStatus($id, $status)
     {
         if ($status == 0) {
+            $category_id = FAQ::findOrFail($id)->category_id;
+            $active_count = FAQ::where('category_id', $category_id)->where('active_status', 1)->count();
+            if ($active_count >= 3 && $status == 0) {
+                $notification = [
+                    'error' => "You have reached the maximum active count",
+                ];
+                return back()->with($notification);
+            }
+
             $policy = FAQ::findOrFail($id)->update([
                 'active_status' =>  '1',
                 'updated_by' => Auth::id()
@@ -1291,7 +1320,7 @@ class HomePageController extends Controller
 
         if ($delete == true) {
             $notification = [
-                'success' => "FAQ Item Deleted Successfully.",
+                'success' => "About Us Deleted Successfully.",
             ];
         } else {
             $notification = [

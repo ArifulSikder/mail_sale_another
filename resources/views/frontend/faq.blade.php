@@ -15,58 +15,40 @@
               </p>
             </div>
             <div class="faq-content">
-              <div class="row">
-  
-                <div class="col-sm-4 col-md-4 col-lg-4 text-center">
+              @forelse($faq_cat as $faq_cat)
+                <div class="row my-4">
+                <div class="col-sm-4 col-md-4 col-lg-4 text-center ">
                   <div class="box-img">
-                    <img src="public/frontend/assets/images/all-images/setting-logo.png" alt="Setting">
+                    <img src="{{ asset($faq_cat->category_logo) }}" alt="Setting">
                   </div>
                   <div class="box-text">
-                    <h1>General Questions</h1>
+                    <h1>{{ $faq_cat->category_title }}</h1>
                   </div>
                 </div>
                 <div class="col-sm-8 col-md-8 col-lg-8">
                   <div class="faq-all">
                     <div class="accordion" id="accordionExample">
-                      <div class="accordion-item custom-item">
-                        <h2 class="accordion-header" id="headingOne">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                            Do i get any warranty from Pvaeshop?
-                          </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                          <div class="accordion-body">
-                            Yes! We give you free replacement warranty if accounts are suspended.
+                      @forelse($faq_cat->question->where('active_status', 1) as $ques)
+                        <div class="accordion-item custom-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#id{{ $ques->id }}" aria-expanded="true" aria-controls="id{{ $ques->id }}">
+                              {{ $ques->question }}
+                            </button>
+                          </h2>
+                          <div id="id{{ $ques->id }}" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              {{ $ques->answer }}
+                            </div>
                           </div>
                         </div>
-                      </div>
-                      <div class="accordion-item custom-item">
-                        <h2 class="accordion-header" id="headingTwo">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                            What are the benefits of this service?
-                          </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                          <div class="accordion-body">
-                            Taking this service you can achieve your goals easily. pvaeshop.com increases your accounts swiftly that raises your business at the zenith of success. You can obtain high position in the Social Media.
-                          </div>
-                        </div>
-                      </div>
-                      <div class="accordion-item custom-item">
-                        <h2 class="accordion-header" id="headingThree">
-                          <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                            Do I get a money back guarantee?
-                          </button>
-                        </h2>
-                        <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                          <div class="accordion-body">
-                            We give you a 100% money-back guarantee in regard of our incomplete work.
-                          </div>
-                        </div>
-                      </div>
+                      @empty
+                        
+                      @endforelse
+                      
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
                 <div class="col-sm-4 col-md-4 col-lg-4 text-center mt-3">
                   <div class="box-img">
                     <img src="public/frontend/assets/images/all-images/pngguru.com-73.webp" alt="Setting">
@@ -476,6 +458,13 @@
                 </div>
               </div>
               </div>
+=======
+              </div>
+              @empty
+                
+              @endforelse
+              
+>>>>>>> origin/mahfujul_islam_sylhet
             </div>
           </div>
         </div>

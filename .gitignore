@@ -17,8 +17,12 @@ storage/framework
 /storage/app/public/tiles/
 /storage/logs/laravel.log
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 /vendor
+=======
+/vendor
+>>>>>>> origin/mahfujul_islam_sylhet
 =======
 /vendor
 >>>>>>> origin/mahfujul_islam_sylhet

@@ -1,93 +1,6 @@
 {
     "packages": [
         {
-            "name": "barryvdh/laravel-debugbar",
-            "version": "v3.8.2",
-            "version_normalized": "3.8.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "56a2dc1da9d3219164074713983eef68996386cf"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/56a2dc1da9d3219164074713983eef68996386cf",
-                "reference": "56a2dc1da9d3219164074713983eef68996386cf",
-                "shasum": ""
-            },
-            "require": {
-                "illuminate/routing": "^9|^10",
-                "illuminate/session": "^9|^10",
-                "illuminate/support": "^9|^10",
-                "maximebf/debugbar": "^1.18.2",
-                "php": "^8.0",
-                "symfony/finder": "^6"
-            },
-            "require-dev": {
-                "mockery/mockery": "^1.3.3",
-                "orchestra/testbench-dusk": "^5|^6|^7|^8",
-                "phpunit/phpunit": "^8.5.30|^9.0",
-                "squizlabs/php_codesniffer": "^3.5"
-            },
-            "time": "2023-07-26T04:57:49+00:00",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.8-dev"
-                },
-                "laravel": {
-                    "providers": [
-                        "Barryvdh\\Debugbar\\ServiceProvider"
-                    ],
-                    "aliases": {
-                        "Debugbar": "Barryvdh\\Debugbar\\Facades\\Debugbar"
-                    }
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "files": [
-                    "src/helpers.php"
-                ],
-                "psr-4": {
-                    "Barryvdh\\Debugbar\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "PHP Debugbar integration for Laravel",
-            "keywords": [
-                "debug",
-                "debugbar",
-                "laravel",
-                "profiler",
-                "webprofiler"
-            ],
-            "support": {
-                "issues": "https://github.com/barryvdh/laravel-debugbar/issues",
-                "source": "https://github.com/barryvdh/laravel-debugbar/tree/v3.8.2"
-            },
-            "funding": [
-                {
-                    "url": "https://fruitcake.nl",
-                    "type": "custom"
-                },
-                {
-                    "url": "https://github.com/barryvdh",
-                    "type": "github"
-                }
-            ],
-            "install-path": "../barryvdh/laravel-debugbar"
-        },
-        {
             "name": "brick/math",
             "version": "0.11.0",
             "version_normalized": "0.11.0.0",
@@ -1854,17 +1767,17 @@
         },
         {
             "name": "laravel/sanctum",
-            "version": "v3.2.5",
-            "version_normalized": "3.2.5.0",
+            "version": "v3.2.6",
+            "version_normalized": "3.2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/sanctum.git",
-                "reference": "8ebda85d59d3c414863a7f4d816ef8302faad876"
+                "reference": "217e8a2bc5aa6a827ced97fcb76504029d3115d7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/sanctum/zipball/8ebda85d59d3c414863a7f4d816ef8302faad876",
-                "reference": "8ebda85d59d3c414863a7f4d816ef8302faad876",
+                "url": "https://api.github.com/repos/laravel/sanctum/zipball/217e8a2bc5aa6a827ced97fcb76504029d3115d7",
+                "reference": "217e8a2bc5aa6a827ced97fcb76504029d3115d7",
                 "shasum": ""
             },
             "require": {
@@ -1877,11 +1790,11 @@
             },
             "require-dev": {
                 "mockery/mockery": "^1.0",
-                "orchestra/testbench": "^7.0|^8.0",
+                "orchestra/testbench": "^7.28.2|^8.8.3",
                 "phpstan/phpstan": "^1.10",
-                "phpunit/phpunit": "^9.3"
+                "phpunit/phpunit": "^9.6"
             },
-            "time": "2023-05-01T19:39:51+00:00",
+            "time": "2023-08-22T13:21:11+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -2461,75 +2374,6 @@
                 }
             ],
             "install-path": "../league/mime-type-detection"
-        },
-        {
-            "name": "maximebf/debugbar",
-            "version": "v1.18.2",
-            "version_normalized": "1.18.2.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/maximebf/php-debugbar.git",
-                "reference": "17dcf3f6ed112bb85a37cf13538fd8de49f5c274"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/maximebf/php-debugbar/zipball/17dcf3f6ed112bb85a37cf13538fd8de49f5c274",
-                "reference": "17dcf3f6ed112bb85a37cf13538fd8de49f5c274",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1|^8",
-                "psr/log": "^1|^2|^3",
-                "symfony/var-dumper": "^4|^5|^6"
-            },
-            "require-dev": {
-                "phpunit/phpunit": ">=7.5.20 <10.0",
-                "twig/twig": "^1.38|^2.7|^3.0"
-            },
-            "suggest": {
-                "kriswallsmith/assetic": "The best way to manage assets",
-                "monolog/monolog": "Log using Monolog",
-                "predis/predis": "Redis storage"
-            },
-            "time": "2023-02-04T15:27:00+00:00",
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.18-dev"
-                }
-            },
-            "installation-source": "dist",
-            "autoload": {
-                "psr-4": {
-                    "DebugBar\\": "src/DebugBar/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Maxime Bouroumeau-Fuseau",
-                    "email": "maxime.bouroumeau@gmail.com",
-                    "homepage": "http://maximebf.com"
-                },
-                {
-                    "name": "Barry vd. Heuvel",
-                    "email": "barryvdh@gmail.com"
-                }
-            ],
-            "description": "Debug bar in the browser for php application",
-            "homepage": "https://github.com/maximebf/php-debugbar",
-            "keywords": [
-                "debug",
-                "debugbar"
-            ],
-            "support": {
-                "issues": "https://github.com/maximebf/php-debugbar/issues",
-                "source": "https://github.com/maximebf/php-debugbar/tree/v1.18.2"
-            },
-            "install-path": "../maximebf/debugbar"
         },
         {
             "name": "mockery/mockery",
@@ -6064,17 +5908,17 @@
         },
         {
             "name": "spatie/ignition",
-            "version": "1.9.0",
-            "version_normalized": "1.9.0.0",
+            "version": "1.10.1",
+            "version_normalized": "1.10.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/spatie/ignition.git",
-                "reference": "de24ff1e01814d5043bd6eb4ab36a5a852a04973"
+                "reference": "d92b9a081e99261179b63a858c7a4b01541e7dd1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/spatie/ignition/zipball/de24ff1e01814d5043bd6eb4ab36a5a852a04973",
-                "reference": "de24ff1e01814d5043bd6eb4ab36a5a852a04973",
+                "url": "https://api.github.com/repos/spatie/ignition/zipball/d92b9a081e99261179b63a858c7a4b01541e7dd1",
+                "reference": "d92b9a081e99261179b63a858c7a4b01541e7dd1",
                 "shasum": ""
             },
             "require": {
@@ -6102,7 +5946,7 @@
                 "openai-php/client": "Require get solutions from OpenAI",
                 "simple-cache-implementation": "To cache solutions from OpenAI"
             },
-            "time": "2023-06-28T13:24:59+00:00",
+            "time": "2023-08-21T15:06:37+00:00",
             "type": "library",
             "extra": {
                 "branch-alias": {
@@ -6243,17 +6087,17 @@
         },
         {
             "name": "srmklive/paypal",
-            "version": "3.0.21",
-            "version_normalized": "3.0.21.0",
+            "version": "3.0.22",
+            "version_normalized": "3.0.22.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/srmklive/laravel-paypal.git",
-                "reference": "3a55d463f8d5935627c4eee15da702811a03c5ea"
+                "reference": "ceae395de0d6c4b7c5a415e515f1baee6359379d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/srmklive/laravel-paypal/zipball/3a55d463f8d5935627c4eee15da702811a03c5ea",
-                "reference": "3a55d463f8d5935627c4eee15da702811a03c5ea",
+                "url": "https://api.github.com/repos/srmklive/laravel-paypal/zipball/ceae395de0d6c4b7c5a415e515f1baee6359379d",
+                "reference": "ceae395de0d6c4b7c5a415e515f1baee6359379d",
                 "shasum": ""
             },
             "require": {
@@ -6264,10 +6108,11 @@
                 "php": ">=7.2|^8.0"
             },
             "require-dev": {
+                "phpstan/phpstan": "^1.10",
                 "phpunit/phpunit": "^8.0|^9.0|^10.0",
                 "symfony/var-dumper": "~5.0"
             },
-            "time": "2023-04-26T16:27:35+00:00",
+            "time": "2023-08-22T20:11:26+00:00",
             "type": "library",
             "extra": {
                 "laravel": {
@@ -6305,7 +6150,7 @@
             ],
             "support": {
                 "issues": "https://github.com/srmklive/laravel-paypal/issues",
-                "source": "https://github.com/srmklive/laravel-paypal/tree/3.0.21"
+                "source": "https://github.com/srmklive/laravel-paypal/tree/3.0.22"
             },
             "install-path": "../srmklive/paypal"
         },
@@ -9117,7 +8962,6 @@
     ],
     "dev": true,
     "dev-package-names": [
-        "barryvdh/laravel-debugbar",
         "doctrine/instantiator",
         "fakerphp/faker",
         "filp/whoops",
@@ -9125,7 +8969,6 @@
         "laravel/breeze",
         "laravel/pint",
         "laravel/sail",
-        "maximebf/debugbar",
         "mockery/mockery",
         "myclabs/deep-copy",
         "nunomaduro/collision",

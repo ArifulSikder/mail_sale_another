@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Cart;
 use App\Http\Requests\OrderInformationRequest;
 use App\Models\AboutUs;
+use App\Models\FAQ;
+use App\Models\FAQCategory;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
 use App\Models\Order;
@@ -308,7 +310,8 @@ class AppearanceController extends Controller
     }
     public function faq()
     {   
-        return view('frontend.faq');
+        $data['faq_cat'] = FAQCategory::where('active_status', 1)->with('question')->get();
+        return view('frontend.faq', $data);
     }
 
     public function aboutUs()

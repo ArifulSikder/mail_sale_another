@@ -13,13 +13,11 @@ use Illuminate\Support\Facades\Validator;
 use App\Cart;
 use App\Http\Requests\OrderInformationRequest;
 use App\Models\AboutUs;
-use App\Models\FAQ;
 use App\Models\FAQCategory;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
 use App\Models\Order;
 use App\Models\Payment;
-use App\Models\ProductDetail;
 use App\Models\ProductGuarantee;
 use App\Models\PurchaseProduct;
 use App\Models\Review;
@@ -315,14 +313,9 @@ class AppearanceController extends Controller
         return view('frontend.disclaimer');
     }
     public function faq()
-<<<<<<< HEAD
     {   
         $data['faq_cat'] = FAQCategory::where('active_status', 1)->with('question')->get();
         return view('frontend.faq', $data);
-=======
-    {
-        return view('frontend.faq');
->>>>>>> main
     }
 
     public function aboutUs()

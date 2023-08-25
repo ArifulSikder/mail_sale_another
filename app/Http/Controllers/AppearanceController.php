@@ -32,24 +32,29 @@ use Illuminate\Validation\ValidationException;
 use Srmklive\PayPal\Services\PayPal as PayPalClient;
 use Stripe\Stripe;
 
-
 class AppearanceController extends Controller
 {
     public function index()
     {
-        $data['products']   = Product::with('advantages', 'details', 'descriptions')
+        $data['products'] = Product::with('advantages', 'details', 'descriptions')
             ->where('active_status', 1)
             ->where('pinned', 1)
             ->get();
-        $data['meet_teams'] = MeetTeam::where('active_status', '1')->oldest()->take(3)->get();
-        $data['gurantees'] = ProductGuarantee::where('active_status', '1')->oldest()->take(3)->get();
-        $data['home_pave']  = HomePaveshop::where('active_status', '1')->first();
-        $data['slider']     = Slider::where('active_status', '1')->first();
+        $data['meet_teams'] = MeetTeam::where('active_status', '1')
+            ->oldest()
+            ->take(3)
+            ->get();
+        $data['gurantees'] = ProductGuarantee::where('active_status', '1')
+            ->oldest()
+            ->take(3)
+            ->get();
+        $data['home_pave'] = HomePaveshop::where('active_status', '1')->first();
+        $data['slider'] = Slider::where('active_status', '1')->first();
 
         return view('frontend.index', $data);
     }
 
-    // customer contact 
+    // customer contact
     public function contact()
     {
         return view('frontend.contact');
@@ -80,12 +85,12 @@ class AppearanceController extends Controller
             $validator = Validator::make($request->all(), [
                 'password' => [
                     'required',
-                    Password::min(8)
-                        // ->letters()
-                        // ->mixedCase()
-                        // ->numbers()
-                        // ->symbols()
-                        // ->uncompromised(),
+                    Password::min(8),
+                    // ->letters()
+                    // ->mixedCase()
+                    // ->numbers()
+                    // ->symbols()
+                    // ->uncompromised(),
                 ],
             ])->validate();
         }
@@ -129,6 +134,7 @@ class AppearanceController extends Controller
         $data['products'] = Product::latest()
             ->where('active_status', 1)
             ->paginate(12);
+        $data['slider'] = Slider::where('active_status', '1')->first();
 
         return view('frontend.pricing', $data);
     }
@@ -148,13 +154,13 @@ class AppearanceController extends Controller
             ->get();
 
         return view('frontend.pricing', $data);
-  
     }
 
     public function productDetails($category_slug, $product_slug)
     {
-
-        $data['reviews'] = Review::where('product_slug', $product_slug)->take(5)->get();
+        $data['reviews'] = Review::where('product_slug', $product_slug)
+            ->take(5)
+            ->get();
         $data['category'] = Category::where('slug', $category_slug)->first();
         $data['product'] = Product::with('advantages', 'details', 'descriptions', 'subcategory')
             ->where('active_status', 1)
@@ -307,7 +313,7 @@ class AppearanceController extends Controller
         return view('frontend.disclaimer');
     }
     public function faq()
-    {   
+    {
         return view('frontend.faq');
     }
 
@@ -319,19 +325,23 @@ class AppearanceController extends Controller
 
     public function storeCustomerReview(Request $request)
     {
-        Validator::make($request->all(), [
-            'rate' => 'required|numeric',
-            'name' => 'required|string|max:100',
-            'email' => 'required|string',
-            'review' => 'required|string',
-        ],[
-            'rate.required' => 'Please Select Rating Star',
-            'name.required' => 'Please Enter Your Name',
-            'email.required' => 'Please Enter Your Email',
-            'review.required' => 'Please Enter Your Review',
-        ])->validate();
+        Validator::make(
+            $request->all(),
+            [
+                'rate' => 'required|numeric',
+                'name' => 'required|string|max:100',
+                'email' => 'required|string',
+                'review' => 'required|string',
+            ],
+            [
+                'rate.required' => 'Please Select Rating Star',
+                'name.required' => 'Please Enter Your Name',
+                'email.required' => 'Please Enter Your Email',
+                'review.required' => 'Please Enter Your Review',
+            ],
+        )->validate();
 
-        $review = new Review(); 
+        $review = new Review();
         $review->rating = $request->rate;
         $review->name = $request->name;
         $review->email = $request->email;
@@ -342,20 +352,17 @@ class AppearanceController extends Controller
 
         if ($review->save()) {
             return response()->json([
-                'success' => "Review Submitted successfully.",
+                'success' => 'Review Submitted successfully.',
             ]);
         } else {
             return response()->json([
-                'error' => "Opps! Something Went Wrong.",
+                'error' => 'Opps! Something Went Wrong.',
             ]);
         }
     }
 
-
-    
     public function orderInformation(OrderInformationRequest $request)
     {
-
         if ($request->create_account == 1) {
             $user = new User();
 
@@ -383,7 +390,6 @@ class AppearanceController extends Controller
 
             Auth::attempt($credentials);
         }
-
 
         session(['request_data' => json_encode($request->all())]);
         if ($request->payment_method == 1) {
@@ -584,13 +590,11 @@ class AppearanceController extends Controller
                 $purchase_product->save();
             }
 
-            
             $payment = new Payment();
             $payment->order_id = $order->id;
-            $payment->card_name = "Paypal";
+            $payment->card_name = 'Paypal';
             $payment->amount = Cart::subtotal();
             $payment->save();
-
 
             Cart::forget();
 
@@ -619,7 +623,4 @@ class AppearanceController extends Controller
     {
         return view('frontend.payment.payment_success_message');
     }
-
-
-
 }

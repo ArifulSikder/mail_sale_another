@@ -4,9 +4,6 @@
 
 <?php $__env->startSection('sideSection'); ?>
 
-    <?php
-        $setting = \App\Models\AppSetting::first();
-    ?>
     <!-- Hero section start -->
     <section class="hero_area">
         <div class="container">
@@ -26,7 +23,7 @@
 
                         </p>
                         <p>
-                            <a href="./pricing.html" class="button">PRICING &amp; PACKAGE</a>
+                            <a href="<?php echo e(url('product')); ?>" class="button">PRICING &amp; PACKAGE</a>
                     </div>
                     <!-- </div>
                     </div> -->

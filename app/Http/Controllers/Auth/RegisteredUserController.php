@@ -110,6 +110,10 @@ class RegisteredUserController extends Controller
 
     public function submitOtp(Request $request): RedirectResponse
     {
+        $request->validate([
+            'email' => 'required|email:rfc,dns|unique:users,email',
+        ]);
+        
         $now = Carbon::now();
         $verificationCode = OtpVarification::where('email', $request->email)
             ->where('expire_at', '>', $now)

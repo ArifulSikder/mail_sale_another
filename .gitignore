@@ -11,8 +11,8 @@ yarn-error.log
 /.vscode
 storage/framework
 
-package-lock.json
-storage/app/public/csv/
-storage/app/public/files/
-storage/app/public/tiles/
-storage/logs/laravel.log
+/package-lock.json
+/storage/app/public/csv/
+/storage/app/public/files/
+/storage/app/public/tiles/
+/storage/logs/laravel.log

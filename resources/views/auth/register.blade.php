@@ -1,3 +1,4 @@
+@section('title','Register')
 <x-app-layout>
     <!-- sign up section start -->
     <section class="sign-up-form">

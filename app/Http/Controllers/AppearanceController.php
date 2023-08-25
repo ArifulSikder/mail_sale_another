@@ -21,6 +21,7 @@ use App\Models\Payment;
 use App\Models\ProductGuarantee;
 use App\Models\PurchaseProduct;
 use App\Models\Review;
+use App\Models\SeoPage;
 use App\Models\Slider;
 use App\Models\SubCategoryDescription;
 use App\Rules\UniqueStripeToken;
@@ -51,12 +52,17 @@ class AppearanceController extends Controller
         $data['home_pave'] = HomePaveshop::where('active_status', '1')->first();
         $data['slider'] = Slider::where('active_status', '1')->first();
 
+        $seo = SeoPage::where('slug', 'home')->first();
+        perform_seo($seo);
+
         return view('frontend.index', $data);
     }
 
     // customer contact
     public function contact()
     {
+        $seo = SeoPage::where('slug', 'contact')->first();
+        perform_seo($seo);
         return view('frontend.contact');
     }
 
@@ -141,6 +147,10 @@ class AppearanceController extends Controller
 
     public function categoryWiseProduct($slug)
     {
+        
+        $seo = SeoPage::where('slug', $slug)->where('type', 'product_category')->first();
+        perform_seo($seo);
+        
         $data['category'] = Category::where('slug', $slug)->first();
         $data['products'] = Product::where('sub_category_id', $data['category']->id)
             ->where('active_status', 1)
@@ -158,6 +168,10 @@ class AppearanceController extends Controller
 
     public function productDetails($category_slug, $product_slug)
     {
+        
+        $seo = SeoPage::where('slug', $product_slug)->where('type', 'product')->first();
+        perform_seo($seo);
+
         $data['reviews'] = Review::where('product_slug', $product_slug)
             ->take(5)
             ->get();
@@ -313,7 +327,7 @@ class AppearanceController extends Controller
         return view('frontend.disclaimer');
     }
     public function faq()
-    {   
+    {
         $data['faq_cat'] = FAQCategory::where('active_status', 1)->with('question')->get();
         return view('frontend.faq', $data);
     }
@@ -416,7 +430,6 @@ class AppearanceController extends Controller
                 ],
             ]);
 
-            dd($request->all(), $response);
             if (isset($response['id']) && $response['id'] != null) {
                 // redirect to approve href
                 foreach ($response['links'] as $links) {

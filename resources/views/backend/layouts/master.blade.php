@@ -21,6 +21,8 @@
     <link rel="stylesheet" href="{{ asset('backend/plugins/summernote/summernote-bs4.min.css') }}">
     {{-- select2  --}}
     <link rel="stylesheet" href="{{ asset('backend/plugins/select2/css/select2.min.css') }}">
+    {{-- tag input --}}
+    <link rel="stylesheet" href="{{ asset('backend/plugins/tag-input/css/taginput.css') }}">
     {{-- alpine js  --}}
     <script src="{{ asset('backend/plugins/alpine/alpine.min.js') }}" defer></script>
 </head>
@@ -82,7 +84,8 @@
     <script src="{{ asset('backend/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     {{-- select2  --}}
     <script src="{{ asset('backend/plugins/select2/js/select2.min.js') }}"></script>
-
+    <!-- taginput -->
+    <script src="{{ asset('backend/plugins/tag-input/js/taginput.js') }}"></script>
 
 
     {{-- menu search jquery --}}
@@ -261,7 +264,7 @@
             }
         }
     </script>
- 
+
 
     <script>
         $(function() {

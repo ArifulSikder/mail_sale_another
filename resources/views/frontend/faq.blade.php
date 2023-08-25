@@ -67,6 +67,7 @@
                     </div>
                   </div>
                 </div>
+<<<<<<< HEAD
   
                 <div class="col-sm-4 col-md-4 col-lg-4 text-center mt-3">
                   <div class="box-img">
@@ -476,6 +477,13 @@
                   </div>
                 </div>
               </div>
+=======
+              </div>
+              @empty
+                
+              @endforelse
+              
+>>>>>>> origin/mahfujul_islam_sylhet
             </div>
           </div>
         </div>

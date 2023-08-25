@@ -22,4 +22,8 @@ if (PHP_VERSION_ID < 50600) {
 
 require_once __DIR__ . '/composer/autoload_real.php';
 
+<<<<<<< HEAD
 return ComposerAutoloaderInit067239e2866d95d1f9a4da1f90222a12::getLoader();
+=======
+return ComposerAutoloaderInitaf76708e6b5094c1c2e92f1d17f476ff::getLoader();
+>>>>>>> origin/mahfujul_islam_sylhet

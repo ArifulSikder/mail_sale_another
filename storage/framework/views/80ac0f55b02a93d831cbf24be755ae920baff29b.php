@@ -90,11 +90,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="<?php echo e(url('/about-us')); ?>">About Us</a>
                   </li>
-                  <?php if(auth()->guard()->check()): ?>
-                  <li class="nav-item">
-                    <a class="nav-link" href="<?php echo e(url('/my-account')); ?>">My Account</a>
-                  </li>
-                  <?php endif; ?>
+               
 
                   <li class="nav-item">
                     <a class="nav-link" href="<?php echo e(url('/contact')); ?>">Contact Us</a>

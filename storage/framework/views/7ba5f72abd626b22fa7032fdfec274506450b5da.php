@@ -9,25 +9,18 @@
         <div class="container">
             <?php if($slider): ?>
                 <div class="hero-bg" style="background-image: url(<?php echo e($slider->background_photo); ?>);">
-                    <!-- <div class="row">
-                    <div class="col-6 d-flex align-self-center"> -->
 
                     <div class="text-inner text-center">
                         <h3><strong>
                                 <?php echo e($slider->title); ?>
 
                             </strong></h3>
-                        
                         <p class="text-uppercase">
                             <?php echo e($slider->short_description); ?>
 
                         </p>
-                        <p>
-                            <a href="<?php echo e(url('product')); ?>" class="button">PRICING &amp; PACKAGE</a>
+                        <a href="<?php echo e(url('product')); ?>" class="button">PRICING &amp; PACKAGE</a>
                     </div>
-                    <!-- </div>
-                    </div> -->
-
                 </div>
             <?php endif; ?>
         </div>
@@ -70,7 +63,7 @@
                         </div>
                     <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
                         <div class="text-center mt-3">
-                            <span style='color:red' >No Product Available Yet!!</span></br><bR/>
+                            <span style='color:red'>No Product Available Yet!!</span></br><bR />
                         </div>
                     <?php endif; ?>
 
@@ -86,7 +79,7 @@
             <div class="about-shop-content">
                 <div class="section-title text-center">
                     <h2>
-                        <?php echo e($home_pave  ? $home_pave->title : ''); ?>
+                        <?php echo e($home_pave ? $home_pave->title : ''); ?>
 
                     </h2>
                 </div>

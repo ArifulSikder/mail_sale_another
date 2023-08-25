@@ -8,7 +8,7 @@
     <section class="hero_area">
         <div class="container">
             @if ($slider)
-                <div class="hero-bg" style="background-image: url({{ $slider->background_photo }});">
+                <div class="hero-bg" style="background-image: url({{asset($slider->background_photo) }});">
 
                     <div class="text-inner text-center">
                         <h3><strong>

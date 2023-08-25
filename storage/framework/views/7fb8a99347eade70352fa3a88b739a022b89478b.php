@@ -22,6 +22,8 @@
     
     <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/select2/css/select2.min.css')); ?>">
     
+    <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/tag-input/css/taginput.css')); ?>">
+    
     <script src="<?php echo e(asset('backend/plugins/alpine/alpine.min.js')); ?>" defer></script>
 </head>
 
@@ -75,15 +77,15 @@
     <!-- AdminLTE App -->
     <script src="<?php echo e(asset('backend/plugins/adminlte.min.js')); ?>"></script>
     
-    
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="<?php echo e(asset('backend/plugins/apex-chart/apexcharts.min.js')); ?>"></script>
     
     <script src="<?php echo e(asset('backend/plugins/toastr/toastr.min.js')); ?>"></script>
     
     <script src="<?php echo e(asset('backend/plugins/sweetalert2/sweetalert2.min.js')); ?>"></script>
     
     <script src="<?php echo e(asset('backend/plugins/select2/js/select2.min.js')); ?>"></script>
-
+    <!-- taginput -->
+    <script src="<?php echo e(asset('backend/plugins/tag-input/js/taginput.js')); ?>"></script>
 
 
     
@@ -262,7 +264,7 @@
             }
         }
     </script>
- 
+
 
     <script>
         $(function() {

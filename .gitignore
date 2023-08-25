@@ -10,7 +10,6 @@ yarn-error.log
 /.idea
 /.vscode
 storage/framework
-
 /package-lock.json
 /storage/app/public/csv/
 /storage/app/public/files/

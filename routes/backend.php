@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentApiController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreviewImageController;
+use App\Http\Controllers\SeoPageController;
 use App\Http\Controllers\SettingController;
 
 Route::get('dashboard', function () {
@@ -202,5 +203,13 @@ Route::get('delete-email/{id}', [SettingController::class, 'deleteEmail'])->name
 Route::get('orders', [OrderControllerBackend::class, 'orderIndex'])->name('orders');
 // Route::get('orders', [OrderControllerBackend::class, 'orderIndex'])->name('orders');
 
+
+
+//seo page 
+Route::get('/add-seo-pages', [SeoPageController::class, 'addSeoPageContent'])->name('add-seo-pages');
+Route::get('/pages-list', [SeoPageController::class, 'seoPagesIndex'])->name('pages-list');
+Route::post('/store-seo-content', [SeoPageController::class, 'storeSeoPageContent'])->name('store-seo-content');
+Route::get('/page-content-update/{seo_id}', [SeoPageController::class, 'pageContentUpdate'])->name('page-content-update');
+Route::post('/update-seo-content', [SeoPageController::class, 'updateSeoPageContent'])->name('update-seo-content');
 
 

@@ -1,6 +1,6 @@
 
 
-<?php $__env->startSection('title', 'Pricing'); ?>
+<?php $__env->startSection('title', 'Products'); ?>
 
 <?php $__env->startSection('sideSection'); ?>
 

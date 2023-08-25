@@ -198,13 +198,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="<?php echo e(route('customer-contact')); ?>" class="nav-link <?php echo e(request()->is('add-seo-pages') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(route('add-seo-pages')); ?>" class="nav-link <?php echo e(request()->is('add-seo-pages') ? 'active' : ''); ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Seo Page</p>    
                             </a>
                         </li>       
                         <li class="nav-item">
-                            <a href="<?php echo e(route('customer-contact')); ?>" class="nav-link <?php echo e(request()->is('pages-list','page-content-update*') ? 'active' : ''); ?>">
+                            <a href="<?php echo e(route('pages-list')); ?>" class="nav-link <?php echo e(request()->is('pages-list','page-content-update*') ? 'active' : ''); ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pages List</p>    
                             </a>

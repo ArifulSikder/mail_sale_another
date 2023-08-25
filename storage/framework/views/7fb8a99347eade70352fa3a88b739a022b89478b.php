@@ -75,8 +75,7 @@
     <!-- AdminLTE App -->
     <script src="<?php echo e(asset('backend/plugins/adminlte.min.js')); ?>"></script>
     
-    
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="<?php echo e(asset('backend/plugins/apex-chart/apexcharts.min.js')); ?>"></script>
     
     <script src="<?php echo e(asset('backend/plugins/toastr/toastr.min.js')); ?>"></script>
     

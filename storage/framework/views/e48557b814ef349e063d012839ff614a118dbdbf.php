@@ -1,6 +1,5 @@
 
 
-
 <?php $__env->startSection('title', "FAQ"); ?>
 
 <?php $__env->startSection('sideSection'); ?>

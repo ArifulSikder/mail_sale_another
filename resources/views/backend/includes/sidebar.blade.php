@@ -198,13 +198,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is('add-seo-pages') ? 'active' : '' }}">
+                            <a href="{{ route('add-seo-pages') }}" class="nav-link {{ request()->is('add-seo-pages') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Add Seo Page</p>    
                             </a>
                         </li>       
                         <li class="nav-item">
-                            <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is('pages-list','page-content-update*') ? 'active' : '' }}">
+                            <a href="{{ route('pages-list') }}" class="nav-link {{ request()->is('pages-list','page-content-update*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Pages List</p>    
                             </a>

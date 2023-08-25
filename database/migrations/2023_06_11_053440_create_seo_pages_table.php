@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('image_height')->nullable();
             $table->string('image_width')->nullable();
             $table->string('twitter_side')->nullable();
+            $table->string('type')->nullable();
             $table->unsignedBigInteger('created_by');
             $table->integer('updated_by')->nullable();
             $table->softDeletes();

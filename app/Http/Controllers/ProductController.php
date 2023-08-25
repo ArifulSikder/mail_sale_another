@@ -10,6 +10,7 @@ use App\Models\ProductAdvantage;
 use App\Models\ProductDescription;
 use App\Models\ProductDetail;
 use App\Models\Seller;
+use App\Models\SeoPage;
 use App\Models\StockManagement;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -48,6 +49,15 @@ class ProductController extends Controller
             'selling_price.required' =>  'Product Selling Price Is Required',
             'active_status.required' =>  'Product Active Status Is Required',
         ]);
+
+        
+        $seo = new SeoPage();
+
+        $seo->title = $request->name;
+        $seo->slug = $request->slug;
+        $seo->type = "product";
+        $seo->created_by = Auth::id();
+        $seo->save();
 
         $image = '';
         if ($request->file('thumbnail')) {

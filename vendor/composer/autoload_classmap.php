@@ -31,6 +31,7 @@ return array(
     'App\\Http\\Controllers\\PaymentApiController' => $baseDir . '/app/Http/Controllers/PaymentApiController.php',
     'App\\Http\\Controllers\\PreviewImageController' => $baseDir . '/app/Http/Controllers/PreviewImageController.php',
     'App\\Http\\Controllers\\ProductController' => $baseDir . '/app/Http/Controllers/ProductController.php',
+    'App\\Http\\Controllers\\SeoPageController' => $baseDir . '/app/Http/Controllers/SeoPageController.php',
     'App\\Http\\Controllers\\SettingController' => $baseDir . '/app/Http/Controllers/SettingController.php',
     'App\\Http\\Controllers\\StockManagement' => $baseDir . '/app/Http/Controllers/StockManagement.php',
     'App\\Http\\Controllers\\UserAccountController' => $baseDir . '/app/Http/Controllers/UserAccountController.php',

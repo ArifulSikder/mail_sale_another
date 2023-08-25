@@ -10,19 +10,9 @@ yarn-error.log
 /.idea
 /.vscode
 storage/framework
-
 /package-lock.json
 /storage/app/public/csv/
 /storage/app/public/files/
 /storage/app/public/tiles/
 /storage/logs/laravel.log
-<<<<<<< HEAD
-<<<<<<< HEAD
-
 /vendor
-=======
-/vendor
->>>>>>> origin/mahfujul_islam_sylhet
-=======
-/vendor
->>>>>>> origin/mahfujul_islam_sylhet

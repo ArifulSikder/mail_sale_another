@@ -17,3 +17,4 @@ storage/framework
 /storage/app/public/tiles/
 /storage/logs/laravel.log
 /vendor
+/composer.log

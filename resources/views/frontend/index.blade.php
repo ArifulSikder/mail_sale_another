@@ -4,31 +4,21 @@
 
 @section('sideSection')
 
-    @php
-        $setting = \App\Models\AppSetting::first();
-    @endphp
     <!-- Hero section start -->
     <section class="hero_area">
         <div class="container">
             @if ($slider)
-                <div class="hero-bg" style="background-image: url({{ $slider->background_photo }});">
-                    <!-- <div class="row">
-                    <div class="col-6 d-flex align-self-center"> -->
+                <div class="hero-bg" style="background-image: url({{asset($slider->background_photo) }});">
 
                     <div class="text-inner text-center">
                         <h3><strong>
                                 {{ $slider->title }}
                             </strong></h3>
-                        {{-- <h3>ACCOUNTS</h3> --}}
                         <p class="text-uppercase">
                             {{ $slider->short_description }}
                         </p>
-                        <p>
-                            <a href="./pricing.html" class="button">PRICING &amp; PACKAGE</a>
+                        <a href="{{ url('product') }}" class="button">PRICING &amp; PACKAGE</a>
                     </div>
-                    <!-- </div>
-                    </div> -->
-
                 </div>
             @endif
         </div>
@@ -70,7 +60,7 @@
                         </div>
                     @empty
                         <div class="text-center mt-3">
-                            <span style='color:red' >No Product Available Yet!!</span></br><bR/>
+                            <span style='color:red'>No Product Available Yet!!</span></br><bR />
                         </div>
                     @endforelse
 
@@ -86,7 +76,7 @@
             <div class="about-shop-content">
                 <div class="section-title text-center">
                     <h2>
-                        {{ $home_pave  ? $home_pave->title : '' }}
+                        {{ $home_pave ? $home_pave->title : '' }}
                     </h2>
                 </div>
                 <div class="content text-center">

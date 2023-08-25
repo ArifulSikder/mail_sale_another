@@ -20,7 +20,7 @@
                       <a href="{{ $setting ? $setting->linkedin_link : '#' }}"><i class="fa-brands fa-linkedin"></i></a>
                     </li>
                         @guest
-                          <li><a href="{{ url('login') }}"><i class="fa fa-user-circle-o"></i>Sign Up</a></li>
+                          <li><a href="{{ url('register') }}"><i class="fa fa-user-circle-o"></i>Sign Up</a></li>
                         @endguest
                       <li><a href="{{ url('/contact') }}">Contact</a></li>
                   </ul>
@@ -44,9 +44,9 @@
               </div>
               <!-- Header Banner -->
               <div class=" col-md-8 col-sm-8 text-end">
-                  @auth
-                  <a href="{{ url('my-account') }}" class="btn btn-danger">My Account</a>
-                  @endauth
+                @auth
+                <a href="{{ url('my-account') }}" class="btn btn-danger">My Account</a>
+                @endauth
 
                   <a href="{{ url('/cart') }}" class="btn btn-danger position-relative">Cart /
                     <span><i class="fa-solid fa-cart-shopping"></i></span>
@@ -89,11 +89,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
                   </li>
-                  @auth
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/my-account') }}">My Account</a>
-                  </li>
-                  @endauth
+               
 
                   <li class="nav-item">
                     <a class="nav-link" href="{{ url('/contact') }}">Contact Us</a>

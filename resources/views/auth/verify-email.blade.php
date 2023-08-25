@@ -1,3 +1,4 @@
+@section('title','OTP')
 <x-app-layout>
     <!-- sign up section start -->
     <section class="sign-up-form">
@@ -28,6 +29,11 @@
                             @if (session()->has('message'))
                                 {{ session()->get('message') }}
                             @endif
+                          </p>
+                          <p>
+                            @error('email')
+                                <strong>Opps! Your are try with wrong email!</strong>
+                            @enderror
                           </p>
 
                           <form class="form-one"method="POST" action="{{ route('re-send-otp') }}" autocomplete="off" >

@@ -9,3 +9,10 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+storage/framework
+
+/package-lock.json
+/storage/app/public/csv/
+/storage/app/public/files/
+/storage/app/public/tiles/
+/storage/logs/laravel.log

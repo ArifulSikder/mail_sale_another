@@ -44,6 +44,10 @@
               </div>
               <!-- Header Banner -->
               <div class=" col-md-8 col-sm-8 text-end">
+                <?php if(auth()->guard()->check()): ?>
+                <a href="<?php echo e(url('my-account')); ?>" class="btn btn-danger">My Account</a>
+                <?php endif; ?>
+
                   <a href="<?php echo e(url('/cart')); ?>" class="btn btn-danger position-relative">Cart /
                     <span><i class="fa-solid fa-cart-shopping"></i></span>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartSubTag">

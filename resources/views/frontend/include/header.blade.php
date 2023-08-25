@@ -44,6 +44,10 @@
               </div>
               <!-- Header Banner -->
               <div class=" col-md-8 col-sm-8 text-end">
+                @auth
+                <a href="{{ url('my-account') }}" class="btn btn-danger">My Account</a>
+                @endauth
+
                   <a href="{{ url('/cart') }}" class="btn btn-danger position-relative">Cart /
                     <span><i class="fa-solid fa-cart-shopping"></i></span>
                     <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="cartSubTag">
@@ -85,11 +89,7 @@
                   <li class="nav-item">
                     <a class="nav-link" href="{{ url('/about-us') }}">About Us</a>
                   </li>
-                  @auth
-                  <li class="nav-item">
-                    <a class="nav-link" href="{{ url('/my-account') }}">My Account</a>
-                  </li>
-                  @endauth
+               
 
                   <li class="nav-item">
                     <a class="nav-link" href="{{ url('/contact') }}">Contact Us</a>

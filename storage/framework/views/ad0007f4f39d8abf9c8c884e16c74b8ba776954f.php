@@ -187,7 +187,30 @@
                     </ul>
                 </li>
 
-        
+                <!-- SEO  -->
+                <li class="nav-item <?php echo e(request()->is('add-seo-pages','pages-list','page-content-update*') ? 'menu-open' : ''); ?>">
+                    <a href="#" class="nav-link <?php echo e(request()->is('add-seo-pages','pages-list','page-content-update*') ? 'menu-open' : ''); ?>">
+                        <i class="nav-icon fas fa-globe-africa"></i>
+                        <p>
+                            SEO Pages
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="<?php echo e(route('customer-contact')); ?>" class="nav-link <?php echo e(request()->is('add-seo-pages') ? 'active' : ''); ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Seo Page</p>    
+                            </a>
+                        </li>       
+                        <li class="nav-item">
+                            <a href="<?php echo e(route('customer-contact')); ?>" class="nav-link <?php echo e(request()->is('pages-list','page-content-update*') ? 'active' : ''); ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pages List</p>    
+                            </a>
+                        </li>       
+                    </ul>
+                </li>
 
                 <li class="nav-header">Settings</li>
 

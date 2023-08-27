@@ -37,10 +37,11 @@
                                     <table class="table table-bordered">
                                         <thead>
                                             <tr>
-                                                <th style="width: 5%">Serial</th>
-                                                <th style="width: 30%">Title</th>
-                                                <th style="width: 30%">Slug</th>
-                                                <th style="width: 20%">Action</th>
+                                                <th style="width: 10%">Serial</th>
+                                                <th style="width: 20%">Title</th>
+                                                <th style="width: 20%">Slug</th>
+                                                <th style="width: 20%">Type</th>
+                                                <th style="width: 30%">Action</th>
                                             </tr>
                                         </thead>
                                         @php
@@ -56,6 +57,15 @@
 
                                                     <td>
                                                         {{ $page->slug }}
+                                                    </td>
+
+                                                    <td>
+                                                        @if ($page->type)
+                                                            {{ $page->type }}
+                                                        @else
+                                                            Static Page
+                                                        @endif
+                                                        
                                                     </td>
 
                                                     <td>

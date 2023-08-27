@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SeoPage;
 use App\Models\SubCategoryDescription;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,8 @@ class CategoryController extends Controller
             'active_status.required' =>  'Please Select The Status',
         ])->validate();
 
-        
+       
+
         // Add the data to the database
         $category = Category::create([
             'name' => $request->name,
@@ -115,6 +117,14 @@ class CategoryController extends Controller
             'slug' => "Slug Is Required!",
             'active_status' =>  'Status Is Required!',
         ]);
+
+        $seo = new SeoPage();
+
+        $seo->title = $request->name;
+        $seo->slug = $request->slug;
+        $seo->type = "sub_category";
+        $seo->created_by = Auth::id();
+        $seo->save();
 
         $sub_category = Category::create([
             'name' => $request->name,

@@ -12,7 +12,6 @@ use App\Models\ProductDetail;
 use App\Models\Seller;
 use App\Models\SeoPage;
 use App\Models\StockManagement;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
@@ -63,7 +62,6 @@ class ProductController extends Controller
         if ($request->file('thumbnail')) {
             $image = uploadPlease($request->file('thumbnail'));
         }
-
 
         $product = Product::create([
             'thumbnail' => $image,
@@ -234,7 +232,6 @@ class ProductController extends Controller
             'created_by' => Auth::id()
         ]);
         
-     
         if ($advantage==true) {
             $notification = ([
                 'success' => 'Advantage Added Successfully',
@@ -267,7 +264,6 @@ class ProductController extends Controller
             'updated_by' => Auth::id()
         ]);
 
-        
         if ($advantage) {
             return response()->json([
                 'success' => true,

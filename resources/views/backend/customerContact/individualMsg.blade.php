@@ -42,13 +42,13 @@
               <div class="card-body p-0">
                 <ul class="nav nav-pills flex-column">
                   <li class="nav-item" >
-                    <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact']) ? 'active' : '' }}" >
+                    <a href="{{ route('customer-contact') }}" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*']) ? 'active' : '' }}" >
                       <i class="fas fa-inbox"></i> Inbox
                       <span class="badge bg-warning float-right">{{ $msg_count_inbox }}</span>
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="{{ route('send-mail-index') }}" class="nav-link {{ request()->is(['send-mail-index']) ? 'active' : '' }}">
+                    <a href="{{ route('send-mail-index') }}" class="nav-link {{ request()->is(['send-mail-index', 'show-individual-sent*']) ? 'active' : '' }}">
                       <i class="far fa-envelope"></i> Sent
                       <span class="badge bg-warning float-right">{{ $msg_count_send }}</span>
                     </a>

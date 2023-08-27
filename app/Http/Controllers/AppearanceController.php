@@ -137,6 +137,9 @@ class AppearanceController extends Controller
 
     public function allProduct()
     {
+        $seo = SeoPage::where('slug', 'product')->first();
+        perform_seo($seo);
+
         $data['products'] = Product::latest()
             ->where('active_status', 1)
             ->paginate(12);
@@ -148,7 +151,7 @@ class AppearanceController extends Controller
     public function categoryWiseProduct($slug)
     {
         
-        $seo = SeoPage::where('slug', $slug)->where('type', 'product_category')->first();
+        $seo = SeoPage::where('slug', $slug)->where('type', 'sub_category')->first();
         perform_seo($seo);
         
         $data['category'] = Category::where('slug', $slug)->first();
@@ -312,28 +315,46 @@ class AppearanceController extends Controller
 
     public function refundPolicy()
     {
+        $seo = SeoPage::where('slug', 'refund-policy')->first();
+        perform_seo($seo);
+
         return view('frontend.refund');
     }
     public function privacyPolicy()
     {
+        $seo = SeoPage::where('slug', 'privacy-policy')->first();
+        perform_seo($seo);
+        
         return view('frontend.privacy-policy');
     }
     public function termsService()
     {
+        $seo = SeoPage::where('slug', 'terms-of-service')->first();
+        perform_seo($seo);
+
         return view('frontend.terms-of-service');
     }
     public function disclaimer()
     {
+        $seo = SeoPage::where('slug', 'disclaimer')->first();
+        perform_seo($seo);
+
         return view('frontend.disclaimer');
     }
     public function faq()
     {
+        $seo = SeoPage::where('slug', 'faq')->first();
+        perform_seo($seo);
+
         $data['faq_cat'] = FAQCategory::where('active_status', 1)->with('question')->get();
         return view('frontend.faq', $data);
     }
 
     public function aboutUs()
     {
+        $seo = SeoPage::where('slug', 'about-us')->first();
+        perform_seo($seo);
+
         $data['about_us'] = AboutUs::where('active_status', 1)->first();
         return view('frontend.about-us', $data);
     }

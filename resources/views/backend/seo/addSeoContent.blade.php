@@ -33,13 +33,14 @@
                         <div class="body">
                             <h4 class="p-2">Static Pages Slug: </h4>
                             <div class="d-flex p-2">
-                                <p>| welcome-page |</p>
                                 <p>| home |</p>
                                 <p>| product |</p>
-                                <p>| company-overview |</p>
-                                <p>| blogs |</p>
-                                <p>| contact |</p>
                                 <p>| faq |</p>
+                                <p>| about us |</p>
+                                <p>| disclaimer |</p>
+                                <p>| terms of service |</p>
+                                <p>| privacy policy |</p>
+                                <p>| refund policy |</p>
                             </div>
                         </div>
                     </div>
@@ -296,7 +297,7 @@
 
                             </div>
                             <div class="modal-footer">
-                                <button type="submit" class="btn btn-primary btn-block">Update</button>
+                                <button type="submit" class="btn btn-primary btn-block">Submit</button>
                             </div>
 
                         </form>

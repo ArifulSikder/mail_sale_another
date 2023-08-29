@@ -94,16 +94,16 @@
                                         <td>Total</td>
                                         <td class="text-end">{{ Cart::subtotal() }} $</td>
                                     </tr>
+                                    
                                 </tbody>
                             </table>
                             <div class="buton mb-2">
                                 <a class="btn-two btn-danger" href="{{ url('checkout') }}">Proceed to checkout</a>
                             </div>
                             <div class="coupon">
-                                <form>
+                                <form id="coupon">
                                     <h5><i class="fa-solid fa-tag pe-2"></i>Coupon</h5>
-                                    <input type="text" class="form-control mt-3" id="exampleFormControlInput1"
-                                        placeholder="coupon Code">
+                                    <input type="text" class="form-control mt-3" name="coupon" placeholder="coupon Code">
                                     <input type="submit" name="submit" class="Apply" value="Apply coupon">
                                 </form>
                             </div>
@@ -219,6 +219,49 @@
                     }
                 });
             }
+        });
+    </script>
+
+    <script>
+        $(document).ready(function () {
+            $("#coupon").submit(function (e) {
+                e.preventDefault();
+
+                var formData = new FormData($("#coupon")[0]);
+                $.ajax({
+                    type: "POST",
+                    url: "{{ route('apply-coupon') }}",
+                    contentType: false,
+                    processData: false,
+                    data: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+
+                    success: function (response) {
+                            if (response.success) {
+                                toastr.success(response.success);
+                            } else if (response.error) {
+                                toastr.error(response.error);
+                            }
+                    },
+                    error: function (error) {
+                        $('.validate').text('');
+                            $.each(error.responseJSON.errors, function (field_name, error) { 
+                                const errorElement = $('.validate[data-field="' + field_name + '"]');
+                                if (errorElement.length > 0) {
+                                    errorElement.text(error[0]);
+                                    toastr.error(error);
+                                }
+                        });
+                    },
+                    complete: function (done) {
+                        if (done.status == 200) {
+                            window.location.reload();
+                        }
+                    }
+                });
+            });
         });
     </script>
 @endsection

@@ -13,9 +13,15 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreviewImageController;
 use App\Http\Controllers\SeoPageController;
 use App\Http\Controllers\SettingController;
+use App\Models\Order;
+use App\Models\SeoPage;
+use App\Models\User;
 
 Route::get('dashboard', function () {
-    return view('backend.dashboard.index');
+    $data['orders'] = Order::where('status', 'Pending')->count();
+    $data['seo_pages'] = SeoPage::count();
+    $data['users'] = User::count();
+    return view('backend.dashboard.index', $data);
 });
 
 //preview image

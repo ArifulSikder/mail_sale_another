@@ -39,6 +39,8 @@ Route::post('/update-cart', [AppearanceController::class, 'updateCart'])->name('
 Route::get('/remove-product-item', [AppearanceController::class, 'removeProductItem']);
 Route::get('/card-subtotal', [AppearanceController::class, 'cartSubtotal']);
 
+//cupon 
+Route::post('/apply-coupon', [AppearanceController::class, 'applyCoupon'])->name('apply-coupon');
 
 //review 
 Route::post('store-customer-review', [AppearanceController::class, 'storeCustomerReview'])->name('store-customer-review');

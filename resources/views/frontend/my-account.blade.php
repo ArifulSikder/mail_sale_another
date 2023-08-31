@@ -34,7 +34,7 @@
                                         {{ Auth::user()->username }}
                                     </p>
                                 </div>
-                                <a href="{{ url('my-account/dashboard') }}" class="nav-link tab-button active text-uppercase">Dashboard</a>
+                                <a href="{{ url('my-account/dashboard') }}" class="nav-link tab-button  text-uppercase">Dashboard</a>
 
                                 <a href="{{ url('my-account/orders') }}" class="nav-link tab-button text-uppercase" >Orders</a>
 
@@ -44,7 +44,7 @@
 
                                 <a href="{{ url('my-account/details') }}" class="nav-link tab-button text-uppercase" >Account details</a>
 
-                                <a href="{{ url('my-account/logout') }}" class="nav-link tab-button text-uppercase" >Logout</a>
+                                <a href="{{ route('logout') }}" class="nav-link tab-button text-uppercase" >Logout</a>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-12 col-sm-12">

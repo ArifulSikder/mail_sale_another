@@ -11,6 +11,7 @@ use App\Http\Controllers\PaymentApiController;
 use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PreviewImageController;
+use App\Http\Controllers\ReportController;
 use App\Http\Controllers\SeoPageController;
 use App\Http\Controllers\SettingController;
 use App\Models\Order;
@@ -217,4 +218,7 @@ Route::post('/store-seo-content', [SeoPageController::class, 'storeSeoPageConten
 Route::get('/page-content-update/{seo_id}', [SeoPageController::class, 'pageContentUpdate'])->name('page-content-update');
 Route::post('/update-seo-content', [SeoPageController::class, 'updateSeoPageContent'])->name('update-seo-content');
 
-
+// REPORT 
+Route::get('/sales-report', [ReportController::class, 'salesReport'])->name('sales-report');
+Route::get('/order-report', [ReportController::class, 'orderReport'])->name('order-report');
+Route::get('/revenue-report', [ReportController::class, 'revenueReport'])->name('revenue-report');

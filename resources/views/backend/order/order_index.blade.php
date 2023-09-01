@@ -111,7 +111,7 @@
                                                     <i class="fas fa-edit"></i> Edit
                                                 </button>
 
-                                                <a href="{{ url('order-description/'. $order->id) }}"
+                                                <a href="{{ url('invoice/'. $order->id) }}"
                                                     class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Invoice</a>
 
                                                 <a href="{{ url('delete-order/'. $order->id) }}"

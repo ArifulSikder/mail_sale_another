@@ -96,10 +96,9 @@
 
 
                                         </tbody>
-                                        <div class="float-right my-2">{{ $pages->links() }}</div>
                                     </table>
 
-                                    <div class="float-left">
+                                    <div class="float-left mt-3">
                                         {{ $pages->links() }}
                                     </div>
                                 </div>

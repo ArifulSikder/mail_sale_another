@@ -242,6 +242,8 @@ class AppearanceController extends Controller
     public function applyCoupon(Request $request)
     {
 
+        
+        
         $coupon = Coupon::where('coupon_code', $request->coupon)->first();
 
         if ($coupon) {

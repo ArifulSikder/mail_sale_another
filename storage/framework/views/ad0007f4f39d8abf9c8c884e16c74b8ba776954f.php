@@ -169,8 +169,8 @@
                 </li>
 
                 <!-- CUSTOMER CONTACT  -->
-                <li class="nav-item <?php echo e(request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'menu-open' : ''); ?>">
-                    <a href="#" class="nav-link <?php echo e(request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'active' : ''); ?>">
+                <li class="nav-item <?php echo e(request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*', 'default-sms']) ? 'menu-open' : ''); ?>">
+                    <a href="#" class="nav-link <?php echo e(request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*', 'default-sms']) ? 'active' : ''); ?>">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Customer Contact
@@ -182,6 +182,12 @@
                             <a href="<?php echo e(route('customer-contact')); ?>" class="nav-link <?php echo e(request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'active' : ''); ?>">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Inbox</p>    
+                            </a>
+                        </li>  
+                        <li class="nav-item">
+                            <a href="<?php echo e(url('default-sms')); ?>" class="nav-link <?php echo e(request()->is('default-sms') ? 'active' : ''); ?>">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Default SMS</p>    
                             </a>
                         </li>       
                     </ul>

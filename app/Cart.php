@@ -137,7 +137,6 @@ class Cart
   public static function forgetDis()
   {
     return session()->forget('dis_amount');
-
   }
   public static function content()
   {

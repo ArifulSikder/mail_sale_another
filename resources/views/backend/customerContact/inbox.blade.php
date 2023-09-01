@@ -159,7 +159,7 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Send Email TO Customers</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Send Email To Customers</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -299,7 +299,7 @@
           });
 
           if (selectedValues == null || selectedValues.length === 0) {
-              console.log('Array is null or empty.');
+              alert('Please Select Customer')
           } else {
             $('#sendMail').modal('show');
 

@@ -189,6 +189,10 @@ Route::post('send-msg-customer', [CustomerMessageController::class, 'sendMsgCust
 Route::get('send-mail-index', [CustomerMessageController::class, 'sendMailIndex'])->name('send-mail-index');
 Route::delete('delete-sent-message', [CustomerMessageController::class, 'deleteSentMessage'])->name('delete-sent-message');
 
+// default sms 
+Route::get('default-sms', [CustomerMessageController::class, 'defaultSms'])->name('default-sms');
+Route::post('store-defalult-sms', [CustomerMessageController::class, 'storeDefaultSms'])->name('store-defalult-sms');
+
 
 // SMS Templete 
 Route::get('sms-templete', [CustomerMessageController::class, 'smsTemplete'])->name('sms-templete');
@@ -208,6 +212,7 @@ Route::get('delete-email/{id}', [SettingController::class, 'deleteEmail'])->name
 
 //order 
 Route::get('orders', [OrderControllerBackend::class, 'orderIndex'])->name('orders');
+Route::get('invoice/{id}', [OrderControllerBackend::class, 'invoiceIndex'])->name('invoice');
 
 
 

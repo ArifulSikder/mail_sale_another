@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Mail\ReciveMail;
 use App\Mail\SenMail;
 use App\Models\CustomerMessage;
+use App\Models\CustomerSmsDefault;
 use App\Models\SendMsgCustomer;
 use App\Models\SmsTemplete;
 use Illuminate\Http\Request;
@@ -150,7 +151,7 @@ class CustomerMessageController extends Controller
         }
     }
 
-    
+
 
     // sms templete
     public function smsTemplete()
@@ -390,4 +391,54 @@ class CustomerMessageController extends Controller
             ]);
         }
     }
+
+    //DEFAULT SMS FOR CUSTOMER
+
+    public function defaultSms()
+    {
+        $data['templetes'] = SmsTemplete::latest()->get();
+        $data['default_sms'] = CustomerSmsDefault::latest()->get();
+        return view('backend.customerContact.defaultSms', $data);
+    }
+
+    public function storeDefaultSms(Request $request)
+    {
+        Validator::make(
+            $request->all(),
+            [
+                'templete_name' => 'required|string|unique:sms_templetes',
+                'subject' => 'required',
+                'visit_link' => 'required|string',
+                'message' => 'required|string',
+                'active_status' => 'required|in:0,1',
+            ],
+            [
+                'templete_name.required' => 'Please Enter The Templete Name',
+                'subject.required' => 'Please Enter The Subject',
+                'visit_link.required' => 'Please Input The Visit Link',
+                'message.required' => 'Please Enter The Message',
+                'active_status.required' => 'Please Select The Status',
+            ],
+        )->validate();
+
+        $templete = new CustomerSmsDefault();
+
+        $templete->templete_name = $request->templete_name;
+        $templete->subject = $request->subject;
+        $templete->visit_link = $request->visit_link;
+        $templete->message = $request->message;
+        $templete->active_status = $request->active_status;
+        $templete->created_by = Auth::id();
+
+        if ($templete->save()) {
+            return response()->json([
+                'success' => 'SMS Templete Saved Successfully.',
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Opps! Something Went Wrong.',
+            ]);
+        }
+    }
+        
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -35,5 +36,14 @@ class OrderControllerBackend extends Controller
             })
             ->paginate(10);
         return view('backend.order.order_index', $data);
+    }
+
+
+    public function invoiceIndex($id)
+    {
+        $data['order'] = Order::findOrFail($id);
+        $user_id = $data['order']->user_id;
+        $data['user'] = User::where('id', $user_id)->first();
+         return view('backend.order.invoice', $data);
     }
 }

@@ -42,14 +42,14 @@
             <!-- small box -->
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>150</h3>
+                <h3><?php echo e($orders); ?></h3>
 
-                <p>New Orders</p>
+                <p>Pending Orders</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo e(route('orders')); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -57,14 +57,14 @@
             <!-- small box -->
             <div class="small-box bg-success">
               <div class="inner">
-                <h3>53<sup style="font-size: 20px">%</sup></h3>
+                <h3><?php echo e($seo_pages); ?></h3>
 
-                <p>Bounce Rate</p>
+                <p>SEO Pages</p>
               </div>
               <div class="icon">
                 <i class="ion ion-stats-bars"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo e(route('pages-list')); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -72,14 +72,14 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>44</h3>
+                <h3><?php echo e($users); ?></h3>
 
                 <p>User Registrations</p>
               </div>
               <div class="icon">
                 <i class="ion ion-person-add"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo e(route('user-list')); ?>" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <!-- ./col -->
@@ -101,9 +101,26 @@
         </div>
         <!-- /.row -->
         <!-- Main row -->
-        
-        <div id="chart">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="card text-start">
+              <div class="card-body">
+                  <div id="chart">
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card text-start">
+              <div class="card-body">
+                <div id="linechart">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+        
+        
         <!-- /.row (main row) -->
       </div><!-- /.container-fluid -->
     </section>
@@ -157,6 +174,44 @@
         var chart = new ApexCharts(document.querySelector("#chart"), options);
         chart.render();
       
+    </script>
+
+    <script>
+      var options = {
+          series: [{
+            name: "Desktops",
+            data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+        }],
+          chart: {
+          height: 350,
+          type: 'line',
+          zoom: {
+            enabled: false
+          }
+        },
+        dataLabels: {
+          enabled: false
+        },
+        stroke: {
+          curve: 'straight'
+        },
+        title: {
+          text: 'Product Trends by Month',
+          align: 'left'
+        },
+        grid: {
+          row: {
+            colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+            opacity: 0.5
+          },
+        },
+        xaxis: {
+          categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+        }
+        };
+
+        var chart = new ApexCharts(document.querySelector("#linechart"), options);
+        chart.render();
     </script>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('backend.layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\mail_sale_another\resources\views/backend/dashboard/index.blade.php ENDPATH**/ ?>

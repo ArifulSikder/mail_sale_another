@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Cart;
 use App\Http\Requests\OrderInformationRequest;
 use App\Models\AboutUs;
+use App\Models\Coupon;
 use App\Models\FAQCategory;
 use App\Models\HomePaveshop;
 use App\Models\MeetTeam;
@@ -61,7 +62,7 @@ class AppearanceController extends Controller
     // customer contact
     public function contact()
     {
-        $seo = SeoPage::where('slug', 'contact')->first();
+        $seo = SeoPage::where('slug', 'contact-us')->first();
         perform_seo($seo);
         return view('frontend.contact');
     }
@@ -150,10 +151,11 @@ class AppearanceController extends Controller
 
     public function categoryWiseProduct($slug)
     {
-        
-        $seo = SeoPage::where('slug', $slug)->where('type', 'sub_category')->first();
+        $seo = SeoPage::where('slug', $slug)
+            ->where('type', 'sub_category')
+            ->first();
         perform_seo($seo);
-        
+
         $data['category'] = Category::where('slug', $slug)->first();
         $data['products'] = Product::where('sub_category_id', $data['category']->id)
             ->where('active_status', 1)
@@ -171,8 +173,9 @@ class AppearanceController extends Controller
 
     public function productDetails($category_slug, $product_slug)
     {
-        
-        $seo = SeoPage::where('slug', $product_slug)->where('type', 'product')->first();
+        $seo = SeoPage::where('slug', $product_slug)
+            ->where('type', 'product')
+            ->first();
         perform_seo($seo);
 
         $data['reviews'] = Review::where('product_slug', $product_slug)
@@ -225,6 +228,7 @@ class AppearanceController extends Controller
     {
         if ($request->id) {
             $data['cart'] = Cart::remove($request->id);
+            Cart::forgetDis();
             return view('frontend.include.card_subtotal', $data)->render();
         }
     }
@@ -233,6 +237,25 @@ class AppearanceController extends Controller
     {
         $data['carts'] = Cart::content();
         return view('frontend.cart', $data);
+    }
+
+    public function applyCoupon(Request $request)
+    {
+
+        $coupon = Coupon::where('coupon_code', $request->coupon)->first();
+
+        if ($coupon) {
+            Cart::coupon($coupon);
+        } elseif($request->coupon == null) {
+            return response()->json([
+                'error' => "You Are Giving Null Value",
+            ]);
+        } elseif(!$coupon) {
+            return response()->json([
+                'error' => "Your Coupon Is Invalid",
+            ]);
+        }
+
     }
 
     public function checkout()
@@ -324,7 +347,7 @@ class AppearanceController extends Controller
     {
         $seo = SeoPage::where('slug', 'privacy-policy')->first();
         perform_seo($seo);
-        
+
         return view('frontend.privacy-policy');
     }
     public function termsService()
@@ -346,7 +369,9 @@ class AppearanceController extends Controller
         $seo = SeoPage::where('slug', 'faq')->first();
         perform_seo($seo);
 
-        $data['faq_cat'] = FAQCategory::where('active_status', 1)->with('question')->get();
+        $data['faq_cat'] = FAQCategory::where('active_status', 1)
+            ->with('question')
+            ->get();
         return view('frontend.faq', $data);
     }
 
@@ -578,6 +603,8 @@ class AppearanceController extends Controller
             $payment->save();
 
             Cart::forget();
+            Cart::forgetDis();
+
 
             return redirect()->route('payment-success');
         }
@@ -632,6 +659,8 @@ class AppearanceController extends Controller
             $payment->save();
 
             Cart::forget();
+            Cart::forgetDis();
+
 
             return redirect()->route('payment-success');
         } else {

@@ -45,15 +45,15 @@
                         <thead>
                             <tr>
                                 <th scope="col" style="width: 5%">Serial</th>
-                                <th scope="col" style="width: 15%">Coupon Name</th>
-                                <th scope="col" style="width: 10%">Coupon Code</th>
-                                <th scope="col" style="width: 15%">Product Name</th>
+                                <th scope="col" style="width: 10%">Coupon Name</th>
+                                <th scope="col" style="width: 15%">Coupon Code</th>
+                                <th scope="col" style="width: 10%">Product Name</th>
                                 <th scope="col" style="width: 10%">Start Date</th>
                                 <th scope="col" style="width: 10%">End Date</th>
                                 <th scope="col" style="width: 10%">Coupon Discount</th>
                                 <th scope="col" style="width: 10%">Active Status</th>
                                 <th scope="col" style="width: 10%">Validity Status</th>
-                                <th scope="col" style="width: 15%">Action</th>
+                                <th scope="col" style="width: 10%">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -62,7 +62,8 @@
 
                                 
                             @endphp 
-                            @foreach($coupons as $coupon)
+                                
+                            @forelse($coupons as $coupon)
                                 <tr>
                                     <th>{{ $serials++ }}</th>
                                     <td>{{ $coupon->coupon_name }}</td>
@@ -123,7 +124,13 @@
 
                                     </td>
                                 </tr>
-                            @endforeach
+                            @empty
+                            <tr>
+                                <td colspan="10" class="text-center">
+                                    <span class="text-danger">No Coupon Added</span>
+                                </td>
+                            </tr>
+                            @endforelse
                         </tbody>
                     </table>
                     </div>
@@ -154,12 +161,6 @@
                         <label for="coupon_name">Coupon Name</label>
                         <input type="text" class="form-control" name="coupon_name"  placeholder="Enter Coupon Name" >
                         <span class="text-danger validate" data-field="coupon_name"></span>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="coupon_code">Coupon Code</label>
-                        <input type="text" class="form-control" name="coupon_code"  placeholder="Coupon Code" >
-                        <span class="text-danger validate" data-field="coupon_code"></span>
 
                     </div>
                     <div class="form-group">
@@ -231,12 +232,6 @@
                         <label for="coupon_name">Coupon Name</label>
                         <input type="text" class="form-control" name="coupon_name"  id="coupon_name_e" >
                         <span class="text-danger validate_e" data-field="coupon_name"></span>
-
-                    </div>
-                    <div class="form-group">
-                        <label for="coupon_code">Coupon Code</label>
-                        <input type="text" class="form-control" name="coupon_code" id="coupon_code_e"  placeholder="Coupon Code" >
-                        <span class="text-danger validate_e" data-field="coupon_code"></span>
 
                     </div>
                     <div class="form-group">

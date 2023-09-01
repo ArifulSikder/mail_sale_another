@@ -34,11 +34,11 @@
                     <div class="border custom-select py-1">
                         <select name="code" class="custom-select d-block country-control select2" style="width: 100%">
                             <option value="">Select a country / region&hellip;</option>
-                            @foreach ($countries as $country)
+                            {{-- @foreach ($countries as $country)
                                 <option value="{{ $country->code }}"
                                     {{ $country->code == Auth::user()->code ? 'selected' : '' }}>
                                     {{ $country->name }}</option>
-                            @endforeach
+                            @endforeach --}}
                         </select>
                     </div>
                     <strong class="text-danger" data-field="code"></strong>

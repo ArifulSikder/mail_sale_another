@@ -8,10 +8,10 @@ class Cart
 
   public static function add($product_data = [])
   {
+
       $product_id = $product_data['id'];
 
       $cart = self::content();
-
       // If cart is empty, then this is the first product
       if (!$cart) {
           $cart = [
@@ -74,6 +74,7 @@ class Cart
             unset($cart[$id]);
             session()->put('cart', $cart);
         }
+        
         return response()->json($cart);
     }
   }
@@ -88,7 +89,35 @@ class Cart
                 $subtotal += $quantity * $price;
             }
         }
-        return $subtotal;
+
+        if (session()->get('dis_amount')) {
+          return $subtotal - session()->get('dis_amount');
+        } else {
+          return $subtotal;
+        }
+        
+        
+  }
+
+  public static function coupon($coupon)
+  {
+
+    if ($coupon) {
+      $cart =  session()->get('cart');
+      $coupon_pro = $cart[$coupon['product_id']];
+
+      $coupon_dis = 0;
+          if ($coupon_pro != null) {
+                $quantity = $coupon_pro['qty'];
+                $price = $coupon_pro['price'];
+                $coupon_dis += $quantity * $price;
+          }
+      }
+
+      $dis_amount = $coupon_dis*10 / 100;
+
+      session()->put('dis_amount', $dis_amount);
+      
   }
 
   public static function count()
@@ -104,6 +133,11 @@ class Cart
   public static function forget()
   {
     return session()->forget('cart');
+  }
+  public static function forgetDis()
+  {
+    return session()->forget('dis_amount');
+
   }
   public static function content()
   {

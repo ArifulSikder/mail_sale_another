@@ -37,6 +37,7 @@
                                 <p>| product |</p>
                                 <p>| faq |</p>
                                 <p>| about us |</p>
+                                <p>| contact us |</p>
                                 <p>| disclaimer |</p>
                                 <p>| terms of service |</p>
                                 <p>| privacy policy |</p>

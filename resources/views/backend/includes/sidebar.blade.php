@@ -212,6 +212,37 @@
                     </ul>
                 </li>
 
+                <!-- REPORT  -->
+                <li class="nav-item {{ request()->is('sales-report', 'order-report', 'revenue-report') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('sales-report', 'order-report', 'revenue-report') ? 'active' : '' }}">
+                        <i class="nav-icon far fa-file-alt"></i>
+                        <p>
+                            Reports
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{  route('sales-report')  }}" class="nav-link {{ request()->is('sales-report') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Sales Report</p>    
+                            </a>
+                        </li>       
+                        <li class="nav-item">
+                            <a href="{{  route('order-report')  }}" class="nav-link {{ request()->is('order-report') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Order Report</p>    
+                            </a>
+                        </li> 
+                        <li class="nav-item">
+                            <a href="{{ route('revenue-report') }}" class="nav-link {{ request()->is('revenue-report') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Revenue</p>    
+                            </a>
+                        </li>       
+                    </ul>
+                </li>
+
                 <li class="nav-header">Settings</li>
 
                 <!-- USER -->

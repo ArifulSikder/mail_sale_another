@@ -1,5 +1,12 @@
+/.phpunit.cache
 /node_modules
+/public/build
+/public/hot
+/public/storage
 /storage/*.key
+/vendor
+.env.backup
+.env.production
 .phpunit.result.cache
 Homestead.json
 Homestead.yaml
@@ -9,10 +16,3 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
-storage/framework
-/package-lock.json
-/storage/app/public/csv/
-/storage/app/public/files/
-/storage/app/public/tiles/
-/storage/logs/laravel.log
-/vendor

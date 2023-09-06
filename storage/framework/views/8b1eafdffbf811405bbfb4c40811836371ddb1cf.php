@@ -34,100 +34,106 @@
                         <i class="fas fa-plus"></i> Add Product
                     </button>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="search" placeholder="Search By Category Name">
-                </div>
+                <form action="">
+                    <div class="form-group d-flex">
+                        <input class="form-control" type="search" placeholder="Search By Product Name" name="search" value="<?php echo e($search); ?>">
+                        <button class="btn btn-info btn-sm ml-2">Search</button>
+                    </div>
+                </form>
+                
             </div>
             <div class="card">
                 <div class="card-header">Products Table</div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 5%">Serial</th>
-                                <th scope="col" style="width: 10%">Thumbnail</th>
-                                <th scope="col" style="width: 10%">Product Name</th>
-                                <th scope="col" style="width: 10%">Category Name</th>
-                                <th scope="col" style="width: 10%">Subcategory Name</th>
-                                <th scope="col" style="width: 10%">Slug</th>
-                                <th scope="col" style="width: 10%">Selling Price</th>
-                                <th scope="col" style="width: 10%">Active Status</th>
-                                <th scope="col" style="width: 10%">Pin Status</th>
-                                <th scope="col" style="width: 10%">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                $serials = ($products->currentpage() - 1) * $products->perpage() + 1;
-                            ?>
-                            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <th scope="row"><?php echo e($serials++); ?></th>
-                                    <td>
-                                        <img width="100px" src="<?php echo e($product->thumbnail); ?>" alt="" srcset="">
-                                    </td>
-                                    <td><?php echo e($product->name); ?></td>
-                                    <td><?php echo e($product->category->name); ?></td>
-                                    <td><?php echo e($product->subcategory->name); ?></td>
-                                    <td><?php echo e($product->slug); ?></td>
-                                    <td><?php echo e($product->selling_price); ?> $</td>
-                                    <td><span
-                                            class="badge badge-<?php echo e($product->active_status == 0 ? 'danger': 'success'); ?>"><?php echo e($product->active_status == 0 ? 'Inactive': 'Active'); ?></span>
-                                    </td>
-                                    <td> 
-                                        <span class="badge badge-<?php echo e($product->pinned == 0 ? 'danger': 'success'); ?>"><?php echo e($product->pinned == 0 ? 'Unpinned': 'Pinned'); ?></span>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button"
-                                                class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
-                                                data-toggle="dropdown">
-                                                Options
-                                            </button>
-                                            <div class="dropdown-menu text-center bg-light-blue">
-                                                <button type="button" data-id="<?php echo e($product->id); ?>"
-                                                    data-name="<?php echo e($product->name); ?>"
-                                                    data-category_id="<?php echo e($product->category_id); ?>"
-                                                    data-sub_category_id="<?php echo e($product->sub_category_id); ?>"
-                                                    data-slug="<?php echo e($product->slug); ?>"
-                                                    data-selling_price="<?php echo e($product->selling_price); ?>"
-                                                    data-active_status="<?php echo e($product->active_status); ?>"
-                                                    class="btn btn-success btn-sm editData myProduct btn-block">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </button>
-
-                                                <?php if($product->pinned == 1): ?>
-                                                    <a href="<?php echo e(route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ])); ?>"  class="btn btn-danger btn-sm btn-block"><i class="fas fa-thumbtack"></i> Unpin Product</a> 
-                                                <?php else: ?>
-                                                    <a href="<?php echo e(route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ])); ?>"  class="btn btn-success btn-sm btn-block"><i class="fas fa-thumbtack"></i> Pin Product</a>
-                                                <?php endif; ?>
-
-                                                <a href="<?php echo e(url('product-advantages/'. $product->id)); ?>"
-                                                    class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Advantages</a>
-
-                                                <a href="<?php echo e(url('product-details/'. $product->id)); ?>"
-                                                    class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Details</a>
-
-                                                <a href="<?php echo e(url('product-description/'. $product->id)); ?>"
-                                                    class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Description</a>
-
-                                                <a href="<?php echo e(url('delete-product/'. $product->id)); ?>"
-                                                    id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i>Delete</a>
-                                                
-
-                                            </div>
-                                        </div>
-
-
-                                    </td>
+                                    <th scope="col" style="width: 5%">Serial</th>
+                                    <th scope="col" style="width: 10%">Thumbnail</th>
+                                    <th scope="col" style="width: 10%">Product Name</th>
+                                    <th scope="col" style="width: 10%">Category Name</th>
+                                    <th scope="col" style="width: 10%">Subcategory Name</th>
+                                    <th scope="col" style="width: 10%">Slug</th>
+                                    <th scope="col" style="width: 10%">Selling Price</th>
+                                    <th scope="col" style="width: 10%">Active Status</th>
+                                    <th scope="col" style="width: 10%">Pin Status</th>
+                                    <th scope="col" style="width: 10%">Action</th>
                                 </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                        </tbody>
-                    </table>
-                    <div class="float-right my-2">
-                        <?php echo e($products->links()); ?>
+                            </thead>
+                            <tbody>
+                                <?php
+                                    $serials = ($products->currentpage() - 1) * $products->perpage() + 1;
+                                ?>
+                                <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <tr>
+                                        <th scope="row"><?php echo e($serials++); ?></th>
+                                        <td>
+                                            <img width="100px" src="<?php echo e($product->thumbnail); ?>" alt="" srcset="">
+                                        </td>
+                                        <td><?php echo e($product->name); ?></td>
+                                        <td><?php echo e($product->category->name); ?></td>
+                                        <td><?php echo e($product->subcategory->name); ?></td>
+                                        <td><?php echo e($product->slug); ?></td>
+                                        <td><?php echo e($product->selling_price); ?> $</td>
+                                        <td><span
+                                                class="badge badge-<?php echo e($product->active_status == 0 ? 'danger': 'success'); ?>"><?php echo e($product->active_status == 0 ? 'Inactive': 'Active'); ?></span>
+                                        </td>
+                                        <td> 
+                                            <span class="badge badge-<?php echo e($product->pinned == 0 ? 'danger': 'success'); ?>"><?php echo e($product->pinned == 0 ? 'Unpinned': 'Pinned'); ?></span>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button"
+                                                    class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Options
+                                                </button>
+                                                <div class="dropdown-menu text-center bg-light-blue">
+                                                    <button type="button" data-id="<?php echo e($product->id); ?>"
+                                                        data-name="<?php echo e($product->name); ?>"
+                                                        data-category_id="<?php echo e($product->category_id); ?>"
+                                                        data-sub_category_id="<?php echo e($product->sub_category_id); ?>"
+                                                        data-slug="<?php echo e($product->slug); ?>"
+                                                        data-selling_price="<?php echo e($product->selling_price); ?>"
+                                                        data-active_status="<?php echo e($product->active_status); ?>"
+                                                        class="btn btn-success btn-sm editData myProduct btn-block">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </button>
 
+                                                    <?php if($product->pinned == 1): ?>
+                                                        <a href="<?php echo e(route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ])); ?>"  class="btn btn-danger btn-sm btn-block"><i class="fas fa-thumbtack"></i> Unpin Product</a> 
+                                                    <?php else: ?>
+                                                        <a href="<?php echo e(route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ])); ?>"  class="btn btn-success btn-sm btn-block"><i class="fas fa-thumbtack"></i> Pin Product</a>
+                                                    <?php endif; ?>
+
+                                                    <a href="<?php echo e(url('product-advantages/'. $product->id)); ?>"
+                                                        class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Advantages</a>
+
+                                                    <a href="<?php echo e(url('product-details/'. $product->id)); ?>"
+                                                        class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Details</a>
+
+                                                    <a href="<?php echo e(url('product-description/'. $product->id)); ?>"
+                                                        class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Description</a>
+
+                                                    <a href="<?php echo e(url('delete-product/'. $product->id)); ?>"
+                                                        id="delete" class="btn btn-danger btn-sm btn-block"><i
+                                                            class="fas fa-trash"></i>Delete</a>
+                                                    
+
+                                                </div>
+                                            </div>
+
+
+                                        </td>
+                                    </tr>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </tbody>
+                        </table>
+                        <div class="float-right my-2">
+                            <?php echo e($products->links()); ?>
+
+                        </div>
                     </div>
                 </div>
             </div>

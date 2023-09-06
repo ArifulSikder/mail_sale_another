@@ -31,11 +31,13 @@
                 <div>
                     <button type="button" class="btn btn-success myProduct" data-toggle="modal" data-target="#addNew">
                         <i class="fas fa-plus"></i> Add SMS Templete </button>
-                    
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="search" placeholder="Search By Category Name">
-                </div>
+                <form action="" class="col-4">
+                    <div class="form-group d-flex">
+                        <input class="form-control" type="search" placeholder="Search By Templete Name" name="search" value="<?php echo e($search); ?>">
+                        <button class="btn btn-info btn-sm ml-2">Search</button>
+                    </div>
+                </form> 
             </div>
             <div class="card">
                 <div class="card-header">Home Details</div>

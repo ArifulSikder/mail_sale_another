@@ -34,99 +34,105 @@
                         <i class="fas fa-plus"></i> Add Product
                     </button>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="search" placeholder="Search By Category Name">
-                </div>
+                <form action="">
+                    <div class="form-group d-flex">
+                        <input class="form-control" type="search" placeholder="Search By Product Name" name="search" value="{{ $search }}">
+                        <button class="btn btn-info btn-sm ml-2">Search</button>
+                    </div>
+                </form>
+                
             </div>
             <div class="card">
                 <div class="card-header">Products Table</div>
                 <div class="card-body">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th scope="col" style="width: 5%">Serial</th>
-                                <th scope="col" style="width: 10%">Thumbnail</th>
-                                <th scope="col" style="width: 10%">Product Name</th>
-                                <th scope="col" style="width: 10%">Category Name</th>
-                                <th scope="col" style="width: 10%">Subcategory Name</th>
-                                <th scope="col" style="width: 10%">Slug</th>
-                                <th scope="col" style="width: 10%">Selling Price</th>
-                                <th scope="col" style="width: 10%">Active Status</th>
-                                <th scope="col" style="width: 10%">Pin Status</th>
-                                <th scope="col" style="width: 10%">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php
-                                $serials = ($products->currentpage() - 1) * $products->perpage() + 1;
-                            @endphp
-                            @foreach($products as $product)
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <th scope="row">{{ $serials++ }}</th>
-                                    <td>
-                                        <img width="100px" src="{{ $product->thumbnail }}" alt="" srcset="">
-                                    </td>
-                                    <td>{{ $product->name }}</td>
-                                    <td>{{ $product->category->name }}</td>
-                                    <td>{{ $product->subcategory->name }}</td>
-                                    <td>{{ $product->slug }}</td>
-                                    <td>{{ $product->selling_price }} $</td>
-                                    <td><span
-                                            class="badge badge-{{ $product->active_status == 0 ? 'danger': 'success' }}">{{ $product->active_status == 0 ? 'Inactive': 'Active' }}</span>
-                                    </td>
-                                    <td> 
-                                        <span class="badge badge-{{ $product->pinned == 0 ? 'danger': 'success' }}">{{ $product->pinned == 0 ? 'Unpinned': 'Pinned' }}</span>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button"
-                                                class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
-                                                data-toggle="dropdown">
-                                                Options
-                                            </button>
-                                            <div class="dropdown-menu text-center bg-light-blue">
-                                                <button type="button" data-id="{{ $product->id }}"
-                                                    data-name="{{ $product->name }}"
-                                                    data-category_id="{{ $product->category_id }}"
-                                                    data-sub_category_id="{{ $product->sub_category_id }}"
-                                                    data-slug="{{ $product->slug }}"
-                                                    data-selling_price="{{ $product->selling_price }}"
-                                                    data-active_status="{{ $product->active_status }}"
-                                                    class="btn btn-success btn-sm editData myProduct btn-block">
-                                                    <i class="fas fa-edit"></i> Edit
-                                                </button>
-
-                                                @if ($product->pinned == 1)
-                                                    <a href="{{ route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ]) }}"  class="btn btn-danger btn-sm btn-block"><i class="fas fa-thumbtack"></i> Unpin Product</a> 
-                                                @else
-                                                    <a href="{{ route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ]) }}"  class="btn btn-success btn-sm btn-block"><i class="fas fa-thumbtack"></i> Pin Product</a>
-                                                @endif
-
-                                                <a href="{{ url('product-advantages/'. $product->id) }}"
-                                                    class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Advantages</a>
-
-                                                <a href="{{ url('product-details/'. $product->id) }}"
-                                                    class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Details</a>
-
-                                                <a href="{{ url('product-description/'. $product->id) }}"
-                                                    class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Description</a>
-
-                                                <a href="{{ url('delete-product/'. $product->id) }}"
-                                                    id="delete" class="btn btn-danger btn-sm btn-block"><i
-                                                        class="fas fa-trash"></i>Delete</a>
-                                                
-
-                                            </div>
-                                        </div>
-
-
-                                    </td>
+                                    <th scope="col" style="width: 5%">Serial</th>
+                                    <th scope="col" style="width: 10%">Thumbnail</th>
+                                    <th scope="col" style="width: 10%">Product Name</th>
+                                    <th scope="col" style="width: 10%">Category Name</th>
+                                    <th scope="col" style="width: 10%">Subcategory Name</th>
+                                    <th scope="col" style="width: 10%">Slug</th>
+                                    <th scope="col" style="width: 10%">Selling Price</th>
+                                    <th scope="col" style="width: 10%">Active Status</th>
+                                    <th scope="col" style="width: 10%">Pin Status</th>
+                                    <th scope="col" style="width: 10%">Action</th>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                    <div class="float-right my-2">
-                        {{ $products->links() }}
+                            </thead>
+                            <tbody>
+                                @php
+                                    $serials = ($products->currentpage() - 1) * $products->perpage() + 1;
+                                @endphp
+                                @foreach($products as $product)
+                                    <tr>
+                                        <th scope="row">{{ $serials++ }}</th>
+                                        <td>
+                                            <img width="100px" src="{{ $product->thumbnail }}" alt="" srcset="">
+                                        </td>
+                                        <td>{{ $product->name }}</td>
+                                        <td>{{ $product->category->name }}</td>
+                                        <td>{{ $product->subcategory->name }}</td>
+                                        <td>{{ $product->slug }}</td>
+                                        <td>{{ $product->selling_price }} $</td>
+                                        <td><span
+                                                class="badge badge-{{ $product->active_status == 0 ? 'danger': 'success' }}">{{ $product->active_status == 0 ? 'Inactive': 'Active' }}</span>
+                                        </td>
+                                        <td> 
+                                            <span class="badge badge-{{ $product->pinned == 0 ? 'danger': 'success' }}">{{ $product->pinned == 0 ? 'Unpinned': 'Pinned' }}</span>
+                                        </td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button"
+                                                    class="btn btn-primary btn-sm rounded-pill btn-rounded dropdown-toggle"
+                                                    data-toggle="dropdown">
+                                                    Options
+                                                </button>
+                                                <div class="dropdown-menu text-center bg-light-blue">
+                                                    <button type="button" data-id="{{ $product->id }}"
+                                                        data-name="{{ $product->name }}"
+                                                        data-category_id="{{ $product->category_id }}"
+                                                        data-sub_category_id="{{ $product->sub_category_id }}"
+                                                        data-slug="{{ $product->slug }}"
+                                                        data-selling_price="{{ $product->selling_price }}"
+                                                        data-active_status="{{ $product->active_status }}"
+                                                        class="btn btn-success btn-sm editData myProduct btn-block">
+                                                        <i class="fas fa-edit"></i> Edit
+                                                    </button>
+
+                                                    @if ($product->pinned == 1)
+                                                        <a href="{{ route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ]) }}"  class="btn btn-danger btn-sm btn-block"><i class="fas fa-thumbtack"></i> Unpin Product</a> 
+                                                    @else
+                                                        <a href="{{ route('update-pin-status', ['id' => $product->id , 'status' => $product->pinned ]) }}"  class="btn btn-success btn-sm btn-block"><i class="fas fa-thumbtack"></i> Pin Product</a>
+                                                    @endif
+
+                                                    <a href="{{ url('product-advantages/'. $product->id) }}"
+                                                        class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Advantages</a>
+
+                                                    <a href="{{ url('product-details/'. $product->id) }}"
+                                                        class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Details</a>
+
+                                                    <a href="{{ url('product-description/'. $product->id) }}"
+                                                        class="btn btn-info btn-sm btn-block"> <i class="fas fa-angle-double-right"></i> Description</a>
+
+                                                    <a href="{{ url('delete-product/'. $product->id) }}"
+                                                        id="delete" class="btn btn-danger btn-sm btn-block"><i
+                                                            class="fas fa-trash"></i>Delete</a>
+                                                    
+
+                                                </div>
+                                            </div>
+
+
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <div class="float-right my-2">
+                            {{ $products->links() }}
+                        </div>
                     </div>
                 </div>
             </div>

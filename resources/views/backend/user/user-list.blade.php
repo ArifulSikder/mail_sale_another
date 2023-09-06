@@ -25,6 +25,14 @@
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
+        <div class="my-1 d-flex justify-content-end">
+            <form action="" class="col-4">
+                <div class="form-group d-flex">
+                    <input class="form-control" type="search" placeholder="Search By Username Or Type" name="search" value="{{ $search }}">
+                    <button class="btn btn-info btn-sm ml-2">Search</button>
+                </div>
+            </form> 
+        </div>
         <div class="card">
             <div class="card-header">Users Table</div>
             <div class="card-body">

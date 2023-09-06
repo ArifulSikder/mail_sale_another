@@ -20,9 +20,17 @@ use Illuminate\Support\Facades\Validator;
 class HomePageController extends Controller
 {
     // HOME PAVESHOP SHOW  
-    public function showDetails()
+    public function showDetails(Request $request)
     {
-        $data['details']= HomePaveshop::latest()->paginate(10);
+        $search = $request->search;
+        $data['details'] = HomePaveshop::latest()
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('title', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['details']= HomePaveshop::latest()->paginate(10);
         return view('backend.homepage.homepaveshop.indexPaveshop', $data);
     }
 
@@ -166,9 +174,15 @@ class HomePageController extends Controller
     }
 
     // MEET TEAM SOHOW INDEX PAGE
-    public function meetTeam()
+    public function meetTeam(Request $request)
     {
-        $data['members'] = MeetTeam::latest()->paginate(10);
+        $search = $request->search;
+        $data['members'] = MeetTeam::latest()
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
         return view('backend.homepage.team.indexTeam', $data );
     }
 
@@ -340,10 +354,18 @@ class HomePageController extends Controller
 
     // START TOP SLIDER //
     // START TOP SLIDER INDEX PAGE 
-    public function sliderIndex()
+    public function sliderIndex(Request $request)
     {
+        $search = $request->search;
+        $data['sliders'] = Slider::latest()
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('title', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
         $data['subcategories'] = Category::all();
-        $data['sliders'] = Slider::latest()->paginate(10);
+        // $data['sliders'] = Slider::latest()->paginate(10);
         return view('backend.homepage.slider.sliderIndex', $data);
     }
 
@@ -545,9 +567,17 @@ class HomePageController extends Controller
 
     // PRODUCT GUARANTEE START FROM HERE 
     // PRODUCT GUARANTEE INDEX
-    public function productIndex()
+    public function productIndex(Request $request)
     {
-        $data['guarantees'] = ProductGuarantee::latest()->paginate(10);
+        $search = $request->search;
+        $data['guarantees'] = ProductGuarantee::latest()
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('title', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['guarantees'] = ProductGuarantee::latest()->paginate(10);
         return view('backend.homepage.productGuarantee.GuaranteeIndex', $data);
     }
 
@@ -887,9 +917,17 @@ class HomePageController extends Controller
     }
 
     // FAQ Category Start 
-    public function addFaqCategory()
+    public function addFaqCategory(Request $request)
     {
-        $data['categories'] = FAQCategory::latest()->paginate(15);
+        $search = $request->search;
+        $data['categories'] = FAQCategory::latest()
+            ->when($search !== null, function ($query) use ($search) {
+                return $query->where('category_title', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['categories'] = FAQCategory::latest()->paginate(15);
         return view('backend.homepage.faq.faqIndex', $data);
     }
 
@@ -1199,9 +1237,17 @@ class HomePageController extends Controller
     }
 
     // about us 
-    public function aboutUs()
+    public function aboutUs(Request $request)
     {
-        $data['aboutUs'] = AboutUs::latest()->paginate(15);
+        $search = $request->search;
+        $data['aboutUs'] = AboutUs::latest()
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('description', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['aboutUs'] = AboutUs::latest()->paginate(15);
         return view('backend.aboutUs.aboutIndex', $data);
     }
 

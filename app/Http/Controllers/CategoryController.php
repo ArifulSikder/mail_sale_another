@@ -14,9 +14,17 @@ class CategoryController extends Controller
 {
 
     //********************************** category start ************************************** */
-    public function index()
+    public function index(Request $request)
     {
-        $data['categories'] = Category::orderBy('name', 'ASC')->where('parent_id', null)->paginate(10);
+        $search = $request->search;
+        $data['categories'] = Category::orderBy('name', 'ASC')->where('parent_id', null)
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['categories'] = Category::orderBy('name', 'ASC')->where('parent_id', null)->paginate(10);
         return view('backend.product.category.index', $data);
     }
     
@@ -96,10 +104,18 @@ class CategoryController extends Controller
 
     //*************************************** sub category start ******************************************** */
 
-    public function indexSubCategory()
+    public function indexSubCategory(Request $request)
     {
+        $search = $request->search;
+        $data['subCategories'] = Category::with('category')->where('parent_id','!=', null)
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
         $data['categories'] = Category::where('parent_id', null)->get();
-        $data['subCategories'] = Category::with('category')->where('parent_id','!=', null)->paginate(10);
+        // $data['subCategories'] = Category::with('category')->where('parent_id','!=', null)->paginate(10);
         return view('backend.product.sub_category.index', $data);
     }
 

@@ -29,16 +29,16 @@
         <div class="container-fluid">
             <div class="my-1 d-flex justify-content-between">
                 <div>
-                    {{-- <button type="button" class="btn btn-success myProduct" data-toggle="modal" data-target="#addNew">
-                        <i class="fas fa-plus"></i> Add Home Details
-                    </button> --}}
                     <a href="{{ route('add-business-policy') }}" class="btn btn-success" >
                         <i class="fas fa-plus"></i> Add Business Policy
                     </a>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="search" placeholder="Search By Category Name">
-                </div>
+                <form action="">
+                    <div class="form-group d-flex">
+                        <input class="form-control" type="search" placeholder="Search By Policy Type" name="search" value="">
+                        <button class="btn btn-info btn-sm ml-2">Search</button>
+                    </div>
+                </form> 
             </div>
             <div class="card">
                 <div class="card-header">Home Details</div>
@@ -63,13 +63,13 @@
                                     <th>{{ $serials++ }}</th>
                                     <td>
                                         @if ($policy->policy_type == 1)
-                                            <span class="badge badge-warning">Refund Policy</span>
+                                            <span>Refund Policy</span>
                                         @elseif($policy->policy_type == 2)
-                                            <span class="badge badge-warning">Privacy Policy</span>
+                                            <span>Privacy Policy</span>
                                         @elseif($policy->policy_type == 3)
-                                            <span class="badge badge-warning">Terms Of Service</span>
+                                            <span>Terms Of Service</span>
                                         @elseif($policy->policy_type == 4)
-                                            <span class="badge badge-warning">Disclaimer</span>
+                                            <span>Disclaimer</span>
                                         @endif
                                         
                                     </td>

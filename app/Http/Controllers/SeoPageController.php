@@ -11,8 +11,16 @@ use Illuminate\Support\Facades\File;
 class SeoPageController extends Controller
 {
 
-    public function seoPagesIndex(){
-        $data['pages'] = SeoPage::latest()->orderBy('slug', 'asc')->paginate(10);
+    public function seoPagesIndex(Request $request){
+        $search = $request->search;
+        $data['pages'] = SeoPage::latest()
+            ->when($search !== null, function ($query) use ($search) {
+                return $query->where('title', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['pages'] = SeoPage::latest()->paginate(10);
         return view('backend.seo.indexSeoContent',$data);
     }
 

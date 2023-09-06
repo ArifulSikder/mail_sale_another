@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('customer_sms_defaults', function (Blueprint $table) {
             $table->id();
-            $table->string('templete_name');
+            $table->foreignId('templete_id')->nullable();
             $table->string('subject');
             $table->text('message');
             $table->text('visit_link');

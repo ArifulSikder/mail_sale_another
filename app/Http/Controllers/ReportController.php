@@ -10,7 +10,34 @@ class ReportController extends Controller
 {
     public function salesReport()
     {
-        return view('backend.report.salesReport');
+        $now = new Carbon();
+        $year = $now->format('Y');
+
+        $monthlySalesTk = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $everyMonthSalesTk = Order::whereYear('created_at', $year)
+                ->whereMonth('created_at', $i)
+                ->where('status', 'Completed')
+                ->sum('total_price');
+
+            $monthlySalesTk["$year-$i-1"] = $everyMonthSalesTk;
+        }
+
+        $yearlySales = Order::whereYear('created_at', $year)
+        ->where('status', 'Completed')
+        ->sum('total_price');
+
+        $monthlySalesPercentage = [];
+        for ($i = 1; $i <= 12; $i++) {
+            $everyMonthSalesPercentage = Order::whereYear('created_at', $year)
+                ->whereMonth('created_at', $i)
+                ->where('status', 'Completed')
+                ->sum('total_price') * 100 / $yearlySales ;
+
+            $monthlySalesPercentage["$year-$i-1"] = round($everyMonthSalesPercentage);
+        }
+
+        return view('backend.report.salesReport', compact('monthlySalesTk', 'monthlySalesPercentage'));
     }
 
     public function orderReport()
@@ -26,6 +53,7 @@ class ReportController extends Controller
 
             $monthlyOrderTk["$year-$i-1"] = $everyMonthOrderTk;
         }
+
 
         $yearlySales = Order::whereYear('created_at', $year)
         ->sum('total_price');

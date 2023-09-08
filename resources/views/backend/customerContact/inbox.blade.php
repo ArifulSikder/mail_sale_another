@@ -72,14 +72,16 @@
               <h3 class="card-title">Inbox</h3>
 
               <div class="card-tools">
-                <div class="input-group input-group-sm">
-                  <input type="text" class="form-control" placeholder="Search Mail">
-                  <div class="input-group-append">
-                    <div class="btn btn-primary">
-                      <i class="fas fa-search"></i>
+                <form action="">
+                  <div class="input-group input-group-sm">
+                    <input type="search" class="form-control" placeholder="Search By Mail Or Name" name="search" value="{{ $search }}">
+                    <div class="input-group-append">
+                      <button class="btn btn-primary">
+                        <i class="fas fa-search"></i>
+                      </button>
                     </div>
                   </div>
-                </div>
+                </form>
               </div>
               <!-- /.card-tools -->
             </div>

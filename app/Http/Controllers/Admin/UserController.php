@@ -11,9 +11,17 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $data['users'] = User::latest()->paginate(10);
+        $search = $request->search;
+        $data['users'] = User::latest()
+            ->when($search !== null, function ($query) use ($search) {
+                return $query->where('username', 'LIKE', "%{$search}%")->orWhere('type', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['users'] = User::latest()->paginate(10);
         return view('backend.user.user-list', $data);
     }
 

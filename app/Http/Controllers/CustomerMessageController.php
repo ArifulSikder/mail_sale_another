@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Mail\DefaultSend;
 use App\Mail\ReciveMail;
 use App\Mail\SenMail;
 use App\Models\CustomerMessage;
@@ -50,13 +51,14 @@ class CustomerMessageController extends Controller
         Mail::to('islammahfuzul31@gmail.com')->send(new ReciveMail($data));
 
         // mail content to user
-        $user_data = [
+        $default_sms = CustomerSmsDefault::where('active_status', 1)->first();
+        $default_data = [
             'name' => $request->name,
-            'subject' => 'subject add hobe',
-            'message' => $request->message,
-            'visit_link' => 'https://laravel.com/docs/9.x/mail',
+            'subject' => $default_sms->subject,
+            'message' => $default_sms->message,
+            'visit_link' => $default_sms->visit_link,
         ];
-        Mail::to($request->email)->send(new SenMail($user_data));
+        Mail::to($request->email)->send(new DefaultSend($default_data));
 
         if ($message) {
             return response()->json([
@@ -70,11 +72,19 @@ class CustomerMessageController extends Controller
     }
 
     // view customer message  in admin dashboard
-    public function customerContact()
+    public function customerContact(Request $request)
     {
+        $search = $request->search;
+        $data['messages'] = CustomerMessage::latest()
+            ->when($search !== null, function ($query) use ($search) {
+                return $query->where('name', 'LIKE', "%{$search}%")->orWhere('email', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['messages'] = CustomerMessage::latest()->paginate(15);
         $data['msg_count_send'] = SendMsgCustomer::count();
         $data['msg_count_inbox'] = CustomerMessage::count();
-        $data['messages'] = CustomerMessage::latest()->paginate(15);
         $data['templetes'] = SmsTemplete::latest()->get();
         return view('backend.customerContact.inbox', $data);
     }
@@ -151,12 +161,18 @@ class CustomerMessageController extends Controller
         }
     }
 
-
-
     // sms templete
-    public function smsTemplete()
+    public function smsTemplete(Request $request)
     {
-        $data['templetes'] = SmsTemplete::latest()->paginate(15);
+        $search = $request->search;
+        $data['templetes'] = SmsTemplete::latest()
+            ->when($search !== null, function ($query) use ($search) {
+                return $query->where('templete_name', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['templetes'] = SmsTemplete::latest()->paginate(10);
         return view('backend.SmsTemplete.smsTempleteIndex', $data);
     }
 
@@ -321,7 +337,7 @@ class CustomerMessageController extends Controller
             ->where('active_status', 1)
             ->select('email')
             ->get();
-       
+
         session(['emails' => json_encode($emails)]);
         return response()->json([
             'status' => 200,
@@ -330,7 +346,9 @@ class CustomerMessageController extends Controller
 
     public function sendMsgCustomer(Request $request)
     {
-        Validator::make($request->all(),[
+        Validator::make(
+            $request->all(),
+            [
                 'templete_name' => 'required|string',
                 'subject' => 'required|max:100',
                 'visit_link' => 'required',
@@ -358,8 +376,8 @@ class CustomerMessageController extends Controller
             $send->subject = $request->subject;
             $send->visit_link = $request->visit_link;
             $send->message = $request->message;
-            $send->created_by = Auth::id();                 
-            $send->save();  
+            $send->created_by = Auth::id();
+            $send->save();
             Mail::to($email)->send(new SenMail($user_data));
         }
 
@@ -368,11 +386,19 @@ class CustomerMessageController extends Controller
         ]);
     }
 
-    public function sendMailIndex()
+    public function sendMailIndex(Request $request)
     {
+        $search = $request->search;
+        $data['messages'] = SendMsgCustomer::latest()
+            ->when($search !== null, function ($query) use ($search) {
+                return $query->where('email', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
         $data['msg_count_send'] = SendMsgCustomer::count();
         $data['msg_count_inbox'] = CustomerMessage::count();
-        $data['messages'] = SendMsgCustomer::latest()->paginate(15);
+        // $data['messages'] = SendMsgCustomer::latest()->paginate(15);
         return view('backend.customerContact.sendIndes', $data);
     }
 
@@ -394,10 +420,18 @@ class CustomerMessageController extends Controller
 
     //DEFAULT SMS FOR CUSTOMER
 
-    public function defaultSms()
+    public function defaultSms(Request $request)
     {
+        $search = $request->search;
+        $data['default_sms'] = CustomerSmsDefault::latest()
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('subject', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
         $data['templetes'] = SmsTemplete::latest()->get();
-        $data['default_sms'] = CustomerSmsDefault::latest()->get();
+        // $data['default_sms'] = CustomerSmsDefault::latest()->paginate('10');
         return view('backend.customerContact.defaultSms', $data);
     }
 
@@ -406,14 +440,12 @@ class CustomerMessageController extends Controller
         Validator::make(
             $request->all(),
             [
-                'templete_name' => 'required|string|unique:sms_templetes',
                 'subject' => 'required',
                 'visit_link' => 'required|string',
                 'message' => 'required|string',
                 'active_status' => 'required|in:0,1',
             ],
             [
-                'templete_name.required' => 'Please Enter The Templete Name',
                 'subject.required' => 'Please Enter The Subject',
                 'visit_link.required' => 'Please Input The Visit Link',
                 'message.required' => 'Please Enter The Message',
@@ -423,12 +455,18 @@ class CustomerMessageController extends Controller
 
         $templete = new CustomerSmsDefault();
 
-        $templete->templete_name = $request->templete_name;
+        $templete->templete_id = $request->templete_id;
         $templete->subject = $request->subject;
         $templete->visit_link = $request->visit_link;
         $templete->message = $request->message;
         $templete->active_status = $request->active_status;
         $templete->created_by = Auth::id();
+
+        if ($request->active_status == 1) {
+            CustomerSmsDefault::Where('active_status', 1)
+                ->where('id', '!=', $templete->id)
+                ->update(['active_status' => 0]);
+        }
 
         if ($templete->save()) {
             return response()->json([
@@ -440,5 +478,106 @@ class CustomerMessageController extends Controller
             ]);
         }
     }
-        
+
+    public function updateDefaultSms(Request $request)
+    {
+        Validator::make(
+            $request->all(),
+            [
+                'subject' => 'required',
+                'visit_link' => 'required|string',
+                'message' => 'required|string',
+                'active_status' => 'required|in:0,1',
+            ],
+            [
+                'subject.required' => 'Please Enter The Subject',
+                'visit_link.required' => 'Please Input The Visit Link',
+                'message.required' => 'Please Enter The Message',
+                'active_status.required' => 'Please Select The Status',
+            ],
+        )->validate();
+
+        $templete = CustomerSmsDefault::findOrFail($request->edit_id);
+
+        $templete->templete_id = $request->templete_id;
+        $templete->subject = $request->subject;
+        $templete->visit_link = $request->visit_link;
+        $templete->message = $request->message;
+        $templete->active_status = $request->active_status;
+        $templete->created_by = Auth::id();
+
+        if ($request->active_status == 1) {
+            CustomerSmsDefault::Where('active_status', 1)
+                ->where('id', '!=', $templete->id)
+                ->update(['active_status' => 0]);
+        }
+
+        if ($templete->save()) {
+            return response()->json([
+                'success' => 'Default Templete Updated Successfully.',
+            ]);
+        } else {
+            return response()->json([
+                'error' => 'Opps! Something Went Wrong.',
+            ]);
+        }
+    }
+
+    public function deleteDefault($id)
+    {
+        $delete = CustomerSmsDefault::findOrFail($id)->delete();
+
+        if ($delete == true) {
+            $notification = [
+                'success' => 'Customer SMS Default Deleted Successfully.',
+            ];
+        } else {
+            $notification = [
+                'error' => 'Opps! There Is A Problem!',
+            ];
+        }
+
+        return back()->with($notification);
+    }
+
+    public function updatDefaultStatus($id, $status)
+    {
+        if ($status == 0) {
+            $team = CustomerSmsDefault::findOrFail($id)->update([
+                'active_status' => '1',
+                'updated_by' => Auth::id(),
+            ]);
+
+            CustomerSmsDefault::Where('active_status', 1)
+                ->where('id', '!=', $id)
+                ->update(['active_status' => 0]);
+
+            if ($team == true) {
+                $notification = [
+                    'success' => 'Status Activated Successfully.',
+                ];
+            } else {
+                $notification = [
+                    'error' => 'Opps! There Is A Problem!',
+                ];
+            }
+            return back()->with($notification);
+        } elseif ($status == 1) {
+            $team = CustomerSmsDefault::findOrFail($id)->update([
+                'active_status' => '0',
+                'updated_by' => Auth::id(),
+            ]);
+
+            if ($team == true) {
+                $notification = [
+                    'success' => 'Status inactivated Successfully.',
+                ];
+            } else {
+                $notification = [
+                    'error' => 'Opps! There Is A Problem!',
+                ];
+            }
+            return back()->with($notification);
+        }
+    }
 }

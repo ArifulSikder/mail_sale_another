@@ -19,6 +19,7 @@
                             <li class="breadcrumb-item active">Add SEO Content</li>
                         </ol>
                     </div><!-- /.col -->
+                    
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
@@ -27,9 +28,18 @@
         <!-- Main content -->
         <section class="content">
             <div class="container-fluid">
+                <div class="my-1 d-flex justify-content-end">
+                    <form action="">
+                        <div class="form-group d-flex">
+                            <input class="form-control" type="search" placeholder="Search By Title" name="search" value="<?php echo e($search); ?>">
+                            <button class="btn btn-info btn-sm ml-2">Search</button>
+                        </div>
+                    </form> 
+                </div>
                 <div class="col-lg-12 col-md-12">
                     <div class="card">
                         <div class="card-header">SEO Content Table</div>
+                        
                         <div class="body">
                             <div class="card text-sm">
                                 <!-- /.card-header -->

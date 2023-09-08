@@ -192,6 +192,9 @@ Route::delete('delete-sent-message', [CustomerMessageController::class, 'deleteS
 // default sms 
 Route::get('default-sms', [CustomerMessageController::class, 'defaultSms'])->name('default-sms');
 Route::post('store-defalult-sms', [CustomerMessageController::class, 'storeDefaultSms'])->name('store-defalult-sms');
+Route::post('update-defalult-sms', [CustomerMessageController::class, 'updateDefaultSms'])->name('update-defalult-sms');
+Route::get('delete-default-sms/{id}', [CustomerMessageController::class, 'deleteDefault'])->name('delete-default-sms');
+Route::get('update-default-status/{id}/{status}', [CustomerMessageController::class, 'updatDefaultStatus'])->name('update-default-status');
 
 
 // SMS Templete 

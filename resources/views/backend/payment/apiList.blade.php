@@ -32,9 +32,12 @@
                         <button type="button" class="btn btn-success " data-toggle="modal" data-target="#addapi"><i
                                 class="fas fa-plus"></i> Add API</button>
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" type="search" placeholder="Search By Category Name">
-                    </div>
+                    <form action="">
+                        <div class="form-group d-flex">
+                            <input class="form-control" type="search" placeholder="Search By Mode" name="search" value="">
+                            <button class="btn btn-info btn-sm ml-2">Search</button>
+                        </div>
+                    </form> 
                 </div>
                 <div class="card">
                     <div class="card-header">API List Table</div>

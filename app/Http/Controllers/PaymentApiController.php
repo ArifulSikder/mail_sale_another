@@ -10,11 +10,17 @@ use Illuminate\Support\Facades\Validator;
 
 class PaymentApiController extends Controller
 {
-    public function payApiList()
+    public function payApiList(Request $request)
     {
+        $search = $request->search;
         $data['api_list'] = PaymentApi::orderBy('payment_type', 'DESC')
-        ->orderBy('mode', 'DESC')
-        ->paginate(15);
+            ->when($search !== null, function ($query) use($search) {
+                return $query->where('mode', 'LIKE', "%{$search}%");
+            })
+            ->paginate(15);
+        $data['search'] = $search;
+
+        // $data['api_list'] = PaymentApi::orderBy('payment_type', 'DESC')->orderBy('mode', 'DESC')->paginate(15);
         return view('backend.payment.apiList', $data);
     }
 

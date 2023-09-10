@@ -308,7 +308,7 @@ class AdapterFeatureTest extends TestCase
 
         $expectedParams = $this->updateDisputeParams();
 
-        $response = $this->client->updateDispute($expectedParams, 'PP-D-27803');
+        $response = $this->client->updateDispute('PP-D-27803', $expectedParams);
 
         $this->assertEmpty($response);
     }
@@ -1908,6 +1908,28 @@ class AdapterFeatureTest extends TestCase
     }
 
     /** @test */
+    public function it_can_list_tracking_details()
+    {
+        $this->client->setAccessToken([
+            'access_token'  => self::$access_token,
+            'token_type'    => 'Bearer',
+        ]);
+
+        $this->client->setClient(
+            $this->mock_http_client(
+                $this->mockGetTrackingDetailsResponse()
+            )
+        );
+
+        $response = $this->client->listTrackingDetails('8MC585209K746392H-443844607820');
+
+        $this->assertNotEmpty($response);
+        $this->assertEquals($response, $this->mockGetTrackingDetailsResponse());
+        $this->assertArrayHasKey('transaction_id', $response);
+        $this->assertArrayHasKey('tracking_number', $response);
+    }
+
+    /** @test */
     public function it_can_get_tracking_details_for_tracking_id()
     {
         $this->client->setAccessToken([
@@ -1965,6 +1987,28 @@ class AdapterFeatureTest extends TestCase
         $expectedParams = $this->mockCreateTrackinginBatchesParams();
 
         $response = $this->client->addBatchTracking($expectedParams);
+
+        $this->assertNotEmpty($response);
+        $this->assertArrayHasKey('tracker_identifiers', $response);
+    }
+
+    /** @test */
+    public function it_can_create_single_tracking_for_single_transaction()
+    {
+        $this->client->setAccessToken([
+            'access_token'  => self::$access_token,
+            'token_type'    => 'Bearer',
+        ]);
+
+        $this->client->setClient(
+            $this->mock_http_client(
+                $this->mockCreateTrackinginBatchesResponse()
+            )
+        );
+
+        $expectedParams = $this->mockCreateTrackinginBatchesParams();
+
+        $response = $this->client->addTracking($expectedParams);
 
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('tracker_identifiers', $response);
@@ -2194,5 +2238,87 @@ class AdapterFeatureTest extends TestCase
 
         $this->assertNotEmpty($response);
         $this->assertArrayHasKey('verification_status', $response);
+    }
+
+    /** @test */
+    public function it_can_list_payment_methods_source_tokens()
+    {
+        $this->client->setAccessToken([
+            'access_token'  => self::$access_token,
+            'token_type'    => 'Bearer',
+        ]);
+
+        $this->client->setClient(
+            $this->mock_http_client(
+                $this->mockListPaymentMethodsTokensResponse()
+            )
+        );
+
+        $response = $this->client->setCustomerSource('customer_4029352050')
+        ->listPaymentSourceTokens();
+
+        $this->assertNotEmpty($response);
+        $this->assertArrayHasKey('payment_tokens', $response);
+    }
+
+    /** @test */
+    public function it_can_show_details_for_payment_method_source_token()
+    {
+        $this->client->setAccessToken([
+            'access_token'  => self::$access_token,
+            'token_type'    => 'Bearer',
+        ]);
+
+        $this->client->setClient(
+            $this->mock_http_client(
+                $this->mockCreatePaymentMethodsTokenResponse()
+            )
+        );
+
+        $response = $this->client->showPaymentSourceTokenDetails('8kk8451t');
+
+        $this->assertNotEmpty($response);
+        $this->assertArrayHasKey('id', $response);
+        $this->assertArrayHasKey('customer', $response);
+        $this->assertArrayHasKey('payment_source', $response);
+    }
+
+    /** @test */
+    public function it_can_delete_a_payment_method_source_token()
+    {
+        $this->client->setAccessToken([
+            'access_token'  => self::$access_token,
+            'token_type'    => 'Bearer',
+        ]);
+
+        $this->client->setClient(
+            $this->mock_http_client(false)
+        );
+
+        $response = $this->client->deletePaymentSourceToken('8kk8451t');
+
+        $this->assertEmpty($response);
+    }
+
+    /** @test */
+    public function it_can_show_details_for_payment_setup_token()
+    {
+        $this->client->setAccessToken([
+            'access_token'  => self::$access_token,
+            'token_type'    => 'Bearer',
+        ]);
+
+        $this->client->setClient(
+            $this->mock_http_client(
+                $this->mockListPaymentSetupTokenResponse()
+            )
+        );
+
+        $response = $this->client->showPaymentSetupTokenDetails('5C991763VB2781612');
+
+        $this->assertNotEmpty($response);
+        $this->assertArrayHasKey('id', $response);
+        $this->assertArrayHasKey('customer', $response);
+        $this->assertArrayHasKey('payment_source', $response);
     }
 }

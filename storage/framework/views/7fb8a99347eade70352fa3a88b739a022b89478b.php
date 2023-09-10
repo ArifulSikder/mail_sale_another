@@ -12,6 +12,7 @@
     <!-- all -->
     <link rel="stylesheet" href="<?php echo e(asset('build/assets/app-36dc2d77.css')); ?> ">
     
+    
     <link rel="stylesheet" href="<?php echo e(asset('backend/dist/css/custom.css')); ?> ">
     
     <link rel="stylesheet" href="<?php echo e(asset('backend/plugins/toastr/toastr.css')); ?> ">

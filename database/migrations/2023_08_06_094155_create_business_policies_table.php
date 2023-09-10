@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('business_policies', function (Blueprint $table) {
             $table->id();
-            $table->integer('policy_type');
+            $table->integer('policy_type')->comment('1=refund, 2=privacy, 3=terms, 4=disclaimer');
             $table->longText('description');
             $table->boolean('active_status')->default(1);
             $table->foreignId('created_by');

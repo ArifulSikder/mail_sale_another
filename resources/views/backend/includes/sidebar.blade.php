@@ -169,8 +169,8 @@
                 </li>
 
                 <!-- CUSTOMER CONTACT  -->
-                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*', 'default-sms']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*', 'default-sms']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['customer-contact', 'show-individual-message*', 'send-mail-index', 'show-individual-sent*']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-envelope"></i>
                         <p>
                             Customer Contact
@@ -183,13 +183,7 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Inbox</p>    
                             </a>
-                        </li>  
-                        <li class="nav-item">
-                            <a href="{{  url('default-sms')  }}" class="nav-link {{ request()->is('default-sms') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Default SMS</p>    
-                            </a>
-                        </li>       
+                        </li>      
                     </ul>
                 </li>
 
@@ -296,8 +290,8 @@
                 </li>
 
                 <!-- Settings -->
-                <li class="nav-item {{ request()->is(['add-business-policy', 'show-business-policy', 'sms-templete', 'set-email']) ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is(['add-business-policy', 'show-business-policy', 'sms-templete', 'set-email']) ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is(['add-business-policy', 'show-business-policy', 'sms-templete', 'set-email', 'edit-business-policy*', 'default-sms']) ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is(['add-business-policy', 'show-business-policy', 'sms-templete', 'set-email', 'edit-business-policy*', 'default-sms']) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             Settings
@@ -312,7 +306,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('show-business-policy') }}" class="nav-link {{ request()->is(['show-business-policy']) ? 'active' : '' }}">
+                            <a href="{{ route('show-business-policy') }}" class="nav-link {{ request()->is(['show-business-policy', 'edit-business-policy*']) ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Show Business Policy</p>
                             </a>
@@ -329,6 +323,18 @@
                                 <p>Set Email</p>
                             </a>
                         </li> 
+                        <li class="nav-item">
+                            <a href="{{  url('default-sms')  }}" class="nav-link {{ request()->is('default-sms') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Default SMS</p>    
+                            </a>
+                        </li>  
+                        <li class="nav-item">
+                            <a href="{{  url('default-sms')  }}" class="nav-link {{ request()->is('default-sms') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Order Default SMS</p>    
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

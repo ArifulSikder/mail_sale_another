@@ -8,13 +8,22 @@ use App\Models\Seller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\StockManagement as Stock;
-use Illuminate\Support\Facades\Validator;
 
 class StockManagement extends Controller
 {
-    public function indexPurchase()
+    public function indexPurchase(Request $request)
     {
-        $data['purchases'] = Purchase::latest()->paginate(10);
+        $search = $request->search;
+        $data['purchases'] = Purchase::latest()
+            ->when($search !== null, function ($query) use($search) {
+                 $query->whereHas('product', function($query) use($search){
+                    $query->Where("name", "like","%$search%");
+                 });
+            })
+            ->paginate(10);
+        $data['search'] = $search;
+
+        // $data['purchases'] = Purchase::latest()->paginate(10);
         $data['sellers'] = Seller::orderBy('seller_name', 'asc')->get();
         $data['products'] = Product::where('active_status', 1)
             ->orderBy('name', 'asc')

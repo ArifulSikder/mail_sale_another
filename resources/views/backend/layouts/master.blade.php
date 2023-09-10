@@ -11,6 +11,7 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- all -->
     <link rel="stylesheet" href="{{ asset('build/assets/app-36dc2d77.css') }} ">
+    {{-- <link rel="shortcut icon" href="{{ asset($setting->favicon) }}" type="image/x-icon"> --}}
     {{-- custom --}}
     <link rel="stylesheet" href="{{ asset('backend/dist/css/custom.css') }} ">
     {{-- toastr --}}

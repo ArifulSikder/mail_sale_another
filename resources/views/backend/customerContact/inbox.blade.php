@@ -253,26 +253,35 @@
             all_ids.push($(this).val()); 
           });
 
-          $.ajax({
-            type: "DELETE",
-            url: "{{ route('delete-customer-message') }}",
-            data: {
-              ids:all_ids,
-            },
-            headers: {
-                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            },
-            success: function (response) {
-              $.each(all_ids, function (key, val) { 
-                 $('#employee_ids'+val).remove();
+          if (all_ids == null || all_ids.length === 0) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'You do not select anything!',
+            })
+          } else {
+              $.ajax({
+                type: "DELETE",
+                url: "{{ route('delete-customer-message') }}",
+                data: {
+                  ids:all_ids,
+                },
+                headers: {
+                      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                success: function (response) {
+                  $.each(all_ids, function (key, val) { 
+                    $('#employee_ids'+val).remove();
+                  });
+                  if (response.success) {
+                      toastr.success(response.success);
+                  } else if (response.error) {
+                      toastr.error(response.error);
+                  }
+                },
               });
-              if (response.success) {
-                  toastr.success(response.success);
-              } else if (response.error) {
-                  toastr.error(response.error);
-              }
-            },
-          });
+          }
+          
         });
     });
 
@@ -301,7 +310,11 @@
           });
 
           if (selectedValues == null || selectedValues.length === 0) {
-              alert('Please Select Customer')
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: 'You do not select anything!',
+            })
           } else {
             $('#sendMail').modal('show');
 

@@ -58,7 +58,8 @@
                             <?php
                                 $serials = ($default_sms->currentpage() - 1) * $default_sms->perpage() + 1;
                             ?> 
-                            <?php $__currentLoopData = $default_sms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $templete): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+
+                            <?php $__empty_1 = true; $__currentLoopData = $default_sms; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $templete): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
                                     <th><?php echo e($serials++); ?></th>
                                     <td><?php echo e($templete->subject); ?></td>
@@ -104,7 +105,11 @@
                                             </div>
                                     </td>
                                 </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                    <tr>
+                                        <td colspan="10" class="text-danger text-center">No Data Found</td>
+                                    </tr>
+                                <?php endif; ?>
                         </tbody>
                     </table>
                     <div class="float-right my-2">
@@ -177,7 +182,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="submit">Send</button>
+                    <button type="submit" class="btn btn-primary" id="submit">Save</button>
                     <div style="display: none" id="loading">
                       <img style="height: 50px" src="<?php echo e(asset('frontend/assets/images/load.gif')); ?>" alt=""> <span>Sending Message To Customerts</span>
                   </div>

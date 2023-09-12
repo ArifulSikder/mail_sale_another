@@ -187,33 +187,8 @@
                     </ul>
                 </li>
 
-                <!-- SEO  -->
-                <li class="nav-item {{ request()->is('add-seo-pages','pages-list','page-content-update*') ? 'menu-open' : '' }}">
-                    <a href="#" class="nav-link {{ request()->is('add-seo-pages','pages-list','page-content-update*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-globe-africa"></i>
-                        <p>
-                            SEO Pages
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{  url('add-seo-pages')  }}" class="nav-link {{ request()->is('add-seo-pages') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Add Seo Page</p>    
-                            </a>
-                        </li>       
-                        <li class="nav-item">
-                            <a href="{{  url('pages-list') }}" class="nav-link {{ request()->is('pages-list','page-content-update*') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Pages List</p>    
-                            </a>
-                        </li>       
-                    </ul>
-                </li>
-
-                <!-- REPORT  -->
-                <li class="nav-item {{ request()->is('sales-report', 'order-report', 'revenue-report') ? 'menu-open' : '' }}">
+                  <!-- REPORT  -->
+                  <li class="nav-item {{ request()->is('sales-report', 'order-report', 'revenue-report') ? 'menu-open' : '' }}">
                     <a href="#" class="nav-link {{ request()->is('sales-report', 'order-report', 'revenue-report') ? 'active' : '' }}">
                         <i class="nav-icon far fa-file-alt"></i>
                         <p>
@@ -242,6 +217,33 @@
                         </li>       
                     </ul>
                 </li>
+                
+                <!-- SEO  -->
+                <li class="nav-item {{ request()->is('add-seo-pages','pages-list','page-content-update*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('add-seo-pages','pages-list','page-content-update*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-globe-africa"></i>
+                        <p>
+                            SEO Pages
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{  url('add-seo-pages')  }}" class="nav-link {{ request()->is('add-seo-pages') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Add Seo Page</p>    
+                            </a>
+                        </li>       
+                        <li class="nav-item">
+                            <a href="{{  url('pages-list') }}" class="nav-link {{ request()->is('pages-list','page-content-update*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Pages List</p>    
+                            </a>
+                        </li>       
+                    </ul>
+                </li>
+
+              
 
                 <li class="nav-header">Settings</li>
 
@@ -328,13 +330,7 @@
                                 <i class="far fa-circle nav-icon"></i>
                                 <p>Default SMS</p>    
                             </a>
-                        </li>  
-                        <li class="nav-item">
-                            <a href="{{  url('default-sms')  }}" class="nav-link {{ request()->is('default-sms') ? 'active' : '' }}">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Order Default SMS</p>    
-                            </a>
-                        </li>
+                        </li>       
                     </ul>
                 </li>
 

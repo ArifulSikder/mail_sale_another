@@ -607,10 +607,9 @@ class AppearanceController extends Controller
             $payment->save();
 
             $order_data = [
-                'name' => $user['f_name'] . $user['l_name'],
+                'order_id' => $order->id,
+                'order' => $order,
                 'subject' => 'Your Order Placed',
-                'message' => 'Thanks for confirming order. You will get your product very recetnt',
-                'visit_link' => 'https://www.facebook.com/',
             ];
 
             Mail::to($user['email'])->send(new OrderCompleteMail($order_data));

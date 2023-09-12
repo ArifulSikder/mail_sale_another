@@ -4,40 +4,49 @@
     
 
 
-
+    <h3 class="text-center text-danger fw-bold">Orders</h3>
     <div class="table-responsive">
         <table class="table table-bordered">
           <thead>
             <tr>
-              <th scope="col">Serial</th>
-              <th scope="col">Id</th>
-              <th scope="col">Date</th>
-              <th scope="col">Customar</th>
-              <th scope="col">Total</th>
-              <th scope="col">Status</th>
-              <th scope="col">Payment</th>
+              <th scope="col" class="text-danger">Serial</th>
+              <th scope="col" class="text-danger">Id</th>
+              <th scope="col" class="text-danger">Date</th>
+              <th scope="col" class="text-danger">Status</th>
+              <th scope="col" class="text-danger">Payment</th>
+              <th scope="col" class="text-danger">Amount</th>
             </tr>
           </thead>
           <tbody>
+            <?php
+                $total = 0;
+            ?>
             <?php $__currentLoopData = $orders; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $order): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <tr>
                     <th scope="row"><?php echo e($loop->iteration); ?></th>
                     <td><?php echo e("#A".$order->id + 100); ?></td>
                     <td><?php echo e($order->created_at->toFormateDate()); ?></td>
-                    <td><?php echo e($order->f_name); ?></td>
-                    <td>$<?php echo e($order->total_price); ?></td>
                     <td><?php echo e($order->status); ?></td>
                     <td>
                         <?php if($order->payment_method == 1): ?>
-                            <p>Stripe</p>
-                            <?php else: ?>
-                            <p>Paypal</p>
-                            <?php endif; ?>
+                          <p>Stripe</p>
+                        <?php else: ?>
+                          <p>Paypal</p>
+                        <?php endif; ?>
                     </td>
+                    <td class="text-end">$<?php echo e($order->total_price); ?></td>
+
                 </tr>
+                <?php
+                  $total +=$order->total_price ;
+                ?>
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                <tr>
+                  <td colspan="10" class="text-end"><strong class="text-danger">Total</strong> = $<?php echo e($total); ?></td>
+                </tr>
           </tbody>
         </table>
+      
       </div>
 </div>
 <?php $__env->stopSection(); ?>

@@ -11,9 +11,17 @@ use Illuminate\Support\Facades\Validator;
 
 class SettingController extends Controller
 {
-    public function setEmail()
+    public function setEmail(Request $request)
     {
-        $data['email_data'] = SetEmail::latest()->paginate();
+        $search = $request->search;
+        $data['email_data'] = SetEmail::latest()
+            ->when($search !== null, function ($query) use ($search) {
+                return $query->where('username', 'LIKE', "%{$search}%");
+            })
+            ->paginate(10);
+        $data['search'] = $search;
+
+        // $data['email_data'] = SetEmail::latest()->paginate(10);
         return view('backend.env.emailIndex', $data);
     }
 

@@ -33,9 +33,12 @@
                         <i class="fas fa-plus"></i> Set Email 
                     </button>
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="search" placeholder="Search By Category Name">
-                </div>
+                <form action="">
+                    <div class="form-group d-flex">
+                        <input class="form-control" type="search" placeholder="Search By Username" name="search" value="<?php echo e($search); ?>">
+                        <button class="btn btn-info btn-sm ml-2">Search</button>
+                    </div>
+                </form> 
             </div>
             <div class="card">
                 <div class="card-header">Email Setup Table</div>

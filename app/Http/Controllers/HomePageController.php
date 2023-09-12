@@ -820,6 +820,7 @@ class HomePageController extends Controller
 
     public function indexPolicy()
     {
+       
         $data['polices']= BusinessPolicy::latest()->paginate(10);
         return view('backend.homepage.businessPolicy.indexPolices', $data);
     }

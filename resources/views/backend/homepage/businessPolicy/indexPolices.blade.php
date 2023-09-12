@@ -58,7 +58,7 @@
                             @php
                                 $serials = ($polices->currentpage() - 1) * $polices->perpage() + 1;
                             @endphp 
-                            @foreach($polices as $policy)
+                            @forelse($polices as $policy)
                                 <tr>
                                     <th>{{ $serials++ }}</th>
                                     <td>
@@ -113,7 +113,11 @@
 
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                <tr>
+                                    <th colspan='6' style="color:red; text-align: center;">No Data Found!</th>
+                                </tr>
+                                @endforelse
                         </tbody>
                     </table>
                     <div class="float-right my-2">

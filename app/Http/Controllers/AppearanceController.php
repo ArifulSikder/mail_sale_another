@@ -12,6 +12,7 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Validator;
 use App\Cart;
 use App\Http\Requests\OrderInformationRequest;
+use App\Mail\OrderCompleteMail;
 use App\Models\AboutUs;
 use App\Models\Coupon;
 use App\Models\FAQCategory;
@@ -28,6 +29,7 @@ use App\Models\SubCategoryDescription;
 use App\Rules\UniqueStripeToken;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
@@ -604,9 +606,18 @@ class AppearanceController extends Controller
             $payment->amount = Cart::subtotal();
             $payment->save();
 
+            $order_data = [
+                'name' => $user['f_name'] . $user['l_name'],
+                'subject' => 'Your Order Placed',
+                'message' => 'Thanks for confirming order. You will get your product very recetnt',
+                'visit_link' => 'https://www.facebook.com/',
+            ];
+
+            Mail::to($user['email'])->send(new OrderCompleteMail($order_data));
+
+
             Cart::forget();
             Cart::forgetDis();
-
 
             return redirect()->route('payment-success');
         }

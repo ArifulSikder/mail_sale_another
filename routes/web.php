@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppearanceController::class, 'index']);
 
-
 Route::get('product', [AppearanceController::class, 'allProduct'])->name('product');
 Route::get('product/{category_slug}', [AppearanceController::class, 'categoryWiseProduct'])->name('product');
 Route::get('product/{category_slug}/{product_slug}', [AppearanceController::class, 'productDetails'])->name('single');
@@ -23,7 +22,6 @@ Route::get('/my-account/downlaods', [MyAccountController::class, 'downlaods'])->
 Route::get('/my-account/addresses', [MyAccountController::class, 'addresses'])->middleware('auth');
 Route::get('/my-account/details', [MyAccountController::class, 'details'])->middleware('auth');
 Route::get('/my-account/logout', [MyAccountController::class, 'logout'])->middleware('auth');
-
 
 Route::get('/cart', [AppearanceController::class, 'cart']);
 Route::post('/validate-userdata', [AppearanceController::class, 'validateUserdata']);

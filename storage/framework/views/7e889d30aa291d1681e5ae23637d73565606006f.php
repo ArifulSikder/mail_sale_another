@@ -50,10 +50,10 @@
                 </div>
                 <div class="form-group">
                     <form action="<?php echo e(url('orders')); ?>">
-                    <div class="d-flex justify-content-between">
-                        <input class="form-control" type="search" name="customer" placeholder="Search By Custom Name">
-                        <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
-                    </div>
+                        <div class="d-flex justify-content-between">
+                            <input class="form-control" type="search" name="customer" placeholder="Search By Custom Name">
+                            <button class="btn btn-success" type="submit"><i class="fas fa-search"></i></button>
+                        </div>
                     </form>
                 </div>
             </div>

@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\PurchaseProduct;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class OrderControllerBackend extends Controller
 {
@@ -42,8 +45,41 @@ class OrderControllerBackend extends Controller
     public function invoiceIndex($id)
     {
         $data['order'] = Order::findOrFail($id);
-        $user_id = $data['order']->user_id;
-        $data['user'] = User::where('id', $user_id)->first();
+        $data['products'] = PurchaseProduct::where('order_id', $id)->get();
+        
          return view('backend.order.invoice', $data);
+    }
+
+    public function updatInvoice(Request $request)
+    {
+        Validator::make($request->all(), [
+            'status' => 'required',
+        ],[
+            'status.required' => 'Please Update Your Status',
+        ])->validate();
+
+        $order_status = Order::findOrFail($request->id)->update([
+            'status' => $request->status,
+        ]);
+
+        if ($order_status) {
+            return response()->json([
+                'success' => "Order Status Updated Successfully",
+            ]);
+        } else {
+            return response()->json([
+                'error' => "Opps! Something Went Wrong.",
+            ]);
+        }
+    }
+
+    public function downloadInvoice($id)
+    {
+        $data['order'] = Order::findOrFail($id);
+        $data['products'] = PurchaseProduct::where('order_id', $id)->get();
+
+        // return view('backend.order.download_invoice', $data);
+        $pdf = Pdf::loadView('backend.order.download_invoice', $data);
+        return $pdf->download('invoice.pdf');   
     }
 }

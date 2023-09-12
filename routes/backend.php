@@ -216,6 +216,8 @@ Route::get('delete-email/{id}', [SettingController::class, 'deleteEmail'])->name
 //order 
 Route::get('orders', [OrderControllerBackend::class, 'orderIndex'])->name('orders');
 Route::get('invoice/{id}', [OrderControllerBackend::class, 'invoiceIndex'])->name('invoice');
+Route::post('update-invoice', [OrderControllerBackend::class, 'updatInvoice'])->name('update-invoice');
+Route::get('download-invoice-pdf/{id}', [OrderControllerBackend::class, 'downloadInvoice'])->name('download-invoice-pdf');
 
 
 

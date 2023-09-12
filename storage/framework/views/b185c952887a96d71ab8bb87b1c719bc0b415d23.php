@@ -58,7 +58,7 @@
                             <?php
                                 $serials = ($polices->currentpage() - 1) * $polices->perpage() + 1;
                             ?> 
-                            <?php $__currentLoopData = $polices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $policy): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__empty_1 = true; $__currentLoopData = $polices; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $policy): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); $__empty_1 = false; ?>
                                 <tr>
                                     <th><?php echo e($serials++); ?></th>
                                     <td>
@@ -113,7 +113,11 @@
 
                                     </td>
                                 </tr>
-                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); if ($__empty_1): ?>
+                                <tr>
+                                    <th colspan='6' style="color:red; text-align: center;">No Data Found!</th>
+                                </tr>
+                                <?php endif; ?>
                         </tbody>
                     </table>
                     <div class="float-right my-2">

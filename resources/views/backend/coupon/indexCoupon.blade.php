@@ -62,8 +62,6 @@
                         <tbody>
                             @php
                                 $serials = ($coupons->currentpage() - 1) * $coupons->perpage() + 1;
-
-                                
                             @endphp 
                                 
                             @forelse($coupons as $coupon)

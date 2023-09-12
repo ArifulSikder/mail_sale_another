@@ -1,5 +1,5 @@
 .. Laravel PayPal documentation master file, created by
-   sphinx-quickstart on Wed Sep  2 00:19:14 2020.
+   sphinx-quickstart on Wed Sep  6 01:27:06 2023.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
@@ -10,11 +10,7 @@ Welcome to Laravel PayPal's documentation!
    :maxdepth: 2
    :caption: Contents:
 
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+   installation
+   usage
+   helpers
+   documentation

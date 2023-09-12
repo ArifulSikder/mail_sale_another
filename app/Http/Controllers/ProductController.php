@@ -28,13 +28,13 @@ class ProductController extends Controller
                 return $query->where('name', 'LIKE', "%{$search}%");
             })
             ->paginate(10);
+        $data['search'] = $search;
 
 
         $data['categories'] = Category::where('parent_id', null)->get();
         $data['subCategories'] = Category::with('category')
             ->where('parent_id', '!=', null)
             ->paginate(10);
-        $data['search'] = $search;
         return view('backend.product.index', $data);
     }
 
@@ -456,9 +456,19 @@ class ProductController extends Controller
     // ++++++++++++++++++++++++++++++++++++++ end product description ********************************
 
     // stock view
-    public function indexStock()
+    public function indexStock(Request $request)
     {
-        $data['stocks'] = StockManagement::latest()->paginate(15);
+        $search = $request->search;
+        $data['stocks'] = StockManagement::latest()
+            ->when($search !== null, function ($query) use($search) {
+                 $query->whereHas('product', function($query) use($search){
+                    $query->Where("name", "like","%$search%");
+                 });
+            })
+            ->paginate(10);
+        $data['search'] = $search;
+
+        // $data['stocks'] = StockManagement::latest()->paginate(15);
         $data['products'] = Product::latest()->get();
         $data['sellers'] = Seller::latest()->get();
         return view('backend.stockManage.indexStock', $data);

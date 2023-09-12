@@ -73,7 +73,7 @@
                 width: [0, 4]
             },
             title: {
-                text: 'Traffic Sources'
+                text: 'Sales Report Chart'
             },
             dataLabels: {
                 enabled: true,
@@ -90,13 +90,13 @@
             },
             yaxis: [{
                 title: {
-                    text: 'Website Blog',
+                    text: 'Monthly Sales Amount',
                 },
 
             }, {
                 opposite: true,
                 title: {
-                    text: 'Social Media'
+                    text: 'Monthly Sales Persentage'
                 }
             }]
         };

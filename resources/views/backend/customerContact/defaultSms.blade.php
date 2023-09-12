@@ -58,7 +58,8 @@
                             @php
                                 $serials = ($default_sms->currentpage() - 1) * $default_sms->perpage() + 1;
                             @endphp 
-                            @foreach($default_sms as $templete)
+
+                            @forelse($default_sms as $templete)
                                 <tr>
                                     <th>{{ $serials++ }}</th>
                                     <td>{{ $templete->subject }}</td>
@@ -103,7 +104,11 @@
                                             </div>
                                     </td>
                                 </tr>
-                            @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="10" class="text-danger text-center">No Data Found</td>
+                                    </tr>
+                                @endforelse
                         </tbody>
                     </table>
                     <div class="float-right my-2">
@@ -175,7 +180,7 @@
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary" id="submit">Send</button>
+                    <button type="submit" class="btn btn-primary" id="submit">Save</button>
                     <div style="display: none" id="loading">
                       <img style="height: 50px" src="{{ asset('frontend/assets/images/load.gif') }}" alt=""> <span>Sending Message To Customerts</span>
                   </div>

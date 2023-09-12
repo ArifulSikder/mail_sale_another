@@ -35,17 +35,17 @@
 
                                     </p>
                                 </div>
-                                <a href="<?php echo e(url('my-account/dashboard')); ?>" class="nav-link tab-button  text-uppercase">Dashboard</a>
+                                <a href="<?php echo e(url('my-account/dashboard')); ?>" class="nav-link tab-button  text-uppercase <?php echo e(request()->is('my-account/dashboard') ? 'bg-danger text-white' : ''); ?>">Dashboard</a>
 
-                                <a href="<?php echo e(url('my-account/orders')); ?>" class="nav-link tab-button text-uppercase" >Orders</a>
+                                <a href="<?php echo e(url('my-account/orders')); ?>" class="nav-link tab-button text-uppercase <?php echo e(request()->is('my-account/orders') ? 'bg-danger text-white' : ''); ?>" >Orders</a>
 
-                                <a href="<?php echo e(url('my-account/downlaods')); ?>" class="nav-link tab-button text-uppercase">Downloads</a>
+                                <a href="<?php echo e(url('my-account/downlaods')); ?>" class="nav-link tab-button text-uppercase <?php echo e(request()->is('my-account/downlaods') ? 'bg-danger text-white' : ''); ?>">Downloads</a>
 
-                                <a href="<?php echo e(url('my-account/addresses')); ?>" class="nav-link tab-button text-uppercase">Addresses</a>
+                                <a href="<?php echo e(url('my-account/addresses')); ?>" class="nav-link tab-button text-uppercase <?php echo e(request()->is('my-account/addresses') ? 'bg-danger text-white' : ''); ?>">Addresses</a>
 
-                                <a href="<?php echo e(url('my-account/details')); ?>" class="nav-link tab-button text-uppercase" >Account details</a>
+                                <a href="<?php echo e(url('my-account/details')); ?>" class="nav-link tab-button text-uppercase <?php echo e(request()->is('my-account/details') ? 'bg-danger text-white' : ''); ?>" >Account details</a>
 
-                                <a href="<?php echo e(route('logout')); ?>" class="nav-link tab-button text-uppercase" >Logout</a>
+                                <a href="<?php echo e(route('logout')); ?>" class="nav-link tab-button text-uppercase text-danger" >Logout</a>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-12 col-sm-12">

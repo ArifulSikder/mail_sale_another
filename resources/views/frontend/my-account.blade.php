@@ -34,17 +34,17 @@
                                         {{ Auth::user()->username }}
                                     </p>
                                 </div>
-                                <a href="{{ url('my-account/dashboard') }}" class="nav-link tab-button  text-uppercase">Dashboard</a>
+                                <a href="{{ url('my-account/dashboard') }}" class="nav-link tab-button  text-uppercase {{ request()->is('my-account/dashboard') ? 'bg-danger text-white' : '' }}">Dashboard</a>
 
-                                <a href="{{ url('my-account/orders') }}" class="nav-link tab-button text-uppercase" >Orders</a>
+                                <a href="{{ url('my-account/orders') }}" class="nav-link tab-button text-uppercase {{ request()->is('my-account/orders') ? 'bg-danger text-white' : '' }}" >Orders</a>
 
-                                <a href="{{ url('my-account/downlaods') }}" class="nav-link tab-button text-uppercase">Downloads</a>
+                                <a href="{{ url('my-account/downlaods') }}" class="nav-link tab-button text-uppercase {{ request()->is('my-account/downlaods') ? 'bg-danger text-white' : '' }}">Downloads</a>
 
-                                <a href="{{ url('my-account/addresses') }}" class="nav-link tab-button text-uppercase">Addresses</a>
+                                <a href="{{ url('my-account/addresses') }}" class="nav-link tab-button text-uppercase {{ request()->is('my-account/addresses') ? 'bg-danger text-white' : '' }}">Addresses</a>
 
-                                <a href="{{ url('my-account/details') }}" class="nav-link tab-button text-uppercase" >Account details</a>
+                                <a href="{{ url('my-account/details') }}" class="nav-link tab-button text-uppercase {{ request()->is('my-account/details') ? 'bg-danger text-white' : '' }}" >Account details</a>
 
-                                <a href="{{ route('logout') }}" class="nav-link tab-button text-uppercase" >Logout</a>
+                                <a href="{{ route('logout') }}" class="nav-link tab-button text-uppercase text-danger" >Logout</a>
                             </div>
                         </div>
                         <div class="col-lg-8 col-md-12 col-sm-12">

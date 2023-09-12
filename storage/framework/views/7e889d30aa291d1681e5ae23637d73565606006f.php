@@ -67,9 +67,9 @@
                                 <th scope="col" style="width: 10%">Order Id</th>
                                 <th scope="col" style="width: 10%">Date</th>
                                 <th scope="col" style="width: 20%">Customar</th>
-                                <th scope="col" style="width: 10%">Total</th>
                                 <th scope="col" style="width: 10%">Status</th>
                                 <th scope="col" style="width: 10%">Payment</th>
+                                <th scope="col" style="width: 10%">Amount</th>
                                 <th scope="col" style="width: 15%">Action</th>
                             </tr>
                         </thead>
@@ -83,7 +83,6 @@
                                     <td><?php echo e("#A".$order->id + 100); ?></td>
                                     <td><?php echo e($order->created_at->toFormateDate()); ?></td>
                                     <td><?php echo e($order->f_name." ".$order->l_name); ?></td>
-                                    <td>$<?php echo e($order->total_price); ?></td>
                                     <td><?php echo e($order->status); ?></td>
                                     <td>
                                         <?php if($order->payment_method == 1): ?>
@@ -92,6 +91,7 @@
                                         <span class="badge badge-success">Paypal</span>
                                         <?php endif; ?>
                                     </td>
+                                    <td class="text-right">$<?php echo e($order->total_price); ?></td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button"

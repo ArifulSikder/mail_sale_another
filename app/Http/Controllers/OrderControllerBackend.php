@@ -47,7 +47,7 @@ class OrderControllerBackend extends Controller
         $data['order'] = Order::findOrFail($id);
         $data['products'] = PurchaseProduct::where('order_id', $id)->get();
         
-         return view('backend.order.invoice', $data);
+        return view('backend.order.invoice', $data);
     }
 
     public function updatInvoice(Request $request)
